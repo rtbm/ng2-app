@@ -12,9 +12,7 @@ export class SessionActions {
     constructor(
         private ngRedux: NgRedux<IAppState>,
         private authService: AuthService
-    ) {
-
-    }
+    ) {}
 
     signup(credentials) {
         this.ngRedux.dispatch({
@@ -22,12 +20,12 @@ export class SessionActions {
         });
 
         this.authService.signup(credentials)
-            .then(result => { console.log(result); this.ngRedux.dispatch({
+            .then(result => this.ngRedux.dispatch({
                 type: SessionActions.LOGIN_USER_SUCCESS,
                 payload: result
-            })})
-            .catch(() => { console.log('err'); this.ngRedux.dispatch({
+            }))
+            .catch(() => this.ngRedux.dispatch({
                 type: SessionActions.LOGIN_USER_ERROR
-            })});
+            }));
     }
 }
