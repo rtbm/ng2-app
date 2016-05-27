@@ -4,11 +4,11 @@ import {select} from 'ng2-redux';
 import {AsyncPipe} from '@angular/common';
 import {Router} from '@angular/router-deprecated';
 import {ISession} from '../../reducers/session';
-import {XWrapperComponent} from '../atoms/ui/wrapper-component';
-import {XLogoComponent} from '../atoms/ui/logo-component';
-import {XSearchFormComponent} from '../molecules/search-form-component';
-import {XTopMenuComponent} from '../molecules/top-menu-component';
-import {XAccountBoxComponent} from '../molecules/account-box-component';
+import {XWrapperComponent} from '../atoms/ui/wrapper';
+import {XLogoComponent} from '../atoms/ui/logo';
+import {XSearchFormComponent} from '../molecules/search-form';
+import {XTopMenuComponent} from '../molecules/top-menu';
+import {XAccountBoxComponent} from '../molecules/account-box';
 import {JwtHelper} from 'angular2-jwt';
 import {SearchService} from '../../services/search';
 

@@ -2,9 +2,9 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
 import {Router} from '@angular/router-deprecated';
 import {SessionActions} from '../../actions/session';
-import {XButtonComponent} from '../atoms/form/button-component';
-import {XListComponent} from '../atoms/list/list-component';
-import {XListItemComponent} from '../atoms/list/list-item-component';
+import {XButtonComponent} from '../atoms/form/button';
+import {XListComponent} from '../atoms/list/list';
+import {XListItemComponent} from '../atoms/list/list-item';
 
 @Component({
   selector: 'x-account-box',

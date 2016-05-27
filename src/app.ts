@@ -7,10 +7,10 @@ import {IAppState} from './reducers';
 import {middlewares} from './state/middlewares';
 import {enhancers} from './state/enhancers';
 
-import {XHeaderComponent} from './components/organisms/header-component';
-import {XFrontPageComponent} from './components/pages/front-page-component';
-import {XSigninPageComponent} from './components/pages/signin-page-component';
-import {XSignupPageComponent} from './components/pages/signup-page-component';
+import {XHeaderComponent} from './components/organisms/header';
+import {XFrontPageComponent} from './components/pages/front-page';
+import {XSigninPageComponent} from './components/pages/signin-page';
+import {XSignupPageComponent} from './components/pages/signup-page';
 
 @Component({
     selector: 'x-app',

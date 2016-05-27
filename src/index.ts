@@ -16,7 +16,7 @@ import {AuthService} from './services/auth';
 import {SearchService} from './services/search';
 import {SessionActions} from './actions/session';
 
-import {XApp} from './x-app';
+import {XApp} from './app';
 
 declare let __PRODUCTION__: any;
 

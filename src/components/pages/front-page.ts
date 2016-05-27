@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {XBannerComponent} from '../templates/banner-component';
+import {XBannerComponent} from '../templates/banner';
 
 @Component({
     selector: 'x-front-page',

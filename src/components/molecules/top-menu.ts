@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {XMenuComponent} from '../atoms/menu/menu-component';
-import {XMenuItemComponent} from '../atoms/menu/menu-item-component';
+import {XMenuComponent} from '../atoms/menu/menu';
+import {XMenuItemComponent} from '../atoms/menu/menu-item';
 
 @Component({
     selector: 'x-top-menu',
