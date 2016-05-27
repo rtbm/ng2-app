@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
-import {WsHeaderComponent} from '../organisms/header-component';
-import {WsBannerComponent} from '../templates/banner-component';
+import {XHeaderComponent} from '../organisms/header-component';
+import {XBannerComponent} from '../templates/banner-component';
 
 @Component({
-    selector: 'ws-front-page',
-    directives: [WsBannerComponent],
+    selector: 'x-front-page',
+    directives: [XBannerComponent],
     template: `
-        <ws-banner
+        <x-banner
             tagline="John Doe was here!"
-            subtagline="Foo bar buzz"></ws-banner>
+            subtagline="Foo bar buzz"></x-banner>
     `
 })
-export class WsFrontPageComponent {}
+export class XFrontPageComponent {}

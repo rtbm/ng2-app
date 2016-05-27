@@ -1,14 +1,14 @@
 import {Component, Input} from '@angular/core';
-import {WsWrapperComponent} from '../atoms/wrapper-component';
+import {XWrapperComponent} from '../atoms/wrapper-component';
 
 @Component({
-    selector: 'ws-banner',
-    directives: [WsWrapperComponent],
+    selector: 'x-banner',
+    directives: [XWrapperComponent],
     template: `
-        <ws-wrapper>
+        <x-wrapper>
             <h1>{{tagline}}</h1>
             <h2>{{subtagline}}</h2>
-        </ws-wrapper>
+        </x-wrapper>
     `,
     styles: [`
         :host {
@@ -35,7 +35,7 @@ import {WsWrapperComponent} from '../atoms/wrapper-component';
         }
     `]
 })
-export class WsBannerComponent {
+export class XBannerComponent {
     @Input() tagline: string = '';
     @Input() subtagline: string = '';
 }

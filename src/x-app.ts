@@ -7,15 +7,15 @@ import {NgRedux} from 'ng2-redux';
 import rootReducer from './reducers';
 import {IAppState} from './reducers';
 
-import {WsFrontPageComponent} from './components/pages/front-page-component';
-import {WsSignupPageComponent} from './components/pages/signup-page-component';
-import {WsHeaderComponent} from './components/organisms/header-component';
+import {XFrontPageComponent} from './components/pages/front-page-component';
+import {XSignupPageComponent} from './components/pages/signup-page-component';
+import {XHeaderComponent} from './components/organisms/header-component';
 
 @Component({
-    selector: 'ws-app',
-    directives: [ROUTER_DIRECTIVES, WsHeaderComponent],
+    selector: 'x-app',
+    directives: [ROUTER_DIRECTIVES, XHeaderComponent],
     template: `
-        <ws-header></ws-header>
+        <x-header></x-header>
         <router-outlet></router-outlet>
     `,
     encapsulation: ViewEncapsulation.None
@@ -23,16 +23,16 @@ import {WsHeaderComponent} from './components/organisms/header-component';
 
 @RouteConfig([{
     path: '/',
-    component: WsFrontPageComponent,
+    component: XFrontPageComponent,
     name: 'Home',
     useAsDefault: true,
 }, {
     path: '/signup',
-    component: WsSignupPageComponent,
+    component: XSignupPageComponent,
     name: 'Signup',
 }])
 
-export class WsApp {
+export class XApp {
     constructor(private ngRedux: NgRedux<IAppState>) {
         ngRedux.configureStore(rootReducer, {}, [logger], []);
     }

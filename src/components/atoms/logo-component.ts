@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-logo',
+    selector: 'x-logo',
     template: `
         <div>RTBM</div>
     `,
@@ -13,4 +13,4 @@ import {Component} from '@angular/core';
         }
     `]
 })
-export class WsLogoComponent {}
+export class XLogoComponent {}

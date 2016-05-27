@@ -13,7 +13,7 @@ const distPath = path.join(__dirname, 'public');
 
 const app = express();
 
-app.use(require('morgan')({ "stream": logger.stream }));
+app.use(require('morgan')('combined', { stream: logger.stream }));
 
 mongoose.connect('mongodb://localhost:27017/quotr-db');
 

@@ -1,16 +1,16 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {WsMenuComponent} from '../atoms/menu-component';
-import {WsMenuItemComponent} from '../atoms/menu-item-component';
+import {XMenuComponent} from '../atoms/menu-component';
+import {XMenuItemComponent} from '../atoms/menu-item-component';
 
 @Component({
-    selector: 'ws-top-menu',
-    directives: [ROUTER_DIRECTIVES, WsMenuComponent, WsMenuItemComponent],
+    selector: 'x-top-menu',
+    directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent],
     template: `
-        <ws-menu>
-            <ws-menu-item><a [routerLink]="['./Home']">Home</a></ws-menu-item>
-            <ws-menu-item><a [routerLink]="['./Signup']">Signup</a></ws-menu-item>
-        </ws-menu>
+        <x-menu>
+            <x-menu-item><a [routerLink]="['./Home']">Home</a></x-menu-item>
+            <x-menu-item><a [routerLink]="['./Signup']">Signup</a></x-menu-item>
+        </x-menu>
     `
 })
-export class WsTopMenuComponent {}
+export class XTopMenuComponent {}

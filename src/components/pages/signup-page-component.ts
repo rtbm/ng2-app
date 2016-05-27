@@ -1,32 +1,32 @@
 import {Component} from '@angular/core';
-import {WsSignupFormComponent} from '../molecules/signup-form-component';
+import {XSignupFormComponent} from '../molecules/signup-form-component';
 import {SessionActions} from '../../actions/session';
-import {WsWrapperComponent} from '../atoms/wrapper-component';
+import {XWrapperComponent} from '../atoms/wrapper-component';
 import {AsyncPipe} from '@angular/common';
 import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
 
 @Component({
-    selector: 'ws-signup-page',
+    selector: 'x-signup-page',
     pipes: [AsyncPipe],
-    directives: [WsSignupFormComponent, WsWrapperComponent],
+    directives: [XSignupFormComponent, XWrapperComponent],
     template: ` 
-        <ws-wrapper>
+        <x-wrapper>
             <div>isError: {{ isError$ | async }}</div>
             <div>isPending: {{ isPending$ | async }}</div>
             
-            <ws-signup-form (onSubmit)="sessionActions.signup($event)"></ws-signup-form>
-        </ws-wrapper>
+            <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
+        </x-wrapper>
     `,
     styles: [`
-        ws-signup-form {
+        x-signup-form {
             display: inline-block;
             background: #D6DCE2;
             padding: 2rem;
         }
     `]
 })
-export class WsSignupPageComponent {
+export class XSignupPageComponent {
     @select(n => n.session.get('isError')) private isError$: Observable<boolean>;
     @select(n => n.session.get('isPending')) private isPending$: Observable<boolean>;
     @select(n => n.session.get('isLogged')) private isLogged$: Observable<boolean>;

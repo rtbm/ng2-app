@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-menu',
+    selector: 'x-menu',
     template: `
         <ng-content></ng-content>
     `
 })
-export class WsMenuComponent {}
+export class XMenuComponent {}

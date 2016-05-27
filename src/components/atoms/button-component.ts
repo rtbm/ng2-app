@@ -1,7 +1,7 @@
 import {Input, Output, Component, EventEmitter} from '@angular/core';
 
 @Component({
-    selector: 'ws-button',
+    selector: 'x-button',
     template: `
         <button [type]="type" (click)="handleClick($event)">
             <ng-content></ng-content>
@@ -19,7 +19,7 @@ import {Input, Output, Component, EventEmitter} from '@angular/core';
         }
     `]
 })
-export class WsButtonComponent {
+export class XButtonComponent {
     @Input() type: string = 'button';
     @Output() onClick = new EventEmitter<Event>();
 

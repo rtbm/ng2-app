@@ -1,18 +1,18 @@
 import {Component} from '@angular/core';
-import {WsWrapperComponent} from '../atoms/wrapper-component';
-import {WsLogoComponent} from '../atoms/logo-component';
-import {WsSearchFormComponent} from '../molecules/search-form-component';
-import {WsTopMenuComponent} from '../molecules/top-menu-component';
+import {XWrapperComponent} from '../atoms/wrapper-component';
+import {XLogoComponent} from '../atoms/logo-component';
+import {XSearchFormComponent} from '../molecules/search-form-component';
+import {XTopMenuComponent} from '../molecules/top-menu-component';
 
 @Component({
-    selector: 'ws-header',
-    directives: [WsWrapperComponent, WsLogoComponent, WsSearchFormComponent, WsTopMenuComponent],
+    selector: 'x-header',
+    directives: [XWrapperComponent, XLogoComponent, XSearchFormComponent, XTopMenuComponent],
     template: `
-        <ws-wrapper>
-            <ws-logo></ws-logo>
-            <ws-top-menu></ws-top-menu>
-            <ws-search-form></ws-search-form>
-        </ws-wrapper>
+        <x-wrapper>
+            <x-logo></x-logo>
+            <x-top-menu></x-top-menu>
+            <x-search-form></x-search-form>
+        </x-wrapper>
     `,
     styles: [`
         :host {       
@@ -20,12 +20,12 @@ import {WsTopMenuComponent} from '../molecules/top-menu-component';
             display: block;
             background: #fff;
         }
-        ws-logo {
+        x-logo {
             margin: 0 3rem 0;
         }
-        ws-search-form {
+        x-search-form {
             float: right;
         }
     `]
 })
-export class WsHeaderComponent {}
+export class XHeaderComponent {}

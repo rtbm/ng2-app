@@ -15,7 +15,7 @@ import {ServerService} from './services/server';
 import {AuthService} from './services/auth';
 import {SessionActions} from './actions/session';
 
-import {WsApp} from './ws-app';
+import {XApp} from './x-app';
 
 declare let __PRODUCTION__: any;
 
@@ -25,7 +25,7 @@ if (__PRODUCTION__) {
     require('zone.js/dist/long-stack-trace-zone');
 }
 
-bootstrap(WsApp, [
+bootstrap(XApp, [
     NgRedux,
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,

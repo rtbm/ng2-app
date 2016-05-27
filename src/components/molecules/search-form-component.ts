@@ -1,19 +1,19 @@
 import {Component} from '@angular/core';
-import {WsFormComponent} from '../atoms/form-component';
-import {WsLabelComponent} from '../atoms/label-component';
-import {WsInputComponent} from '../atoms/input-component';
-import {WsButtonComponent} from '../atoms/button-component';
+import {XFormComponent} from '../atoms/form-component';
+import {XLabelComponent} from '../atoms/label-component';
+import {XInputComponent} from '../atoms/input-component';
+import {XButtonComponent} from '../atoms/button-component';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
 
 @Component({
-    selector: 'ws-search-form',
-    directives: [FORM_DIRECTIVES, WsFormComponent, WsLabelComponent, WsInputComponent, WsButtonComponent],
+    selector: 'x-search-form',
+    directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent],
     template: `
-        <ws-form [formModel]="searchForm" (onSubmit)="handleSubmit()">
-            <ws-label>Search</ws-label>
-            <ws-input [formControl]="search" placeholder="search"></ws-input>
-            <ws-button type="submit">Search</ws-button>
-        </ws-form>
+        <x-form [formModel]="searchForm" (onSubmit)="handleSubmit()">
+            <x-label>Search</x-label>
+            <x-input [formControl]="search" placeholder="search"></x-input>
+            <x-button type="submit">Search</x-button>
+        </x-form>
     `,
     styles: [`
         :host {
@@ -21,7 +21,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
         }
     `]
 })
-export class WsSearchFormComponent {
+export class XSearchFormComponent {
     private searchForm: ControlGroup;
     private search: Control;
 

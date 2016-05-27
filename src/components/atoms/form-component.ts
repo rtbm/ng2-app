@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {NgFormModel} from '@angular/common';
 
 @Component({
-    selector: 'ws-form',
+    selector: 'x-form',
     directives: [NgFormModel],
     template: `
         <form [ngFormModel]="formModel" (ngSubmit)="onSubmit.emit($event)">
@@ -10,7 +10,7 @@ import {NgFormModel} from '@angular/common';
         </form>
     `
 })
-export class WsFormComponent {
+export class XFormComponent {
     @Input() formModel: NgFormModel;
     @Output() onSubmit = new EventEmitter<Event>();
 }

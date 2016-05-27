@@ -1,7 +1,7 @@
 import {Input, Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-label',
+    selector: 'x-label',
     template: `
         <label>
             <ng-content></ng-content>
@@ -13,4 +13,4 @@ import {Input, Component} from '@angular/core';
         }
     `]
 })
-export class WsLabelComponent {}
+export class XLabelComponent {}

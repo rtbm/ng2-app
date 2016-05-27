@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-form-group',
+    selector: 'x-form-group',
     template: `
         <ng-content></ng-content>
     `,
@@ -12,4 +12,4 @@ import {Component} from '@angular/core';
         }
     `]
 })
-export class WsFormGroupComponent {}
+export class XFormGroupComponent {}

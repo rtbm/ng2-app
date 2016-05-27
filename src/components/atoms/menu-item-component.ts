@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-menu-item',
+    selector: 'x-menu-item',
     template: `
         <ng-content></ng-content>
     `,
@@ -11,4 +11,4 @@ import {Component} from '@angular/core';
         }
     `]
 })
-export class WsMenuItemComponent {}
+export class XMenuItemComponent {}

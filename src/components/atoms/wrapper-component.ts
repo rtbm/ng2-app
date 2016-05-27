@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'ws-wrapper',
+    selector: 'x-wrapper',
     template: `
         <ng-content></ng-content>
     `,
@@ -14,4 +14,4 @@ import {Component} from '@angular/core';
         }
     `]
 })
-export class WsWrapperComponent {}
+export class XWrapperComponent {}
