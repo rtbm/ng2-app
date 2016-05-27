@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { ISession, sessionReducer } from './session';
-import { IArticle, articleReducer } from './article';
+import { IArticle, articleReducer } from './articles';
 
 export interface IAppState {
     session?: ISession;

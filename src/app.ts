@@ -11,7 +11,8 @@ import {XHeaderComponent} from './components/organisms/header';
 import {XHomePageComponent} from './components/pages/home-page';
 import {XSigninPageComponent} from './components/pages/user/signin-page';
 import {XSignupPageComponent} from './components/pages/user/signup-page';
-import {XCreateArticlePageComponent} from './components/pages/article/create-article-page';
+import {XCreateArticlePageComponent} from './components/pages/articles/create-article-page';
+import {XListArticlesPageComponent} from './components/pages/articles/list-articles-page';
 
 @Component({
     selector: 'x-app',
@@ -40,6 +41,10 @@ import {XCreateArticlePageComponent} from './components/pages/article/create-art
     path: '/article/create',
     name: 'CreateArticle',
     component: XCreateArticlePageComponent,
+}, {
+    path: '/articles',
+    name: 'ListArticles',
+    component: XListArticlesPageComponent,
 }])
 
 export class XApp {

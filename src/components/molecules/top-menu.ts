@@ -10,6 +10,7 @@ import {XMenuItemComponent} from '../atoms/menu/menu-item';
         <x-menu>
             <x-menu-item><a [routerLink]="['Home']">Home</a></x-menu-item>
             <x-menu-item><a [routerLink]="['CreateArticle']">Create article</a></x-menu-item>
+            <x-menu-item><a [routerLink]="['ListArticles']">List articles</a></x-menu-item>
         </x-menu>
     `
 })

@@ -17,7 +17,7 @@ import {SearchService} from './services/search';
 import {ArticlesService} from './services/articles';
 
 import {SessionActions} from './actions/session';
-import {ArticlesActions} from './actions/article';
+import {ArticlesActions} from './actions/articles';
 
 import {XApp} from './app';
 
