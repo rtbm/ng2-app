@@ -14,10 +14,12 @@ export class ServerService {
   constructor(private http: Http) {
     this.session$.subscribe(n => {
       const token = n.get('id_token');
-      
+
       if(token) {
         this.headers.append('Authorization', `Bearer ${token}`);
-      } else if(this.headers.has('Authorization')) {
+      }
+
+      if(!token && this.headers.has('Authorization')) {
         this.headers.delete('Authorization');
       }
     });

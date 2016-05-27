@@ -1,11 +1,11 @@
-import logger from './utils/logger';
-
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ROUTER_DIRECTIVES, RouteConfig} from '@angular/router-deprecated';
 
 import {NgRedux} from 'ng2-redux';
 import rootReducer from './reducers';
 import {IAppState} from './reducers';
+import {middlewares} from './state/middlewares';
+import {enhancers} from './state/enhancers';
 
 import {XHeaderComponent} from './components/organisms/header-component';
 import {XFrontPageComponent} from './components/pages/front-page-component';
@@ -19,7 +19,7 @@ import {XSignupPageComponent} from './components/pages/signup-page-component';
         <x-header></x-header>
         <router-outlet></router-outlet>
     `,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 
 @RouteConfig([{
@@ -39,6 +39,6 @@ import {XSignupPageComponent} from './components/pages/signup-page-component';
 
 export class XApp {
     constructor(private ngRedux: NgRedux<IAppState>) {
-        ngRedux.configureStore(rootReducer, {}, [logger], []);
+        ngRedux.configureStore(rootReducer, {}, middlewares, enhancers);
     }
 }

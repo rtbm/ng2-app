@@ -8,8 +8,12 @@ function stateTransformer(state) {
   return newState;
 }
 
-export default require('redux-logger')({
-  level: 'info',
-  collapsed: true,
-  stateTransformer,
-});
+const middlewares = [
+  require('redux-logger')({
+    level: 'info',
+    collapsed: true,
+    stateTransformer,
+  }),
+];
+
+export {middlewares};
