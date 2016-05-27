@@ -30,6 +30,9 @@ export function sessionReducer(state: ISession = INITIAL_STATE, action: any = { 
         case SessionActions.SIGNUP_USER_ERROR: {
             return state.merge({ isPending: false, isError: true });
         }
+        case SessionActions.LOGOUT_USER: {
+            return state.merge(INITIAL_STATE);
+        }
         default: {
             return state;
         }

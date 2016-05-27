@@ -13,6 +13,8 @@ export class SessionActions {
     static SIGNUP_USER_PENDING = 'SIGNUP_USER_PENDING';
     static SIGNUP_USER_ERROR = 'SIGNUP_USER_ERROR';
 
+    static LOGOUT_USER = 'LOGOUT_USER';
+
     constructor(
         private ngRedux: NgRedux<IAppState>,
         private authService: AuthService
@@ -46,5 +48,11 @@ export class SessionActions {
           .catch(() => this.ngRedux.dispatch({
               type: SessionActions.SIGNUP_USER_ERROR
           }));
+    }
+
+    logout() {
+      this.ngRedux.dispatch({
+        type: SessionActions.LOGOUT_USER
+      });
     }
 }

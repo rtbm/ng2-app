@@ -1,5 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
+import {Router} from '@angular/router-deprecated';
+import {SessionActions} from '../../actions/session';
 import {XButtonComponent} from '../atoms/form/button-component';
 import {XListComponent} from '../atoms/list/list-component';
 import {XListItemComponent} from '../atoms/list/list-item-component';
@@ -10,7 +12,10 @@ import {XListItemComponent} from '../atoms/list/list-item-component';
   pipes: [AsyncPipe],
   template: `
     <x-list>
-        <x-list-item *ngIf="isLogged">{{email}}</x-list-item>
+        <x-list-item *ngIf="isLogged">
+            <div>{{email}}</div>
+            <x-button (onClick)="handleLogoutClick()">Logout</x-button>
+        </x-list-item>
         <x-list-item *ngIf="!isLogged">
             <x-button (onClick)="onSigninClick.emit($event)">Signin</x-button>
             <x-button (onClick)="onSignupClick.emit($event)">Signup</x-button>
@@ -29,5 +34,13 @@ export class XAccountBoxComponent {
   @Output() private onSigninClick = new EventEmitter();
   @Output() private onSignupClick = new EventEmitter();
 
-  constructor() {}
+  constructor(
+    private sessionActions: SessionActions,
+    private router: Router
+  ) {}
+
+  handleLogoutClick() {
+    this.sessionActions.logout();
+    this.router.navigate(['Home']);
+  }
 }
