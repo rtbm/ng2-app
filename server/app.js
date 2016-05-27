@@ -9,13 +9,13 @@ const helmet = require('helmet');
 const logger = require('./utils/logger');
 const cors = require('cors');
 
-const distPath = path.join(__dirname, 'public');
+const distPath = path.join(__dirname, '../public');
 
 const app = express();
 
 app.use(require('morgan')('combined', { stream: logger.stream }));
 
-mongoose.connect('mongodb://localhost:27017/quotr-db');
+mongoose.connect('mongodb://localhost:27017/ng2app-db');
 
 //app.use(helmet());
 app.use(cors());
@@ -24,8 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(distPath));
 
-app.use('/api/articles', require('./routes/articles'));
-app.use('/api/auth', require('./routes/auth'));
+const articles = require('./routes/articles');
+const auth = require('./routes/auth');
+
+app.use('/api/articles', articles);
+app.use('/api/auth', auth);
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 // catch 404 and forward to error handler

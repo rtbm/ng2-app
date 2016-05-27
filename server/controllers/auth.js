@@ -9,7 +9,6 @@ module.exports = { // TODO: Create signin action
   },
 
   signup: (req, res, next) => { // TODO: Create signup action
-    
     res.json({
       user: {
         email: req.body.email,

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Request, Response, Headers} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 
 const headers = new Headers({ 'Content-Type': 'application/json'});
 

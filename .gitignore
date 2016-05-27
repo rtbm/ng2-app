@@ -1,5 +1,4 @@
 # Logs
-logs/all-logs.log
 *.log
 
 # Runtime data
