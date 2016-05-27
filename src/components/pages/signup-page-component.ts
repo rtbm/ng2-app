@@ -5,6 +5,7 @@ import {XWrapperComponent} from '../atoms/ui/wrapper-component';
 import {AsyncPipe} from '@angular/common';
 import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router-deprecated';
 
 @Component({
     selector: 'x-signup-page',
@@ -31,11 +32,14 @@ export class XSignupPageComponent {
     @select(n => n.session.get('isPending')) private isPending$: Observable<boolean>;
     @select(n => n.session.get('isLogged')) private isLogged$: Observable<boolean>;
 
-    constructor(private sessionActions: SessionActions) {
-        this.isLogged$.subscribe((result) => {
+    constructor(
+      private sessionActions: SessionActions,
+      private router: Router
+    ) {
+        this.isLogged$.subscribe((result: boolean) => {
             if(result) {
-                alert('Yayy!!1 U\'re signed up!! ^^');
+                this.router.navigate(['Home']);
             }
-        })
+        });
     }
 }

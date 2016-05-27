@@ -19,6 +19,9 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
         :host {
             display: inline-block;
         }
+        x-label {
+            display: inline-block;
+        }
     `]
 })
 export class XSearchFormComponent {

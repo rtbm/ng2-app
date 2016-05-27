@@ -23,17 +23,18 @@ import {XHeaderComponent} from './components/organisms/header-component';
 
 @RouteConfig([{
     path: '/',
-    component: XFrontPageComponent,
     name: 'Home',
+    component: XFrontPageComponent,
     useAsDefault: true,
 }, {
     path: '/signup',
-    component: XSignupPageComponent,
     name: 'Signup',
+    component: XSignupPageComponent,
 }])
 
 export class XApp {
     constructor(private ngRedux: NgRedux<IAppState>) {
         ngRedux.configureStore(rootReducer, {}, [logger], []);
+
     }
 }
