@@ -25,7 +25,7 @@ export class SessionActions {
             type: SessionActions.SIGNIN_USER_PENDING
         });
 
-        this.authService.signup(credentials)
+        this.authService.signin(credentials)
             .then(result => this.ngRedux.dispatch({
                 type: SessionActions.SIGNIN_USER_SUCCESS,
                 payload: result

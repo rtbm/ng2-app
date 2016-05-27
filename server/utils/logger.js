@@ -1,11 +1,13 @@
-var winston = require('winston');
+const winston = require('winston');
+const path = require('path');
+
 winston.emitErrs = true;
 
-var logger = new winston.Logger({
+const logger = new winston.Logger({
   transports: [
     new winston.transports.File({
       level: 'info',
-      filename: './logs/all-logs.log',
+      filename: path.join(__dirname, '../logs/all-logs.log'),
       handleExceptions: true,
       json: true,
       maxsize: 5242880, //5MB

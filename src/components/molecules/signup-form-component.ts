@@ -20,6 +20,10 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
                 <x-label>Password</x-label>
                 <x-input [formControl]="password" type="password"></x-input>
             </x-form-group>
+            <x-form-group>
+                <x-label>Password confirm</x-label>
+                <x-input [formControl]="password_confirm" type="password"></x-input>
+            </x-form-group>
             <x-button type="submit">Signup</x-button>
         </x-form>
     `
@@ -30,14 +34,17 @@ export class XSignupFormComponent {
     private form: ControlGroup;
     private email: Control;
     private password: Control;
+    private password_confirm: Control;
 
     constructor(private builder: FormBuilder) {
         this.email = new Control('', Validators.required);
         this.password = new Control('', Validators.required);
+        this.password_confirm = new Control('', Validators.required);
 
         this.form = this.builder.group({
             email: this.email,
-            password: this.password
+            password: this.password,
+            password_confirm: this.password_confirm
         });
     }
 
