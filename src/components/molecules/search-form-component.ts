@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {XFormComponent} from '../atoms/form-component';
-import {XLabelComponent} from '../atoms/label-component';
-import {XInputComponent} from '../atoms/input-component';
-import {XButtonComponent} from '../atoms/button-component';
+import {XFormComponent} from '../atoms/form/form-component';
+import {XLabelComponent} from '../atoms/form/label-component';
+import {XInputComponent} from '../atoms/form/input-component';
+import {XButtonComponent} from '../atoms/form/button-component';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
 
 @Component({

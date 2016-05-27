@@ -1,9 +1,9 @@
 import {Component, Output, EventEmitter} from '@angular/core';
-import {XFormComponent} from '../atoms/form-component';
-import {XLabelComponent} from '../atoms/label-component';
-import {XButtonComponent} from '../atoms/button-component';
-import {XInputComponent} from '../atoms/input-component';
-import {XFormGroupComponent} from '../atoms/form-group-component';
+import {XFormComponent} from '../atoms/form/form-component';
+import {XLabelComponent} from '../atoms/form/label-component';
+import {XButtonComponent} from '../atoms/form/button-component';
+import {XInputComponent} from '../atoms/form/input-component';
+import {XFormGroupComponent} from '../atoms/form/form-group-component';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
 
 @Component({

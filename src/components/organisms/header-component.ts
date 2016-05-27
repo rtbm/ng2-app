@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {XWrapperComponent} from '../atoms/wrapper-component';
-import {XLogoComponent} from '../atoms/logo-component';
+import {XWrapperComponent} from '../atoms/ui/wrapper-component';
+import {XLogoComponent} from '../atoms/ui/logo-component';
 import {XSearchFormComponent} from '../molecules/search-form-component';
 import {XTopMenuComponent} from '../molecules/top-menu-component';
 
