@@ -16,8 +16,15 @@ module.exports = {
   },
 
   save: (req, res, next) => {
+    if(!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
     const article = new Article({
-      content: req.content,
+      name: req.body.name,
+      content: req.body.content,
     });
 
     article.save(err => {

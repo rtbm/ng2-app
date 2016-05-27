@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {XBannerComponent} from '../templates/banner';
 
 @Component({
-    selector: 'x-front-page',
+    selector: 'x-home-page',
     directives: [XBannerComponent],
     template: `
         <x-banner
@@ -10,4 +10,4 @@ import {XBannerComponent} from '../templates/banner';
             subtagline="Foo bar buzz"></x-banner>
     `
 })
-export class XFrontPageComponent {}
+export class XHomePageComponent {}

@@ -1,6 +1,10 @@
 # angular2+express app
 
-App boilerplate with redux (+logger) and Express+mongoose (also with logger)
+App boilerplate with:
+
+* redux (+logger, persist state)
+* Express+mongoose (+logger)
+* [Atomic Design components structure](http://atomicdesign.bradfrost.com/chapter-2/)
 
 ## work in progress
 

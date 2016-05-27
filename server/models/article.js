@@ -2,14 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
-  content: {
+  name: {
     type: String,
     trim: true,
     required: true,
   },
-  visiblility: {
+  content: {
     type: String,
-    enum: ['private', 'public']
+    trim: true,
+    required: true,
   },
 }, {
   autoIndex: false,

@@ -24,13 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(distPath));
 
-const articles = require('./routes/articles');
-const auth = require('./routes/auth');
-const search = require('./routes/search');
-
-app.use('/api/articles', articles);
-app.use('/api/auth', auth);
-app.use('/api/search', search);
+app.use('/api/articles', require('./routes/articles'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/search', require('./routes/search'));
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 // catch 404 and forward to error handler

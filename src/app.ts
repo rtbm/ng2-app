@@ -8,9 +8,10 @@ import {middlewares} from './state/middlewares';
 import {enhancers} from './state/enhancers';
 
 import {XHeaderComponent} from './components/organisms/header';
-import {XFrontPageComponent} from './components/pages/front-page';
-import {XSigninPageComponent} from './components/pages/signin-page';
-import {XSignupPageComponent} from './components/pages/signup-page';
+import {XHomePageComponent} from './components/pages/home-page';
+import {XSigninPageComponent} from './components/pages/user/signin-page';
+import {XSignupPageComponent} from './components/pages/user/signup-page';
+import {XCreateArticlePageComponent} from './components/pages/article/create-article-page';
 
 @Component({
     selector: 'x-app',
@@ -25,7 +26,7 @@ import {XSignupPageComponent} from './components/pages/signup-page';
 @RouteConfig([{
     path: '/',
     name: 'Home',
-    component: XFrontPageComponent,
+    component: XHomePageComponent,
     useAsDefault: true,
 }, {
     path: '/signin',
@@ -35,6 +36,10 @@ import {XSignupPageComponent} from './components/pages/signup-page';
     path: '/signup',
     name: 'Signup',
     component: XSignupPageComponent,
+}, {
+    path: '/article/create',
+    name: 'CreateArticle',
+    component: XCreateArticlePageComponent,
 }])
 
 export class XApp {

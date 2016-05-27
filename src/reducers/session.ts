@@ -13,7 +13,7 @@ export type ISession = Map<string, any>;
 export function sessionReducer(state: ISession = SESSION_INITIAL_STATE, action: any = { type: ''}) {
     switch(action.type) {
         case SessionActions.SIGNIN_USER_PENDING: {
-            return state.merge({ isPending: true, isError: false });
+            return state.merge({ isPending: true, isError: false, isLogged: false, id_token: '' });
         }
         case SessionActions.SIGNIN_USER_SUCCESS: {
             return state.merge({ isPending: false, isLogged: true, id_token: action.payload.id_token });
@@ -22,7 +22,7 @@ export function sessionReducer(state: ISession = SESSION_INITIAL_STATE, action: 
             return state.merge({ isPending: false, isError: true });
         }
         case SessionActions.SIGNUP_USER_PENDING: {
-            return state.merge({ isPending: true, isError: false });
+            return state.merge({ isPending: true, isError: false, isLogged: false, id_token: '' });
         }
         case SessionActions.SIGNUP_USER_SUCCESS: {
             return state.merge({ isPending: false, isLogged: true, id_token: action.payload.id_token });
