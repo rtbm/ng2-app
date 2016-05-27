@@ -9,6 +9,8 @@ import {XLogoComponent} from '../atoms/ui/logo-component';
 import {XSearchFormComponent} from '../molecules/search-form-component';
 import {XTopMenuComponent} from '../molecules/top-menu-component';
 import {XAccountBoxComponent} from '../molecules/account-box-component';
+import {JwtHelper} from 'angular2-jwt';
+import {SearchService} from '../../services/search';
 
 @Component({
     selector: 'x-header',
@@ -24,7 +26,7 @@ import {XAccountBoxComponent} from '../molecules/account-box-component';
                 (onSigninClick)="handleSigninClick()"
                 (onSignupClick)="handleSignupClick()"
             ></x-account-box>
-            <x-search-form></x-search-form>
+            <x-search-form (onSubmit)="handleSearchSubmit($event)"></x-search-form>
         </x-wrapper>
     `,
     styles: [`
@@ -47,10 +49,21 @@ export class XHeaderComponent {
     private isLogged: boolean = false;
     private email: string = '';
 
-    constructor(private router: Router) {
+    constructor(
+      private router: Router,
+      private searchService: SearchService
+    ) {
+        const jwt = new JwtHelper();
+
         this.session$.subscribe(n => {
             this.isLogged = n.get('isLogged');
-            this.email = n.getIn(['user', 'email']);
+
+            const token = n.get('id_token');
+
+            if(token) {
+                const decodedToken = jwt.decodeToken(token);
+                this.email = decodedToken.email;
+            }
         });
     }
 
@@ -60,5 +73,9 @@ export class XHeaderComponent {
 
     handleSignupClick() {
         this.router.navigate(['Signup']);
+    }
+
+    handleSearchSubmit(query) {
+        this.searchService.search(query);
     }
 }

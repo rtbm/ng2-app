@@ -26,9 +26,11 @@ app.use(express.static(distPath));
 
 const articles = require('./routes/articles');
 const auth = require('./routes/auth');
+const search = require('./routes/search');
 
 app.use('/api/articles', articles);
 app.use('/api/auth', auth);
+app.use('/api/search', search);
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 // catch 404 and forward to error handler

@@ -13,6 +13,7 @@ import {NgRedux} from 'ng2-redux';
 
 import {ServerService} from './services/server';
 import {AuthService} from './services/auth';
+import {SearchService} from './services/search';
 import {SessionActions} from './actions/session';
 
 import {XApp} from './x-app';
@@ -32,5 +33,6 @@ bootstrap(XApp, [
     provide(APP_BASE_HREF, { useValue: '/' }),
     ServerService,
     AuthService,
+    SearchService,
     SessionActions
 ]);

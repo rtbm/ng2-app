@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {XFormComponent} from '../atoms/form/form-component';
 import {XLabelComponent} from '../atoms/form/label-component';
 import {XInputComponent} from '../atoms/form/input-component';
@@ -9,7 +9,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
     selector: 'x-search-form',
     directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent],
     template: `
-        <x-form [formModel]="searchForm" (onSubmit)="handleSubmit()">
+        <x-form [formModel]="form" (onSubmit)="handleSubmit()">
             <x-label>Search</x-label>
             <x-input [formControl]="search" placeholder="search"></x-input>
             <x-button type="submit">Search</x-button>
@@ -25,16 +25,19 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
     `]
 })
 export class XSearchFormComponent {
-    private searchForm: ControlGroup;
+    @Output() onSubmit = new EventEmitter();
+
+    private form: ControlGroup;
     private search: Control;
 
     constructor(private builder: FormBuilder) {
         this.search = new Control('', Validators.required);
-        this.searchForm = this.builder.group({
+        this.form = this.builder.group({
             search: this.search
         });
     }
 
     handleSubmit() {
+        this.onSubmit.emit(this.form.value);
     }
 }

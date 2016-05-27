@@ -40,6 +40,5 @@ import {XSignupPageComponent} from './components/pages/signup-page-component';
 export class XApp {
     constructor(private ngRedux: NgRedux<IAppState>) {
         ngRedux.configureStore(rootReducer, {}, [logger], []);
-
     }
 }

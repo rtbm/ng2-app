@@ -27,7 +27,7 @@ module.exports = {
         if (err) { return next(err); }
 
         return res.json({
-          token: jwt.sign({
+          id_token: jwt.sign({
             _id: user._id,
             email: user.email
           }, config.secret)
@@ -56,7 +56,7 @@ module.exports = {
         }
 
         return res.json({
-          token: jwt.sign({
+          id_token: jwt.sign({
             _id: user._id,
             email: user.email
           }, config.secret)

@@ -5,7 +5,7 @@ const INITIAL_STATE = fromJS({
     isPending: false,
     isError: false,
     isLogged: false,
-    token: '',
+    id_token: '',
 });
 
 export type ISession = Map<string, any>;
@@ -16,7 +16,7 @@ export function sessionReducer(state: ISession = INITIAL_STATE, action: any = { 
             return state.merge({ isPending: true, isError: false });
         }
         case SessionActions.SIGNIN_USER_SUCCESS: {
-            return state.merge({ isPending: false, isLogged: true, token: action.payload.token });
+            return state.merge({ isPending: false, isLogged: true, id_token: action.payload.id_token });
         }
         case SessionActions.SIGNIN_USER_ERROR: {
             return state.merge({ isPending: false, isError: true });
@@ -25,7 +25,7 @@ export function sessionReducer(state: ISession = INITIAL_STATE, action: any = { 
             return state.merge({ isPending: true, isError: false });
         }
         case SessionActions.SIGNUP_USER_SUCCESS: {
-            return state.merge({ isPending: false, isLogged: true, token: action.payload.token });
+            return state.merge({ isPending: false, isLogged: true, id_token: action.payload.id_token });
         }
         case SessionActions.SIGNUP_USER_ERROR: {
             return state.merge({ isPending: false, isError: true });

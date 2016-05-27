@@ -14,7 +14,7 @@ export class AuthService {
         return new Promise((resolve, reject) => {
             this.serverService.post('/auth/signup', credentials)
                 .subscribe(
-                    user => resolve(user),
+                    token => resolve(token),
                     err => reject(credentials)
                 );
         })
@@ -24,7 +24,7 @@ export class AuthService {
         return new Promise((resolve, reject) => {
             this.serverService.post('/auth/signin', credentials)
                 .subscribe(
-                    user => resolve(user),
+                    token => resolve(token),
                     err => reject(credentials)
                 );
         });
