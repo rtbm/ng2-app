@@ -12,6 +12,7 @@ import {XListItemComponent} from '../atoms/list/list-item-component';
     <x-list>
         <x-list-item *ngIf="isLogged">{{email}}</x-list-item>
         <x-list-item *ngIf="!isLogged">
+            <x-button (onClick)="onSigninClick.emit($event)">Signin</x-button>
             <x-button (onClick)="onSignupClick.emit($event)">Signup</x-button>
         </x-list-item>
     </x-list>
@@ -25,6 +26,7 @@ import {XListItemComponent} from '../atoms/list/list-item-component';
 export class XAccountBoxComponent {
   @Input() private isLogged: boolean = false;
   @Input() private email: string = '';
+  @Output() private onSigninClick = new EventEmitter();
   @Output() private onSignupClick = new EventEmitter();
 
   constructor() {}

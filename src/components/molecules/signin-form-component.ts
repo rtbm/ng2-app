@@ -7,7 +7,7 @@ import {XFormGroupComponent} from '../atoms/form/form-group-component';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
 
 @Component({
-    selector: 'x-signup-form',
+    selector: 'x-signin-form',
     directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XInputComponent,
         XFormGroupComponent],
     template: `
@@ -24,7 +24,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@
         </x-form>
     `
 })
-export class XSignupFormComponent {
+export class XSigninFormComponent {
     @Output() onSubmit = new EventEmitter<Event>();
 
     private form: ControlGroup;

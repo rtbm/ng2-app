@@ -9,7 +9,6 @@ import {XMenuItemComponent} from '../atoms/menu/menu-item-component';
     template: `
         <x-menu>
             <x-menu-item><a [routerLink]="['Home']">Home</a></x-menu-item>
-            <x-menu-item><a [routerLink]="['Signup']">Signup</a></x-menu-item>
         </x-menu>
     `
 })

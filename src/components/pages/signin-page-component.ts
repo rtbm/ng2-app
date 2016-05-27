@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {XSignupFormComponent} from '../molecules/signup-form-component';
+import {XSigninFormComponent} from '../molecules/signin-form-component';
 import {SessionActions} from '../../actions/session';
 import {XWrapperComponent} from '../atoms/ui/wrapper-component';
 import {AsyncPipe} from '@angular/common';
@@ -8,28 +8,28 @@ import {Observable} from 'rxjs';
 import {Router} from '@angular/router-deprecated';
 
 @Component({
-    selector: 'x-signup-page',
+    selector: 'x-signin-page',
     pipes: [AsyncPipe],
-    directives: [XSignupFormComponent, XWrapperComponent],
+    directives: [XSigninFormComponent, XWrapperComponent],
     template: ` 
         <x-wrapper>
-            <h1>Signup</h1>
-             
+            <h1>Signin</h1>
+            
             <div>isError: {{ isError$ | async }}</div>
             <div>isPending: {{ isPending$ | async }}</div>
             
-            <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
+            <x-signin-form (onSubmit)="sessionActions.signin($event)"></x-signin-form>
         </x-wrapper>
     `,
     styles: [`
-        x-signup-form {
+        x-signin-form {
             display: inline-block;
             background: #D6DCE2;
             padding: 2rem;
         }
     `]
 })
-export class XSignupPageComponent {
+export class XSigninPageComponent {
     @select(n => n.session.get('isError')) private isError$: Observable<boolean>;
     @select(n => n.session.get('isPending')) private isPending$: Observable<boolean>;
     @select(n => n.session.get('isLogged')) private isLogged$: Observable<boolean>;

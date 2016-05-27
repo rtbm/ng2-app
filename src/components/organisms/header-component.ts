@@ -18,7 +18,12 @@ import {XAccountBoxComponent} from '../molecules/account-box-component';
         <x-wrapper>
             <x-logo></x-logo>
             <x-top-menu></x-top-menu>
-            <x-account-box [isLogged]="isLogged" [email]="email" (onSignupClick)="handleSignupClick()"></x-account-box>
+            <x-account-box
+                [isLogged]="isLogged"
+                [email]="email"
+                (onSigninClick)="handleSigninClick()"
+                (onSignupClick)="handleSignupClick()"
+            ></x-account-box>
             <x-search-form></x-search-form>
         </x-wrapper>
     `,
@@ -47,6 +52,10 @@ export class XHeaderComponent {
             this.isLogged = n.get('isLogged');
             this.email = n.getIn(['user', 'email']);
         });
+    }
+
+    handleSigninClick() {
+        this.router.navigate(['Signin']);
     }
 
     handleSignupClick() {

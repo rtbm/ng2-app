@@ -7,9 +7,10 @@ import {NgRedux} from 'ng2-redux';
 import rootReducer from './reducers';
 import {IAppState} from './reducers';
 
-import {XFrontPageComponent} from './components/pages/front-page-component';
-import {XSignupPageComponent} from './components/pages/signup-page-component';
 import {XHeaderComponent} from './components/organisms/header-component';
+import {XFrontPageComponent} from './components/pages/front-page-component';
+import {XSigninPageComponent} from './components/pages/signin-page-component';
+import {XSignupPageComponent} from './components/pages/signup-page-component';
 
 @Component({
     selector: 'x-app',
@@ -26,6 +27,10 @@ import {XHeaderComponent} from './components/organisms/header-component';
     name: 'Home',
     component: XFrontPageComponent,
     useAsDefault: true,
+}, {
+    path: '/signin',
+    name: 'Signin',
+    component: XSigninPageComponent,
 }, {
     path: '/signup',
     name: 'Signup',
