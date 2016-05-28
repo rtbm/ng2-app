@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'x-list',
@@ -9,6 +9,7 @@ import {Component} from '@angular/core';
     :host {
       display: block;
     }
-  `]
+  `],
 })
-export class XListComponent {}
+export class XListComponent {
+}

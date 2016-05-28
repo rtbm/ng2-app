@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {NgRedux} from 'ng2-redux';
-import {IAppState} from '../reducers';
-import {ArticlesService} from '../services/articles';
+import {Injectable} from "@angular/core";
+import {NgRedux} from "ng2-redux";
+import {IAppState} from "../reducers";
+import {ArticlesService} from "../services/articles";
 
 @Injectable()
 export class ArticlesActions {
@@ -21,10 +21,9 @@ export class ArticlesActions {
   static ARTICLE_UPDATE_SUCCESS = 'ARTICLE_UPDATE_SUCCESS';
   static ARTICLE_UPDATE_ERROR = 'ARTICLE_UPDATE_ERROR';
 
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private articlesService: ArticlesService
-  ) {}
+  constructor(private ngRedux: NgRedux<IAppState>,
+              private articlesService: ArticlesService) {
+  }
 
   fetchAll() {
     this.ngRedux.dispatch({

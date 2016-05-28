@@ -55,7 +55,6 @@ module.exports = {
 
       article.save(err => {
         if(err) return next(err);
-
         return res.json(article);
       });
     });

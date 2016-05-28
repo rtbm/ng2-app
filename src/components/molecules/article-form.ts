@@ -1,33 +1,35 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
-import {XFormComponent} from '../atoms/form/form';
-import {XLabelComponent} from '../atoms/form/label';
-import {XInputComponent} from '../atoms/form/input';
-import {XButtonComponent} from '../atoms/form/button';
-import {XTextareaComponent} from '../atoms/form/textarea';
+import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
+import {Article} from "../../services/articles";
+import {XFormComponent} from "../atoms/form/form";
+import {XFormGroupComponent} from "../atoms/form/form-group";
+import {XLabelComponent} from "../atoms/form/label";
+import {XInputComponent} from "../atoms/form/input";
+import {XButtonComponent} from "../atoms/form/button";
+import {XTextareaComponent} from "../atoms/form/textarea";
 
 @Component({
   selector: 'x-article-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent,
-    XTextareaComponent],
+    XTextareaComponent, XFormGroupComponent],
   template: `
     <x-form [formModel]="form" (onSubmit)="handleSubmit()"> 
       <x-form-group>
-          <x-label>Name</x-label>
-          <x-input [formControl]="name" type="text"></x-input>
+        <x-label>Name</x-label>
+        <x-input [formControl]="name" type="text"></x-input>
       </x-form-group>
       <x-form-group>
-          <x-label>Body</x-label>
-          <x-textarea [formControl]="content"></x-textarea>
+        <x-label>Body</x-label>
+        <x-textarea [formControl]="content"></x-textarea>
       </x-form-group>
       <x-form-group>
         <x-button type="submit">Save</x-button>
       </x-form-group>
     </x-form>
-  `
+  `,
 })
 export class XArticleFormComponent {
-  @Input() private article;
+  @Input() private article: Article = {name: '', content: ''};
   @Output() onSubmit = new EventEmitter();
 
   private form: ControlGroup;
@@ -35,8 +37,8 @@ export class XArticleFormComponent {
   private content: Control;
 
   constructor(private builder: FormBuilder) {
-    this.name = new Control('', Validators.required);
-    this.content = new Control('', Validators.required);
+    this.name = new Control(this.article.name, Validators.required);
+    this.content = new Control(this.article.content, Validators.required);
 
     this.form = this.builder.group({
       name: this.name,
@@ -45,15 +47,8 @@ export class XArticleFormComponent {
   }
 
   ngOnChanges() {
-    if(this.article) {
-      if (this.article.name) {
-        this.name.updateValue(this.article.name);
-      }
-
-      if (this.article.content) {
-        this.content.updateValue(this.article.content);
-      }
-    }
+    this.name.updateValue(this.article.name);
+    this.content.updateValue(this.article.content);
   }
 
   handleSubmit() {

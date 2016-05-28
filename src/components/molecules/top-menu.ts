@@ -1,17 +1,16 @@
-import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {XMenuComponent} from '../atoms/menu/menu';
-import {XMenuItemComponent} from '../atoms/menu/menu-item';
+import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {XMenuComponent} from "../atoms/menu/menu";
+import {XMenuItemComponent} from "../atoms/menu/menu-item";
 
 @Component({
-    selector: 'x-top-menu',
-    directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent],
-    template: `
-        <x-menu>
-            <x-menu-item><a [routerLink]="['Home']">Home</a></x-menu-item>
-            <x-menu-item><a [routerLink]="['CreateArticle']">Create article</a></x-menu-item>
-            <x-menu-item><a [routerLink]="['ListArticles']">List articles</a></x-menu-item>
-        </x-menu>
-    `
+  selector: 'x-top-menu',
+  directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent],
+  template: `
+    <x-menu>
+      <x-menu-item><a [routerLink]="['Home']">Home</a></x-menu-item>
+    </x-menu>
+  `,
 })
-export class XTopMenuComponent {}
+export class XTopMenuComponent {
+}

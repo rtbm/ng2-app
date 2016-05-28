@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ServerService} from './server';
 
-interface Article {
+export interface Article {
   name: string;
   content: string;
 }
