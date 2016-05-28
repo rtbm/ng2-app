@@ -12,6 +12,7 @@ import {XHomePageComponent} from './components/pages/home-page';
 import {XSigninPageComponent} from './components/pages/user/signin-page';
 import {XSignupPageComponent} from './components/pages/user/signup-page';
 import {XCreateArticlePageComponent} from './components/pages/articles/create-article-page';
+import {XEditArticlePageComponent} from './components/pages/articles/edit-article-page';
 import {XListArticlesPageComponent} from './components/pages/articles/list-articles-page';
 
 @Component({
@@ -41,6 +42,10 @@ import {XListArticlesPageComponent} from './components/pages/articles/list-artic
     path: '/article/create',
     name: 'CreateArticle',
     component: XCreateArticlePageComponent,
+}, {
+    path: '/articles/:_id',
+    name: 'EditArticle',
+    component: XEditArticlePageComponent,
 }, {
     path: '/articles',
     name: 'ListArticles',

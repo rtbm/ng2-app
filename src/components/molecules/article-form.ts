@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from '@angular/common';
 import {XFormComponent} from '../atoms/form/form';
 import {XLabelComponent} from '../atoms/form/label';
@@ -11,7 +11,7 @@ import {XTextareaComponent} from '../atoms/form/textarea';
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent,
     XTextareaComponent],
   template: `
-    <x-form [formModel]="form" (onSubmit)="handleSubmit()">
+    <x-form [formModel]="form" (onSubmit)="handleSubmit()"> 
       <x-form-group>
           <x-label>Name</x-label>
           <x-input [formControl]="name" type="text"></x-input>
@@ -27,6 +27,7 @@ import {XTextareaComponent} from '../atoms/form/textarea';
   `
 })
 export class XArticleFormComponent {
+  @Input() private article;
   @Output() onSubmit = new EventEmitter();
 
   private form: ControlGroup;
@@ -41,6 +42,18 @@ export class XArticleFormComponent {
       name: this.name,
       content: this.content
     });
+  }
+
+  ngOnChanges() {
+    if(this.article) {
+      if (this.article.name) {
+        this.name.updateValue(this.article.name);
+      }
+
+      if (this.article.content) {
+        this.content.updateValue(this.article.content);
+      }
+    }
   }
 
   handleSubmit() {

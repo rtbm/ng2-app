@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {AsyncPipe} from '@angular/common';
 import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
@@ -12,7 +13,7 @@ import {XWrapperComponent} from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-update-article-page',
-  directives: [XArticleFormComponent, XListComponent, XListItemComponent, XWrapperComponent],
+  directives: [ROUTER_DIRECTIVES, XArticleFormComponent, XListComponent, XListItemComponent, XWrapperComponent],
   pipes: [AsyncPipe],
   template: `
     <x-wrapper>
@@ -24,16 +25,17 @@ import {XWrapperComponent} from '../../atoms/wrapper';
           <x-list-item *ngFor="let article of articles">
               <h2>{{article.name}}</h2>
               <p>{{article.content}}</p>
+              <a [routerLink]="['EditArticle', { _id: article._id }]">Edit article</a>
           </x-list-item>
       </x-list>
     </x-wrapper>
   `
 })
 export class XListArticlesPageComponent {
-  @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
-  @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
-  @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;
-  @select(n => n.article.get('articles')) private articles$: Observable<List<any>>;
+  @select(n => n.articles.get('isError')) private isError$: Observable<boolean>;
+  @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;1
+  @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
+  @select(n => n.articles.get('articles')) private articles$: Observable<List<any>>;
 
   private articles: Array<Object> = [];
 

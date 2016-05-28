@@ -36,7 +36,7 @@ export class ServerService {
   }
 
   put(path, id, data) {
-    return this.http.put(`${this.BASE_URL}${path}/{${id}`, JSON.stringify(data), { headers: this.headers })
+    return this.http.put(`${this.BASE_URL}${path}/${id}`, JSON.stringify(data), { headers: this.headers })
       .map((res: Response) => res.json());
   }
 

@@ -5,13 +5,38 @@ export const ARTICLES_INITIAL_STATE = fromJS({
     isPending: false,
     isError: false,
     isSuccess: false,
-    articles: []
+    article: {},
+    articles: [],
 });
 
-export type IArticle = Map<string, any>;
+export type IArticles = Map<string, any>;
 
-export function articleReducer(state: IArticle = ARTICLES_INITIAL_STATE, action: any = { type: ''}) {
+export function articlesReducer(state: IArticles = ARTICLES_INITIAL_STATE, action: any = { type: ''}) {
     switch(action.type) {
+        case ArticlesActions.ARTICLES_FETCH_PENDING: {
+            return state.merge({ isPending: true, isError: false, isSuccess: false });
+        }
+
+        case ArticlesActions.ARTICLES_FETCH_SUCCESS: {
+            return state.merge({ isPending: false, isSuccess: true, articles: action.payload });
+        }
+
+        case ArticlesActions.ARTICLES_FETCH_ERROR: {
+            return state.merge({ isPending: false, isError: true, articles: [] });
+        }
+
+        case ArticlesActions.ARTICLE_FETCH_PENDING: {
+            return state.merge({ isPending: true, isError: false, isSuccess: false });
+        }
+
+        case ArticlesActions.ARTICLE_FETCH_SUCCESS: {
+            return state.merge({ isPending: false, isSuccess: true, article: action.payload });
+        }
+
+        case ArticlesActions.ARTICLE_FETCH_ERROR: {
+            return state.merge({ isPending: false, isError: true, article: {} });
+        }
+
         case ArticlesActions.ARTICLE_SAVE_PENDING: {
             return state.merge({ isPending: true, isError: false, isSuccess: false });
         }
@@ -24,17 +49,18 @@ export function articleReducer(state: IArticle = ARTICLES_INITIAL_STATE, action:
             return state.merge({ isPending: false, isError: true });
         }
 
-        case ArticlesActions.ARTICLES_FETCH_PENDING: {
+        case ArticlesActions.ARTICLE_UPDATE_PENDING: {
             return state.merge({ isPending: true, isError: false, isSuccess: false });
         }
 
-        case ArticlesActions.ARTICLES_FETCH_SUCCESS: {
-            return state.merge({ isPending: false, isSuccess: true, articles: action.payload });
+        case ArticlesActions.ARTICLE_UPDATE_SUCCESS: {
+            return state.merge({ isPending: false, isSuccess: true });
         }
 
-        case ArticlesActions.ARTICLES_FETCH_ERROR: {
-            return state.merge({ isPending: false, isError: true, articles: [] });
+        case ArticlesActions.ARTICLE_UPDATE_ERROR: {
+            return state.merge({ isPending: false, isError: true });
         }
+
 
         default: {
             return state;
