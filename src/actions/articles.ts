@@ -21,6 +21,10 @@ export class ArticlesActions {
   static ARTICLE_UPDATE_SUCCESS = 'ARTICLE_UPDATE_SUCCESS';
   static ARTICLE_UPDATE_ERROR = 'ARTICLE_UPDATE_ERROR';
 
+  static ARTICLE_DELETE_PENDING = 'ARTICLE_DELETE_PENDING';
+  static ARTICLE_DELETE_SUCCESS = 'ARTICLE_DELETE_SUCCESS';
+  static ARTICLE_DELETE_ERROR = 'ARTICLE_DELETE_ERROR';
+
   constructor(private ngRedux: NgRedux<IAppState>,
               private articlesService: ArticlesService) {
   }
@@ -70,18 +74,33 @@ export class ArticlesActions {
       }));
   }
 
-  update(article, id) {
+  update(article, _id) {
     this.ngRedux.dispatch({
       type: ArticlesActions.ARTICLE_UPDATE_PENDING,
     });
 
-    this.articlesService.update(article, id)
+    this.articlesService.update(article, _id)
       .then(result => this.ngRedux.dispatch({
         type: ArticlesActions.ARTICLE_UPDATE_SUCCESS,
         payload: result,
       }))
       .catch(() => this.ngRedux.dispatch({
         type: ArticlesActions.ARTICLE_UPDATE_ERROR,
+      }));
+  }
+
+  remove(_id) {
+    this.ngRedux.dispatch({
+      type: ArticlesActions.ARTICLE_DELETE_PENDING
+    });
+
+    this.articlesService.remove(_id)
+      .then(result => this.ngRedux.dispatch({
+        type: ArticlesActions.ARTICLE_DELETE_SUCCESS,
+        payload: result,
+      }))
+      .catch(() => this.ngRedux.dispatch({
+        type: ArticlesActions.ARTICLE_DELETE_ERROR,
       }));
   }
 }

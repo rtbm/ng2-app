@@ -52,6 +52,7 @@ export class XArticleFormComponent {
   }
 
   handleSubmit() {
+    if(this.form.status !== 'VALID') return false;
     this.onSubmit.emit(this.form.value);
   }
 }

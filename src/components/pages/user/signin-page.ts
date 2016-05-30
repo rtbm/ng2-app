@@ -24,7 +24,6 @@ import {Router} from "@angular/router-deprecated";
   styles: [`
     x-signin-form {
       display: inline-block;
-      background: #D6DCE2;
       padding: 2rem;
     }
   `],

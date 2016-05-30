@@ -41,6 +41,12 @@ module.exports = {
   },
 
   update: (req, res, next) => {
+    if(!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
     Article.findById(req.params.articleId, (err, article) => {
       if(err) return next(err);
 
@@ -60,6 +66,16 @@ module.exports = {
     });
   },
 
-  remove: (req, res, next) => { // TODO: Create remove action
+  remove: (req, res, next) => {
+    if(!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    Article.findByIdAndRemove(req.params.articleId, err => {
+      if(err) return next(err);
+      return res.json({ _id: req.params.articleId });
+    });
   },
 };

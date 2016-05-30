@@ -75,6 +75,20 @@ export function articlesReducer(state: IArticles = ARTICLES_INITIAL_STATE, actio
       return state.merge({ isPending: false, isError: true });
     }
 
+    case ArticlesActions.ARTICLE_DELETE_PENDING: {
+      return state.merge({ isPending: true, isError: false, isSuccess: false });
+    }
+
+    case ArticlesActions.ARTICLE_DELETE_ERROR: {
+      return state.merge({ isPending: false, isError: true, isSuccess: false });
+    }
+
+    case ArticlesActions.ARTICLE_DELETE_SUCCESS: {
+      return state.merge({
+        articles: state.get('articles').filter(article => article.get('_id') !== action.payload._id)
+      });
+    }
+
     default: {
       return state;
     }
