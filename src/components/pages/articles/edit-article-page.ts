@@ -3,7 +3,7 @@ import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {RouteParams} from "@angular/router-deprecated";
-import {ArticlesActions} from "../../../actions/articles";
+import {ArticleActions} from "../../../actions/article";
 import {XArticleFormComponent} from "../../molecules/article-form";
 import {XWrapperComponent} from "../../atoms/wrapper";
 
@@ -20,25 +20,23 @@ import {XWrapperComponent} from "../../atoms/wrapper";
   `
 })
 export class XEditArticlePageComponent {
-  @select(n => n.articles.get('isError')) private isError$: Observable<boolean>;
-  @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;
-  @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
-  @select(n => n.articles.get('article')) private article$: Observable<Object>;
+  @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
+  @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
+  @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;
+  @select(n => n.article.get('article')) private article$: Observable<Object>;
 
-  private _id: string = '';
-  private article: Object = {};
+  private _id: string;
+  private article: Object;
 
-  constructor(private articlesActions: ArticlesActions,
+  constructor(private articleActions: ArticleActions,
               private routeParams: RouteParams) {
     this._id = routeParams.get('_id');
-    this.articlesActions.read(this._id);
+    this.articleActions.read(this._id);
 
-    this.article$.subscribe((article: any) => {
-      this.article = article.toJS();
-    })
+    this.article$.subscribe((article: any) => { this.article = article.toJS(); });
   }
 
   handleSubmit(article) {
-    this.articlesActions.update(article, this._id);
+    this.articleActions.update(article, this._id);
   }
 }

@@ -14,6 +14,7 @@ import {AuthService} from "./services/auth";
 import {SearchService} from "./services/search";
 import {ArticlesService} from "./services/articles";
 import {SessionActions} from "./actions/session";
+import {ArticleActions} from "./actions/article";
 import {ArticlesActions} from "./actions/articles";
 import {XApp} from "./app";
 
@@ -34,6 +35,7 @@ bootstrap(XApp, [
   AuthService,
   SearchService,
   ArticlesService,
+  ArticleActions,
   ArticlesActions,
   SessionActions,
 ]);

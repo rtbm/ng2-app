@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
-import {ArticlesActions} from "../../../actions/articles";
+import {ArticleActions} from "../../../actions/article";
 import {XArticleFormComponent} from "../../molecules/article-form";
 import {XWrapperComponent} from "../../atoms/wrapper";
 
@@ -23,10 +23,10 @@ export class XCreateArticlePageComponent {
   @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
 
-  constructor(private articlesActions: ArticlesActions) {
+  constructor(private articleActions: ArticleActions) {
   }
 
   handleSubmit(article) {
-    this.articlesActions.save(article);
+    this.articleActions.save(article);
   }
 }
