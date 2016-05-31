@@ -1,12 +1,12 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
-import {Article} from "../../services/articles";
-import {XFormComponent} from "../atoms/form/form";
-import {XFormGroupComponent} from "../atoms/form/form-group";
-import {XLabelComponent} from "../atoms/form/label";
-import {XInputComponent} from "../atoms/form/input";
-import {XButtonComponent} from "../atoms/form/button";
-import {XTextareaComponent} from "../atoms/form/textarea";
+import {Article} from "../../../services/articles";
+import {XFormComponent} from "../../atoms/form/form";
+import {XFormGroupComponent} from "../../atoms/form/form-group";
+import {XLabelComponent} from "../../atoms/form/label";
+import {XInputComponent} from "../../atoms/form/input";
+import {XButtonComponent} from "../../atoms/form/button";
+import {XTextareaComponent} from "../../atoms/form/textarea";
 
 @Component({
   selector: 'x-article-form',

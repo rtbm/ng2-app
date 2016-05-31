@@ -10,12 +10,17 @@ import {Input, Output, Component, EventEmitter} from "@angular/core";
   styles: [`
     button {           
       outline: 0;
-      padding: .5rem 1rem;
-      background: #fff;
-      border: .1rem solid #2D3E50;
+      padding: .75rem 1.5rem;
       text-transform: uppercase;
       font-size: 1.2rem;
       font-weight: 500;
+      background: #00b386;
+      color: white;
+      border: 0 none;
+      border-top: .1rem solid #00cc99;
+      border-bottom: .1rem solid #008060;
+      border-radius: .4rem;
+      cursor: pointer;
     }
   `],
 })

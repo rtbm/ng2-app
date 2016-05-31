@@ -3,7 +3,7 @@ import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {ArticleActions} from "../../../actions/article";
-import {XArticleFormComponent} from "../../molecules/article-form";
+import {XArticleFormComponent} from "../../molecules/articles/article-form";
 
 @Component({
   selector: 'x-article-create-page',

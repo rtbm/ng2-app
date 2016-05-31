@@ -2,8 +2,8 @@ import {Component} from "@angular/core";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {List} from "immutable";
-import {XArticlesListComponent} from "../molecules/articles-list";
-import {XAsideMenuComponent} from "../molecules/aside-menu";
+import {XArticlesListComponent} from "../molecules/articles/articles-list";
+import {XAsideMenuComponent} from "../molecules/menus/aside-menu";
 import {ArticlesActions} from "../../actions/articles";
 
 @Component({
@@ -29,7 +29,7 @@ import {ArticlesActions} from "../../actions/articles";
       padding: 0 2rem;
       display: inline-block;
       vertical-align: top;
-      background: #d7dfe6;
+      background: #d7e6e0;
       height: 100vh;
       overflow-y: auto;
     }

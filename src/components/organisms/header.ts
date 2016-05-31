@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {ISession} from "../../reducers/session";
 import {XLogoComponent} from "../atoms/logo";
 import {XSearchFormComponent} from "../molecules/search-form";
-import {XTopMenuComponent} from "../molecules/top-menu";
+import {XTopMenuComponent} from "../molecules/menus/top-menu";
 import {XAccountBoxComponent} from "../molecules/user/account-box";
 import {JwtHelper} from "angular2-jwt";
 import {SearchService} from "../../services/search";

@@ -1,9 +1,9 @@
 import {Component, Input} from "@angular/core";
 import {ROUTER_DIRECTIVES} from "@angular/router";
-import {XListComponent} from "../atoms/list/list";
-import {XListItemComponent} from "../atoms/list/list-item";
-import {XButtonComponent} from "../atoms/form/button";
-import {ArticleActions} from "../../actions/article";
+import {XListComponent} from "../../atoms/list/list";
+import {XListItemComponent} from "../../atoms/list/list-item";
+import {XButtonComponent} from "../../atoms/form/button";
+import {ArticleActions} from "../../../actions/article";
 
 @Component({
   selector: 'x-articles-list',

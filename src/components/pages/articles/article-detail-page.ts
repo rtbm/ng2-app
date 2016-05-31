@@ -4,7 +4,7 @@ import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {ArticleActions} from "../../../actions/article";
 import {OnActivate, RouteSegment} from "@angular/router";
-import {XArticleDetailComponent} from "../../molecules/article-detail";
+import {XArticleDetailComponent} from "../../molecules/articles/article-detail";
 
 @Component({
     selector: 'x-article-detail-page',

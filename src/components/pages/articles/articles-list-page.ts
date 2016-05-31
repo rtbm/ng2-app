@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
-import {XArticlesListComponent} from "../../molecules/articles-list";
+import {XArticlesListComponent} from "../../molecules/articles/articles-list";
 
 @Component({
   selector: 'x-articles-list-page',
