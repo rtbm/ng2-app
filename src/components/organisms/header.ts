@@ -23,9 +23,8 @@ import {SearchService} from "../../services/search";
       [email]="email"
       (onSigninClick)="handleSigninClick()"
       (onSignupClick)="handleSignupClick()"
-    ></x-account-box>
-    <x-search-form (onSubmit)="handleSearchSubmit($event)"></x-search-form>
-    `,
+    ></x-account-box>  
+  `,
   styles: [`
     :host {       
       padding: 1rem 0;
@@ -68,9 +67,5 @@ export class XHeaderComponent {
 
   handleSignupClick() {
     this.router.navigate(['/signup']);
-  }
-
-  handleSearchSubmit(query) {
-    this.searchService.search(query);
   }
 }
