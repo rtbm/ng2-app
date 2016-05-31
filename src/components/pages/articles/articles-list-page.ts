@@ -4,14 +4,14 @@ import {Observable} from 'rxjs';
 import {XArticlesListComponent} from "../../molecules/articles-list";
 
 @Component({
-  selector: 'x-update-article-page',
+  selector: 'x-articles-list-page',
   directives: [XArticlesListComponent],
   template: `
     <h1>Articles list</h1>
     <x-articles-list [articles]="articles"></x-articles-list>
   `
 })
-export class XListArticlesPageComponent {
+export class XArticlesListPageComponent {
   @select(n => n.articles.get('articles')) private articles$: Observable<boolean>;
 
   private articles: Array<Object> = [];

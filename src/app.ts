@@ -9,9 +9,10 @@ import {XAsideComponent} from "./components/organisms/aside";
 import {XHomePageComponent} from "./components/pages/home-page";
 import {XSigninPageComponent} from "./components/pages/user/signin-page";
 import {XSignupPageComponent} from "./components/pages/user/signup-page";
-import {XCreateArticlePageComponent} from "./components/pages/articles/create-article-page";
-import {XEditArticlePageComponent} from "./components/pages/articles/edit-article-page";
-import {XListArticlesPageComponent} from "./components/pages/articles/list-articles-page";
+import {XArticleCreatePageComponent} from "./components/pages/articles/article-create-page";
+import {XArticleEditPageComponent} from "./components/pages/articles/article-edit-page";
+import {XArticleDetailPageComponent} from "./components/pages/articles/article-detail-page";
+import {XArticlesListPageComponent} from "./components/pages/articles/articles-list-page";
 
 @Component({
   selector: 'x-app',
@@ -35,13 +36,16 @@ import {XListArticlesPageComponent} from "./components/pages/articles/list-artic
   component: XSignupPageComponent,
 }, {
   path: '/article/create',
-  component: XCreateArticlePageComponent,
+  component: XArticleCreatePageComponent,
+}, {
+  path: '/articles/:_id/edit',
+  component: XArticleEditPageComponent,
 }, {
   path: '/articles/:_id',
-  component: XEditArticlePageComponent,
+  component: XArticleDetailPageComponent,
 }, {
   path: '/articles',
-  component: XListArticlesPageComponent,
+  component: XArticlesListPageComponent,
 }])
 
 export class XApp {

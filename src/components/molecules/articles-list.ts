@@ -11,10 +11,10 @@ import {ArticleActions} from "../../actions/article";
   template: `     
     <x-list>
       <x-list-item *ngFor="let article of articles">
-        <h2>{{article.name}}</h2>
+        <h2><a [routerLink]="['/articles', article._id]">{{article.name}}</a></h2>
         <p>{{article.content}}</p>
         <x-button (click)="articleActions.remove(article._id)">delete</x-button>
-        <a [routerLink]="['/articles', article._id]">Edit article</a>
+        <a [routerLink]="['/articles', article._id, '/edit']">Edit article</a>
       </x-list-item>
     </x-list>
   `,

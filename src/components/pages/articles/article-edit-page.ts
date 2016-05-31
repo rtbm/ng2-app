@@ -3,13 +3,12 @@ import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {ArticleActions} from "../../../actions/article";
-import {OnActivate, Router, RouteSegment} from "@angular/router";
+import {OnActivate, RouteSegment} from "@angular/router";
 import {XArticleFormComponent} from "../../molecules/article-form";
-import {XWrapperComponent} from "../../atoms/wrapper";
 
 @Component({
-  selector: 'x-create-article-page',
-  directives: [XArticleFormComponent, XWrapperComponent],
+  selector: 'x-article-edit-page',
+  directives: [XArticleFormComponent],
   pipes: [AsyncPipe],
   template: `
     <h1>Edit Article</h1>
@@ -19,14 +18,14 @@ import {XWrapperComponent} from "../../atoms/wrapper";
     <x-article-form [article]="article" (onSubmit)="handleSubmit($event)"></x-article-form>
   `
 })
-export class XEditArticlePageComponent implements OnActivate {
+export class XArticleEditPageComponent implements OnActivate {
   @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
   @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;
   @select(n => n.article.get('article')) private article$: Observable<Object>;
 
   private _id: string;
-  private article: Object = { name: '', content: ''};
+  private article: Object;
 
   constructor(private articleActions: ArticleActions) {
     this.article$.subscribe((article:any) => {

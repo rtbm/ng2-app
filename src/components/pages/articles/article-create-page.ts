@@ -4,11 +4,10 @@ import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {ArticleActions} from "../../../actions/article";
 import {XArticleFormComponent} from "../../molecules/article-form";
-import {XWrapperComponent} from "../../atoms/wrapper";
 
 @Component({
-  selector: 'x-create-article-page',
-  directives: [XArticleFormComponent, XWrapperComponent],
+  selector: 'x-article-create-page',
+  directives: [XArticleFormComponent],
   pipes: [AsyncPipe],
   template: `
     <h1>Create Article</h1>
@@ -18,7 +17,7 @@ import {XWrapperComponent} from "../../atoms/wrapper";
     <x-article-form (onSubmit)="handleSubmit($event)"></x-article-form>
   `
 })
-export class XCreateArticlePageComponent {
+export class XArticleCreatePageComponent {
   @select(n => n.articles.get('isError')) private isError$: Observable<boolean>;
   @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
