@@ -48,15 +48,15 @@ export function articleReducer(state: IArticle = ARTICLE_INITIAL_STATE, action: 
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_DELETE_PENDING: {
+    case ArticleActions.ARTICLE_REMOVE_PENDING: {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_DELETE_ERROR: {
+    case ArticleActions.ARTICLE_REMOVE_ERROR: {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_DELETE_SUCCESS: {
+    case ArticleActions.ARTICLE_REMOVE_SUCCESS: {
       return state.merge({ isPending: false, isSuccess: true });
     }
 

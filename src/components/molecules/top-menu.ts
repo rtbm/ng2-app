@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 import {XMenuComponent} from "../atoms/menu/menu";
 import {XMenuItemComponent} from "../atoms/menu/menu-item";
 
@@ -8,7 +8,7 @@ import {XMenuItemComponent} from "../atoms/menu/menu-item";
   directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent],
   template: `
     <x-menu>
-      <x-menu-item><a [routerLink]="['Home']">Home</a></x-menu-item>
+      <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
     </x-menu>
   `,
 })

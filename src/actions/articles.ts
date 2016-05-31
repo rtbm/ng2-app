@@ -11,7 +11,7 @@ export class ArticlesActions {
 
   static ARTICLES_SAVE = 'ARTICLES_SAVE';
   static ARTICLES_UPDATE = 'ARTICLES_UPDATE';
-  static ARTICLES_DELETE = 'ARTICLES_DELETE';
+  static ARTICLES_REMOVE = 'ARTICLES_REMOVE';
 
   constructor(private ngRedux: NgRedux<IAppState>,
               private articlesService: ArticlesService) {

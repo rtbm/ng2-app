@@ -25,7 +25,7 @@ export function articlesReducer(state: IArticles = ARTICLES_INITIAL_STATE, actio
       );
     }
 
-    case ArticlesActions.ARTICLES_DELETE: {
+    case ArticlesActions.ARTICLES_REMOVE: {
       return state.merge({
         articles: state.get('articles').filter(article => article.get('_id') !== action.payload._id)
       });

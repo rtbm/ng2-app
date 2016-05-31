@@ -5,7 +5,7 @@ import {XWrapperComponent} from "../../atoms/wrapper";
 import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
-import {Router} from "@angular/router-deprecated";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'x-signup-page',

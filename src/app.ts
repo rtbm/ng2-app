@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ROUTER_DIRECTIVES, RouteConfig} from "@angular/router-deprecated";
+import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
 import {NgRedux} from "ng2-redux";
 import rootReducer, {IAppState} from "./reducers";
 import {middlewares} from "./state/middlewares";
@@ -24,30 +24,23 @@ import {XListArticlesPageComponent} from "./components/pages/articles/list-artic
   encapsulation: ViewEncapsulation.None,
 })
 
-@RouteConfig([{
+@Routes([{
   path: '/',
-  name: 'Home',
   component: XHomePageComponent,
-  useAsDefault: true,
 }, {
   path: '/signin',
-  name: 'Signin',
   component: XSigninPageComponent,
 }, {
   path: '/signup',
-  name: 'Signup',
   component: XSignupPageComponent,
 }, {
   path: '/article/create',
-  name: 'CreateArticle',
   component: XCreateArticlePageComponent,
 }, {
   path: '/articles/:_id',
-  name: 'EditArticle',
   component: XEditArticlePageComponent,
 }, {
   path: '/articles',
-  name: 'ListArticles',
   component: XListArticlesPageComponent,
 }])
 

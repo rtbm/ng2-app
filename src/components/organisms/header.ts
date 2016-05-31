@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Observable} from "rxjs";
 import {select} from "ng2-redux";
 import {AsyncPipe} from "@angular/common";
-import {Router} from "@angular/router-deprecated";
+import {Router} from "@angular/router";
 import {ISession} from "../../reducers/session";
 import {XLogoComponent} from "../atoms/logo";
 import {XSearchFormComponent} from "../molecules/search-form";
@@ -63,11 +63,11 @@ export class XHeaderComponent {
   }
 
   handleSigninClick() {
-    this.router.navigate(['Signin']);
+    this.router.navigate(['/signin']);
   }
 
   handleSignupClick() {
-    this.router.navigate(['Signup']);
+    this.router.navigate(['/signup']);
   }
 
   handleSearchSubmit(query) {

@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {AsyncPipe} from "@angular/common";
-import {Router} from "@angular/router-deprecated";
+import {Router} from "@angular/router";
 import {SessionActions} from "../../../actions/session";
 import {XButtonComponent} from "../../atoms/form/button";
 import {XListComponent} from "../../atoms/list/list";
