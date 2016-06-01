@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {XSigninFormComponent} from "../../molecules/user/signin-form";
 import {SessionActions} from "../../../actions/session";
-import {XWrapperComponent} from "../../atoms/wrapper";
 import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
@@ -10,7 +9,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'x-signin-page',
   pipes: [AsyncPipe],
-  directives: [XSigninFormComponent, XWrapperComponent],
+  directives: [XSigninFormComponent],
   template: ` 
     <x-wrapper>
       <h1>Signin</h1>
@@ -37,7 +36,7 @@ export class XSigninPageComponent {
               private router: Router) {
     this.isLogged$.subscribe((result: boolean) => {
       if (result) {
-        this.router.navigate(['Home']);
+        this.router.navigate(['/home']);
       }
     });
   }

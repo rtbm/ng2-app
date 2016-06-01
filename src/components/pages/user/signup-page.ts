@@ -38,7 +38,7 @@ export class XSignupPageComponent {
               private router: Router) {
     this.isLogged$.subscribe((result: boolean) => {
       if (result) {
-        this.router.navigate(['Home']);
+        this.router.navigate(['/home']);
       }
     });
   }
