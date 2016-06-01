@@ -7,12 +7,8 @@ import {enhancers} from "./state/enhancers";
 import {XHeaderComponent} from "./components/organisms/header";
 import {XAsideComponent} from "./components/organisms/aside";
 import {XHomePageComponent} from "./components/pages/home-page";
-import {XSigninPageComponent} from "./components/pages/user/signin-page";
-import {XSignupPageComponent} from "./components/pages/user/signup-page";
-import {XArticleCreatePageComponent} from "./components/pages/articles/article-create-page";
-import {XArticleEditPageComponent} from "./components/pages/articles/article-edit-page";
-import {XArticleDetailPageComponent} from "./components/pages/articles/article-detail-page";
-import {XArticlesListPageComponent} from "./components/pages/articles/articles-list-page";
+import {XArticlesPageComponent} from "./components/pages/articles-page";
+import {XUserPageComponent} from "./components/pages/user-page";
 
 @Component({
   selector: 'x-app',
@@ -21,7 +17,7 @@ import {XArticlesListPageComponent} from "./components/pages/articles/articles-l
     <x-header></x-header>
     <x-aside></x-aside>
     <router-outlet></router-outlet>
-    `,
+  `,
   encapsulation: ViewEncapsulation.None,
 })
 
@@ -29,23 +25,11 @@ import {XArticlesListPageComponent} from "./components/pages/articles/articles-l
   path: '/',
   component: XHomePageComponent,
 }, {
-  path: '/signin',
-  component: XSigninPageComponent,
-}, {
-  path: '/signup',
-  component: XSignupPageComponent,
-}, {
-  path: '/article/create',
-  component: XArticleCreatePageComponent,
-}, {
-  path: '/articles/:_id/edit',
-  component: XArticleEditPageComponent,
-}, {
-  path: '/articles/:_id',
-  component: XArticleDetailPageComponent,
-}, {
   path: '/articles',
-  component: XArticlesListPageComponent,
+  component: XArticlesPageComponent,
+}, {
+  path: '/user',
+  component: XUserPageComponent,
 }])
 
 export class XApp {

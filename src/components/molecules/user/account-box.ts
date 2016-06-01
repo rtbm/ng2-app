@@ -40,6 +40,6 @@ export class XAccountBoxComponent {
 
   handleLogoutClick() {
     this.sessionActions.logout();
-    this.router.navigate(['Home']);
+    this.router.navigate(['/']);
   }
 }

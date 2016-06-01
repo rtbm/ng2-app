@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'x-signin-page',
+  selector: 'x-user-signin-page',
   pipes: [AsyncPipe],
   directives: [XSigninFormComponent],
   template: ` 
@@ -27,7 +27,7 @@ import {Router} from "@angular/router";
     }
   `],
 })
-export class XSigninPageComponent {
+export class XUserSigninPageComponent {
   @select(n => n.session.get('isError')) private isError$: Observable<boolean>;
   @select(n => n.session.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.session.get('isLogged')) private isLogged$: Observable<boolean>;
@@ -36,7 +36,7 @@ export class XSigninPageComponent {
               private router: Router) {
     this.isLogged$.subscribe((result: boolean) => {
       if (result) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       }
     });
   }

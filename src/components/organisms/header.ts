@@ -62,10 +62,10 @@ export class XHeaderComponent {
   }
 
   handleSigninClick() {
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/user/signin']);
   }
 
   handleSignupClick() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/user/signup']);
   }
 }
