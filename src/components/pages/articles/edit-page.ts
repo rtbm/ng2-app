@@ -7,7 +7,7 @@ import {OnActivate, RouteSegment} from "@angular/router";
 import {XArticleFormComponent} from "../../molecules/articles/article-form";
 
 @Component({
-  selector: 'x-article-edit-page',
+  selector: 'x-articles-edit-page',
   directives: [XArticleFormComponent],
   pipes: [AsyncPipe],
   template: `
@@ -18,7 +18,7 @@ import {XArticleFormComponent} from "../../molecules/articles/article-form";
     <x-article-form [article]="article" (onSubmit)="handleSubmit($event)"></x-article-form>
   `
 })
-export class XArticleEditPageComponent implements OnActivate {
+export class XArticlesEditPageComponent implements OnActivate {
   @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
   @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;

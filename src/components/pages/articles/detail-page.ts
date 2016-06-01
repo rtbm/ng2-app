@@ -7,7 +7,7 @@ import {OnActivate, RouteSegment} from "@angular/router";
 import {XArticleDetailComponent} from "../../molecules/articles/article-detail";
 
 @Component({
-    selector: 'x-article-detail-page',
+    selector: 'x-articles-detail-page',
     directives: [XArticleDetailComponent],
     pipes: [AsyncPipe],
     template: `
@@ -17,7 +17,7 @@ import {XArticleDetailComponent} from "../../molecules/articles/article-detail";
     <x-article-detail [article]="article"></x-article-detail>
   `
 })
-export class XArticleDetailPageComponent implements OnActivate {
+export class XArticlesDetailPageComponent implements OnActivate {
     @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
     @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
     @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;

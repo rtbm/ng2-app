@@ -6,7 +6,7 @@ import {ArticleActions} from "../../../actions/article";
 import {XArticleFormComponent} from "../../molecules/articles/article-form";
 
 @Component({
-  selector: 'x-article-create-page',
+  selector: 'x-articles-create-page',
   directives: [XArticleFormComponent],
   pipes: [AsyncPipe],
   template: `
@@ -17,7 +17,7 @@ import {XArticleFormComponent} from "../../molecules/articles/article-form";
     <x-article-form (onSubmit)="handleSubmit($event)"></x-article-form>
   `
 })
-export class XArticleCreatePageComponent {
+export class XArticlesCreatePageComponent {
   @select(n => n.articles.get('isError')) private isError$: Observable<boolean>;
   @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;
   @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
