@@ -3,6 +3,8 @@ import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
 import {XArticlesListComponent} from "../../molecules/articles/articles-list";
 import {XWrapperComponent} from '../../atoms/wrapper';
+import { List } from 'immutable/dist/immutable-nonambient';
+import { ArticlesActions } from '../../../actions/articles';
 
 @Component({
   selector: 'x-articles-list-page',
@@ -15,11 +17,15 @@ import {XWrapperComponent} from '../../atoms/wrapper';
   `
 })
 export class XArticlesListPageComponent {
-  @select(n => n.articles.get('articles')) private articles$: Observable<boolean>;
+  @select(state => state.articles.get('items')) private items$: Observable<List<any>>;
 
   private articles: Array<Object> = [];
 
-  constructor() {
-    this.articles$.subscribe((articles: any) => { this.articles = articles.toJS(); })
+  constructor(private articlesActions: ArticlesActions) {
+    this.articlesActions.fetchAll();
+
+    this.items$.subscribe((items: any) => {
+      this.articles = items.toJS();
+    });
   }
 }

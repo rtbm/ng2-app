@@ -4,7 +4,7 @@ import {Map, fromJS} from 'immutable';
 export const SESSION_INITIAL_STATE = fromJS({
   isPending: false,
   isError: false,
-  isLogged: false,
+  isAuthorized: false,
   id_token: '',
 });
 
@@ -17,7 +17,7 @@ export function sessionReducer(state: ISession = SESSION_INITIAL_STATE, action: 
     }
 
     case SessionActions.SIGNIN_USER_SUCCESS: {
-      return state.merge({isPending: false, isLogged: true, id_token: action.payload.id_token});
+      return state.merge({isPending: false, isAuthorized: true, id_token: action.payload.id_token});
     }
 
     case SessionActions.SIGNIN_USER_ERROR: {
@@ -29,7 +29,7 @@ export function sessionReducer(state: ISession = SESSION_INITIAL_STATE, action: 
     }
 
     case SessionActions.SIGNUP_USER_SUCCESS: {
-      return state.merge({isPending: false, isLogged: true, id_token: action.payload.id_token});
+      return state.merge({isPending: false, isAuthorized: true, id_token: action.payload.id_token});
     }
 
     case SessionActions.SIGNUP_USER_ERROR: {

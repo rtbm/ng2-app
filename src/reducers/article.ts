@@ -5,7 +5,7 @@ export const ARTICLE_INITIAL_STATE = fromJS({
   isPending: false,
   isError: false,
   isSuccess: false,
-  article: {},
+  item: {},
 });
 
 export type IArticle = Map<string, any>;
@@ -17,7 +17,7 @@ export function articleReducer(state: IArticle = ARTICLE_INITIAL_STATE, action: 
     }
 
     case ArticleActions.ARTICLE_FETCH_SUCCESS: {
-      return state.merge({ isPending: false, isSuccess: true, article: action.payload });
+      return state.merge({ isPending: false, isSuccess: true, item: action.payload });
     }
 
     case ArticleActions.ARTICLE_FETCH_ERROR: {

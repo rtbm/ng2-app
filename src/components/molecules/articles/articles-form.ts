@@ -9,7 +9,7 @@ import {XButtonComponent} from "../../atoms/button/button";
 import {XTextareaComponent} from "../../atoms/form/textarea";
 
 @Component({
-  selector: 'x-article-form',
+  selector: 'x-articles-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent,
     XTextareaComponent, XFormGroupComponent],
   template: `
@@ -28,7 +28,7 @@ import {XTextareaComponent} from "../../atoms/form/textarea";
     </x-form>
   `,
 })
-export class XArticleFormComponent {
+export class XArticlesFormComponent {
   @Input() private article: Article = {name: '', content: ''};
   @Output() onSubmit = new EventEmitter();
 

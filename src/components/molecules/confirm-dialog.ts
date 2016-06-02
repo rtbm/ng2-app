@@ -11,8 +11,8 @@ import { XButtonsGroupComponent } from '../atoms/button/buttons-group'
         <div class="dialog">
             <p>Are you sure?</p>
             <x-buttons-group>
-              <x-button size="big" preset="positive" (click)="dialogRef.resolve()">Yes</x-button>
               <x-button size="big" preset="negative" (click)="dialogRef.reject()">No</x-button>
+              <x-button size="big" preset="positive" (click)="dialogRef.resolve()">Yes</x-button>
             </x-buttons-group>
         </div>
     `,

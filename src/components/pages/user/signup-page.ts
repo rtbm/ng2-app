@@ -29,13 +29,13 @@ import {Router} from "@angular/router";
   `]
 })
 export class XUserSignupPageComponent {
-  @select(n => n.session.get('isError')) private isError$: Observable<boolean>;
-  @select(n => n.session.get('isPending')) private isPending$: Observable<boolean>;
-  @select(n => n.session.get('isLogged')) private isLogged$: Observable<boolean>;
+  @select(state => state.session.get('isError')) private isError$: Observable<boolean>;
+  @select(state => state.session.get('isPending')) private isPending$: Observable<boolean>;
+  @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
 
   constructor(private sessionActions: SessionActions,
               private router: Router) {
-    this.isLogged$.subscribe((result: boolean) => {
+    this.isAuthorized$.subscribe((result: boolean) => {
       if (result) {
         this.router.navigate(['/']);
       }

@@ -3,14 +3,12 @@ import {Observable} from "rxjs";
 import {select} from "ng2-redux";
 import {AsyncPipe} from "@angular/common";
 import {Router} from "@angular/router";
-import {ISession} from "../../reducers/session";
 import {XLogoComponent} from "../atoms/logo";
 import {XSearchFormComponent} from "../molecules/search-form";
 import {XTopMenuComponent} from "../molecules/menus/top-menu";
 import {XAccountBoxComponent} from "../molecules/user/account-box";
 import {XWrapperComponent} from '../atoms/wrapper';
 import {JwtHelper} from "angular2-jwt";
-import {SearchService} from "../../services/search";
 
 @Component({
   selector: 'x-header',
@@ -21,7 +19,7 @@ import {SearchService} from "../../services/search";
       <x-logo></x-logo>
       <x-top-menu></x-top-menu>
       <x-account-box
-        [isLogged]="isLogged"
+        [isLogged]="isAuthorized$ | async"
         [email]="email"
         (onSigninClick)="handleSigninClick()"
         (onSignupClick)="handleSignupClick()"
@@ -46,23 +44,20 @@ import {SearchService} from "../../services/search";
   `],
 })
 export class XHeaderComponent {
-  @select() session$: Observable<ISession>;
+  @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
+  @select(state => state.session.get('id_token')) private idToken$: Observable<string>;
 
-  private isLogged: boolean = false;
   private email: string = '';
 
-  constructor(private router: Router,
-              private searchService: SearchService) {
+  constructor(private router: Router) {
     const jwt = new JwtHelper();
 
-    this.session$.subscribe(n => {
-      this.isLogged = n.get('isLogged');
-
-      const token = n.get('id_token');
-
-      if (token) {
+    this.idToken$.subscribe((token: string) => {
+      if(token) {
         const decodedToken = jwt.decodeToken(token);
         this.email = decodedToken.email;
+      } else {
+        this.email = '';
       }
     });
   }

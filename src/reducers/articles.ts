@@ -5,7 +5,7 @@ export const ARTICLES_INITIAL_STATE = fromJS({
   isPending: false,
   isError: false,
   isSuccess: false,
-  articles: [],
+  items: [],
 });
 
 export type IArticles = Map<string, any>;
@@ -13,13 +13,13 @@ export type IArticles = Map<string, any>;
 export function articlesReducer(state: IArticles = ARTICLES_INITIAL_STATE, action: any = { type: ''}) {
   switch(action.type) {
     case ArticlesActions.ARTICLES_SAVE: {
-      return state.updateIn(['articles'], list => list.push(Map(action.payload)));
+      return state.updateIn(['items'], list => list.push(Map(action.payload)));
     }
 
     case ArticlesActions.ARTICLES_UPDATE: {
       return state.updateIn([
-          'articles',
-          state.getIn(['articles']).findIndex(article => article.get('_id') === action.payload._id)
+          'items',
+          state.getIn(['items']).findIndex(item => item.get('_id') === action.payload._id)
         ],
         item => item.set('name', action.payload.name).set('content', action.payload.content)
       );
@@ -27,16 +27,16 @@ export function articlesReducer(state: IArticles = ARTICLES_INITIAL_STATE, actio
 
     case ArticlesActions.ARTICLES_REMOVE: {
       return state.merge({
-        articles: state.get('articles').filter(article => article.get('_id') !== action.payload._id)
+        items: state.get('items').filter(item => item.get('_id') !== action.payload._id)
       });
     }
 
     case ArticlesActions.ARTICLES_FETCH_PENDING: {
-      return state.merge({ isPending: true, isError: false, isSuccess: false, articles: [] });
+      return state.merge({ isPending: true, isError: false, isSuccess: false, items: [] });
     }
 
     case ArticlesActions.ARTICLES_FETCH_SUCCESS: {
-      return state.merge({ isPending: false, isError: false, isSuccess: true, articles: action.payload });
+      return state.merge({ isPending: false, isError: false, isSuccess: true, items: action.payload });
     }
 
     case ArticlesActions.ARTICLES_FETCH_ERROR: {

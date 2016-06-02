@@ -4,12 +4,12 @@ import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {ArticleActions} from "../../../actions/article";
 import {OnActivate, RouteSegment} from "@angular/router";
-import {XArticleDetailComponent} from "../../molecules/articles/article-detail";
+import {XArticlesDetailComponent} from "../../molecules/articles/articles-detail";
 import {XWrapperComponent} from '../../atoms/wrapper';
 
 @Component({
     selector: 'x-articles-detail-page',
-    directives: [XArticleDetailComponent, XWrapperComponent],
+    directives: [XArticlesDetailComponent, XWrapperComponent],
     pipes: [AsyncPipe],
     template: `
     <x-wrapper>
@@ -17,22 +17,22 @@ import {XWrapperComponent} from '../../atoms/wrapper';
       <div>isPending: {{isPending$ | async}}</div>
       <div>isSuccess: {{isSuccess$ | async}}</div>
             
-      <x-article-detail [article]="article"></x-article-detail>
+      <x-articles-detail [article]="article"></x-articles-detail>
     </x-wrapper>
   `
 })
 export class XArticlesDetailPageComponent implements OnActivate {
-    @select(n => n.article.get('isError')) private isError$: Observable<boolean>;
-    @select(n => n.article.get('isPending')) private isPending$: Observable<boolean>;
-    @select(n => n.article.get('isSuccess')) private isSuccess$: Observable<boolean>;
-    @select(n => n.article.get('article')) private article$: Observable<Object>;
+    @select(state => state.article.get('isError')) private isError$: Observable<boolean>;
+    @select(state => state.article.get('isPending')) private isPending$: Observable<boolean>;
+    @select(state => state.article.get('isSuccess')) private isSuccess$: Observable<boolean>;
+    @select(state => state.article.get('item')) private item$: Observable<Object>;
 
     private _id: string;
     private article: Object;
 
     constructor(private articleActions: ArticleActions) {
-        this.article$.subscribe((article:any) => {
-            this.article = article.toJS();
+        this.item$.subscribe((item: any) => {
+            this.article = item.toJS();
         });
     }
 

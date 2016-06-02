@@ -36,18 +36,15 @@ import {ArticlesActions} from "../../actions/articles";
   `]
 })
 export class XAsideComponent {
-  @select(n => n.articles.get('isError')) private isError$: Observable<boolean>;
-  @select(n => n.articles.get('isPending')) private isPending$: Observable<boolean>;
-  @select(n => n.articles.get('isSuccess')) private isSuccess$: Observable<boolean>;
-  @select(n => n.articles.get('articles')) private articles$: Observable<List<any>>;
+  @select(state => state.articles.get('items')) private items$: Observable<List<any>>;
 
   private articles: Array<Object> = [];
 
   constructor(private articlesActions: ArticlesActions) {
     this.articlesActions.fetchAll();
 
-    this.articles$.subscribe((articles: any) => {
-      this.articles = articles.toJS();
+    this.items$.subscribe((items: any) => {
+      this.articles = items.toJS();
     });
   }
 }

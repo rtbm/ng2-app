@@ -6,15 +6,13 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class ServerService {
-  @select() session$: Observable<ISession>;
+  @select(state => state.session.get('id_token')) private token$: Observable<ISession>;
 
   private BASE_URL = 'http://localhost:3000/api';
   private HEADERS = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) {
-    this.session$.subscribe(n => {
-      const token = n.get('id_token');
-
+    this.token$.subscribe(token => {
       if(token) {
         this.HEADERS.append('Authorization', `Bearer ${token}`);
       }
