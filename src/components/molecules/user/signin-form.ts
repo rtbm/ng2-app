@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 import {XFormComponent} from "../../atoms/form/form";
 import {XLabelComponent} from "../../atoms/form/label";
-import {XButtonComponent} from "../../atoms/form/button";
+import {XButtonComponent} from "../../atoms/button/button";
 import {XInputComponent} from "../../atoms/form/input";
 import {XFormGroupComponent} from "../../atoms/form/form-group";
 import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
@@ -21,7 +21,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@
         <x-input [formControl]="password" type="password"></x-input>
       </x-form-group>
       <x-form-group>
-        <x-button type="submit">Signup</x-button>
+        <x-button size="big" preset="positive" type="submit">Login</x-button>
       </x-form-group>
     </x-form>
   `,

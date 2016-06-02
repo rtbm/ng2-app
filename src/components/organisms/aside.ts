@@ -29,7 +29,7 @@ import {ArticlesActions} from "../../actions/articles";
       padding: 0 2rem;
       display: inline-block;
       vertical-align: top;
-      background: #d7e6e0;
+      background: #d9e8ef;
       height: 100vh;
       overflow-y: auto;
     }

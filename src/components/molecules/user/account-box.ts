@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {AsyncPipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {SessionActions} from "../../../actions/session";
-import {XButtonComponent} from "../../atoms/form/button";
+import {XButtonComponent} from "../../atoms/button/button";
 import {XListComponent} from "../../atoms/list/list";
 import {XListItemComponent} from "../../atoms/list/list-item";
 
@@ -13,7 +13,7 @@ import {XListItemComponent} from "../../atoms/list/list-item";
   template: `
     <x-list>
       <x-list-item *ngIf="isLogged">
-        <div>{{email}}</div>
+        <div class="email">{{email}}</div>
         <x-button (onClick)="handleLogoutClick()">Logout</x-button>
       </x-list-item>
       <x-list-item *ngIf="!isLogged">
@@ -25,6 +25,14 @@ import {XListItemComponent} from "../../atoms/list/list-item";
   styles: [`
     :host {
       display: inline-block;
+    }
+    
+    .email, x-button {
+      display: inline-block;
+    }
+    
+    .email {
+      margin: 0 2rem 0;
     }
   `],
 })

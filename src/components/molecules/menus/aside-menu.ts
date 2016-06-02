@@ -17,7 +17,7 @@ import {XMenuItemComponent} from "../../atoms/menu/menu-item";
     :host {           
       display: block;
       height: 100vh;
-      background: #2D3E50;
+      background: #3085b3;
       width: 8rem;
     }
     

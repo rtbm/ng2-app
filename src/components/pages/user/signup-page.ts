@@ -23,9 +23,8 @@ import {Router} from "@angular/router";
   `,
   styles: [`
     x-signup-form {
-      display: inline-block;
-      background: #D6DCE2;
-      padding: 2rem;
+      display: block;
+      margin: 2rem 0;
     }
   `]
 })

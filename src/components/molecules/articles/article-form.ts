@@ -5,7 +5,7 @@ import {XFormComponent} from "../../atoms/form/form";
 import {XFormGroupComponent} from "../../atoms/form/form-group";
 import {XLabelComponent} from "../../atoms/form/label";
 import {XInputComponent} from "../../atoms/form/input";
-import {XButtonComponent} from "../../atoms/form/button";
+import {XButtonComponent} from "../../atoms/button/button";
 import {XTextareaComponent} from "../../atoms/form/textarea";
 
 @Component({
@@ -23,7 +23,7 @@ import {XTextareaComponent} from "../../atoms/form/textarea";
         <x-textarea [formControl]="content"></x-textarea>
       </x-form-group>
       <x-form-group>
-        <x-button type="submit">Save</x-button>
+        <x-button size="big" preset="positive" type="submit">Save</x-button>
       </x-form-group>
     </x-form>
   `,

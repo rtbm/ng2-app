@@ -5,11 +5,12 @@ import {AsyncPipe} from "@angular/common";
 import {select} from "ng2-redux";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {XWrapperComponent} from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-user-signin-page',
   pipes: [AsyncPipe],
-  directives: [XSigninFormComponent],
+  directives: [XSigninFormComponent, XWrapperComponent],
   template: ` 
     <x-wrapper>
       <h1>Signin</h1>
@@ -22,8 +23,8 @@ import {Router} from "@angular/router";
   `,
   styles: [`
     x-signin-form {
-      display: inline-block;
-      padding: 2rem;
+      display: block;
+      margin: 2rem 0;
     }
   `],
 })

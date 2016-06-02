@@ -8,33 +8,39 @@ import {XLogoComponent} from "../atoms/logo";
 import {XSearchFormComponent} from "../molecules/search-form";
 import {XTopMenuComponent} from "../molecules/menus/top-menu";
 import {XAccountBoxComponent} from "../molecules/user/account-box";
+import {XWrapperComponent} from '../atoms/wrapper';
 import {JwtHelper} from "angular2-jwt";
 import {SearchService} from "../../services/search";
 
 @Component({
   selector: 'x-header',
-  directives: [XLogoComponent, XSearchFormComponent, XTopMenuComponent, XAccountBoxComponent],
+  directives: [XLogoComponent, XSearchFormComponent, XTopMenuComponent, XAccountBoxComponent, XWrapperComponent],
   pipes: [AsyncPipe],
   template: `
-    <x-logo></x-logo>
-    <x-top-menu></x-top-menu>
-    <x-account-box
-      [isLogged]="isLogged"
-      [email]="email"
-      (onSigninClick)="handleSigninClick()"
-      (onSignupClick)="handleSignupClick()"
-    ></x-account-box>  
+    <x-wrapper>
+      <x-logo></x-logo>
+      <x-top-menu></x-top-menu>
+      <x-account-box
+        [isLogged]="isLogged"
+        [email]="email"
+        (onSigninClick)="handleSigninClick()"
+        (onSignupClick)="handleSignupClick()"
+      ></x-account-box>
+    </x-wrapper>
   `,
   styles: [`
     :host {       
       padding: 1rem 0;
+      height: 3.2rem;
       display: block;
       background: #fff;
     }
-    x-logo {
-      margin: 0 3rem 0;
+    
+    x-logo, x-top-menu {
+      vertical-align: middle;
     }
-    x-search-form {
+    
+    x-account-box {
       float: right;
     }
   `],

@@ -2,13 +2,16 @@ import {Component} from "@angular/core";
 import {select} from 'ng2-redux';
 import {Observable} from 'rxjs';
 import {XArticlesListComponent} from "../../molecules/articles/articles-list";
+import {XWrapperComponent} from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-articles-list-page',
-  directives: [XArticlesListComponent],
+  directives: [XArticlesListComponent, XWrapperComponent],
   template: `
-    <h1>Articles list</h1>
-    <x-articles-list [articles]="articles"></x-articles-list>
+    <x-wrapper>
+      <h1>Articles list</h1>
+      <x-articles-list [articles]="articles"></x-articles-list>
+    </x-wrapper>
   `
 })
 export class XArticlesListPageComponent {

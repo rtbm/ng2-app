@@ -3,7 +3,7 @@ import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@
 import {XFormComponent} from "../atoms/form/form";
 import {XLabelComponent} from "../atoms/form/label";
 import {XInputComponent} from "../atoms/form/input";
-import {XButtonComponent} from "../atoms/form/button";
+import {XButtonComponent} from "../atoms/button/button";
 
 @Component({
   selector: 'x-search-form',

@@ -2,7 +2,7 @@ import {Component, Input, ViewContainerRef} from "@angular/core";
 import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 import {XListComponent} from "../../atoms/list/list";
 import {XListItemComponent} from "../../atoms/list/list-item";
-import {XButtonComponent} from "../../atoms/form/button";
+import {XButtonComponent} from "../../atoms/button/button";
 import {ArticleActions} from "../../../actions/article";
 import {Dialog} from '../../../providers/dialog';
 import {SlicePipe} from '../../../pipes/slice';
@@ -17,8 +17,8 @@ import {SlicePipe} from '../../../pipes/slice';
       <x-list-item *ngFor="let article of articles">
         <h2><a [routerLink]="['/articles', article._id]">{{article.name}}</a></h2>
         <p>{{article.content | slice: 128}}</p>
-        <x-button (click)="handleRemoveClick(article)">delete</x-button>
-        <x-button (click)="handleEditClick(article)">Edit article</x-button>
+        <x-button (click)="handleEditClick(article)">Edit</x-button>
+        <x-button preset="negative" (click)="handleRemoveClick(article)">Delete</x-button>
       </x-list-item>
     </x-list>
   `,

@@ -8,9 +8,9 @@ import {Component} from "@angular/core";
   styles: [`
     :host {
       display: block;
-      margin: 0 auto;
+      padding: 0 2rem;
       width: 100%;
-      max-width: 120rem;
+      box-sizing: border-box;
     }
   `],
 })
