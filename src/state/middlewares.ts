@@ -1,4 +1,4 @@
-import {Iterable} from 'immutable';
+import { Iterable } from 'immutable';
 
 function stateTransformer(state) {
   const newState = {};
@@ -16,4 +16,4 @@ const middlewares = [
   }),
 ];
 
-export {middlewares};
+export { middlewares };

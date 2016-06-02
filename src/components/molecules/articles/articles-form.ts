@@ -1,12 +1,12 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
-import {Article} from "../../../services/articles";
-import {XFormComponent} from "../../atoms/form/form";
-import {XFormGroupComponent} from "../../atoms/form/form-group";
-import {XLabelComponent} from "../../atoms/form/label";
-import {XInputComponent} from "../../atoms/form/input";
-import {XButtonComponent} from "../../atoms/button/button";
-import {XTextareaComponent} from "../../atoms/form/textarea";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { Article } from '../../../services/articles';
+import { XFormComponent } from '../../atoms/form/form';
+import { XFormGroupComponent } from '../../atoms/form/form-group';
+import { XLabelComponent } from '../../atoms/form/label';
+import { XInputComponent } from '../../atoms/form/input';
+import { XButtonComponent } from '../../atoms/button/button';
+import { XTextareaComponent } from '../../atoms/form/textarea';
 
 @Component({
   selector: 'x-articles-form',
@@ -29,7 +29,7 @@ import {XTextareaComponent} from "../../atoms/form/textarea";
   `,
 })
 export class XArticlesFormComponent {
-  @Input() private article: Article = {name: '', content: ''};
+  @Input() private article: Article = { name: '', content: '' };
   @Output() onSubmit = new EventEmitter();
 
   private form: ControlGroup;
@@ -52,7 +52,7 @@ export class XArticlesFormComponent {
   }
 
   handleSubmit() {
-    if(this.form.status !== 'VALID') return false;
+    if (this.form.status !== 'VALID') return false;
     this.onSubmit.emit(this.form.value);
   }
 }

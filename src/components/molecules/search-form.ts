@@ -1,9 +1,9 @@
-import {Component, Output, EventEmitter} from "@angular/core";
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
-import {XFormComponent} from "../atoms/form/form";
-import {XLabelComponent} from "../atoms/form/label";
-import {XInputComponent} from "../atoms/form/input";
-import {XButtonComponent} from "../atoms/button/button";
+import { Component, Output, EventEmitter } from '@angular/core';
+import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { XFormComponent } from '../atoms/form/form';
+import { XLabelComponent } from '../atoms/form/label';
+import { XInputComponent } from '../atoms/form/input';
+import { XButtonComponent } from '../atoms/button/button';
 
 @Component({
   selector: 'x-search-form',

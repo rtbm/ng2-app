@@ -1,11 +1,11 @@
-import {Component} from "@angular/core";
-import {AsyncPipe} from "@angular/common";
-import {select} from "ng2-redux";
-import {Observable} from "rxjs";
-import {ArticleActions} from "../../../actions/article";
-import {OnActivate, RouteSegment} from "@angular/router";
-import {XArticlesFormComponent} from "../../molecules/articles/articles-form";
-import {XWrapperComponent} from '../../atoms/wrapper';
+import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { ArticleActions } from '../../../actions/article';
+import { OnActivate, RouteSegment } from '@angular/router';
+import { XArticlesFormComponent } from '../../molecules/articles/articles-form';
+import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-articles-edit-page',
@@ -21,7 +21,7 @@ import {XWrapperComponent} from '../../atoms/wrapper';
       
       <x-articles-form [article]="article" (onSubmit)="handleSubmit($event)"></x-articles-form>
     </x-wrapper>
-  `
+  `,
 })
 export class XArticlesEditPageComponent implements OnActivate {
   @select(state => state.article.get('isError')) private isError$: Observable<boolean>;

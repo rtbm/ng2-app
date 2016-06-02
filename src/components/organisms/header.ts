@@ -1,14 +1,14 @@
-import {Component} from "@angular/core";
-import {Observable} from "rxjs";
-import {select} from "ng2-redux";
-import {AsyncPipe} from "@angular/common";
-import {Router} from "@angular/router";
-import {XLogoComponent} from "../atoms/logo";
-import {XSearchFormComponent} from "../molecules/search-form";
-import {XTopMenuComponent} from "../molecules/menus/top-menu";
-import {XAccountBoxComponent} from "../molecules/user/account-box";
-import {XWrapperComponent} from '../atoms/wrapper';
-import {JwtHelper} from "angular2-jwt";
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { select } from 'ng2-redux';
+import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { XLogoComponent } from '../atoms/logo';
+import { XSearchFormComponent } from '../molecules/search-form';
+import { XTopMenuComponent } from '../molecules/menus/top-menu';
+import { XAccountBoxComponent } from '../molecules/user/account-box';
+import { XWrapperComponent } from '../atoms/wrapper';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
   selector: 'x-header',
@@ -53,7 +53,7 @@ export class XHeaderComponent {
     const jwt = new JwtHelper();
 
     this.idToken$.subscribe((token: string) => {
-      if(token) {
+      if (token) {
         const decodedToken = jwt.decodeToken(token);
         this.email = decodedToken.email;
       } else {

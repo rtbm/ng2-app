@@ -1,14 +1,14 @@
-import {Component, ViewEncapsulation} from "@angular/core";
-import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
-import {NgRedux} from "ng2-redux";
-import rootReducer, {IAppState} from "./reducers";
-import {middlewares} from "./state/middlewares";
-import {enhancers} from "./state/enhancers";
-import {XHeaderComponent} from "./components/organisms/header";
-import {XAsideComponent} from "./components/organisms/aside";
-import {XHomePageComponent} from "./components/pages/home-page";
-import {XArticlesPageComponent} from "./components/pages/articles-page";
-import {XUserPageComponent} from "./components/pages/user-page";
+import { Component, ViewEncapsulation } from '@angular/core';
+import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
+import { NgRedux } from 'ng2-redux';
+import rootReducer, { IAppState } from './reducers';
+import { middlewares } from './state/middlewares';
+import { enhancers } from './state/enhancers';
+import { XHeaderComponent } from './components/organisms/header';
+import { XAsideComponent } from './components/organisms/aside';
+import { XHomePageComponent } from './components/pages/home-page';
+import { XArticlesPageComponent } from './components/pages/articles-page';
+import { XUserPageComponent } from './components/pages/user-page';
 
 @Component({
   selector: 'x-app',

@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ServerService} from './server';
+import { Injectable } from '@angular/core';
+import { ServerService } from './server';
 
 export interface Article {
   name: string;
@@ -8,7 +8,8 @@ export interface Article {
 
 @Injectable()
 export class ArticlesService {
-  constructor(private serverService: ServerService) {}
+  constructor(private serverService: ServerService) {
+  }
 
   fetchAll() {
     return new Promise((resolve, reject) => {

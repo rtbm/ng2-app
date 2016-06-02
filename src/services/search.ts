@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ServerService} from './server';
+import { Injectable } from '@angular/core';
+import { ServerService } from './server';
 
 interface Query {
   search: string;
@@ -7,7 +7,8 @@ interface Query {
 
 @Injectable()
 export class SearchService {
-  constructor(private serverService: ServerService) {}
+  constructor(private serverService: ServerService) {
+  }
 
   search(query: Query) {
     return new Promise((resolve, reject) => {

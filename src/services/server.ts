@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
-import {select} from 'ng2-redux';
-import {ISession} from '../reducers/session';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import { select } from 'ng2-redux';
+import { ISession } from '../reducers/session';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ServerService {
@@ -13,11 +13,11 @@ export class ServerService {
 
   constructor(private http: Http) {
     this.token$.subscribe(token => {
-      if(token) {
+      if (token) {
         this.HEADERS.append('Authorization', `Bearer ${token}`);
       }
 
-      if(!token && this.HEADERS.has('Authorization')) {
+      if (!token && this.HEADERS.has('Authorization')) {
         this.HEADERS.delete('Authorization');
       }
     });

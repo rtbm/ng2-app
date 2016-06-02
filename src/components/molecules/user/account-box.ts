@@ -1,10 +1,10 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {AsyncPipe} from "@angular/common";
-import {Router} from "@angular/router";
-import {SessionActions} from "../../../actions/session";
-import {XButtonComponent} from "../../atoms/button/button";
-import {XListComponent} from "../../atoms/list/list";
-import {XListItemComponent} from "../../atoms/list/list-item";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { SessionActions } from '../../../actions/session';
+import { XButtonComponent } from '../../atoms/button/button';
+import { XListComponent } from '../../atoms/list/list';
+import { XListItemComponent } from '../../atoms/list/list-item';
 
 @Component({
   selector: 'x-account-box',

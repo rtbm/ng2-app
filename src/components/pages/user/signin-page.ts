@@ -1,11 +1,11 @@
-import {Component} from "@angular/core";
-import {XSigninFormComponent} from "../../molecules/user/signin-form";
-import {SessionActions} from "../../../actions/session";
-import {AsyncPipe} from "@angular/common";
-import {select} from "ng2-redux";
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
-import {XWrapperComponent} from '../../atoms/wrapper';
+import { Component } from '@angular/core';
+import { XSigninFormComponent } from '../../molecules/user/signin-form';
+import { SessionActions } from '../../../actions/session';
+import { AsyncPipe } from '@angular/common';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-user-signin-page',

@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {NgFormModel} from "@angular/common";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgFormModel } from '@angular/common';
 
 @Component({
   selector: 'x-form',

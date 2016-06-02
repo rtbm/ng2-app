@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {select} from "ng2-redux";
-import {Observable} from "rxjs";
-import {List} from "immutable";
-import {XArticlesListComponent} from "../molecules/articles/articles-list";
-import {XAsideMenuComponent} from "../molecules/menus/aside-menu";
-import {ArticlesActions} from "../../actions/articles";
+import { Component } from '@angular/core';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { List } from 'immutable';
+import { XArticlesListComponent } from '../molecules/articles/articles-list';
+import { XAsideMenuComponent } from '../molecules/menus/aside-menu';
+import { ArticlesActions } from '../../actions/articles';
 
 @Component({
   selector: 'x-aside',
@@ -33,7 +33,7 @@ import {ArticlesActions} from "../../actions/articles";
       height: 100vh;
       overflow-y: auto;
     }
-  `]
+  `],
 })
 export class XAsideComponent {
   @select(state => state.articles.get('items')) private items$: Observable<List<any>>;

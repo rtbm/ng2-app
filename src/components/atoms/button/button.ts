@@ -1,4 +1,4 @@
-import {Input, Output, Component, EventEmitter} from "@angular/core";
+import { Input, Output, Component, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'x-button',

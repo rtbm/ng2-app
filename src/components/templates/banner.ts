@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {XWrapperComponent} from "../atoms/wrapper";
+import { Component, Input } from '@angular/core';
+import { XWrapperComponent } from '../atoms/wrapper';
 
 @Component({
   selector: 'x-banner',

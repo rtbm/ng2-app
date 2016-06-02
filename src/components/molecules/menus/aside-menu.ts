@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
-import {ROUTER_DIRECTIVES} from "@angular/router";
-import {XMenuComponent} from "../../atoms/menu/menu";
-import {XMenuItemComponent} from "../../atoms/menu/menu-item";
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { XMenuComponent } from '../../atoms/menu/menu';
+import { XMenuItemComponent } from '../../atoms/menu/menu-item';
 
 @Component({
   selector: 'x-aside-menu',
@@ -12,7 +12,7 @@ import {XMenuItemComponent} from "../../atoms/menu/menu-item";
       <x-menu-item><a [routerLink]="['/articles/create']">Create article</a></x-menu-item>
       <x-menu-item><a [routerLink]="['/articles']">List articles</a></x-menu-item>
     </x-menu>
-    `,
+  `,
   styles: [`
     :host {           
       display: block;
@@ -30,7 +30,7 @@ import {XMenuItemComponent} from "../../atoms/menu/menu-item";
       color: #fff;
       height: 8rem;
     }
-  `]
+  `],
 })
 export class XAsideMenuComponent {
 }

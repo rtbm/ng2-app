@@ -1,29 +1,30 @@
-import {Injectable, ComponentResolver, ViewContainerRef, ReflectiveInjector, provide} from '@angular/core';
-import {XDialogComponent} from '../components/molecules/confirm-dialog';
-import {DialogRef} from './dialog-ref';
+import { Injectable, ComponentResolver, ViewContainerRef, ReflectiveInjector, provide } from '@angular/core';
+import { XDialogComponent } from '../components/molecules/confirm-dialog';
+import { DialogRef } from './dialog-ref';
 
 @Injectable()
 export class Dialog {
-    constructor(private componentResolver: ComponentResolver) {}
+  constructor(private componentResolver: ComponentResolver) {
+  }
 
-    open(viewContainerRef: ViewContainerRef) {
-        const ctxInjector = viewContainerRef.parentInjector;
-        const dialog = new DialogRef();
+  open(viewContainerRef: ViewContainerRef) {
+    const ctxInjector = viewContainerRef.parentInjector;
+    const dialog = new DialogRef();
 
-        this.componentResolver.resolveComponent(XDialogComponent)
-            .then(resolvedComponent => {
-                const dialogInjector = ReflectiveInjector.resolve([
-                    provide(DialogRef, { useValue: dialog }),
-                ]);
+    this.componentResolver.resolveComponent(XDialogComponent)
+      .then(resolvedComponent => {
+        const dialogInjector = ReflectiveInjector.resolve([
+          provide(DialogRef, { useValue: dialog }),
+        ]);
 
-                const childInjector = ReflectiveInjector.fromResolvedProviders(dialogInjector, ctxInjector);
+        const childInjector = ReflectiveInjector.fromResolvedProviders(dialogInjector, ctxInjector);
 
-                return viewContainerRef.createComponent(resolvedComponent, viewContainerRef.length, childInjector);
-            })
-            .then(cmpRef => {
-                dialog.destroy = () => cmpRef.destroy();
-            });
+        return viewContainerRef.createComponent(resolvedComponent, viewContainerRef.length, childInjector);
+      })
+      .then(cmpRef => {
+        dialog.destroy = () => cmpRef.destroy();
+      });
 
-        return dialog;
-    }
+    return dialog;
+  }
 }

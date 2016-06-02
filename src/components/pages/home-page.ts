@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {XBannerComponent} from "../templates/banner";
+import { Component } from '@angular/core';
+import { XBannerComponent } from '../templates/banner';
 
 @Component({
   selector: 'x-home-page',

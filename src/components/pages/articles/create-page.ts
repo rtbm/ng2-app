@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {AsyncPipe} from "@angular/common";
-import {select} from "ng2-redux";
-import {Observable} from "rxjs";
-import {ArticleActions} from "../../../actions/article";
-import {XArticlesFormComponent} from "../../molecules/articles/articles-form";
-import {XWrapperComponent} from '../../atoms/wrapper';
+import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { ArticleActions } from '../../../actions/article';
+import { XArticlesFormComponent } from '../../molecules/articles/articles-form';
+import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-articles-create-page',
@@ -20,7 +20,7 @@ import {XWrapperComponent} from '../../atoms/wrapper';
       
       <x-articles-form (onSubmit)="articleActions.save($event)"></x-articles-form>
     </x-wrapper>
-  `
+  `,
 })
 export class XArticlesCreatePageComponent {
   @select(state => state.article.get('isError')) private isError$: Observable<boolean>;

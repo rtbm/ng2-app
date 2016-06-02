@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {ServerService} from './server';
+import { Injectable } from '@angular/core';
+import { ServerService } from './server';
 
 interface Credentials {
   email: string;

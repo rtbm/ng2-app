@@ -1,5 +1,5 @@
-import {Input, Component} from "@angular/core";
-import {NgFormControl} from "@angular/common";
+import { Input, Component } from '@angular/core';
+import { NgFormControl } from '@angular/common';
 
 @Component({
   selector: 'x-textarea',

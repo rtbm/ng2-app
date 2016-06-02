@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {NgRedux} from "ng2-redux";
-import {IAppState} from "../reducers";
-import {ArticlesService} from "../services/articles";
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { IAppState } from '../reducers';
+import { ArticlesService } from '../services/articles';
 
 @Injectable()
 export class ArticlesActions {

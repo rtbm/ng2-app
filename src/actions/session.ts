@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {NgRedux} from "ng2-redux";
-import {IAppState} from "../reducers";
-import {AuthService} from "../services/auth";
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { IAppState } from '../reducers';
+import { AuthService } from '../services/auth';
 
 @Injectable()
 export class SessionActions {

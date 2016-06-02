@@ -1,7 +1,7 @@
-import {combineReducers} from 'redux';
-import {ISession, sessionReducer} from './session';
-import {IArticle, articleReducer} from './article';
-import {IArticles, articlesReducer} from './articles';
+import { combineReducers } from 'redux';
+import { ISession, sessionReducer } from './session';
+import { IArticle, articleReducer } from './article';
+import { IArticles, articlesReducer } from './articles';
 
 export interface IAppState {
   session?: ISession;

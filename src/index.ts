@@ -1,22 +1,22 @@
-import "reflect-metadata";
-import "core-js/es6";
-import "core-js/es7/reflect";
-import "zone.js/dist/zone";
-import "ts-helpers";
-import {enableProdMode, provide} from "@angular/core";
-import {bootstrap} from "@angular/platform-browser-dynamic";
-import {HTTP_PROVIDERS} from "@angular/http";
-import {ROUTER_PROVIDERS} from "@angular/router";
-import {APP_BASE_HREF} from "@angular/common/index";
-import {NgRedux} from "ng2-redux";
-import {ServerService} from "./services/server";
-import {AuthService} from "./services/auth";
-import {SearchService} from "./services/search";
-import {ArticlesService} from "./services/articles";
-import {SessionActions} from "./actions/session";
-import {ArticleActions} from "./actions/article";
-import {ArticlesActions} from "./actions/articles";
-import {XApp} from "./app";
+import 'reflect-metadata';
+import 'core-js/es6';
+import 'core-js/es7/reflect';
+import 'zone.js/dist/zone';
+import 'ts-helpers';
+import { enableProdMode, provide } from '@angular/core';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { ROUTER_PROVIDERS } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common/index';
+import { NgRedux } from 'ng2-redux';
+import { ServerService } from './services/server';
+import { AuthService } from './services/auth';
+import { SearchService } from './services/search';
+import { ArticlesService } from './services/articles';
+import { SessionActions } from './actions/session';
+import { ArticleActions } from './actions/article';
+import { ArticlesActions } from './actions/articles';
+import { XApp } from './app';
 
 declare let __PRODUCTION__: any;
 
@@ -30,7 +30,7 @@ bootstrap(XApp, [
   NgRedux,
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
-  provide(APP_BASE_HREF, {useValue: '/'}),
+  provide(APP_BASE_HREF, { useValue: '/' }),
   ServerService,
   AuthService,
   SearchService,

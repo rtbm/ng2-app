@@ -1,10 +1,10 @@
-import {Component, Output, EventEmitter} from "@angular/core";
-import {XFormComponent} from "../../atoms/form/form";
-import {XLabelComponent} from "../../atoms/form/label";
-import {XButtonComponent} from "../../atoms/button/button";
-import {XInputComponent} from "../../atoms/form/input";
-import {XFormGroupComponent} from "../../atoms/form/form-group";
-import {FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators} from "@angular/common";
+import { Component, Output, EventEmitter } from '@angular/core';
+import { XFormComponent } from '../../atoms/form/form';
+import { XLabelComponent } from '../../atoms/form/label';
+import { XButtonComponent } from '../../atoms/button/button';
+import { XInputComponent } from '../../atoms/form/input';
+import { XFormGroupComponent } from '../../atoms/form/form-group';
+import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 
 @Component({
   selector: 'x-signin-form',

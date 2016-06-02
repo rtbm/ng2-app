@@ -1,5 +1,5 @@
-import {fromJS} from 'immutable';
-import {SESSION_INITIAL_STATE} from '../reducers/session';
+import { fromJS } from 'immutable';
+import { SESSION_INITIAL_STATE } from '../reducers/session';
 const persistState = require('redux-localstorage');
 
 const enhancers = [
@@ -10,4 +10,4 @@ const enhancers = [
   }),
 ];
 
-export {enhancers};
+export { enhancers };

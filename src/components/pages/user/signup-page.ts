@@ -1,11 +1,11 @@
-import {Component} from "@angular/core";
-import {XSignupFormComponent} from "../../molecules/user/signup-form";
-import {SessionActions} from "../../../actions/session";
-import {XWrapperComponent} from "../../atoms/wrapper";
-import {AsyncPipe} from "@angular/common";
-import {select} from "ng2-redux";
-import {Observable} from "rxjs";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { XSignupFormComponent } from '../../molecules/user/signup-form';
+import { SessionActions } from '../../../actions/session';
+import { XWrapperComponent } from '../../atoms/wrapper';
+import { AsyncPipe } from '@angular/common';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'x-user-signup-page',
@@ -26,7 +26,7 @@ import {Router} from "@angular/router";
       display: block;
       margin: 2rem 0;
     }
-  `]
+  `],
 })
 export class XUserSignupPageComponent {
   @select(state => state.session.get('isError')) private isError$: Observable<boolean>;

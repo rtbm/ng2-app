@@ -1,5 +1,5 @@
-import {ArticleActions} from '../actions/article';
-import {Map, fromJS} from 'immutable';
+import { ArticleActions } from '../actions/article';
+import { Map, fromJS } from 'immutable';
 
 export const ARTICLE_INITIAL_STATE = fromJS({
   isPending: false,
@@ -10,57 +10,70 @@ export const ARTICLE_INITIAL_STATE = fromJS({
 
 export type IArticle = Map<string, any>;
 
-export function articleReducer(state: IArticle = ARTICLE_INITIAL_STATE, action: any = { type: ''}) {
-  switch(action.type) {
-    case ArticleActions.ARTICLE_FETCH_PENDING: {
+export function articleReducer(state: IArticle = ARTICLE_INITIAL_STATE, action: any = { type: '' }) {
+  switch (action.type) {
+    case ArticleActions.ARTICLE_FETCH_PENDING:
+    {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_FETCH_SUCCESS: {
+    case ArticleActions.ARTICLE_FETCH_SUCCESS:
+    {
       return state.merge({ isPending: false, isSuccess: true, item: action.payload });
     }
 
-    case ArticleActions.ARTICLE_FETCH_ERROR: {
+    case ArticleActions.ARTICLE_FETCH_ERROR:
+    {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_SAVE_PENDING: {
+    case ArticleActions.ARTICLE_SAVE_PENDING:
+    {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_SAVE_SUCCESS: {
+    case ArticleActions.ARTICLE_SAVE_SUCCESS:
+    {
       return state.merge({ isPending: false, isSuccess: true });
     }
 
-    case ArticleActions.ARTICLE_SAVE_ERROR: {
+    case ArticleActions.ARTICLE_SAVE_ERROR:
+    {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_PENDING: {
+    case ArticleActions.ARTICLE_UPDATE_PENDING:
+    {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_SUCCESS: {
+    case ArticleActions.ARTICLE_UPDATE_SUCCESS:
+    {
       return state.merge({ isPending: false, isSuccess: true });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_ERROR: {
+    case ArticleActions.ARTICLE_UPDATE_ERROR:
+    {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_PENDING: {
+    case ArticleActions.ARTICLE_REMOVE_PENDING:
+    {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_ERROR: {
+    case ArticleActions.ARTICLE_REMOVE_ERROR:
+    {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_SUCCESS: {
+    case ArticleActions.ARTICLE_REMOVE_SUCCESS:
+    {
       return state.merge({ isPending: false, isSuccess: true });
     }
 
-    default: {
+    default:
+    {
       return state;
     }
   }

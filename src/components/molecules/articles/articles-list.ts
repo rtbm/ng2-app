@@ -1,11 +1,11 @@
-import {Component, Input, ViewContainerRef} from "@angular/core";
-import {ROUTER_DIRECTIVES, Router} from "@angular/router";
-import {XListComponent} from "../../atoms/list/list";
-import {XListItemComponent} from "../../atoms/list/list-item";
-import {XButtonComponent} from "../../atoms/button/button";
-import {ArticleActions} from "../../../actions/article";
-import {Dialog} from '../../../providers/dialog';
-import {SlicePipe} from '../../../pipes/slice';
+import { Component, Input, ViewContainerRef } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { XListComponent } from '../../atoms/list/list';
+import { XListItemComponent } from '../../atoms/list/list-item';
+import { XButtonComponent } from '../../atoms/button/button';
+import { ArticleActions } from '../../../actions/article';
+import { Dialog } from '../../../providers/dialog';
+import { SlicePipe } from '../../../pipes/slice';
 
 @Component({
   selector: 'x-articles-list',
@@ -26,12 +26,10 @@ import {SlicePipe} from '../../../pipes/slice';
 export class XArticlesListComponent {
   @Input() private articles: Array<Object> = [];
 
-  constructor(
-      private articleActions: ArticleActions,
-      private router: Router,
-      private dialog: Dialog,
-      private viewContainerRef: ViewContainerRef
-  ) {
+  constructor(private articleActions: ArticleActions,
+              private router: Router,
+              private dialog: Dialog,
+              private viewContainerRef: ViewContainerRef) {
   }
 
   handleRemoveClick(article) {
@@ -39,7 +37,8 @@ export class XArticlesListComponent {
 
     dialog.result
       .then(() => this.articleActions.remove(article._id))
-      .catch(() => {});
+      .catch(() => {
+      });
   }
 
   handleEditClick(article) {
