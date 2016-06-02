@@ -1,4 +1,4 @@
-import { Input, Component } from '@angular/core';
+import { Input, Component, EventEmitter, Output } from '@angular/core';
 import { NgFormControl } from '@angular/common';
 
 @Component({
@@ -6,7 +6,8 @@ import { NgFormControl } from '@angular/common';
   template: `
     <input [ngFormControl]="formControl"
            [type]="type"
-           [attr.placeholder]="placeholder" />
+           [attr.placeholder]="placeholder"
+           (keyup)="onKeyUp.emit($event)" />
   `,
   styles: [`
     input {
@@ -23,4 +24,5 @@ export class XInputComponent {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() formControl: NgFormControl;
+  @Output() onKeyUp = new EventEmitter();
 }
