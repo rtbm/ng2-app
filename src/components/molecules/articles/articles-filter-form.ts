@@ -15,7 +15,7 @@ import { XButtonComponent } from '../../atoms/button/button';
       <x-form-group>
         <x-label>Filter</x-label>
         <x-input [formControl]="phrase" type="text" (onKeyUp)="handleKeyUp()"></x-input>
-      </x-form-group>     
+      </x-form-group>
     </x-form>
   `,
 })

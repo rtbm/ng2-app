@@ -1,21 +1,17 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
+import { ROUTER_DIRECTIVES, Routes, Router } from '@angular/router';
 import { NgRedux } from 'ng2-redux';
 import rootReducer, { IAppState } from './reducers';
 import { middlewares } from './state/middlewares';
 import { enhancers } from './state/enhancers';
-import { XHeaderComponent } from './components/organisms/header';
-import { XAsideComponent } from './components/organisms/aside';
 import { XHomePageComponent } from './components/pages/home-page';
 import { XArticlesPageComponent } from './components/pages/articles-page';
 import { XUserPageComponent } from './components/pages/user-page';
 
 @Component({
   selector: 'x-app',
-  directives: [ROUTER_DIRECTIVES, XHeaderComponent, XAsideComponent],
+  directives: [ROUTER_DIRECTIVES],
   template: `
-    <x-header></x-header>
-    <x-aside></x-aside>
     <router-outlet></router-outlet>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -33,7 +29,10 @@ import { XUserPageComponent } from './components/pages/user-page';
 }])
 
 export class XApp {
-  constructor(private ngRedux: NgRedux<IAppState>) {
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private router: Router
+  ) {
     ngRedux.configureStore(rootReducer, {}, middlewares, enhancers);
   }
 }
