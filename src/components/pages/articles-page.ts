@@ -18,7 +18,7 @@ import { select } from 'ng2-redux/lib/index';
   styles: [`
     :host {
       display: block;
-      padding: 0 0 0 38rem;
+      padding: 2rem 2rem 2rem 40rem;
     }
   `]
 })

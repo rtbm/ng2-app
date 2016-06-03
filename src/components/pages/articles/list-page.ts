@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { XArticlesListComponent } from '../../molecules/articles/articles-list';
-import { XWrapperComponent } from '../../atoms/wrapper';
 import { List } from 'immutable/dist/immutable-nonambient';
 import { ArticlesActions } from '../../../actions/articles';
 import { FilterPipe } from '../../../pipes/filter';
@@ -11,19 +10,13 @@ import { XArticlesFilterFormComponent } from '../../molecules/articles/articles-
 
 @Component({
   selector: 'x-articles-list-page',
-  directives: [XArticlesListComponent, XWrapperComponent, XInputComponent, XArticlesFilterFormComponent],
+  directives: [XArticlesListComponent, XInputComponent, XArticlesFilterFormComponent],
   pipes: [FilterPipe],
   template: `
     <h1>Articles list</h1>
     <x-articles-filter-form (onKeyUp)="handleFilterFormKeyUp($event)"></x-articles-filter-form>
     <x-articles-list [articles]="articles | filter: phrase : ['name', 'content'] "></x-articles-list>   
   `,
-  styles: [`
-    :host {
-      display: block;
-      margin: 0 2rem;
-    }
-  `]
 })
 export class XArticlesListPageComponent {
   @select(state => state.articles.get('items')) private items$: Observable<List<any>>;

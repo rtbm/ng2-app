@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
   styles: [`
     :host {
         display: block;
-        margin: 0 0 1.5rem;
-        padding: 1rem 3rem;        
-    }    
+        margin: 0 0 1rem;
+        padding: 0 2rem;        
+    }
   `],
 })
 export class XFormGroupComponent {

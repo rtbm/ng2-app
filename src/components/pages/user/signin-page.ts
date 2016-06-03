@@ -6,14 +6,16 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { XWrapperComponent } from '../../atoms/wrapper';
+import { XFormMessageComponent } from '../../atoms/form/form-message';
 
 @Component({
   selector: 'x-user-signin-page',
   pipes: [AsyncPipe],
-  directives: [ROUTER_DIRECTIVES, XSigninFormComponent, XWrapperComponent],
+  directives: [ROUTER_DIRECTIVES, XSigninFormComponent, XWrapperComponent, XFormMessageComponent],
   template: ` 
     <x-wrapper>
-      <h1>Sign in</h1>
+      <h1>Sign in</h1>     
+      <x-form-error></x-form-error>
       <x-signin-form (onSubmit)="sessionActions.signin($event)"></x-signin-form>
       <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
     </x-wrapper>

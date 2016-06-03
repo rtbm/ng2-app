@@ -11,9 +11,8 @@ import { NgFormControl } from '@angular/common';
   `,
   styles: [`
     input {
-      border: 0 none;
-      border-bottom: .1rem solid #afafaf;
-      padding: .75rem 0;
+      border: .1rem solid #afafaf;
+      padding: .75rem .5rem;
       outline: 0;
       width: 100%;
       box-sizing: border-box;
@@ -21,7 +20,7 @@ import { NgFormControl } from '@angular/common';
     
     input:focus {
       border: 0 none;
-      border-bottom: .1rem solid #111;
+      border: .1rem solid #111;
     }
   `],
 })

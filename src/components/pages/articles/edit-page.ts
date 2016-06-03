@@ -5,22 +5,19 @@ import { Observable } from 'rxjs';
 import { ArticleActions } from '../../../actions/article';
 import { OnActivate, RouteSegment } from '@angular/router';
 import { XArticlesFormComponent } from '../../molecules/articles/articles-form';
-import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-articles-edit-page',
-  directives: [XArticlesFormComponent, XWrapperComponent],
+  directives: [XArticlesFormComponent],
   pipes: [AsyncPipe],
   template: `
-    <x-wrapper>
-      <h1>Edit Article</h1>
-      
-      <div>isError: {{isError$ | async}}</div>
-      <div>isPending: {{isPending$ | async}}</div>
-      <div>isSuccess: {{isSuccess$ | async}}</div>      
-      
-      <x-articles-form [article]="article" (onSubmit)="handleSubmit($event)"></x-articles-form>
-    </x-wrapper>
+    <h1>Edit Article</h1>
+    
+    <div>isError: {{isError$ | async}}</div>
+    <div>isPending: {{isPending$ | async}}</div>
+    <div>isSuccess: {{isSuccess$ | async}}</div>      
+    
+    <x-articles-form [article]="article" (onSubmit)="handleSubmit($event)"></x-articles-form>
   `,
 })
 export class XArticlesEditPageComponent implements OnActivate {

@@ -10,7 +10,8 @@ import { Component } from '@angular/core';
       display: block;
       background: #292929;
       text-align: center;
-      padding: 1.5rem 3rem;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0 0;
     }
   `],
 })

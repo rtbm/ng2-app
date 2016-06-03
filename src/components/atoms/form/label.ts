@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
   styles: [`
     :host {
       display: block;
+      margin: 0 0 .5rem;
     }
   `],
 })

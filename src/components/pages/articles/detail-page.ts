@@ -5,20 +5,17 @@ import { Observable } from 'rxjs';
 import { ArticleActions } from '../../../actions/article';
 import { OnActivate, RouteSegment } from '@angular/router';
 import { XArticlesDetailComponent } from '../../molecules/articles/articles-detail';
-import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-articles-detail-page',
-  directives: [XArticlesDetailComponent, XWrapperComponent],
+  directives: [XArticlesDetailComponent],
   pipes: [AsyncPipe],
   template: `
-    <x-wrapper>
-      <div>isError: {{isError$ | async}}</div>
-      <div>isPending: {{isPending$ | async}}</div>
-      <div>isSuccess: {{isSuccess$ | async}}</div>
-            
-      <x-articles-detail [article]="article"></x-articles-detail>
-    </x-wrapper>
+    <div>isError: {{isError$ | async}}</div>
+    <div>isPending: {{isPending$ | async}}</div>
+    <div>isSuccess: {{isSuccess$ | async}}</div>
+          
+    <x-articles-detail [article]="article"></x-articles-detail>
   `,
 })
 export class XArticlesDetailPageComponent implements OnActivate {

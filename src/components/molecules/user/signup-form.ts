@@ -6,13 +6,15 @@ import { XInputComponent } from '../../atoms/form/input';
 import { XFormGroupComponent } from '../../atoms/form/form-group';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { XFormActionsComponent } from '../../atoms/form/form-actions';
+import { XFormMessageComponent } from '../../atoms/form/form-message';
 
 @Component({
   selector: 'x-signup-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XInputComponent,
-    XFormGroupComponent, XFormActionsComponent],
+    XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: `
     <x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
+      <x-form-message>Fill in the Register form.</x-form-message>
       <x-form-group>
         <x-label>E-mail</x-label>
         <x-input [formControl]="email" type="email"></x-input>
