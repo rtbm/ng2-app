@@ -4,13 +4,13 @@ import { SessionActions } from '../../../actions/session';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { XWrapperComponent } from '../../atoms/wrapper';
 
 @Component({
   selector: 'x-user-signin-page',
   pipes: [AsyncPipe],
-  directives: [XSigninFormComponent, XWrapperComponent],
+  directives: [ROUTER_DIRECTIVES, XSigninFormComponent, XWrapperComponent],
   template: ` 
     <x-wrapper>
       <h1>Signin</h1>
@@ -19,6 +19,8 @@ import { XWrapperComponent } from '../../atoms/wrapper';
       <div>isPending: {{ isPending$ | async }}</div>
       
       <x-signin-form (onSubmit)="sessionActions.signin($event)"></x-signin-form>
+      
+      <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
     </x-wrapper>
   `,
   styles: [`

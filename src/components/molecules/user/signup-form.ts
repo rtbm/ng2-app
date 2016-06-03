@@ -25,7 +25,7 @@ import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from 
         <x-input [formControl]="password_confirm" type="password"></x-input>
       </x-form-group>
       <x-form-group>
-        <x-button size="big" preset="positive" type="submit">Register</x-button>
+        <x-button size="big" preset="positive" type="submit">Create an account</x-button>
       </x-form-group>
     </x-form>
   `,

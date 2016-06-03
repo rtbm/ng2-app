@@ -5,20 +5,22 @@ import { XWrapperComponent } from '../../atoms/wrapper';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'x-user-signup-page',
   pipes: [AsyncPipe],
-  directives: [XSignupFormComponent, XWrapperComponent],
+  directives: [ROUTER_DIRECTIVES, XSignupFormComponent, XWrapperComponent],
   template: ` 
     <x-wrapper>
       <h1>Signup</h1>
-       
+
       <div>isError: {{ isError$ | async }}</div>
       <div>isPending: {{ isPending$ | async }}</div>
-      
+
       <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
+
+      <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
     </x-wrapper>
   `,
   styles: [`
