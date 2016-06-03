@@ -14,12 +14,16 @@ import { XArticlesFilterFormComponent } from '../../molecules/articles/articles-
   directives: [XArticlesListComponent, XWrapperComponent, XInputComponent, XArticlesFilterFormComponent],
   pipes: [FilterPipe],
   template: `
-    <x-wrapper>
-      <h1>Articles list</h1>
-      <x-articles-filter-form (onKeyUp)="handleFilterFormKeyUp($event)"></x-articles-filter-form>
-      <x-articles-list [articles]="articles | filter: phrase : ['name', 'content'] "></x-articles-list>
-    </x-wrapper>
+    <h1>Articles list</h1>
+    <x-articles-filter-form (onKeyUp)="handleFilterFormKeyUp($event)"></x-articles-filter-form>
+    <x-articles-list [articles]="articles | filter: phrase : ['name', 'content'] "></x-articles-list>   
   `,
+  styles: [`
+    :host {
+      display: block;
+      margin: 0 2rem;
+    }
+  `]
 })
 export class XArticlesListPageComponent {
   @select(state => state.articles.get('items')) private items$: Observable<List<any>>;

@@ -12,7 +12,7 @@ import { XWrapperComponent } from '../atoms/wrapper';
   `,
   styles: [`
     :host {
-      background: #2D3E50;
+      background: #0b6190;
       height: 30rem;
       display: flex;
       align-items: center;

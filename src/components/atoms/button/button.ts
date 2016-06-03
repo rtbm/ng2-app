@@ -13,8 +13,7 @@ import { Input, Output, Component, EventEmitter } from '@angular/core';
       text-transform: uppercase;
       font-weight: 700;     
       border: 0 none;
-      border-radius: .4rem;
-      cursor: pointer;
+      cursor: pointer;     
     }
     
     button.normal {
@@ -30,21 +29,18 @@ import { Input, Output, Component, EventEmitter } from '@angular/core';
     button.casual {
       color: white;
       background: #4DBCE9;
-      border-top: .1rem solid #53c8fa;
       border-bottom: .1rem solid #2e738f;
     }
     
     button.positive {
       color: white;
-      background: #00A000;
-      border-top: .1rem solid #00c900;
+      background: #6db76d;
       border-bottom: .1rem solid #006000;
     }
     
     button.negative {
       color: white;
       background: #C21F39;
-      border-top: .1rem solid #d1213d;
       border-bottom: .1rem solid #9e192d;
     }
   `],

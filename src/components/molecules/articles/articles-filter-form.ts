@@ -11,11 +11,9 @@ import { XButtonComponent } from '../../atoms/button/button';
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent,
     XFormGroupComponent],
   template: `
-    <x-form [formModel]="form"> 
-      <x-form-group>
-        <x-label>Filter</x-label>
-        <x-input [formControl]="phrase" type="text" (onKeyUp)="handleKeyUp()"></x-input>
-      </x-form-group>
+    <x-form [formModel]="form">     
+      <x-label>Filter</x-label>
+      <x-input [formControl]="phrase" type="text" (onKeyUp)="handleKeyUp()"></x-input>
     </x-form>
   `,
 })

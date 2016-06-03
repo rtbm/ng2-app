@@ -10,6 +10,8 @@ import { Component } from '@angular/core';
       display: block;
       padding: 0 2rem;
       width: 100%;
+      max-width: 120rem;
+      margin: 0 auto;
       box-sizing: border-box;
     }
   `],

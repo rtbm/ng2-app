@@ -1,4 +1,4 @@
-import { Input, Component, EventEmitter, Output } from '@angular/core';
+import { Input, Component, EventEmitter, Output, ElementRef } from '@angular/core';
 import { NgFormControl } from '@angular/common';
 
 @Component({
@@ -11,15 +11,17 @@ import { NgFormControl } from '@angular/common';
   `,
   styles: [`
     input {
-      border: 1px solid #d9d9d9;
-      padding: 1rem;
+      border: 0 none;
+      border-bottom: .1rem solid #afafaf;
+      padding: .75rem 0;
       outline: 0;
       width: 100%;
       box-sizing: border-box;
     }
     
     input:focus {
-      border: 1px solid #111;
+      border: 0 none;
+      border-bottom: .1rem solid #111;
     }
   `],
 })

@@ -14,32 +14,56 @@ import { XFormGroupComponent } from '../../atoms/form/form-group';
   directives: [ROUTER_DIRECTIVES, XSignupFormComponent, XWrapperComponent, XFormGroupComponent],
   template: ` 
     <x-wrapper>
+      <h1>Sign up</h1>
       <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
       <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
     </x-wrapper>
   `,
   styles: [`
     :host {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      background: #222;
-      padding: 5rem 0;
+      display: block;
+      background: #0b6190;
+      padding: 3rem 0;
+    }
+    
+    h1 {
+      color: #fff;      
     }
 
-    :host x-signup-form {
+    x-signup-form {
       display: inline-block;
-      background: #f3f3f3;
-      padding: 2rem;
+      background: #fff;      
       margin: 0 0 2rem;
       text-align: left;
     }
     
-    :host x-form-group, :host x-input {
+    :host x-form-actions {
+      background: #177ba9;
+      border-top: .1rem solid #0b6190;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    :host x-button,
+    :host x-button button {
+      width: 100%;
+    }
+
+    :host x-form-group,
+    :host x-input {
       width: 30rem;
+    }
+    
+    :host x-form {
+      padding: 2rem 0 0 0;
+    }      
+
+    p {
+      color: #fff;
+    }
+
+    p a {
+      color: #4DBCE9;
     }
   `],
 })
