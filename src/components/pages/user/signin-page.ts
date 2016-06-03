@@ -13,20 +13,32 @@ import { XWrapperComponent } from '../../atoms/wrapper';
   directives: [ROUTER_DIRECTIVES, XSigninFormComponent, XWrapperComponent],
   template: ` 
     <x-wrapper>
-      <h1>Signin</h1>
-      
-      <div>isError: {{ isError$ | async }}</div>
-      <div>isPending: {{ isPending$ | async }}</div>
-      
       <x-signin-form (onSubmit)="sessionActions.signin($event)"></x-signin-form>
-      
       <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
     </x-wrapper>
   `,
   styles: [`
-    x-signin-form {
-      display: block;
-      margin: 2rem 0;
+    :host {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background: #222;
+      padding: 5rem 0;
+    }
+
+    :host x-signin-form {
+      display: inline-block;
+      background: #f3f3f3;
+      padding: 2rem;
+      margin: 0 0 2rem;
+      text-align: left;
+    }
+    
+    :host x-form-group, :host x-input {
+      width: 30rem;
     }
   `],
 })

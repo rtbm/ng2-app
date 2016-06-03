@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const logger = require('./utils/logger');
 const cors = require('cors');
+const jwt = require('express-jwt');
+const config = require('./config/config');
 
 const distPath = path.join(__dirname, '../public');
 
@@ -19,6 +21,14 @@ mongoose.connect('mongodb://localhost:27017/ng2app-db');
 
 //app.use(helmet());
 app.use(cors());
+app.use(
+  jwt({ secret: config.secret }).unless({
+    path: [
+      '/api/auth/signin',
+      '/api/auth/signup',
+    ]
+  })
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +52,7 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
+    winston.log('error', err);
     res.status(err.status || 500);
     res.json({
       message: err.message,
@@ -54,10 +65,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.json({
-    message: err.message,
-    error: err
-  });
+  res.send();
 });
 
 

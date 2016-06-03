@@ -6,27 +6,40 @@ import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { XFormGroupComponent } from '../../atoms/form/form-group';
 
 @Component({
   selector: 'x-user-signup-page',
   pipes: [AsyncPipe],
-  directives: [ROUTER_DIRECTIVES, XSignupFormComponent, XWrapperComponent],
+  directives: [ROUTER_DIRECTIVES, XSignupFormComponent, XWrapperComponent, XFormGroupComponent],
   template: ` 
     <x-wrapper>
-      <h1>Signup</h1>
-
-      <div>isError: {{ isError$ | async }}</div>
-      <div>isPending: {{ isPending$ | async }}</div>
-
       <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
-
       <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
     </x-wrapper>
   `,
   styles: [`
-    x-signup-form {
-      display: block;
-      margin: 2rem 0;
+    :host {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background: #222;
+      padding: 5rem 0;
+    }
+
+    :host x-signup-form {
+      display: inline-block;
+      background: #f3f3f3;
+      padding: 2rem;
+      margin: 0 0 2rem;
+      text-align: left;
+    }
+    
+    :host x-form-group, :host x-input {
+      width: 30rem;
     }
   `],
 })

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { NgFormModel } from '@angular/common';
 
 @Component({
@@ -9,6 +9,7 @@ import { NgFormModel } from '@angular/common';
       <ng-content></ng-content>
     </form>
   `,
+  encapsulation: ViewEncapsulation.None,
 })
 export class XFormComponent {
   @Input() formModel: NgFormModel;

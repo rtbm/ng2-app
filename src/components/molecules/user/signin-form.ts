@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { XFormComponent } from '../../atoms/form/form';
 import { XLabelComponent } from '../../atoms/form/label';
 import { XButtonComponent } from '../../atoms/button/button';
@@ -25,6 +25,7 @@ import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from 
       </x-form-group>
     </x-form>
   `,
+  encapsulation: ViewEncapsulation.None,
 })
 export class XSigninFormComponent {
   @Output() onSubmit = new EventEmitter<Event>();

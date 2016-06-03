@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const articleSchema = new Schema({
+const articleSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
@@ -12,6 +11,10 @@ const articleSchema = new Schema({
     trim: true,
     required: true,
   },
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    required: true,
+  }
 }, {
   autoIndex: false,
   timestamps: true,

@@ -14,7 +14,10 @@ import { NgFormControl } from '@angular/common';
       border: 1px solid #d9d9d9;
       padding: 1rem;
       outline: 0;
+      width: 100%;
+      box-sizing: border-box;
     }
+    
     input:focus {
       border: 1px solid #111;
     }
