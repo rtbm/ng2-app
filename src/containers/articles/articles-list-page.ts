@@ -13,7 +13,6 @@ import { XArticlesFilterFormComponent } from '../../components/articles/articles
   directives: [XArticlesListComponent, XInputComponent, XArticlesFilterFormComponent],
   pipes: [FilterPipe],
   template: `
-    <h1>Articles list</h1>
     <x-articles-filter-form (onKeyUp)="handleFilterFormKeyUp($event)"></x-articles-filter-form>
     <x-articles-list [articles]="articles | filter: phrase : ['name', 'content'] "></x-articles-list>   
   `,

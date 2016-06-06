@@ -3,16 +3,20 @@ import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { ArticleActions } from '../../actions/article';
-import { XArticlesFormComponent } from '../../components/articles/articles-form';
+import { XArticlesCreateFormComponent } from '../../components/articles/articles-create-form';
 
 @Component({
   selector: 'x-articles-create-page',
-  directives: [XArticlesFormComponent],
+  directives: [XArticlesCreateFormComponent],
   pipes: [AsyncPipe],
   template: `
-    <h1>Create Article</h1>
-    <x-articles-form (onSubmit)="articleActions.save($event)"></x-articles-form>
+    <x-articles-create-form (onSubmit)="articleActions.save($event)"></x-articles-create-form>
   `,
+  styles: [`
+    :host h1 {
+      margin: 0;
+    }
+  `]
 })
 export class XArticlesCreatePageComponent {
   @select(state => state.article.get('isError')) private isError$: Observable<boolean>;

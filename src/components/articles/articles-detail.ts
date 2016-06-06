@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'x-articles-detail',
   template: `
-    <h2>{{article.name}}</h2>
+    <h1>{{article.name}}</h1>
     <p>{{article.content}}</p>
   `,
 })

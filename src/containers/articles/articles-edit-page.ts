@@ -4,15 +4,14 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { ArticleActions } from '../../actions/article';
 import { OnActivate, RouteSegment } from '@angular/router';
-import { XArticlesFormComponent } from '../../components/articles/articles-form';
+import { XArticlesEditFormComponent } from '../../components/articles/articles-edit-form';
 
 @Component({
   selector: 'x-articles-edit-page',
-  directives: [XArticlesFormComponent],
+  directives: [XArticlesEditFormComponent],
   pipes: [AsyncPipe],
   template: `
-    <h1>Edit Article</h1>
-    <x-articles-form [article]="article" (onSubmit)="handleSubmit($event)"></x-articles-form>
+    <x-articles-edit-form [article]="article" (onSubmit)="handleSubmit($event)"></x-articles-edit-form>
   `,
 })
 export class XArticlesEditPageComponent implements OnActivate {

@@ -2,15 +2,28 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { XMenuComponent } from '../menu/menu';
 import { XMenuItemComponent } from '../menu/menu-item';
+import { XIconComponent } from '../icon';
 
 @Component({
   selector: 'x-aside-menu',
-  directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent],
+  directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent, XIconComponent],
   template: `
     <x-menu>
-      <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
-      <x-menu-item><a [routerLink]="['/articles/create']">Create article</a></x-menu-item>
-      <x-menu-item><a [routerLink]="['/articles']">List articles</a></x-menu-item>
+      <x-menu-item>
+        <a [routerLink]="['/']">
+          <x-icon>home</x-icon>
+        </a>
+      </x-menu-item>
+      <x-menu-item>
+        <a [routerLink]="['/articles/create']">
+          <x-icon>create</x-icon>
+        </a>
+      </x-menu-item>
+      <x-menu-item>
+        <a [routerLink]="['/articles']">
+          <x-icon>list</x-icon>
+        </a>
+      </x-menu-item>
     </x-menu>
   `,
   styles: [`
@@ -18,17 +31,22 @@ import { XMenuItemComponent } from '../menu/menu-item';
       display: block;
       height: 100vh;
       background: #0b6190;
-      width: 8rem;
+      width: 6rem;
     }
     
-    x-menu-item {
-      display: block;  
-    }
-    
-    x-menu-item a {
+    :host x-menu-item {
       display: block;
+      margin: 0;
+    }
+    
+    :host x-menu-item a {
       color: #fff;
-      height: 8rem;
+      display: block;
+      padding: 2rem 0;
+    }
+    
+    :host x-menu-item a:hover {
+      background: #1672a5;
     }
   `],
 })

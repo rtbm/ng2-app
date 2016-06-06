@@ -9,12 +9,15 @@ import { NgFormControl } from '@angular/common';
   `,
   styles: [`
     textarea {
-      border: 1px solid #d9d9d9;
+      border: .1rem solid #d9d9d9;
       padding: 1rem;
       outline: 0;
+      width: 100%;
+      box-sizing: border-box;
+      min-height: 30rem;
     }
     textarea:focus {
-      border: 1px solid #111;
+      border: .1rem solid #111;
     }
   `],
 })

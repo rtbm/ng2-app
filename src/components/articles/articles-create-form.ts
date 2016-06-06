@@ -8,13 +8,17 @@ import { XInputComponent } from '../form/input';
 import { XButtonComponent } from '../button/button';
 import { XTextareaComponent } from '../form/textarea';
 import { XFormActionsComponent } from '../form/form-actions';
+import { XFormHeaderComponent } from '../form/form-header';
 
 @Component({
-  selector: 'x-articles-form',
+  selector: 'x-articles-create-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XInputComponent, XButtonComponent,
-    XTextareaComponent, XFormGroupComponent, XFormActionsComponent],
+    XTextareaComponent, XFormGroupComponent, XFormActionsComponent, XFormHeaderComponent],
   template: `
-    <x-form [formModel]="form" (onSubmit)="handleSubmit()"> 
+    <x-form [formModel]="form" (onSubmit)="handleSubmit()">
+      <x-form-header>
+        <h1>Create article</h1>
+      </x-form-header>
       <x-form-group>
         <x-label>Name</x-label>
         <x-input [formControl]="name" type="text"></x-input>
@@ -29,7 +33,7 @@ import { XFormActionsComponent } from '../form/form-actions';
     </x-form>
   `,
 })
-export class XArticlesFormComponent {
+export class XArticlesCreateFormComponent {
   @Input() private article: Article = { name: '', content: '' };
   @Output() onSubmit = new EventEmitter();
 

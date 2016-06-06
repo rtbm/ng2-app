@@ -10,8 +10,8 @@ import { XListItemContentComponent } from '../list/list-item-content';
 
 @Component({
   selector: 'x-articles-list',
-  directives: [ROUTER_DIRECTIVES, XListComponent, XListItemComponent, XListItemActionsComponent, XButtonComponent,
-    XListItemContentComponent],
+  directives: [ROUTER_DIRECTIVES, XListComponent, XListItemComponent, XListItemContentComponent,
+    XListItemActionsComponent, XButtonComponent],
   providers: [Dialog],
   template: `
     <x-list>

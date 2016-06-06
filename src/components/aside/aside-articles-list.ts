@@ -25,10 +25,10 @@ import { XListItemContentComponent } from '../list/list-item-content';
         </x-list-item-content>
         <x-list-item-actions>
           <x-button (click)="handleEditClick(article)">
-            <x-icon size="small" type="edit"></x-icon>          
+            <x-icon size="small">edit</x-icon>          
           </x-button>
           <x-button (click)="handleRemoveClick(article)">
-            <x-icon size="small" type="remove"></x-icon>
+            <x-icon size="small">remove</x-icon>
           </x-button>
         </x-list-item-actions>
       </x-list-item>
@@ -36,40 +36,42 @@ import { XListItemContentComponent } from '../list/list-item-content';
   `,
   styles: [`
     :host {
-      display: block;    
+      display: block;
     }
-    
+
     :host x-icon {
       color: #0b6190;
     }
-    
+
     :host x-list-item {
-      padding: 1rem 3rem 1rem 1rem;
+      cursor: pointer;
+      padding-right: 3rem;
+      padding-left: 2rem;
       position: relative;
     }
-    
+
     :host x-list-item:hover {
       background: #d3daef;
     }
-    
+
     :host x-list-item-content {
       display: block;
     }
-    
+
     :host x-list-item-actions {
       display: none;
       bottom: 0;
       right: 0;
       position: absolute;
     }
-    
+
     :host x-list-item-actions x-button {
       display: block;
     }
-    
+
     :host x-list-item:hover x-list-item-actions {
       display: block;
-    }    
+    }
   `]
 })
 export class XAsideArticlesListComponent {
