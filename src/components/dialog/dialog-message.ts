@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     :host {
       display: block;
       padding: 2rem;
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   `],
 })

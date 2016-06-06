@@ -57,5 +57,8 @@
     "webpack-split-by-path": "0.0.8",
     "winston": "^2.2.0",
     "zone.js": "0.6.12"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1"
   }
 }

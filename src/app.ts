@@ -1,3 +1,5 @@
+require('./app.css');
+
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes, Router } from '@angular/router';
 import { NgRedux } from 'ng2-redux';
@@ -14,6 +16,7 @@ import { XUserPageComponent } from './containers/user-page';
   template: `
     <router-outlet></router-outlet>
   `,
+  styles: [require('./app.css')],
   encapsulation: ViewEncapsulation.None,
 })
 

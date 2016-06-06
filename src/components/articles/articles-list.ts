@@ -5,20 +5,25 @@ import { XListItemComponent } from '../list/list-item';
 import { XButtonComponent } from '../button/button';
 import { ArticleActions } from '../../actions/article';
 import { Dialog } from '../../providers/dialog';
-import { SlicePipe } from '../../pipes/slice';
+import { XListItemActionsComponent } from '../list/list-item-actions';
+import { XListItemContentComponent } from '../list/list-item-content';
 
 @Component({
   selector: 'x-articles-list',
-  directives: [ROUTER_DIRECTIVES, XListComponent, XListItemComponent, XButtonComponent],
+  directives: [ROUTER_DIRECTIVES, XListComponent, XListItemComponent, XListItemActionsComponent, XButtonComponent,
+    XListItemContentComponent],
   providers: [Dialog],
-  pipes: [SlicePipe],
   template: `
     <x-list>
       <x-list-item *ngFor="let article of articles">
-        <h2><a [routerLink]="['/articles', article._id]">{{article.name}}</a></h2>
-        <p>{{article.content | slice: 128}}</p>
-        <x-button (click)="handleEditClick(article)">Edit</x-button>
-        <x-button preset="negative" (click)="handleRemoveClick(article)">Delete</x-button>
+        <x-list-item-content>
+          <h2><a [routerLink]="['/articles', article._id]">{{article.name}}</a></h2>
+          <p>{{article.content}}</p>
+        </x-list-item-content>
+        <x-list-item-actions>
+          <x-button size="normal" preset="casual" (click)="handleEditClick(article)">Edit</x-button>
+          <x-button size="normal" preset="negative" (click)="handleRemoveClick(article)">Delete</x-button>
+        </x-list-item-actions>
       </x-list-item>
     </x-list>
   `,

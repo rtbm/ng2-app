@@ -2,37 +2,36 @@ import { Component } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { List } from 'immutable';
-import { XArticlesListComponent } from '../articles/articles-list';
+import { XAsideArticlesListComponent } from './aside-articles-list';
 import { XAsideMenuComponent } from './aside-menu';
 import { ArticlesActions } from '../../actions/articles';
 
 @Component({
   selector: 'x-aside',
-  directives: [XArticlesListComponent, XAsideMenuComponent],
+  directives: [XAsideArticlesListComponent, XAsideMenuComponent],
   template: `
-    <x-aside-menu></x-aside-menu><x-articles-list [articles]="articles"></x-articles-list>
+    <x-aside-menu></x-aside-menu><x-aside-articles-list [articles]="articles"></x-aside-articles-list>
   `,
   styles: [`
     :host {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
     }
     
-    x-aside-menu {
+    :host x-aside-menu {
       display: inline-block;
       vertical-align: top;
     }
     
-    x-articles-list {
+    :host x-aside-articles-list {
       width: 26rem;
-      padding: 0 2rem;
       display: inline-block;
       vertical-align: top;
       background: #efefef;
       height: 100vh;
       overflow-y: auto;
-    }
+    }    
   `],
 })
 export class XAsideComponent {

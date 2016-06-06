@@ -1,5 +1,5 @@
 import { Injectable, ComponentResolver, ViewContainerRef, ReflectiveInjector, provide } from '@angular/core';
-import { XDialogConfirmationComponent } from '../components/dialog/dialog-confirmation';
+import { XDialogComponent } from '../components/dialog/dialog';
 import { DialogRef } from './dialog-ref';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class Dialog {
     const ctxInjector = viewContainerRef.parentInjector;
     const dialog = new DialogRef();
 
-    this.componentResolver.resolveComponent(XDialogConfirmationComponent)
+    this.componentResolver.resolveComponent(XDialogComponent)
       .then(resolvedComponent => {
         const dialogInjector = ReflectiveInjector.resolve([
           provide(DialogRef, { useValue: dialog }),
