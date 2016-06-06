@@ -4,9 +4,9 @@ import { NgRedux } from 'ng2-redux';
 import rootReducer, { IAppState } from './reducers';
 import { middlewares } from './state/middlewares';
 import { enhancers } from './state/enhancers';
-import { XHomePageComponent } from './components/pages/home-page';
-import { XArticlesPageComponent } from './components/pages/articles-page';
-import { XUserPageComponent } from './components/pages/user-page';
+import { XHomePageComponent } from './containers/home-page';
+import { XArticlesPageComponent } from './containers/articles-page';
+import { XUserPageComponent } from './containers/user-page';
 
 @Component({
   selector: 'x-app',
