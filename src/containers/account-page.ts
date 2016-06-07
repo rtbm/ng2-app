@@ -14,9 +14,9 @@ import { Location } from '@angular/common';
   directives: [ROUTER_DIRECTIVES, XAsideMenuComponent, XAsideArticlesListComponent],
   template: `
     <x-aside-menu></x-aside-menu>
-    <x-aside-articles-list *ngIf="showArticlesList" [articles]="items"></x-aside-articles-list>
+    <x-aside-articles-list [ngClass]="{ 'collapsed': !showArticlesList }" [articles]="items"></x-aside-articles-list>
     
-    <div [ngClass]="{'wrapper': showArticlesList}">
+    <div class="wrapper" [ngClass]="{'wrapper-padding-left': showArticlesList}">
       <router-outlet></router-outlet>
     </div>
   `,
@@ -27,6 +27,11 @@ import { Location } from '@angular/common';
     }
     
     .wrapper {
+      padding: 0 0 0 2rem;
+      transition: .2s padding linear;
+    }
+    
+    .wrapper-padding-left {
       padding: 0 0 0 28rem;
     }
     
@@ -34,6 +39,12 @@ import { Location } from '@angular/common';
       position: absolute;
       top: 0;
       left: 6rem;
+      transition: .2s width linear;
+    }
+    
+    .collapsed {
+      overflow: hidden;
+      width: 0;
     }
   `]
 })
@@ -49,6 +60,7 @@ import { Location } from '@angular/common';
 export class XAccountPageComponent {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
   @select(state => state.articles.getIn(['items'])) private items$: Observable<any>;
+
   private items: Array<any> = [];
   private showArticlesList: boolean = false;
 
