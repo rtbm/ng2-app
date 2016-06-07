@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XSigninFormComponent } from '../../components/user/signin-form';
+import { XUserSigninFormComponent } from '../../components/user/user-signin-form';
 import { SessionActions } from '../../actions/session';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
@@ -11,12 +11,12 @@ import { XFormMessageComponent } from '../../components/form/form-message';
 @Component({
   selector: 'x-user-signin-page',
   pipes: [AsyncPipe],
-  directives: [ROUTER_DIRECTIVES, XSigninFormComponent, XWrapperComponent, XFormMessageComponent],
+  directives: [ROUTER_DIRECTIVES, XUserSigninFormComponent, XWrapperComponent, XFormMessageComponent],
   template: ` 
     <x-wrapper>
       <h1>Sign in</h1>     
       <x-form-error></x-form-error>
-      <x-signin-form (onSubmit)="sessionActions.signin($event)"></x-signin-form>
+      <x-user-signin-form (onSubmit)="sessionActions.signin($event)"></x-user-signin-form>
       <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
     </x-wrapper>
   `,
@@ -31,7 +31,7 @@ import { XFormMessageComponent } from '../../components/form/form-message';
       color: #fff;
     }
 
-    x-signin-form {
+    x-user-signin-form {
       display: inline-block;
       background: #fff;
       margin: 0 0 2rem;

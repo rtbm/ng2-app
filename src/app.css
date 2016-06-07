@@ -27,6 +27,8 @@ a {
 
 button, input {
   font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  background: transparent;
 }
 
 p {

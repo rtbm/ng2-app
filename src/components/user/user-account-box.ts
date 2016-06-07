@@ -3,40 +3,39 @@ import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { SessionActions } from '../../actions/session';
 import { XButtonComponent } from '../button/button';
-import { XListComponent } from '../list/list';
-import { XListItemComponent } from '../list/list-item';
+import { XMenuComponent } from '../menu/menu';
+import { XMenuItemComponent } from '../menu/menu-item';
 
 @Component({
-  selector: 'x-account-box',
-  directives: [XButtonComponent, XListComponent, XListItemComponent],
+  selector: 'x-user-account-box',
+  directives: [XButtonComponent, XMenuComponent, XMenuItemComponent],
   pipes: [AsyncPipe],
   template: `
-    <x-list>
-      <x-list-item *ngIf="isLogged">
-        <div class="email">{{email}}</div>
+    <x-menu *ngIf="isLogged">
+      <x-menu-item>
+        <div class="email">{{email}}</div>       
+      </x-menu-item>
+      <x-menu-item>
         <x-button (onClick)="handleLogoutClick()">Logout</x-button>
-      </x-list-item>
-      <x-list-item *ngIf="!isLogged">
-        <x-button (onClick)="onSigninClick.emit($event)">Signin</x-button>
-        <x-button (onClick)="onSignupClick.emit($event)">Signup</x-button>
-      </x-list-item>
-    </x-list>
+      </x-menu-item>
+    </x-menu>
+    
+    <x-menu *ngIf="!isLogged">
+      <x-menu-item>
+        <x-button (onClick)="onSigninClick.emit($event)">Sign in</x-button>
+      </x-menu-item>
+      <x-menu-item>
+        <x-button (onClick)="onSignupClick.emit($event)">Sign up</x-button>
+      </x-menu-item>
+    </x-menu>
   `,
   styles: [`
     :host {
       display: inline-block;
     }
-    
-    .email, x-button {
-      display: inline-block;
-    }
-    
-    .email {
-      margin: 0 2rem 0;
-    }
   `],
 })
-export class XAccountBoxComponent {
+export class XUserAccountBoxComponent {
   @Input() private isLogged: boolean = false;
   @Input() private email: string = '';
   @Output() private onSigninClick = new EventEmitter();

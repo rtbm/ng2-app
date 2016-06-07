@@ -34,6 +34,10 @@ import { XIconComponent } from '../icon';
       width: 6rem;
     }
     
+    :host x-menu {
+      display: block;
+    }
+    
     :host x-menu-item {
       display: block;
       margin: 0;
@@ -43,6 +47,8 @@ import { XIconComponent } from '../icon';
       color: #fff;
       display: block;
       padding: 2rem 0;
+      text-transform: uppercase;
+      
     }
     
     :host x-menu-item a:hover {

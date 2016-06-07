@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XSignupFormComponent } from '../../components/user/signup-form';
+import { XUserSignupFormComponent } from '../../components/user/user-signup-form';
 import { SessionActions } from '../../actions/session';
 import { XWrapperComponent } from '../../components/wrapper';
 import { AsyncPipe } from '@angular/common';
@@ -11,11 +11,11 @@ import { XFormGroupComponent } from '../../components/form/form-group';
 @Component({
   selector: 'x-user-signup-page',
   pipes: [AsyncPipe],
-  directives: [ROUTER_DIRECTIVES, XSignupFormComponent, XWrapperComponent, XFormGroupComponent],
+  directives: [ROUTER_DIRECTIVES, XUserSignupFormComponent, XWrapperComponent, XFormGroupComponent],
   template: ` 
     <x-wrapper>
       <h1>Sign up</h1>
-      <x-signup-form (onSubmit)="sessionActions.signup($event)"></x-signup-form>
+      <x-user-signup-form (onSubmit)="sessionActions.signup($event)"></x-user-signup-form>
       <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
     </x-wrapper>
   `,
@@ -30,7 +30,7 @@ import { XFormGroupComponent } from '../../components/form/form-group';
       color: #fff;      
     }
 
-    x-signup-form {
+    x-user-signup-form {
       display: inline-block;
       background: #fff;      
       margin: 0 0 2rem;
