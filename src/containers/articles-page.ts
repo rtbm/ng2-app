@@ -4,23 +4,13 @@ import { XArticlesCreatePageComponent } from './articles/articles-create-page';
 import { XArticlesEditPageComponent } from './articles/articles-edit-page';
 import { XArticlesDetailPageComponent } from './articles/articles-detail-page';
 import { XArticlesListPageComponent } from './articles/articles-list-page';
-import { XAsideComponent } from '../components/aside/aside';
-import { Observable } from 'rxjs/Rx';
-import { select } from 'ng2-redux/lib/index';
 
 @Component({
   selector: 'x-articles-page',
-  directives: [ROUTER_DIRECTIVES, XAsideComponent],
+  directives: [ROUTER_DIRECTIVES],
   template: `
-    <x-aside></x-aside>
     <router-outlet></router-outlet>
   `,
-  styles: [`
-    :host {
-      display: block;
-      padding: 2rem 2rem 2rem 36rem;
-    }
-  `]
 })
 
 @Routes([{
@@ -37,14 +27,4 @@ import { select } from 'ng2-redux/lib/index';
   component: XArticlesDetailPageComponent,
 }])
 
-export class XArticlesPageComponent {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
-
-  constructor(private router: Router) {
-    this.isAuthorized$.subscribe((isAuthorized: boolean) => {
-      if(!isAuthorized) {
-        return this.router.navigate(['/user/signin']);
-      }
-    });
-  }
-}
+export class XArticlesPageComponent {}

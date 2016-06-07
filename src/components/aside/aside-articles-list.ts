@@ -36,7 +36,12 @@ import { XListItemContentComponent } from '../list/list-item-content';
   `,
   styles: [`
     :host {
-      display: block;
+      width: 26rem;
+      display: inline-block;
+      vertical-align: top;
+      background: #efefef;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     :host x-icon {
@@ -51,7 +56,7 @@ import { XListItemContentComponent } from '../list/list-item-content';
     }
 
     :host x-list-item:hover {
-      background: #d3daef;
+      background: #D6DEE4;
     }
 
     :host x-list-item-content {
@@ -84,7 +89,7 @@ export class XAsideArticlesListComponent {
   }
 
   handleClick(article) {
-    return this.router.navigate(['/articles', article._id]);
+    return this.router.navigate(['/account/articles', article._id]);
   }
 
   handleRemoveClick(article) {
@@ -97,6 +102,6 @@ export class XAsideArticlesListComponent {
   }
 
   handleEditClick(article) {
-    return this.router.navigate(['/articles', article._id, '/edit']);
+    return this.router.navigate(['/account/articles', article._id, '/edit']);
   }
 }

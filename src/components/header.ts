@@ -21,7 +21,7 @@ import { XMenuComponent } from './menu/menu';
     
       <x-menu>
         <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
-        <x-menu-item><a [routerLink]="['/articles']">Articles</a></x-menu-item>
+        <x-menu-item><a [routerLink]="['/account/dashboard']">Account</a></x-menu-item>
       </x-menu>
     
       <x-user-account-box

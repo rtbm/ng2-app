@@ -28,7 +28,7 @@ import { XFormHeaderComponent } from '../form/form-header';
         <x-textarea [formControl]="content"></x-textarea>
       </x-form-group>
       <x-form-actions>
-        <x-button size="big" preset="positive" type="submit">Save</x-button>
+        <x-button size="big" preset="positive" type="submit">Update</x-button>
       </x-form-actions>
     </x-form>
   `,

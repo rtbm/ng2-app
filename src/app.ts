@@ -7,8 +7,8 @@ import rootReducer, { IAppState } from './reducers';
 import { middlewares } from './state/middlewares';
 import { enhancers } from './state/enhancers';
 import { XHomePageComponent } from './containers/home-page';
-import { XArticlesPageComponent } from './containers/articles-page';
 import { XUserPageComponent } from './containers/user-page';
+import { XAccountPageComponent } from './containers/account-page';
 
 @Component({
   selector: 'x-app',
@@ -24,8 +24,8 @@ import { XUserPageComponent } from './containers/user-page';
   path: '/',
   component: XHomePageComponent,
 }, {
-  path: '/articles',
-  component: XArticlesPageComponent,
+  path: '/account',
+  component: XAccountPageComponent,
 }, {
   path: '/user',
   component: XUserPageComponent,

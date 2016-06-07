@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { XMenuComponent } from '../menu/menu';
 import { XMenuItemComponent } from '../menu/menu-item';
@@ -15,12 +15,17 @@ import { XIconComponent } from '../icon';
         </a>
       </x-menu-item>
       <x-menu-item>
-        <a [routerLink]="['/articles/create']">
+        <a [routerLink]="['/account/dashboard']">
+          <x-icon>dashboard</x-icon>
+        </a>
+      </x-menu-item>
+      <x-menu-item>
+        <a [routerLink]="['/account/articles/create']">
           <x-icon>create</x-icon>
         </a>
       </x-menu-item>
       <x-menu-item>
-        <a [routerLink]="['/articles']">
+        <a [routerLink]="['/account/articles']">
           <x-icon>list</x-icon>
         </a>
       </x-menu-item>
@@ -32,6 +37,9 @@ import { XIconComponent } from '../icon';
       height: 100vh;
       background: #0b6190;
       width: 6rem;
+      position: fixed;
+      top: 0;
+      left: 0;
     }
     
     :host x-menu {

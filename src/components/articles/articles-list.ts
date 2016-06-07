@@ -47,6 +47,6 @@ export class XArticlesListComponent {
   }
 
   handleEditClick(article) {
-    this.router.navigate(['/articles', article._id, '/edit']);
+    this.router.navigate(['/account/articles', article._id, '/edit']);
   }
 }
