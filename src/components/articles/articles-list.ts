@@ -21,8 +21,8 @@ import { XListItemContentComponent } from '../list/list-item-content';
           <p>{{article.content}}</p>
         </x-list-item-content>
         <x-list-item-actions>
-          <x-button size="normal" preset="casual" (click)="handleEditClick(article)">Edit</x-button>
-          <x-button size="normal" preset="negative" (click)="handleRemoveClick(article)">Delete</x-button>
+          <x-button size="normal" preset="casual" (onClick)="handleEditClick(article)">Edit</x-button>
+          <x-button size="normal" preset="negative" (onClick)="handleRemoveClick(article)">Delete</x-button>
         </x-list-item-actions>
       </x-list-item>
     </x-list>
