@@ -27,10 +27,10 @@ import { ToJsPipe } from '../pipes/toJs';
           <p>{{article.content | slice: 128}}</p>
         </x-list-item-content>
         <x-list-item-actions>
-          <x-button (click)="handleEditClick(article)">
+          <x-button (onClick)="handleEditClick(article)">
             <x-icon size="small">edit</x-icon>          
           </x-button>
-          <x-button (click)="handleRemoveClick(article)">
+          <x-button (onClick)="handleRemoveClick(article)">
             <x-icon size="small">remove</x-icon>
           </x-button>
         </x-list-item-actions>
