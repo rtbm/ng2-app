@@ -1,24 +1,27 @@
-import { Component, Input, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { XListComponent } from '../list/list';
-import { XListItemComponent } from '../list/list-item';
-import { XButtonComponent } from '../button/button';
-import { ArticleActions } from '../../actions/article';
-import { Dialog } from '../../providers/dialog';
-import { SlicePipe } from '../../pipes/slice';
-import { XListItemActionsComponent } from '../list/list-item-actions';
-import { XIconComponent } from '../icon';
-import { XListItemContentComponent } from '../list/list-item-content';
+import { XListComponent } from '../components/list/list';
+import { XListItemComponent } from '../components/list/list-item';
+import { XButtonComponent } from '../components/button/button';
+import { Dialog } from '../providers/dialog';
+import { SlicePipe } from '../pipes/slice';
+import { XListItemActionsComponent } from '../components/list/list-item-actions';
+import { XIconComponent } from '../components/icon';
+import { XListItemContentComponent } from '../components/list/list-item-content';
+import { select } from 'ng2-redux/lib/index';
+import { Observable } from 'rxjs/Rx';
+import { FeaturedActions } from '../actions/featured';
+import { ToJsPipe } from '../pipes/toJs';
 
 @Component({
-  selector: 'x-aside-articles-list',
+  selector: 'x-aside-featured',
   directives: [ROUTER_DIRECTIVES, XListComponent, XListItemComponent, XListItemContentComponent,
     XListItemActionsComponent, XButtonComponent, XIconComponent],
   providers: [Dialog],
-  pipes: [SlicePipe],
+  pipes: [SlicePipe, ToJsPipe],
   template: `
     <x-list>
-      <x-list-item *ngFor="let article of articles">
+      <x-list-item *ngFor="let article of (items$ | toJS)">
         <x-list-item-content (onClick)="handleClick(article)">
           <h2>{{article.name}}</h2>
           <p>{{article.content | slice: 128}}</p>
@@ -79,13 +82,14 @@ import { XListItemContentComponent } from '../list/list-item-content';
     }
   `]
 })
-export class XAsideArticlesListComponent {
-  @Input() private articles: Array<Object> = [];
+export class XAsideFeaturedComponent {
+  @select(state => state.featured.get('items')) private items$: Observable<any>;
 
-  constructor(private articleActions: ArticleActions,
-              private router: Router,
+  constructor(private router: Router,
               private dialog: Dialog,
-              private viewContainerRef: ViewContainerRef) {
+              private viewContainerRef: ViewContainerRef,
+              private featuredActions: FeaturedActions) {
+    this.featuredActions.fetchAll();
   }
 
   handleClick(article) {
@@ -96,7 +100,7 @@ export class XAsideArticlesListComponent {
     const dialog = this.dialog.open(this.viewContainerRef);
 
     return dialog.result
-      .then(() => this.articleActions.remove(article._id))
+      .then(() => this.featuredActions.remove(article._id))
       .catch(() => {
       });
   }

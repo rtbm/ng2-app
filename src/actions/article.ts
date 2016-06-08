@@ -21,7 +21,7 @@ export class ArticleActions {
   static ARTICLE_REMOVE_PENDING = 'ARTICLE_REMOVE_PENDING';
   static ARTICLE_REMOVE_SUCCESS = 'ARTICLE_REMOVE_SUCCESS';
   static ARTICLE_REMOVE_ERROR = 'ARTICLE_REMOVE_ERROR';
-
+  
   constructor(private ngRedux: NgRedux<IAppState>,
               private articlesService: ArticlesService) {
   }

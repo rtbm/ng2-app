@@ -6,19 +6,19 @@ import { XAsideMenuComponent } from '../components/aside/aside-menu';
 import { Observable } from 'rxjs/Rx';
 import { select } from 'ng2-redux/lib/index';
 import { ArticlesActions } from '../actions/articles';
-import { XAsideArticlesListComponent } from '../components/aside/aside-articles-list';
-import { Location } from '@angular/common';
+import { XAsideFeaturedComponent } from './aside-featured';
+import { XContentComponent } from '../components/content';
 
 @Component({
   selector: 'account-page',
-  directives: [ROUTER_DIRECTIVES, XAsideMenuComponent, XAsideArticlesListComponent],
+  directives: [ROUTER_DIRECTIVES, XAsideMenuComponent, XAsideFeaturedComponent, XContentComponent],
   template: `
     <x-aside-menu></x-aside-menu>
-    <x-aside-articles-list [ngClass]="{ 'collapsed': !showArticlesList }" [articles]="items"></x-aside-articles-list>
+    <x-aside-featured [ngClass]="{ 'column-hidden': columnHidden }"></x-aside-featured>
     
-    <div class="wrapper" [ngClass]="{'wrapper-padding-left': showArticlesList}">
+    <x-content [ngClass]="{'column-hidden': columnHidden}">
       <router-outlet></router-outlet>
-    </div>
+    </x-content>
   `,
   styles: [`
     :host {
@@ -26,25 +26,29 @@ import { Location } from '@angular/common';
       padding: 0 0 0 6rem;
     }
     
-    .wrapper {
-      padding: 0 0 0 2rem;
-      transition: .2s padding linear;
+    x-aside-menu {
+      transition: 1s transform linear;
+      z-index: 6;
     }
     
-    .wrapper-padding-left {
+    x-aside-featured {
+      position: absolute;
+      top: 0;
+      transform: translateX(0);
+      transition: .25s all linear;
+      z-index: 5;
+    }
+    
+    x-aside-featured.column-hidden {
+      transform: translateX(-26rem);
+    }
+    
+    x-content {
       padding: 0 0 0 28rem;
     }
     
-    x-aside-articles-list {
-      position: absolute;
-      top: 0;
-      left: 6rem;
-      transition: .2s width linear;
-    }
-    
-    .collapsed {
-      overflow: hidden;
-      width: 0;
+    x-content.column-hidden {
+      padding: 0 0 0 2rem;
     }
   `]
 })
@@ -59,14 +63,11 @@ import { Location } from '@angular/common';
 
 export class XAccountPageComponent {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
-  @select(state => state.articles.getIn(['items'])) private items$: Observable<any>;
 
-  private items: Array<any> = [];
-  private showArticlesList: boolean = false;
+  private columnHidden: boolean = false;
 
   constructor(
     private router: Router,
-    private location: Location,
     private articlesActions: ArticlesActions
   ) {
     this.isAuthorized$.subscribe((isAuthorized: boolean) => {
@@ -77,12 +78,8 @@ export class XAccountPageComponent {
 
     this.articlesActions.fetchAll();
 
-    this.items$.subscribe((items: any) => {
-      this.items = items.toJS();
-    });
-
     this.router.changes.subscribe(() => {
-      this.showArticlesList = this.router.serializeUrl(this.router.urlTree) !== '/account/articles';
+      this.columnHidden = this.router.serializeUrl(this.router.urlTree) === '/account/articles';
     });
   }
 }

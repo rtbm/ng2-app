@@ -31,4 +31,19 @@ export class ArticlesActions {
         type: ArticlesActions.ARTICLES_FETCH_ERROR,
       }));
   }
+
+  fetchAllFeatured() {
+    this.ngRedux.dispatch({
+      type: ArticlesActions.ARTICLES_FETCH_PENDING,
+    });
+
+    this.articlesService.fetchAll()
+      .then(result => this.ngRedux.dispatch({
+        type: ArticlesActions.ARTICLES_FETCH_SUCCESS,
+        payload: result
+      }))
+      .catch(() => this.ngRedux.dispatch({
+        type: ArticlesActions.ARTICLES_FETCH_ERROR,
+      }));
+  }
 }
