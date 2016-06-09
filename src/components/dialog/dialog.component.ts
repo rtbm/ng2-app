@@ -12,7 +12,7 @@ import { XDialogActionsComponent } from './dialog-actions.component';
   directives: [XButtonComponent, XFormGroupComponent, XButtonsGroupComponent, XOverlayComponent, XDialogContentComponent,
     XDialogMessageComponent, XDialogActionsComponent],
   template: require('./dialog.component.html'),
-  styles: [require('./dialog.component.css')]
+  styles: [require('./dialog.component.less')]
 })
 
 export class XDialogComponent {

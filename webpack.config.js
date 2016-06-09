@@ -69,6 +69,10 @@ module.exports = {
       test: /\.css$/,
       loader: 'to-string!css',
       exclude: /node_modules/
+    }, {
+      test: /\.less$/,
+      loader: 'to-string!css!less',
+      exclude: /node_modules/
     }],
     noParse: [/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/]
   }

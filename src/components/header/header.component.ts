@@ -31,7 +31,7 @@ import { XMenuItemComponent, XMenuComponent } from '../menu';
       ></x-user-account-box>
     </x-wrapper>
   `,
-  styles: [require('./header.component.css')],
+  styles: [require('./header.component.less')],
 })
 export class XHeaderComponent {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;

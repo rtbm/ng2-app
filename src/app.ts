@@ -1,4 +1,4 @@
-require('./app.css');
+require('./app.less');
 
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes, Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { XAccountPageComponent } from './containers/account-page.component';
   template: `
     <router-outlet></router-outlet>
   `,
-  styles: [require('./app.css')],
+  styles: [require('./app.less')],
   encapsulation: ViewEncapsulation.None,
 })
 

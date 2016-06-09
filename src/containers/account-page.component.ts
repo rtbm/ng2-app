@@ -11,7 +11,7 @@ import { ArticlesActions } from '../actions/articles';
   selector: 'account-page',
   directives: [ROUTER_DIRECTIVES, XAsideMenuComponent],
   template: require('./account-page.component.html'),
-  styles: [require('./account-page.component.css')]
+  styles: [require('./account-page.component.less')]
 })
 
 @Routes([{

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div>RTBM</div>
   `,
-  styles: [require('./logo.component.css')],
+  styles: [require('./logo.component.less')],
 })
 export class XLogoComponent {
 }

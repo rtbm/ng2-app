@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <ng-content></ng-content>
   `,
-  styles: [require('./overlay.component.css')],
+  styles: [require('./overlay.component.less')],
 })
 export class XOverlayComponent {
   constructor() {

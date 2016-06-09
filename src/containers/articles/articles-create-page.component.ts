@@ -10,7 +10,7 @@ import { XArticlesCreateFormComponent } from '../../components/articles/articles
   directives: [XArticlesCreateFormComponent],
   pipes: [AsyncPipe],
   template: require('./articles-create-page.component.html'),
-  styles: [require('./articles-create-page.component.css')]
+  styles: [require('./articles-create-page.component.less')]
 })
 export class XArticlesCreatePageComponent {
   @select(state => state.article.get('isError')) private isError$: Observable<boolean>;

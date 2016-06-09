@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'x-list-item',
   template: require('./list.component.html'),
-  styles: [require('./list-item.component.css')]
+  styles: [require('./list-item.component.less')]
 })
 export class XListItemComponent {
 }

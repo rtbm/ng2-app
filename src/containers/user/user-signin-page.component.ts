@@ -13,7 +13,7 @@ import { XFormMessageComponent } from '../../components/form/form-message.compon
   pipes: [AsyncPipe],
   directives: [ROUTER_DIRECTIVES, XUserSigninFormComponent, XWrapperComponent, XFormMessageComponent],
   template: require('./user-signin-page.component.html'),
-  styles: [require('./user-signin-page.component.css')],
+  styles: [require('./user-signin-page.component.less')],
 })
 
 export class XUserSigninPageComponent {

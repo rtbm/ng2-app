@@ -4,7 +4,7 @@ import { NgFormControl } from '@angular/common';
 @Component({
   selector: 'x-form-input',
   template: require('./form-input.component.html'),
-  styles: [require('./form-input.component.css')],
+  styles: [require('./form-input.component.less')],
 })
 export class XFormInputComponent {
   @Input() type: string = 'text';

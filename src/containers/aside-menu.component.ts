@@ -7,7 +7,7 @@ import { XIconComponent } from '../components/icon';
   selector: 'x-aside-menu',
   directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent, XIconComponent],
   template: require('./aside-menu.component.html'),
-  styles: [require('./aside-menu.component.css')],
+  styles: [require('./aside-menu.component.less')],
 })
 export class XAsideMenuComponent {
 }

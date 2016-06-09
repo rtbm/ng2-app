@@ -5,7 +5,7 @@ import { NgFormModel } from '@angular/common';
   selector: 'x-form',
   directives: [NgFormModel],
   template: require('./form.component.html'),
-  styles: [require('./form.component.css')]
+  styles: [require('./form.component.less')]
 })
 export class XFormComponent {
   @Input() formModel: NgFormModel;

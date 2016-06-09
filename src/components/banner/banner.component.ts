@@ -10,7 +10,7 @@ import { XWrapperComponent } from '../wrapper';
       <h2>{{subtagline}}</h2>
     </x-wrapper>
   `,
-  styles: [require('./banner.component.css')],
+  styles: [require('./banner.component.less')],
 })
 export class XBannerComponent {
   @Input() tagline: string = '';

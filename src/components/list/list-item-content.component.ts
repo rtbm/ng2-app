@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'x-list-item-content',
   template: require('./list-item-actions.component.html'),
-  styles: [require('./list-item-actions.component.css')]
+  styles: [require('./list-item-actions.component.less')]
 })
 export class XListItemContentComponent {
   @Output() onClick = new EventEmitter();

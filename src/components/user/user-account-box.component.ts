@@ -10,7 +10,7 @@ import { XMenuComponent, XMenuItemComponent } from '../menu';
   directives: [XButtonComponent, XMenuComponent, XMenuItemComponent],
   pipes: [AsyncPipe],
   template: require('./user-account-box.component.html'),
-  styles: [require('./user-account-box.component.css')],
+  styles: [require('./user-account-box.component.less')],
 })
 export class XUserAccountBoxComponent {
   @Input() private isLogged: boolean = false;
