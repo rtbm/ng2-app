@@ -1,0 +1,18 @@
+<x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
+  <x-form-message>Fill in the Register form.</x-form-message>
+  <x-form-group>
+    <x-label>E-mail</x-label>
+    <x-form-input [formControl]="email" type="email"></x-form-input>
+  </x-form-group>
+  <x-form-group>
+    <x-label>Password</x-label>
+    <x-form-input [formControl]="password" type="password"></x-form-input>
+  </x-form-group>
+  <x-form-group>
+    <x-label>Password confirm</x-label>
+    <x-form-input [formControl]="password_confirm" type="password"></x-form-input>
+  </x-form-group>
+  <x-form-actions>
+    <x-button size="big" preset="positive" type="submit">Create an account</x-button>
+  </x-form-actions>
+</x-form>

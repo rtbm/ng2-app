@@ -16,8 +16,6 @@ import { ArticlesService } from './services/articles';
 import { SessionActions } from './actions/session';
 import { ArticleActions } from './actions/article';
 import { ArticlesActions } from './actions/articles';
-import { FeaturedActions } from './actions/featured';
-
 import { XApp } from './app';
 
 declare let __PRODUCTION__: any;
@@ -40,5 +38,4 @@ bootstrap(XApp, [
   SessionActions,
   ArticleActions,
   ArticlesActions,
-  FeaturedActions,
 ]);

@@ -1,0 +1,5 @@
+<x-content>
+  <h1>Articles list</h1>
+  <x-articles-filter-form (onKeyUp)="handleFilterFormKeyUp($event)"></x-articles-filter-form>
+  <x-articles-list [articles]="(items$ | toJS) | filter: phrase : ['name', 'content'] "></x-articles-list>
+</x-content>

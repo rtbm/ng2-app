@@ -1,5 +1,5 @@
 import { Injectable, ComponentResolver, ViewContainerRef, ReflectiveInjector, provide } from '@angular/core';
-import { XDialogComponent } from '../components/dialog/dialog';
+import { XDialogComponent } from '../components/dialog/dialog.component';
 import { DialogRef } from './dialog-ref';
 
 @Injectable()

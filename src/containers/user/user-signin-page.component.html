@@ -1,0 +1,6 @@
+<x-wrapper>
+  <h1>Sign in</h1>
+  <x-form-error></x-form-error>
+  <x-user-signin-form (onSubmit)="sessionActions.signin($event)"></x-user-signin-form>
+  <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
+</x-wrapper>

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  background: #fff;
+  padding: 1rem 0;
+  border-bottom: 1px solid #efefef;
+}
+x-logo {
+  margin: 0 3rem 0 0;
+}
+x-logo,
+x-top-menu {
+  vertical-align: middle;
+}
+:host x-menu-item x-button button,
+x-menu-item a {
+  height: 4.4rem;
+  display: block;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+:host x-menu-item a {
+  line-height: 4.4rem;
+}
+x-user-account-box {
+  float: right;
+}

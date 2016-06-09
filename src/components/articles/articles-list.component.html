@@ -1,0 +1,12 @@
+<x-list>
+  <x-list-item *ngFor="let article of articles">
+    <x-list-item-content>
+      <h2><a [routerLink]="['/articles', article._id]">{{article.name}}</a></h2>
+      <p>{{article.content}}</p>
+    </x-list-item-content>
+    <x-list-item-actions>
+      <x-button size="normal" preset="casual" (onClick)="handleEditClick(article)">Edit</x-button>
+      <x-button size="normal" preset="negative" (onClick)="handleRemoveClick(article)">Delete</x-button>
+    </x-list-item-actions>
+  </x-list-item>
+</x-list>
