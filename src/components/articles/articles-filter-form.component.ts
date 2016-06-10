@@ -8,9 +8,7 @@ import { XButtonComponent } from '../button';
   selector: 'x-articles-filter-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XFormInputComponent, XButtonComponent,
     XFormGroupComponent],
-  template: `
-    
-  `,
+  template: require('./articles-filter-form.component.html'),
 })
 
 export class XArticlesFilterFormComponent {

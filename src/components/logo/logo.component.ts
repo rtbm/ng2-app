@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'x-logo',
-  template: `
-    <div>RTBM</div>
-  `,
+  template: './logo.component.html',
   styles: [require('./logo.component.less')],
 })
 export class XLogoComponent {

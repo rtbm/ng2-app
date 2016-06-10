@@ -12,8 +12,8 @@ import { XFormGroupComponent } from '../../components/form/form-group.component'
   selector: 'x-user-signup-page',
   pipes: [AsyncPipe],
   directives: [ROUTER_DIRECTIVES, XUserSignupFormComponent, XWrapperComponent, XFormGroupComponent],
-  template: require('./user-signin-page.component.html'),
-  styles: [require('./user-signin-page.component.less')],
+  template: require('./user-signup-page.component.html'),
+  styles: [require('./user-signup-page.component.less')],
 })
 export class XUserSignupPageComponent {
   @select(state => state.session.get('isError')) private isError$: Observable<boolean>;

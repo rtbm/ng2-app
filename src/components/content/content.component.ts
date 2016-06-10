@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'x-content',
-  template: `<ng-content></ng-content>`,
+  template: require('./content.component.html'),
   styles: [require('./content.component.less')]
 })
 export class XContentComponent {}
