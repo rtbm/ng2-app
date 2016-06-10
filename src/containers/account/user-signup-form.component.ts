@@ -11,12 +11,12 @@ import { XButtonComponent } from '../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 
 @Component({
-  selector: 'x-user-signup-form',
+  selector: 'qt-user-signup-form',
   directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
     XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: require('./user-signup-form.component.html'),
 })
-export class XUserSignupFormComponent {
+export class QtUserSignupFormComponent {
   @Output() onSubmit = new EventEmitter<Event>();
 
   private form: ControlGroup;

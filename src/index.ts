@@ -11,14 +11,11 @@ import { APP_BASE_HREF } from '@angular/common/index';
 import { NgRedux } from 'ng2-redux';
 import { ServerService } from './services/server';
 import { AuthService } from './services/auth';
-import { SearchService } from './services/search';
-import { ArticlesService } from './services/articles';
 import { SessionActions } from './actions/session';
-import { ArticleActions } from './actions/article';
-import { ArticlesActions } from './actions/articles';
-import { XApp } from './app';
+import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
 import { QuotesActions } from './actions/quotes';
+import { QuoteActions } from './actions/quote';
 
 declare let __PRODUCTION__: any;
 
@@ -28,18 +25,15 @@ if (__PRODUCTION__) {
   require('zone.js/dist/long-stack-trace-zone');
 }
 
-bootstrap(XApp, [
+bootstrap(QtApp, [
   NgRedux,
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, { useValue: '/' }),
   ServerService,
   AuthService,
-  SearchService,
-  ArticlesService,
-  QuotesService,
   SessionActions,
-  ArticleActions,
-  ArticlesActions,
-  QuotesActions
+  QuotesService,
+  QuotesActions,
+  QuoteActions,
 ]);

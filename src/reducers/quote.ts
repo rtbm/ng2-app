@@ -1,4 +1,4 @@
-import { ArticleActions } from '../actions/article';
+import { QuoteActions } from '../actions/quote';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -8,66 +8,66 @@ export const INITIAL_STATE = fromJS({
   item: {},
 });
 
-export type IArticle = Map<string, any>;
+export type IQuote = Map<string, any>;
 
-export function articleReducer(state: IArticle = INITIAL_STATE, action: any = { type: '' }) {
+export function quoteReducer(state: IQuote = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case ArticleActions.ARTICLE_FETCH_PENDING:
+    case QuoteActions.QUOTE_FETCH_PENDING:
     {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_FETCH_SUCCESS:
+    case QuoteActions.QUOTE_FETCH_SUCCESS:
     {
       return state.merge({ isPending: false, isSuccess: true, item: action.payload });
     }
 
-    case ArticleActions.ARTICLE_FETCH_ERROR:
+    case QuoteActions.QUOTE_FETCH_ERROR:
     {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_SAVE_PENDING:
+    case QuoteActions.QUOTE_SAVE_PENDING:
     {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_SAVE_SUCCESS:
+    case QuoteActions.QUOTE_SAVE_SUCCESS:
     {
       return state.merge({ isPending: false, isSuccess: true });
     }
 
-    case ArticleActions.ARTICLE_SAVE_ERROR:
+    case QuoteActions.QUOTE_SAVE_ERROR:
     {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_PENDING:
+    case QuoteActions.QUOTE_UPDATE_PENDING:
     {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_SUCCESS:
+    case QuoteActions.QUOTE_UPDATE_SUCCESS:
     {
       return state.merge({ isPending: false, isSuccess: true });
     }
 
-    case ArticleActions.ARTICLE_UPDATE_ERROR:
+    case QuoteActions.QUOTE_UPDATE_ERROR:
     {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_PENDING:
+    case QuoteActions.QUOTE_REMOVE_PENDING:
     {
       return state.merge({ isPending: true, isError: false, isSuccess: false });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_ERROR:
+    case QuoteActions.QUOTE_REMOVE_ERROR:
     {
       return state.merge({ isPending: false, isError: true });
     }
 
-    case ArticleActions.ARTICLE_REMOVE_SUCCESS:
+    case QuoteActions.QUOTE_REMOVE_SUCCESS:
     {
       return state.merge({ isPending: false, isSuccess: true });
     }

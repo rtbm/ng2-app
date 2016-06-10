@@ -6,7 +6,7 @@ import { NgFormControl } from '@angular/common';
   template: require('./form-textarea.component.html'),
   styles: [require('./form-textarea.component.less')],
 })
-export class XTextareaComponent {
+export class XFormTextareaComponent {
   @Input() placeholder: string = '';
   @Input() formControl: NgFormControl;
 }

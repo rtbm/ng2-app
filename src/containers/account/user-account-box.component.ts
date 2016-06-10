@@ -6,13 +6,13 @@ import { XButtonComponent } from '../../components/button';
 import { XMenuComponent, XMenuItemComponent } from '../../components/menu';
 
 @Component({
-  selector: 'x-user-account-box',
+  selector: 'qt-user-account-box',
   directives: [XButtonComponent, XMenuComponent, XMenuItemComponent],
   pipes: [AsyncPipe],
   template: require('./user-account-box.component.html'),
   styles: [require('./user-account-box.component.less')],
 })
-export class XUserAccountBoxComponent {
+export class QtUserAccountBoxComponent {
   @Input() private isLogged: boolean = false;
   @Input() private email: string = '';
   @Output() private onSigninClick = new EventEmitter();

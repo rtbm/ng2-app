@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import { QuotesActions } from '../../actions/quotes';
-import { ToJsPipe } from '../../pipes/toJs';
-import { select } from 'ng2-redux';
+import { QtDashboardListComponent } from './dashboard-list.component';
+import { XListComponent } from '../../components/list';
+import { QtQuotesCreateForm } from '../quotes/quotes-form.component';
+import { XListHeaderComponent } from '../../components/list';
 
 @Component({
-  selector: 'x-dashboard',
-  pipes: [ToJsPipe],
-  directives: [],
+  selector: 'qt-dashboard',
+  directives: [QtDashboardListComponent, QtQuotesCreateForm, XListComponent, XListHeaderComponent],
   template: require('./dashboard-page.component.html'),
 })
 
-export class XDashboardPageComponent {
-  @select(state => state.quotes.get('items')) private items$;
-
-  constructor(private quotesActions: QuotesActions) {
-    this.quotesActions.fetchAll();
-  }
+export class QtDashboardPageComponent {
 }

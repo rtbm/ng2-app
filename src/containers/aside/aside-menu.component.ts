@@ -4,10 +4,10 @@ import { XMenuComponent, XMenuItemComponent } from '../../components/menu';
 import { XIconComponent } from '../../components/icon';
 
 @Component({
-  selector: 'x-aside-menu',
+  selector: 'qt-aside-menu',
   directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent, XIconComponent],
   template: require('./aside-menu.component.html'),
   styles: [require('./aside-menu.component.less')],
 })
-export class XAsideMenuComponent {
+export class QtAsideMenuComponent {
 }

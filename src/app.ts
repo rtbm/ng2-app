@@ -6,12 +6,12 @@ import { NgRedux } from 'ng2-redux';
 import rootReducer, { IAppState } from './reducers';
 import { middlewares } from './state/middlewares';
 import { enhancers } from './state/enhancers';
-import { XHomePageComponent } from './containers/home';
-import { XUserPageComponent } from './containers/user';
-import { XAccountPageComponent } from './containers/account';
+import { QtHomePageComponent } from './containers/home';
+import { QtUserPageComponent } from './containers/user';
+import { QtAccountPageComponent } from './containers/account';
 
 @Component({
-  selector: 'x-app',
+  selector: 'qt-app',
   directives: [ROUTER_DIRECTIVES],
   template: `
     <router-outlet></router-outlet>
@@ -22,16 +22,16 @@ import { XAccountPageComponent } from './containers/account';
 
 @Routes([{
   path: '/',
-  component: XHomePageComponent,
+  component: QtHomePageComponent,
 }, {
   path: '/account',
-  component: XAccountPageComponent,
+  component: QtAccountPageComponent,
 }, {
   path: '/user',
-  component: XUserPageComponent,
+  component: QtUserPageComponent,
 }])
 
-export class XApp {
+export class QtApp {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router

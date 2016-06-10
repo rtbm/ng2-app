@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import { XUserSigninPageComponent, XUserSignupPageComponent } from './';
-import { XHeaderComponent } from '../header';
+import { QtUserSigninPageComponent, QtUserSignupPageComponent } from './';
+import { QtHeaderComponent } from '../header';
 
 @Component({
   selector: 'x-user-page',
-  directives: [ROUTER_DIRECTIVES, XHeaderComponent],
+  directives: [ROUTER_DIRECTIVES, QtHeaderComponent],
   template: require('./user-page.component.html'),
 })
 
 @Routes([{
-  component: XUserSigninPageComponent,
+  component: QtUserSigninPageComponent,
   path: '/signin'
 }, {
-  component: XUserSignupPageComponent,
+  component: QtUserSignupPageComponent,
   path: '/signup'
 }])
 
-export class XUserPageComponent {
+export class QtUserPageComponent {
 }

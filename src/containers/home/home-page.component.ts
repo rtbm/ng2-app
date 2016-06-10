@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { XBannerComponent } from '../../components/banner';
-import { XHeaderComponent } from '../header';
+import { QtHeaderComponent } from '../header';
 
 @Component({
-  selector: 'x-home-page',
-  directives: [XBannerComponent, XHeaderComponent],
+  selector: 'qt-home-page',
+  directives: [XBannerComponent, QtHeaderComponent],
   template: require('./home-page.component.html'),
 })
-export class XHomePageComponent {
+export class QtHomePageComponent {
 }

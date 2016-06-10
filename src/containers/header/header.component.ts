@@ -4,14 +4,14 @@ import { select } from 'ng2-redux';
 import { AsyncPipe } from '@angular/common';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { XLogoComponent } from '../../components/logo';
-import { XUserAccountBoxComponent } from '../account';
+import { QtUserAccountBoxComponent } from '../account';
 import { XWrapperComponent } from '../../components/wrapper';
 import { JwtHelper } from 'angular2-jwt';
 import { XMenuItemComponent, XMenuComponent } from '../../components/menu';
 
 @Component({
-  selector: 'x-header',
-  directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, XUserAccountBoxComponent, XMenuComponent,
+  selector: 'qt-header',
+  directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, QtUserAccountBoxComponent, XMenuComponent,
     XMenuItemComponent],
   pipes: [AsyncPipe],
   template: `
@@ -33,7 +33,7 @@ import { XMenuItemComponent, XMenuComponent } from '../../components/menu';
   `,
   styles: [require('./header.component.less')],
 })
-export class XHeaderComponent {
+export class QtHeaderComponent {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
   @select(state => state.session.get('id_token')) private idToken$: Observable<string>;
 
