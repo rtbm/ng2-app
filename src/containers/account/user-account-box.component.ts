@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { SessionActions } from '../../actions/session';
-import { XButtonComponent } from '../button';
-import { XMenuComponent, XMenuItemComponent } from '../menu';
+import { XButtonComponent } from '../../components/button';
+import { XMenuComponent, XMenuItemComponent } from '../../components/menu';
 
 @Component({
   selector: 'x-user-account-box',

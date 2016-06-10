@@ -1,7 +1,7 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { XListComponent, XListItemComponent, XListItemActionsComponent, XListItemContentComponent } from '../list';
-import { XButtonComponent } from '../button';
+import { XListComponent, XListItemComponent, XListItemActionsComponent, XListItemContentComponent } from '../../components/list';
+import { XButtonComponent } from '../../components/button';
 import { ArticleActions } from '../../actions/article';
 import { Dialog } from '../../providers/dialog';
 

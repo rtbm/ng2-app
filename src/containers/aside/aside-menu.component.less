@@ -1,7 +1,9 @@
+@import '../../assets/colors';
+
 :host {
   display: block;
   height: 100vh;
-  background: #fff;
+  background: @light;
   width: 8rem;
   position: fixed;
   top: 0;
@@ -18,11 +20,11 @@ x-menu-item {
 }
 
 x-menu-item a {
-  color: #ccc;
+  color: @grey-2;
   display: block;
   padding: 2rem 0;
 }
 
 x-menu-item a:hover {
-  background: #666;
+  background: @grey-1;
 }

@@ -1,7 +1,7 @@
 import { ArticleActions } from '../actions/article';
 import { Map, fromJS } from 'immutable';
 
-export const ARTICLE_INITIAL_STATE = fromJS({
+export const INITIAL_STATE = fromJS({
   isPending: false,
   isError: false,
   isSuccess: false,
@@ -10,7 +10,7 @@ export const ARTICLE_INITIAL_STATE = fromJS({
 
 export type IArticle = Map<string, any>;
 
-export function articleReducer(state: IArticle = ARTICLE_INITIAL_STATE, action: any = { type: '' }) {
+export function articleReducer(state: IArticle = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
     case ArticleActions.ARTICLE_FETCH_PENDING:
     {

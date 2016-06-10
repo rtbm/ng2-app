@@ -1,4 +1,4 @@
-import { ArticlesActions } from '../actions/articles';
+import { QuotesActions } from '../actions/quotes';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -8,16 +8,16 @@ export const INITIAL_STATE = fromJS({
   items: [],
 });
 
-export type IArticles = Map<string, any>;
+export type IQuotes = Map<string, any>;
 
-export function articlesReducer(state: IArticles = INITIAL_STATE, action: any = { type: '' }) {
+export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case ArticlesActions.ARTICLES_SAVE:
+    case QuotesActions.QUOTES_SAVE:
     {
       return state.updateIn(['items'], list => list.push(Map(action.payload)));
     }
 
-    case ArticlesActions.ARTICLES_UPDATE:
+    case QuotesActions.QUOTES_UPDATE:
     {
       return state.updateIn([
           'items',
@@ -27,24 +27,24 @@ export function articlesReducer(state: IArticles = INITIAL_STATE, action: any = 
       );
     }
 
-    case ArticlesActions.ARTICLES_REMOVE:
+    case QuotesActions.QUOTES_REMOVE:
     {
       return state.merge({
         items: state.get('items').filter(item => item.get('_id') !== action.payload._id)
       });
     }
 
-    case ArticlesActions.ARTICLES_FETCH_PENDING:
+    case QuotesActions.QUOTES_FETCH_PENDING:
     {
       return state.merge({ isPending: true, isError: false, isSuccess: false, items: [] });
     }
 
-    case ArticlesActions.ARTICLES_FETCH_SUCCESS:
+    case QuotesActions.QUOTES_FETCH_SUCCESS:
     {
       return state.merge({ isPending: false, isError: false, isSuccess: true, items: action.payload });
     }
 
-    case ArticlesActions.ARTICLES_FETCH_ERROR:
+    case QuotesActions.QUOTES_FETCH_ERROR:
     {
       return state.merge({ isPending: false, isError: true });
     }

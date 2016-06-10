@@ -8,9 +8,9 @@ import {
   XTextareaComponent,
   XFormActionsComponent,
   XFormHeaderComponent
-} from '../form';
-import { XLabelComponent } from '../label';
-import { XButtonComponent } from '../button';
+} from '../../components/form';
+import { XLabelComponent } from '../../components/label';
+import { XButtonComponent } from '../../components/button';
 
 @Component({
   selector: 'x-articles-create-form',

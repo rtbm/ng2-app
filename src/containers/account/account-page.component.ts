@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { XArticlesPageComponent } from './articles-page.component';
+import { XArticlesPageComponent } from '../articles/articles-page.component';
 import { Routes, ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { XDashboardPageComponent } from './dashboard-page.component';
-import { XAsideMenuComponent } from './aside-menu.component';
+import { XDashboardPageComponent } from '../dashboard/dashboard-page.component';
+import { XAsideMenuComponent } from '../aside/aside-menu.component';
 import { Observable } from 'rxjs/Rx';
 import { select } from 'ng2-redux/lib/index';
-import { ArticlesActions } from '../actions/articles';
+import { ArticlesActions } from '../../actions/articles';
 
 @Component({
   selector: 'account-page',

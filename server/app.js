@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(distPath));
 
+app.use('/api/quotes', require('./routes/quotes'));
 app.use('/api/articles', require('./routes/articles'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/search', require('./routes/search'));

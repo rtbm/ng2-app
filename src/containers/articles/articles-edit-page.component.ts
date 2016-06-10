@@ -4,7 +4,7 @@ import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { ArticleActions } from '../../actions/article';
 import { OnActivate, RouteSegment } from '@angular/router';
-import { XArticlesEditFormComponent } from '../../components/articles/articles-edit-form.component';
+import { XArticlesEditFormComponent } from './articles-edit-form.component';
 
 @Component({
   selector: 'x-articles-edit-page',

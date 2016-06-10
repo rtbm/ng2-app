@@ -28,11 +28,11 @@ export class ToJsPipe implements OnDestroy {
         this._obj = this.createSubscription(async);
       }
     }
-    return this._latestValue.toJS();
+    return this._latestValue ? this._latestValue.toJS() : [];
   }
 
   ngOnDestroy() {
-    if(!this._obj) {
+    if(this._obj) {
       ObservableWrapper.dispose(this._obj);
       this._obj = null;
     }

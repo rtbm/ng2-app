@@ -5,7 +5,7 @@ import {
   XArticlesEditPageComponent,
   XArticlesDetailPageComponent,
   XArticlesListPageComponent
-} from './articles';
+} from './';
 
 @Component({
   selector: 'x-articles-page',

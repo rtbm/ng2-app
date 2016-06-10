@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 import { select } from 'ng2-redux';
 import { AsyncPipe } from '@angular/common';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
-import { XLogoComponent } from '../logo';
-import { XUserAccountBoxComponent } from '../user';
-import { XWrapperComponent } from '../wrapper';
+import { XLogoComponent } from '../../components/logo';
+import { XUserAccountBoxComponent } from '../account';
+import { XWrapperComponent } from '../../components/wrapper';
 import { JwtHelper } from 'angular2-jwt';
-import { XMenuItemComponent, XMenuComponent } from '../menu';
+import { XMenuItemComponent, XMenuComponent } from '../../components/menu';
 
 @Component({
   selector: 'x-header',

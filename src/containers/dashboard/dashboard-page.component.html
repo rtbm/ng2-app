@@ -1,0 +1,11 @@
+<x-list>
+  <x-list-item *ngFor="let quote of (quotes$ | toJS)">
+    <x-list-item-content>
+      <p>{{article.content}}</p>
+    </x-list-item-content>
+    <x-list-item-actions>
+      <x-button size="normal" preset="casual" (onClick)="handleEditClick(article)">Edit</x-button>
+      <x-button size="normal" preset="negative" (onClick)="handleRemoveClick(article)">Delete</x-button>
+    </x-list-item-actions>
+  </x-list-item>
+</x-list>

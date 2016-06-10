@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import { XUserSigninPageComponent, XUserSignupPageComponent } from './user';
-import { XHeaderComponent } from '../components/header';
+import { XUserSigninPageComponent, XUserSignupPageComponent } from './';
+import { XHeaderComponent } from '../header';
 
 @Component({
   selector: 'x-user-page',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XUserSignupFormComponent } from '../../components/user/user-signup-form.component';
+import { XUserSignupFormComponent } from '../account/user-signup-form.component';
 import { SessionActions } from '../../actions/session';
 import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
 import { AsyncPipe } from '@angular/common';

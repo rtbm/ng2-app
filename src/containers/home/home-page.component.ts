@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { XBannerComponent } from '../components/banner';
-import { XHeaderComponent } from '../components/header';
+import { XBannerComponent } from '../../components/banner';
+import { XHeaderComponent } from '../header';
 
 @Component({
   selector: 'x-home-page',

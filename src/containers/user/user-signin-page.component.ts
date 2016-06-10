@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { XUserSigninFormComponent } from '../../components/user/user-signin-form.component';
+import { XUserSigninFormComponent } from '../account/user-signin-form.component';
 import { SessionActions } from '../../actions/session';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';

@@ -1,4 +1,4 @@
-const Article = require('../models/article');
+const Quote = require('../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {
@@ -8,9 +8,9 @@ module.exports = {
       return next(err);
     }
 
-    Article.find({ owner: req.user._id }, (err, articles) => {
+    Quote.find({ owner: req.user._id }, (err, quotes) => {
       if (err) return next(err);
-      return res.json(articles);
+      return res.json(quotes);
     });
   },
 
@@ -21,16 +21,16 @@ module.exports = {
       return next(err);
     }
 
-    Article.findOne({ _id: req.params.articleId, owner: req.user._id }, (err, article) => {
+    Quote.findOne({ _id: req.params.quoteId, owner: req.user._id }, (err, quote) => {
       if (err) return next(err);
 
-      if (!article) {
+      if (!quote) {
         err = new Error('Not Found');
         err.status = 404;
         return next(err);
       }
 
-      return res.json(article);
+      return res.json(quote);
     });
   },
 
@@ -41,15 +41,14 @@ module.exports = {
       return next(err);
     }
 
-    const article = new Article({
-      name: req.body.name,
+    const quote = new Quote({
       content: req.body.content,
       owner: req.user._id,
     });
 
-    article.save(err => {
+    quote.save(err => {
       if (err) return next(err);
-      return res.json(article);
+      return res.json(quote);
     });
   },
 
@@ -60,21 +59,20 @@ module.exports = {
       return next(err);
     }
 
-    Article.findById(req.params.articleId, (err, article) => {
+    Quote.findById(req.params.quoteId, (err, quote) => {
       if (err) return next(err);
 
-      if (!article) {
+      if (!quote) {
         err = new Error('Unprocessable Entity');
         err.status = 422;
         return next(err);
       }
 
-      article.name = req.body.name;
-      article.content = req.body.content;
+      quote.content = req.body.content;
 
-      article.save(err => {
+      quote.save(err => {
         if (err) return next(err);
-        return res.json(article);
+        return res.json(quote);
       });
     });
   },
@@ -86,9 +84,9 @@ module.exports = {
       return next(err);
     }
 
-    Article.findByIdAndRemove(req.params.articleId, err => {
+    Quote.findByIdAndRemove(req.params.quoteId, err => {
       if (err) return next(err);
-      return res.json({ _id: req.params.articleId });
+      return res.json({ _id: req.params.quoteId });
     });
   },
 };

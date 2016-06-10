@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { XMenuComponent, XMenuItemComponent } from '../components/menu';
-import { XIconComponent } from '../components/icon';
+import { XMenuComponent, XMenuItemComponent } from '../../components/menu';
+import { XIconComponent } from '../../components/icon';
 
 @Component({
   selector: 'x-aside-menu',

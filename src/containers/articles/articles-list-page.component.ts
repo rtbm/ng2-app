@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
-import { XArticlesListComponent } from '../../components/articles/articles-list.component';
+import { XArticlesListComponent } from './articles-list.component';
 import { ArticlesActions } from '../../actions/articles';
 import { FilterPipe } from '../../pipes/filter';
 import { XFormInputComponent } from '../../components/form';
-import { XArticlesFilterFormComponent } from '../../components/articles/articles-filter-form.component';
+import { XArticlesFilterFormComponent } from './articles-filter-form.component';
 import { ToJsPipe } from '../../pipes/toJs';
 import { XContentComponent } from '../../components/content/content.component';
 
