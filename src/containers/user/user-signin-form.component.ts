@@ -7,7 +7,7 @@ import {
 } from '../../components/form';
 import { XLabelComponent } from '../../components/label';
 import { XButtonComponent } from '../../components/button';
-import { XFormGroupComponent } from '../../components/form/form-group.component';
+import { XFormGroupComponent } from '../../components/form';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import { QtUserSigninPageComponent, QtUserSignupPageComponent } from './';
+import { QtUserSigninPageComponent } from './user-signin-page.component';
+import { QtUserSignupPageComponent } from './user-signup-page.component';
 import { QtHeaderComponent } from '../header';
 
 @Component({

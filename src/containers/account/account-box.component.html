@@ -1,4 +1,4 @@
-<x-menu *ngIf="isLogged">
+<x-menu *ngIf="isAuthorized$ | async">
   <x-menu-item>
     <div class="email">{{email}}</div>
   </x-menu-item>
@@ -7,11 +7,11 @@
   </x-menu-item>
 </x-menu>
 
-<x-menu *ngIf="!isLogged">
+<x-menu *ngIf="!(isAuthorized$ | async)">
   <x-menu-item>
-    <x-button (onClick)="onSigninClick.emit($event)">Sign in</x-button>
+    <x-button (onClick)="handleSigninClick()">Sign in</x-button>
   </x-menu-item>
   <x-menu-item>
-    <x-button (onClick)="onSignupClick.emit($event)">Sign up</x-button>
+    <x-button (onClick)="handleSignupClick()">Sign up</x-button>
   </x-menu-item>
 </x-menu>

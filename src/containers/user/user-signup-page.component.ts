@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QtUserSignupFormComponent } from '../account/user-signup-form.component';
+import { QtUserSignupFormComponent } from './user-signup-form.component';
 import { SessionActions } from '../../actions/session';
 import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
 import { AsyncPipe } from '@angular/common';
