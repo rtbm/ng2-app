@@ -29,9 +29,13 @@ export class SessionActions {
         type: SessionActions.SIGNIN_USER_SUCCESS,
         payload: result
       }))
-      .catch(() => this.ngRedux.dispatch({
-        type: SessionActions.SIGNIN_USER_ERROR
-      }));
+      .catch(err => {
+        console.log(err);
+        this.ngRedux.dispatch({
+          type: SessionActions.SIGNIN_USER_ERROR,
+          payload: err
+        })
+      });
   }
 
   signup(credentials) {
@@ -44,8 +48,9 @@ export class SessionActions {
         type: SessionActions.SIGNUP_USER_SUCCESS,
         payload: result
       }))
-      .catch(() => this.ngRedux.dispatch({
-        type: SessionActions.SIGNUP_USER_ERROR
+      .catch(err => this.ngRedux.dispatch({
+        type: SessionActions.SIGNUP_USER_ERROR,
+        payload: err
       }));
   }
 

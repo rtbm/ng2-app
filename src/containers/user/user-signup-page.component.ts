@@ -16,8 +16,6 @@ import { XFormGroupComponent } from '../../components/form/form-group.component'
   styles: [require('./user-signup-page.component.less')],
 })
 export class QtUserSignupPageComponent {
-  @select(state => state.session.get('isError')) private isError$: Observable<boolean>;
-  @select(state => state.session.get('isPending')) private isPending$: Observable<boolean>;
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
 
   constructor(private sessionActions: SessionActions,

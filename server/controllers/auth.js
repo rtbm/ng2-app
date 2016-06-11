@@ -42,7 +42,7 @@ module.exports = {
 
       if (!user) {
         err = new Error('Unprocessable Entity');
-        err.status = 422;
+        err.status = 404;
         return next(err);
       }
 

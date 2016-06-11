@@ -18,12 +18,9 @@ import { XFormMessageComponent } from '../../components/form/form-message.compon
 })
 
 export class QtUserSigninPageComponent {
-  @select(state => state.session.get('isError')) private isError$: Observable<boolean>;
-  @select(state => state.session.get('isPending')) private isPending$: Observable<boolean>;
   @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
 
-  constructor(private sessionActions: SessionActions,
-              private router: Router) {
+  constructor(private router: Router) {
     this.isAuthorized$.subscribe((result: boolean) => {
       if (result) {
         this.router.navigate(['/']);

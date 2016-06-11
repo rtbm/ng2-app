@@ -1,6 +1,9 @@
 <x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
   <x-form-message>Type Your credentials to login.</x-form-message>
 
+  <x-form-error *ngIf="submitted && (status$ | async) === 422">Provided e-mail/password is incorrect.</x-form-error>
+  <x-form-error *ngIf="submitted && (status$ | async) === 404">Account not exist.</x-form-error>
+
   <x-form-group>
     <x-label>E-mail</x-label>
     <x-form-input [formControl]="email" type="email" autofocus="true"></x-form-input>
