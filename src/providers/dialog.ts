@@ -1,5 +1,5 @@
 import { Injectable, ComponentResolver, ViewContainerRef, ReflectiveInjector, provide } from '@angular/core';
-import { XDialogComponent } from '../components/dialog/dialog.component';
+import { XDialogComponent } from '../components/dialog';
 import { DialogRef } from './dialog-ref';
 
 @Injectable()
@@ -9,16 +9,13 @@ export class Dialog {
 
   open(viewContainerRef: ViewContainerRef) {
     const ctxInjector = viewContainerRef.parentInjector;
+    console.log(viewContainerRef);
     const dialog = new DialogRef();
 
     this.componentResolver.resolveComponent(XDialogComponent)
       .then(resolvedComponent => {
-        const dialogInjector = ReflectiveInjector.resolve([
-          provide(DialogRef, { useValue: dialog }),
-        ]);
-
+        const dialogInjector = ReflectiveInjector.resolve([ provide(DialogRef, { useValue: dialog }) ]);
         const childInjector = ReflectiveInjector.fromResolvedProviders(dialogInjector, ctxInjector);
-
         return viewContainerRef.createComponent(resolvedComponent, viewContainerRef.length, childInjector);
       })
       .then(cmpRef => {

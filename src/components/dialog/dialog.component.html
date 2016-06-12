@@ -1,9 +1,18 @@
 <x-overlay>
   <x-dialog-content>
+
     <x-dialog-message>Are you sure?</x-dialog-message>
+
     <x-dialog-actions>
-      <x-button size="big" preset="negative" (click)="dialogRef.reject()">No</x-button>
-      <x-button size="big" preset="positive" (click)="dialogRef.resolve()">Yes</x-button>
+
+      <x-button size="big" preset="negative">
+        <button (click)="dialogRef.reject()">No</button>
+      </x-button>
+
+      <x-button size="big" preset="positive">
+        <button (click)="dialogRef.resolve()">Yes</button>
+      </x-button>
+
     </x-dialog-actions>
   </x-dialog-content>
 </x-overlay>

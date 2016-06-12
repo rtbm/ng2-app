@@ -42,7 +42,9 @@ module.exports = {
     }
 
     const quote = new Quote({
+      name: req.body.name,
       content: req.body.content,
+      url: req.body.url,
       owner: req.user._id,
     });
 
@@ -68,7 +70,9 @@ module.exports = {
         return next(err);
       }
 
+      quote.name = req.body.name;
       quote.content = req.body.content;
+      quote.url = req.body.url;
 
       quote.save(err => {
         if (err) return next(err);

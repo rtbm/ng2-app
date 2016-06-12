@@ -9,8 +9,8 @@ import { XDialogActionsComponent } from './dialog-actions.component';
 
 @Component({
   selector: 'x-dialog',
-  directives: [XButtonComponent, XFormGroupComponent, XButtonsGroupComponent, XOverlayComponent, XDialogContentComponent,
-    XDialogMessageComponent, XDialogActionsComponent],
+  directives: [XButtonComponent, XFormGroupComponent, XButtonsGroupComponent, XOverlayComponent,
+    XDialogContentComponent, XDialogMessageComponent, XDialogActionsComponent],
   template: require('./dialog.component.html'),
   styles: [require('./dialog.component.less')]
 })

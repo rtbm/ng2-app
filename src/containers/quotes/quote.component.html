@@ -1,0 +1,18 @@
+<x-list-item-content *ngIf="!edit">
+  <h1>{{quote.name}}</h1>
+  <p>{{quote.content}}</p>
+  <p>{{quote.url}}</p>
+</x-list-item-content>
+
+<qt-quotes-form *ngIf="edit" [quote]="quote"></qt-quotes-form>
+
+<x-list-item-actions>
+  <x-button size="normal" preset="casual">
+    <button (click)="handleEditClick($event)">Edit</button>
+  </x-button>
+  <x-button size="normal" preset="negative">
+    <button (click)="handleRemoveClick($event)">Delete</button>
+  </x-button>
+</x-list-item-actions>
+
+{{edit}}
