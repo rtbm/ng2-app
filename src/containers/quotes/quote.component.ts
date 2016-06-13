@@ -23,14 +23,11 @@ export class QtQuoteComponent {
   }
 
   handleEditClick(event) {
-    console.log('quote edit click');
-    this.edit = true;
-    console.log(this.edit);
+    this.edit = !this.edit;
     this.onEdit.emit(event);
   }
 
   handleRemoveClick(event) {
-    console.log('quote remove click');
     this.onRemove.emit(event);
   }
 }
