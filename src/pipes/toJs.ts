@@ -23,12 +23,10 @@ export class ToJsPipe implements OnDestroy {
   }
 
   transform(async: any, args: any[] = null): any {
-    if(!this._obj) {
-      if(async) {
-        this._obj = this.createSubscription(async);
-      }
+    if(!this._obj && async) {
+      this._obj = this.createSubscription(async);
     }
-    return this._latestValue ? this._latestValue.toJS() : [];
+    return this._latestValue ? this._latestValue.toJS() : undefined;
   }
 
   ngOnDestroy() {

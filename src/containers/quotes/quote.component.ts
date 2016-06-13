@@ -13,22 +13,24 @@ import { QtQuotesFormComponent } from './quotes-form.component';
   styles: [require('./quote.component.less')],
 })
 export class QtQuoteComponent {
-  @Input() quote: Object;
-  @Output() onRemove = new EventEmitter();
-  @Output() onEdit = new EventEmitter();
+  @Input() private quote: Object;
+  @Output() private onRemove = new EventEmitter();
+  @Output() private onEdit = new EventEmitter();
 
-  private edit: boolean;
+  private edit: boolean = false;
 
   constructor() {
   }
 
-  handleEditClick() {
+  handleEditClick(event) {
+    console.log('quote edit click');
     this.edit = true;
     console.log(this.edit);
+    this.onEdit.emit(event);
   }
 
   handleRemoveClick(event) {
-    console.log('delete');
+    console.log('quote remove click');
     this.onRemove.emit(event);
   }
 }

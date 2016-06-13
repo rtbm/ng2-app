@@ -7,12 +7,8 @@
 <qt-quotes-form *ngIf="edit" [quote]="quote"></qt-quotes-form>
 
 <x-list-item-actions>
-  <x-button size="normal" preset="casual">
-    <button (click)="handleEditClick($event)">Edit</button>
-  </x-button>
-  <x-button size="normal" preset="negative">
-    <button (click)="handleRemoveClick($event)">Delete</button>
-  </x-button>
+  <x-button size="normal" preset="casual" (onClick)="handleEditClick($event)">Edit</x-button>
+  <x-button size="normal" preset="negative" (onClick)="handleRemoveClick($event)">Delete</x-button>
 </x-list-item-actions>
 
 {{edit}}
