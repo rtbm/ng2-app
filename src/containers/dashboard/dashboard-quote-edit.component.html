@@ -13,7 +13,8 @@
         </x-form-group>
       </x-form-group>
       <x-form-actions>
-        <x-button type="submit">SEND</x-button>
+        <x-button type="submit">Send</x-button>
+        <x-button type="onCancel.emit($event)">Cancel</x-button>
       </x-form-actions>
     </x-form>
   </x-modal-content>
