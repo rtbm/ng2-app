@@ -1,11 +1,11 @@
 <x-overlay>
-  <x-dialog-content>
-    <x-dialog-message>
+  <x-modal-content>
+    <x-modal-message>
       <ng-content></ng-content>
-    </x-dialog-message>
-    <x-dialog-actions>
+    </x-modal-message>
+    <x-modal-actions>
       <x-button size="big" preset="negative" (click)="onCancel.emit($event)">Cancel</x-button>
       <x-button size="big" preset="positive" (click)="onConfirm.emit($event)">Yes</x-button>
-    </x-dialog-actions>
-  </x-dialog-content>
+    </x-modal-actions>
+  </x-modal-content>
 </x-overlay>

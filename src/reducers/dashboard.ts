@@ -7,27 +7,31 @@ export const INITIAL_STATE = fromJS({
     isError: false,
     isSuccess: false,
     items: [],
+    error: {},
   },
-  saveItem: {
+  saveQuote: {
     isPending: false,
     isError: false,
     isSuccess: false,
     item: {},
+    error: {},
   },
-  updateItem: {
+  updateQuote: {
     isPending: false,
     isError: false,
     isSuccess: false,
     item: {},
+    error: {},
+    isModalVisible: false,
   },
-  removeItem: {
+  removeQuote: {
     item: {},
     isPending: false,
     isError: false,
     isSuccess: false,
+    error: {},
     isConfirmVisible: false,
-    status: 0,
-  }
+  },
 });
 
 export type IDashboard = Map<string, any>;
@@ -36,89 +40,155 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
   switch (action.type) {
     case DashboardActions.DASHBOARD_QUOTES_FETCH_PENDING:
     {
-      return state.mergeDeep({
-        quotes: {
-          isPending: true,
-          isError: false,
-          isSuccess: false,
-        }
-      });
+      return state
+        .setIn(['quotes', 'isPending'], true)
+        .setIn(['quotes', 'isError'], false)
+        .setIn(['quotes', 'isSuccess'], false);
     }
 
     case DashboardActions.DASHBOARD_QUOTES_FETCH_SUCCESS:
     {
-      return state.merge({
-        quotes: {
-          isPending: false,
-          isError: false,
-          isSuccess: true,
-          items: action.payload,
-        }
-      });
+      return state
+        .setIn(['quotes', 'isPending'], false)
+        .setIn(['quotes', 'isSuccess'], true)
+        .setIn(['quotes', 'items'], fromJS(action.payload));
     }
 
     case DashboardActions.DASHBOARD_QUOTES_FETCH_ERROR:
     {
-      return state.merge({
-        quotes: {
-          isPending: false,
-          isError: true,
-        }
-      });
+      return state
+        .setIn(['quotes', 'isPending'], false)
+        .setIn(['quotes', 'isError'], true)
+        .setIn(['quotes', 'error'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_SAVE_PENDING:
+    {
+      return state
+        .setIn(['saveQuote', 'isPending'], true)
+        .setIn(['saveQuote', 'isError'], false)
+        .setIn(['saveQuote', 'isSuccess'], false)
+        .setIn(['saveQuote', 'error'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_SAVE_SUCCESS:
+    {
+      return state
+        .setIn(['saveQuote', 'isPending'], false)
+        .setIn(['saveQuote', 'isSuccess'], true)
+        .setIn(['saveQuote', 'item'], fromJS(action.payload));
+    }
+
+
+    case DashboardActions.DASHBOARD_QUOTE_SAVE_ERROR:
+    {
+      return state
+        .setIn(['saveQuote', 'isPending'], false)
+        .setIn(['saveQuote', 'isError'], true)
+        .setIn(['saveQuote', 'error'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_PENDING:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], true)
+        .setIn(['updateQuote', 'isError'], false)
+        .setIn(['updateQuote', 'isSuccess'], false)
+        .setIn(['updateQuote', 'item'], fromJS({}));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_SUCCESS:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], false)
+        .setIn(['updateQuote', 'isSuccess'], true)
+        .setIn(['updateQuote', 'item'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_ERROR:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], false)
+        .setIn(['updateQuote', 'isError'], true)
+        .setIn(['updateQuote', 'error'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_PENDING:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], true)
+        .setIn(['updateQuote', 'isError'], false)
+        .setIn(['updateQuote', 'isSuccess'], false)
+        .setIn(['updateQuote', 'item'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_ERROR:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], false)
+        .setIn(['updateQuote', 'isError'], true)
+        .setIn(['updateQuote', 'error'], fromJS(action.payload));
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_SUCCESS:
+    {
+      return state
+        .setIn(['updateQuote', 'isPending'], false)
+        .setIn(['updateQuote', 'isSuccess'], true)
+        .setIn(['updateQuote', 'item'], fromJS(action.payload))
+        .setIn(['updateQuote', 'isModalVisible'], false);
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_MODAL:
+    {
+      return state.setIn(['updateQuote', 'isModalVisible'], true);
+    }
+
+    case DashboardActions.DASHBOARD_QUOTE_UPDATE_MODAL_CANCEL:
+    {
+      return state
+        .setIn(['updateQuote', 'item'], fromJS({}))
+        .setIn(['updateQuote', 'isModalVisible'], false);
     }
 
     case DashboardActions.DASHBOARD_QUOTE_REMOVE_CONFIRM:
     {
-      return state.merge({
-        removeItem: {
-          item: action.payload,
-          isConfirmVisible: true,
-        }
-      });
+      return state
+        .setIn(['removeQuote', 'item'], fromJS(action.payload))
+        .setIn(['removeQuote', 'isConfirmVisible'], true);
     }
 
     case DashboardActions.DASHBOARD_QUOTE_REMOVE_CONFIRM_CANCEL:
     {
-      return state.merge({
-        removeItem: {
-          item: {},
-          isConfirmVisible: false,
-        }
-      });
+      return state
+        .setIn(['removeQuote', 'item'], {})
+        .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 
     case DashboardActions.DASHBOARD_QUOTE_REMOVE_PENDING:
     {
-      return state.merge({
-        removeItem: {
-          isPending: true,
-          isError: false,
-          isSuccess: false,
-          isConfirmVisible: false,
-        }
-      });
+      return state
+        .setIn(['removeQuote', 'isPending'], true)
+        .setIn(['removeQuote', 'isError'], false)
+        .setIn(['removeQuote', 'isSuccess'], false)
+        .setIn(['removeQuote', 'items'], fromJS(action.payload))
+        .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 
     case DashboardActions.DASHBOARD_QUOTE_REMOVE_ERROR:
     {
-      return state.merge({
-        removeItem: {
-          isPending: false,
-          isError: true,
-          status: action.payload.status,
-        }
-      });
+      return state
+        .setIn(['removeQuote', 'isPending'], false)
+        .setIn(['removeQuote', 'isError'], true)
+        .setIn(['removeQuote', 'error'], fromJS(action.payload));
     }
 
     case DashboardActions.DASHBOARD_QUOTE_REMOVE_SUCCESS:
     {
-      return state.merge({
-        removeItem: {
-          isPending: false,
-          isSuccess: true,
-          item: action.payload,
-        }
-      });
+      return state
+        .setIn(['removeQuote', 'isPending'], false)
+        .setIn(['removeQuote', 'isSuccess'], true)
+        .setIn(['removeQuote', 'item'], fromJS(action.payload));
     }
 
     default:

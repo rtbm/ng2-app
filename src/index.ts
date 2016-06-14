@@ -15,7 +15,6 @@ import { SessionActions } from './actions/session';
 import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
 import { DashboardActions } from './actions/dashboard';
-import { QuoteActions } from './actions/quote';
 
 declare let __PRODUCTION__: any;
 
@@ -32,8 +31,7 @@ bootstrap(QtApp, [
   provide(APP_BASE_HREF, { useValue: '/' }),
   ServerService,
   AuthService,
-  SessionActions,
   QuotesService,
+  SessionActions,
   DashboardActions,
-  QuoteActions,
 ]);

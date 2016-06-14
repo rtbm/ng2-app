@@ -10,13 +10,13 @@ import {
 import { XButtonComponent } from '../../components/button';
 
 @Component({
-  selector: 'qt-dashboard-quote-form',
+  selector: 'qt-dashboard-quote-add',
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
     XButtonComponent, XFormInputComponent],
-  template: require('./dashboard-quote-form.html'),
-  styles: [require('./dashboard-quote-form.less')],
+  template: require('./dashboard-quote-add.component.html'),
+  styles: [require('./dashboard-quote-add.component.less')],
 })
-export class QtDashboardQuoteFormComponent {
+export class QtDashboardQuoteAddComponent {
   @Output() private onSubmit = new EventEmitter();
 
   private form: ControlGroup;
