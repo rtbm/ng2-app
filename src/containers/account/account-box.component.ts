@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
-import { Router } from '@angular/router';
 import { XButtonComponent } from '../../components/button';
 import { XMenuComponent, XMenuItemComponent } from '../../components/menu';
 import { select } from 'ng2-redux';
@@ -22,10 +21,8 @@ export class QtAccountBoxComponent {
 
   private email: string = '';
 
-  constructor(
-    private router: Router,
-    private sessionActions: SessionActions
-  ) {
+  constructor(private router: Router,
+              private sessionActions: SessionActions) {
     const jwt = new JwtHelper();
 
     this.idToken$.subscribe((token: string) => {

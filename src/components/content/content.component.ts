@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   template: require('./content.component.html'),
   styles: [require('./content.component.less')]
 })
-export class XContentComponent {}
+export class XContentComponent {
+}

@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
   `,
   styles: [require('./icon.component.less')]
 })
-export class XIconComponent {}
+export class XIconComponent {
+}

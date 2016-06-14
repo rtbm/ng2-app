@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { QtUserSigninFormComponent } from './user-signin-form.component';
-import { SessionActions } from '../../actions/session';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';

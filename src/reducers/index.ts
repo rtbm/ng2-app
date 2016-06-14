@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux';
 import { ISession, sessionReducer } from './session';
-import { IQuotes, quotesReducer } from './quotes';
-import { IQuote, quoteReducer } from './quote';
+import { IDashboard, dashboardReducer } from './dashboard';
 
 export interface IAppState {
   session?: ISession;
-  quotes?: IQuotes;
-  quote?: IQuote;
+  dashboard?: IDashboard;
 }
 
 export default combineReducers<IAppState>({
   session: sessionReducer,
-  quotes: quotesReducer,
-  quote: quoteReducer,
+  dashboard: dashboardReducer,
 });

@@ -32,10 +32,8 @@ import { QtAccountPageComponent } from './containers/account';
 }])
 
 export class QtApp {
-  constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private router: Router
-  ) {
+  constructor(private ngRedux: NgRedux<IAppState>,
+              private router: Router) {
     ngRedux.configureStore(rootReducer, {}, middlewares, enhancers);
   }
 }

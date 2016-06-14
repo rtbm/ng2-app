@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   template: require('./form-error.component.html'),
   styles: [require('./form-error.component.less')]
 })
-export class XFormErrorComponent {}
+export class XFormErrorComponent {
+}

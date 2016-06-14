@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   styles: [require('./list-header.component.less')]
 })
 
-export class XListHeaderComponent {}
+export class XListHeaderComponent {
+}

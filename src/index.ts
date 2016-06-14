@@ -14,7 +14,7 @@ import { AuthService } from './services/auth';
 import { SessionActions } from './actions/session';
 import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
-import { QuotesActions } from './actions/quotes';
+import { DashboardActions } from './actions/dashboard';
 import { QuoteActions } from './actions/quote';
 
 declare let __PRODUCTION__: any;
@@ -34,6 +34,6 @@ bootstrap(QtApp, [
   AuthService,
   SessionActions,
   QuotesService,
-  QuotesActions,
+  DashboardActions,
   QuoteActions,
 ]);

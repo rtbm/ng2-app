@@ -1,8 +1,25 @@
 <x-wrapper>
+  <qt-dashboard-quote-form (onSubmit)="handleQuoteFormSubmit($event)"></qt-dashboard-quote-form>
+
   <x-list>
-    <x-list-header>
-      <qt-quotes-form></qt-quotes-form>
-    </x-list-header>
-    <qt-dashboard-list></qt-dashboard-list>
+    <x-list-item *ngFor="let quote of dashboard.quotes.items">
+      <x-list-item-content *ngIf="!edit">
+        <h1>{{quote.name}}</h1>
+        <p>{{quote.content}}</p>
+        <p>{{quote.url}}</p>
+      </x-list-item-content>
+
+      <x-list-item-actions>
+        <x-button size="normal" preset="negative"
+                  (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">Delete
+        </x-button>
+      </x-list-item-actions>
+
+    </x-list-item>
   </x-list>
 </x-wrapper>
+
+<x-dialog-confirm *ngIf="dashboard.removeItem.isConfirmVisible"
+                  (onConfirm)="dashboardActions.removeQuote(dashboard.removeItem.item)"
+                  (onCancel)="dashboardActions.removeQuoteConfirmCancel()">Are you sure?
+</x-dialog-confirm>

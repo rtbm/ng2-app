@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
 import { QuotesService } from '../services/quotes';
-import { QuotesActions } from './quotes';
 
 @Injectable()
 export class QuoteActions {
@@ -29,6 +28,7 @@ export class QuoteActions {
   read(_id) {
     this.ngRedux.dispatch({
       type: QuoteActions.QUOTE_FETCH_PENDING,
+      payload: _id,
     });
 
     this.quotesService.read(_id)
@@ -38,54 +38,52 @@ export class QuoteActions {
       }))
       .catch(() => this.ngRedux.dispatch({
         type: QuoteActions.QUOTE_FETCH_ERROR,
+        payload: _id,
       }));
   }
 
   save(article) {
     this.ngRedux.dispatch({
       type: QuoteActions.QUOTE_SAVE_PENDING,
+      payload: 0,
     });
 
     this.quotesService.save(article)
       .then(result => {
         this.ngRedux.dispatch({
           type: QuoteActions.QUOTE_SAVE_SUCCESS,
-          payload: result,
-        });
-        this.ngRedux.dispatch({
-          type: QuotesActions.QUOTES_SAVE,
-          payload: result,
+          payload: 0,
         });
       })
       .catch(() => this.ngRedux.dispatch({
         type: QuoteActions.QUOTE_SAVE_ERROR,
+        payload: 0,
       }));
   }
 
-  update(article, _id) {
+  update(_id, quote) {
     this.ngRedux.dispatch({
       type: QuoteActions.QUOTE_UPDATE_PENDING,
+      payload: quote,
     });
 
-    this.quotesService.update(article, _id)
+    this.quotesService.update(_id, quote)
       .then(result => {
         this.ngRedux.dispatch({
           type: QuoteActions.QUOTE_UPDATE_SUCCESS,
           payload: result,
         });
-        this.ngRedux.dispatch({
-          type: QuotesActions.QUOTES_UPDATE,
-          payload: result,
-        });
       })
       .catch(() => this.ngRedux.dispatch({
         type: QuoteActions.QUOTE_UPDATE_ERROR,
+        payload: quote,
       }));
   }
 
   remove(_id) {
     this.ngRedux.dispatch({
-      type: QuoteActions.QUOTE_REMOVE_PENDING
+      type: QuoteActions.QUOTE_REMOVE_PENDING,
+      payload: _id,
     });
 
     this.quotesService.remove(_id)
@@ -94,13 +92,10 @@ export class QuoteActions {
           type: QuoteActions.QUOTE_REMOVE_SUCCESS,
           payload: result,
         });
-        this.ngRedux.dispatch({
-          type: QuotesActions.QUOTES_REMOVE,
-          payload: result,
-        });
       })
       .catch(() => this.ngRedux.dispatch({
         type: QuoteActions.QUOTE_REMOVE_ERROR,
+        payload: _id,
       }));
   }
 }

@@ -15,32 +15,52 @@ export function sessionReducer(state: ISession = INITIAL_STATE, action: any = { 
   switch (action.type) {
     case SessionActions.SIGNIN_USER_PENDING:
     {
-      return state.merge(INITIAL_STATE, { isPending: true });
+      return state.merge(INITIAL_STATE, {
+        isPending: true
+      });
     }
 
     case SessionActions.SIGNIN_USER_SUCCESS:
     {
-      return state.merge({ isPending: false, isAuthorized: true, id_token: action.payload.id_token });
+      return state.merge({
+        isPending: false,
+        isAuthorized: true,
+        id_token: action.payload.id_token
+      });
     }
 
     case SessionActions.SIGNIN_USER_ERROR:
     {
-      return state.merge({ isPending: false, isError: true, status: action.payload.status });
+      return state.merge({
+        isPending: false,
+        isError: true,
+        status: action.payload.status
+      });
     }
 
     case SessionActions.SIGNUP_USER_PENDING:
     {
-      return state.merge(INITIAL_STATE, { isPending: true });
+      return state.merge(INITIAL_STATE, {
+        isPending: true
+      });
     }
 
     case SessionActions.SIGNUP_USER_SUCCESS:
     {
-      return state.merge({ isPending: false, isAuthorized: true, id_token: action.payload.id_token });
+      return state.merge({
+        isPending: false,
+        isAuthorized: true,
+        id_token: action.payload.id_token
+      });
     }
 
     case SessionActions.SIGNUP_USER_ERROR:
     {
-      return state.merge({ isPending: false, isError: true, status: action.payload.status });
+      return state.merge({
+        isPending: false,
+        isError: true,
+        status: action.payload.status
+      });
     }
 
     case SessionActions.LOGOUT_USER:

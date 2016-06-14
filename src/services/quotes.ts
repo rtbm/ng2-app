@@ -40,7 +40,7 @@ export class QuotesService {
     });
   }
 
-  update(quote: Quote, id: string) {
+  update(id: string, quote: Quote) {
     return new Promise((resolve, reject) => {
       this.serverService.put('/quotes', id, quote)
         .subscribe(

@@ -22,7 +22,7 @@ export class QtAccountPageComponent {
 
   constructor(private router: Router) {
     this.isAuthorized$.subscribe((isAuthorized: boolean) => {
-      if(!isAuthorized) {
+      if (!isAuthorized) {
         return this.router.navigate(['/user/signin']);
       }
     });

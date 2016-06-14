@@ -4,11 +4,11 @@ import {
   XFormInputComponent,
   XFormActionsComponent,
   XFormMessageComponent,
-  XFormErrorComponent
+  XFormErrorComponent,
+  XFormGroupComponent
 } from '../../components/form';
 import { XLabelComponent } from '../../components/label';
 import { XButtonComponent } from '../../components/button';
-import { XFormGroupComponent } from '../../components/form';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe } from '@angular/common';
 import { SessionActions } from '../../actions/session';
 import { select } from 'ng2-redux';
@@ -29,10 +29,8 @@ export class QtUserSigninFormComponent {
   private password: Control;
   private submitted: boolean = false;
 
-  constructor(
-    private builder: FormBuilder,
-    private sessionActions: SessionActions
-  ) {
+  constructor(private builder: FormBuilder,
+              private sessionActions: SessionActions) {
     this.email = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
 
@@ -44,7 +42,7 @@ export class QtUserSigninFormComponent {
 
   handleSubmit() {
     this.submitted = true;
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.sessionActions.signin(this.form.value);
     }
   }

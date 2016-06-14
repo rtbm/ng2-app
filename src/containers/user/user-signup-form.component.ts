@@ -29,10 +29,8 @@ export class QtUserSignupFormComponent {
   private password_confirm: Control;
   private submitted: boolean = false;
 
-  constructor(
-    private builder: FormBuilder,
-    private sessionActions: SessionActions
-  ) {
+  constructor(private builder: FormBuilder,
+              private sessionActions: SessionActions) {
     this.email = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
     this.password_confirm = new Control('', Validators.required);
@@ -46,7 +44,7 @@ export class QtUserSignupFormComponent {
 
   handleSubmit() {
     this.submitted = true;
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.sessionActions.signup(this.form.value);
     }
   }

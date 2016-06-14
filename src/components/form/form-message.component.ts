@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
   styles: [require('./form-message.component.less')]
 })
 
-export class XFormMessageComponent {}
+export class XFormMessageComponent {
+}
