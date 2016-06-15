@@ -18,7 +18,7 @@ import { XButtonComponent } from '../../components/button';
   template: require('./dashboard-quote-edit.component.html'),
   styles: [require('./dashboard-quote-edit.component.less')],
 })
-export class QtDashboardQuoteEditComponent {
+export class QtDashboardQuoteEditComponent implements OnDestroy {
   @select(state => state.dashboard.getIn(['updateQuote', 'item'])) private updateQuote$;
   
   @Output() onCancel = new EventEmitter();
@@ -53,5 +53,9 @@ export class QtDashboardQuoteEditComponent {
 
   handleSubmit() {
     this.onSubmit.emit(this.form.value);
+  }
+
+  ngOnDestroy() {
+    this.updateQuote$.unsubscribe();
   }
 }

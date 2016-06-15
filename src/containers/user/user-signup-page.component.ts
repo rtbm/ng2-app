@@ -4,7 +4,6 @@ import { SessionActions } from '../../actions/session';
 import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
-import { Observable } from 'rxjs';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { XFormGroupComponent } from '../../components/form/form-group.component';
 
@@ -16,7 +15,7 @@ import { XFormGroupComponent } from '../../components/form/form-group.component'
   styles: [require('./user-signup-page.component.less')],
 })
 export class QtUserSignupPageComponent {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
+  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
 
   constructor(private sessionActions: SessionActions,
               private router: Router) {
@@ -25,5 +24,9 @@ export class QtUserSignupPageComponent {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.isAuthorized$.unsubscribe();
   }
 }

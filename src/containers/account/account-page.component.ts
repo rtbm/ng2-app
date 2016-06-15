@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Routes, ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { QtDashboardPageComponent } from '../dashboard/dashboard-page.component';
 import { QtAsideMenuComponent } from '../aside/aside-menu.component';
-import { Observable } from 'rxjs/Rx';
 import { select } from 'ng2-redux/lib/index';
 
 @Component({
@@ -17,8 +16,8 @@ import { select } from 'ng2-redux/lib/index';
   component: QtDashboardPageComponent
 }])
 
-export class QtAccountPageComponent {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$: Observable<boolean>;
+export class QtAccountPageComponent implements OnDestroy {
+  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
 
   constructor(private router: Router) {
     this.isAuthorized$.subscribe((isAuthorized: boolean) => {
@@ -26,5 +25,9 @@ export class QtAccountPageComponent {
         return this.router.navigate(['/user/signin']);
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.isAuthorized$.unsubscribe();
   }
 }

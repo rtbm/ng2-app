@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -12,7 +12,6 @@ import { XButtonComponent } from '../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { SessionActions } from '../../actions/session';
 import { select } from 'ng2-redux';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-user-signup-form',
@@ -20,8 +19,8 @@ import { Observable } from 'rxjs';
     XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
   template: require('./user-signup-form.component.html'),
 })
-export class QtUserSignupFormComponent {
-  @select(state => state.session.get('status')) private status$: Observable<number>;
+export class QtUserSignupFormComponent implements OnDestroy {
+  @select(state => state.session.get('status')) private status$;
 
   private form: ControlGroup;
   private email: Control;
@@ -47,5 +46,9 @@ export class QtUserSignupFormComponent {
     if (this.form.valid) {
       this.sessionActions.signup(this.form.value);
     }
+  }
+
+  ngOnDestroy() {
+    this.status$.unsubscribe();
   }
 }
