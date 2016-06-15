@@ -19,7 +19,12 @@ const quoteSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
-  }
+  },
+  status: {
+    type: String,
+    enum: ['private', 'public'],
+    default: 'public'
+  },
 }, {
   autoIndex: false,
   timestamps: true,

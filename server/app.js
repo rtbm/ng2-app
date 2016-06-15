@@ -35,7 +35,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(distPath));
 
 app.use('/api/quotes', require('./routes/quotes'));
-app.use('/api/articles', require('./routes/articles'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/search', require('./routes/search'));
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { XOverlayComponent } from '../../components/overlay/overlay.component';
 import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
 import { select } from 'ng2-redux';

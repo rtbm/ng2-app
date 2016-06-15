@@ -2,13 +2,12 @@ const Quote = require('../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {
-    if (!req.user || !req.user._id) {
-      const err = new Error('Unauthorized');
-      err.status = 401;
-      return next(err);
-    }
-
-    Quote.find({ owner: req.user._id }, (err, quotes) => {
+    Quote.find({
+      $or: [
+        { status: 'public' },
+        { owner: req.user._id },
+      ]
+    }).exec((err, quotes) => {
       if (err) return next(err);
       return res.json(quotes);
     });
@@ -21,7 +20,12 @@ module.exports = {
       return next(err);
     }
 
-    Quote.findOne({ _id: req.params.quoteId, owner: req.user._id }, (err, quote) => {
+    Quote.findOne({
+      $or: [
+        { _id: req.params.quoteId, status: 'public' },
+        { _id: req.params.quoteId, owner: req.user._id },
+      ],
+    }).exec((err, quote) => {
       if (err) return next(err);
 
       if (!quote) {
@@ -61,7 +65,10 @@ module.exports = {
       return next(err);
     }
 
-    Quote.findById(req.params.quoteId, (err, quote) => {
+    Quote.findOne({
+      _id: req.params.quoteId,
+      owner: req.user._id,
+    }).exec((err, quote) => {
       if (err) return next(err);
 
       if (!quote) {
@@ -88,9 +95,19 @@ module.exports = {
       return next(err);
     }
 
-    Quote.findByIdAndRemove(req.params.quoteId, err => {
-      if (err) return next(err);
-      return res.json({ _id: req.params.quoteId });
-    });
-  },
+    Quote.findOneAndRemove({
+      _id: req.params.quoteId,
+      owner: req.user._id,
+    }).exec((err, quote) => {
+        if (err) return next(err);
+
+        if (!quote) {
+          err = new Error('Unprocessable Entity');
+          err.status = 422;
+          return next(err);
+        }
+
+        return res.json({ _id: req.params.quoteId });
+      });
+  }
 };

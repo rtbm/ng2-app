@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   XListComponent,
   XListItemComponent,
@@ -7,12 +7,12 @@ import {
 } from '../../components/list';
 import { XWrapperComponent } from '../../components/wrapper';
 import { select } from 'ng2-redux/lib/index';
-import { Observable } from 'rxjs/Rx';
 import { DashboardActions } from '../../actions/dashboard';
 import { XButtonComponent } from '../../components/button';
 import { XDialogConfirmComponent } from '../../components/dialog';
 import { QtDashboardQuoteAddComponent } from './dashboard-quote-add.component';
 import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit.component';
+import { UserService } from '../../services/user';
 
 @Component({
   selector: 'qt-dashboard',
@@ -23,16 +23,23 @@ import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit.component'
   styles: [require('./dashboard-page.component.less')],
 })
 
-export class QtDashboardPageComponent {
-  @select('dashboard') private dashboard$: Observable<any>;
+export class QtDashboardPageComponent implements OnDestroy {
+  @select('dashboard') private dashboard$;
 
   private dashboard: Object = {};
 
-  constructor(private dashboardActions: DashboardActions) {
+  constructor(
+    private dashboardActions: DashboardActions,
+    private userService: UserService
+  ) {
     this.dashboardActions.fetchData();
 
     this.dashboard$.subscribe((dashboard: any) => {
       this.dashboard = dashboard.toJS();
     });
+  }
+
+  ngOnDestroy() {
+    this.dashboard$.unsubscribe();
   }
 }

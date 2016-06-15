@@ -4,7 +4,9 @@ const User = require('../models/user');
 
 module.exports = {
   signup: (req, res, next) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
+    User.findOne({
+      email: req.body.email,
+    }).exec((err, user) => {
       if (err) { return next(err); }
 
       if (user) {
@@ -37,7 +39,9 @@ module.exports = {
   },
 
   signin: (req, res, next) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
+    User.findOne({
+      email: req.body.email,
+    }).exec((err, user) => {
       if (err) { return next(err); }
 
       if (!user) {

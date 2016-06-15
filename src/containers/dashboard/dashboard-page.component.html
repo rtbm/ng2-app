@@ -10,12 +10,12 @@
       </x-list-item-content>
 
       <x-list-item-actions>
-        <x-button size="normal" preset="negative" (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">
-          Delete
-        </x-button>
-        <x-button size="normal" preset="positive" (onClick)="dashboardActions.showUpdateQuoteModal(quote)">
-          Edit
-        </x-button>
+        <div *ngIf="quote.owner === userService.userId">
+          <x-button size="normal" preset="negative"
+                    (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">Delete</x-button>
+          <x-button size="normal" preset="positive"
+                    (onClick)="dashboardActions.showUpdateQuoteModal(quote)">Edit</x-button>
+        </div>
       </x-list-item-actions>
 
     </x-list-item>

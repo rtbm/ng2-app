@@ -15,9 +15,7 @@ export class ServerService {
     this.token$.subscribe(token => {
       if (token) {
         this.HEADERS.append('Authorization', `Bearer ${token}`);
-      }
-
-      if (!token && this.HEADERS.has('Authorization')) {
+      } else if (!token && this.HEADERS.has('Authorization')) {
         this.HEADERS.delete('Authorization');
       }
     });
