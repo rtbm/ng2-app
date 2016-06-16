@@ -1,21 +1,23 @@
 <x-overlay>
-  <x-modal-content>
-    <x-form [formModel]="form" (onSubmit)="handleSubmit()">
-      <x-form-group>
+  <x-form [formModel]="form" (onSubmit)="handleSubmit()">
+    <x-modal-content>
+      <x-modal-message>
         <x-form-group>
-          <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
+          <x-form-group>
+            <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
+          </x-form-group>
+          <x-form-group>
+            <x-form-textarea [formControl]="content" placeholder="Quote"></x-form-textarea>
+          </x-form-group>
+          <x-form-group>
+            <x-form-input [formControl]="url" placeholder="Url" type="text"></x-form-input>
+          </x-form-group>
         </x-form-group>
-        <x-form-group>
-          <x-form-textarea [formControl]="content" placeholder="Quote"></x-form-textarea>
-        </x-form-group>
-        <x-form-group>
-          <x-form-input [formControl]="url" placeholder="Url" type="text"></x-form-input>
-        </x-form-group>
-      </x-form-group>
-      <x-form-actions>
-        <x-button type="submit">Send</x-button>
-        <x-button (onClick)="onCancel.emit($event)">Cancel</x-button>
-      </x-form-actions>
-    </x-form>
-  </x-modal-content>
+      </x-modal-message>
+      <x-modal-actions>
+        <x-button (onClick)="onCancel.emit($event)" size="big" preset="negative">Cancel</x-button>
+        <x-button type="submit" size="big" preset="positive">Update</x-button>
+      </x-modal-actions>
+    </x-modal-content>
+  </x-form>
 </x-overlay>

@@ -13,6 +13,7 @@ import { XDialogConfirmComponent } from '../../components/dialog';
 import { QtDashboardQuoteAddComponent } from './dashboard-quote-add.component';
 import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit.component';
 import { UserService } from '../../services/user';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'qt-dashboard',

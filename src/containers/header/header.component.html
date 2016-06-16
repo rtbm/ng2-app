@@ -6,5 +6,19 @@
     <x-menu-item><a [routerLink]="['/account/dashboard']">Account</a></x-menu-item>
   </x-menu>
 
-  <qt-account-box></qt-account-box>
+  <div class="account-box">
+    <x-menu *ngIf="userService.userId">
+      <x-menu-item>
+        <div class="email">{{userService.email}}</div>
+      </x-menu-item>
+      <x-menu-item>
+        <x-button (onClick)="handleLogoutClick()">Logout</x-button>
+      </x-menu-item>
+    </x-menu>
+
+    <x-menu *ngIf="!userService.userId">
+      <x-button (onClick)="handleSigninClick()">Sign in</x-button>
+      <x-button (onClick)="handleSignupClick()">Sign up</x-button>
+    </x-menu>
+  </div>
 </x-wrapper>

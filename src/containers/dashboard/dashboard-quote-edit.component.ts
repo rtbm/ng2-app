@@ -8,19 +8,20 @@ import {
   XFormGroupComponent,
   XFormTextareaComponent
 } from '../../components/form';
-import { XModalContentComponent } from '../../components/modal';
+import { XModalContentComponent, XModalActionsComponent } from '../../components/modal';
 import { XButtonComponent } from '../../components/button';
+import { XModalMessageComponent } from '../../components/modal/modal-message.component';
 
 @Component({
   selector: 'qt-dashboard-quote-edit',
   directives: [XOverlayComponent, XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
-    XModalContentComponent, XFormTextareaComponent],
+    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent],
   template: require('./dashboard-quote-edit.component.html'),
   styles: [require('./dashboard-quote-edit.component.less')],
 })
 export class QtDashboardQuoteEditComponent implements OnDestroy {
   @select(state => state.dashboard.getIn(['updateQuote', 'item'])) private updateQuote$;
-  
+
   @Output() onCancel = new EventEmitter();
   @Output() onSubmit = new EventEmitter();
 

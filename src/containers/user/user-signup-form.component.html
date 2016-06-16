@@ -23,6 +23,8 @@
   </x-form-error>
 
   <x-form-actions>
-    <x-button size="big" preset="positive" type="submit">Create an account</x-button>
+    <x-button size="big" type="submit">Create an account</x-button>
   </x-form-actions>
+
+  <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
 </x-form>

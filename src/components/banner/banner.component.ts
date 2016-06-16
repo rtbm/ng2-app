@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { XWrapperComponent } from '../wrapper';
 
 @Component({
@@ -6,13 +6,10 @@ import { XWrapperComponent } from '../wrapper';
   directives: [XWrapperComponent],
   template: `
     <x-wrapper>
-      <h1>{{tagline}}</h1>
-      <h2>{{subtagline}}</h2>
+      <ng-content></ng-content>
     </x-wrapper>
   `,
   styles: [require('./banner.component.less')],
 })
 export class XBannerComponent {
-  @Input() tagline: string = '';
-  @Input() subtagline: string = '';
 }

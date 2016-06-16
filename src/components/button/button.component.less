@@ -4,13 +4,16 @@
   display: inline-block;
 }
 
-a, button {
+button {
   outline: 0;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 700;
-  border: 0 none;
+  font-weight: 500;
   cursor: pointer;
+  background: linear-gradient(to bottom, @light 0%,  @grey-2 100%);
+  border-radius: .6rem;
+  border: .1rem solid @grey-2;
+  transition: .1s all linear;
 }
 
 .size-normal {
@@ -24,16 +27,21 @@ a, button {
 }
 
 .preset-casual {
-  color: @blue-1;
-  border: .1rem solid @blue-1;
+  color: @dark;
 }
 
 .preset-positive {
   color: @green-1;
-  border: .1rem solid @green-1;
+
+  &:hover {
+    border: .1rem solid @green-1;
+  }
 }
 
 .preset-negative {
   color: @red-1;
-  border: .1rem solid @red-1;
+
+  &:hover {
+    border: .1rem solid @red-1;
+  }
 }

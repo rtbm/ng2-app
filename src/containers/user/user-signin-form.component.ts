@@ -12,12 +12,13 @@ import { XButtonComponent } from '../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe } from '@angular/common';
 import { SessionActions } from '../../actions/session';
 import { select } from 'ng2-redux';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'qt-user-signin-form',
   pipes: [AsyncPipe],
-  directives: [FORM_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
-    XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
+  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
   template: require('./user-signin-form.component.html'),
 })
 export class QtUserSigninFormComponent implements OnDestroy {
@@ -45,7 +46,7 @@ export class QtUserSigninFormComponent implements OnDestroy {
       this.sessionActions.signin(this.form.value);
     }
   }
-  
+
   ngOnDestroy() {
     this.status$.unsubscribe();
   }
