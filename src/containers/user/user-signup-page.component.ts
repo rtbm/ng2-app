@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { QtUserSignupFormComponent } from './user-signup-form.component';
 import { SessionActions } from '../../actions/session';
 import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
@@ -14,16 +14,16 @@ import { XFormGroupComponent } from '../../components/form/form-group.component'
   template: require('./user-signup-page.component.html'),
   styles: [require('./user-signup-page.component.less')],
 })
-export class QtUserSignupPageComponent {
+export class QtUserSignupPageComponent implements OnDestroy {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$;
 
   constructor(private sessionActions: SessionActions,
               private router: Router) {
-    /*this.isAuthorized$.subscribe((result: boolean) => {
+    this.isAuthorized$.subscribe((result: boolean) => {
       if (result) {
-        this.router.navigate(['/account/dashboard']);
+        //this.router.navigate(['/account/dashboard']);
       }
-    });*/
+    });
   }
 
   ngOnDestroy() {

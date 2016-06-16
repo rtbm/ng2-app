@@ -19,8 +19,8 @@ import { XButtonComponent } from '../../components/button';
 export class QtHeaderComponent {
   constructor(private router: Router,
               private sessionActions: SessionActions,
-              private userService: UserService
-  ) {}
+              private userService: UserService) {
+  }
 
   handleSigninClick() {
     this.router.navigate(['/user/signin']);

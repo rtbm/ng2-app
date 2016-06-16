@@ -105,7 +105,7 @@ export class DashboardActions {
       type: DashboardActions.DASHBOARD_QUOTE_REMOVE_CONFIRM_CANCEL,
     });
   }
-  
+
   showUpdateQuoteModal(quote) {
     this.ngRedux.dispatch({
       type: DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_PENDING,

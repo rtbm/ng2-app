@@ -14,9 +14,11 @@ export class QtAccountPageComponent implements OnDestroy {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$;
 
   constructor(private router: Router) {
-    /*this.isAuthorized$.subscribe((isAuthorized: boolean) => {
-      this.router.navigate(['/user/signin']);
-    });*/
+    this.isAuthorized$.subscribe((isAuthorized: boolean) => {
+      if (!isAuthorized) {
+        // this.router.navigate(['/user/signin']);
+      }
+    });
   }
 
   ngOnDestroy() {

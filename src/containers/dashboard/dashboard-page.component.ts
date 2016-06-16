@@ -28,10 +28,8 @@ export class QtDashboardPageComponent implements OnDestroy {
 
   private dashboard: Object = {};
 
-  constructor(
-    private dashboardActions: DashboardActions,
-    private userService: UserService
-  ) {
+  constructor(private dashboardActions: DashboardActions,
+              private userService: UserService) {
     this.dashboardActions.fetchData();
 
     this.dashboard$.subscribe((dashboard: any) => {

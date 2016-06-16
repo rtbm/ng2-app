@@ -1,7 +1,5 @@
 import { QtDashboardPageComponent } from './containers/dashboard';
-import { QtUserSigninPageComponent } from './containers/user';
-import { QtUserSignupPageComponent } from './containers/user';
-import { QtUserPageComponent } from './containers/user';
+import { QtUserSigninPageComponent, QtUserSignupPageComponent, QtUserPageComponent } from './containers/user';
 import { QtAccountPageComponent } from './containers/account';
 import { QtHomePageComponent } from './containers/home';
 
@@ -19,10 +17,10 @@ export const ROUTER_CONFIG = [{
   path: '/user',
   component: QtUserPageComponent,
   children: [{
-    component: QtUserSigninPageComponent,
     path: '/signin',
+    component: QtUserSigninPageComponent,
   }, {
-    component: QtUserSignupPageComponent,
     path: '/signup',
+    component: QtUserSignupPageComponent,
   }]
 }];

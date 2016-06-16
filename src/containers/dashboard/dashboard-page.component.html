@@ -12,9 +12,11 @@
       <x-list-item-actions>
         <div *ngIf="quote.owner === userService.userId">
           <x-button size="normal" preset="negative"
-            (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">Delete</x-button>
+                    (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">Delete
+          </x-button>
           <x-button size="normal" preset="positive"
-            (onClick)="dashboardActions.showUpdateQuoteModal(quote)">Edit</x-button>
+                    (onClick)="dashboardActions.showUpdateQuoteModal(quote)">Edit
+          </x-button>
         </div>
       </x-list-item-actions>
 
@@ -23,14 +25,14 @@
 </x-wrapper>
 
 <x-dialog-confirm *ngIf="dashboard.removeQuote.isConfirmVisible"
-  (onConfirm)="dashboardActions.removeQuote(dashboard.removeQuote.item)"
-  (onCancel)="dashboardActions.removeQuoteConfirmCancel()">
-You are going to remove:<br />
-<strong>{{dashboard.removeQuote.item.name}}.</strong><br />
-Are you sure?
+                  (onConfirm)="dashboardActions.removeQuote(dashboard.removeQuote.item)"
+                  (onCancel)="dashboardActions.removeQuoteConfirmCancel()">
+  You are going to remove:<br/>
+  <strong>{{dashboard.removeQuote.item.name}}.</strong><br/>
+  Are you sure?
 </x-dialog-confirm>
 
 <qt-dashboard-quote-edit *ngIf="dashboard.updateQuote.isModalVisible"
-  (onSubmit)="dashboardActions.updateQuote($event)"
-  (onCancel)="dashboardActions.updateQuoteModalCancel()">
+                         (onSubmit)="dashboardActions.updateQuote($event)"
+                         (onCancel)="dashboardActions.updateQuoteModalCancel()">
 </qt-dashboard-quote-edit>
