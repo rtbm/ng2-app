@@ -21,7 +21,7 @@ export class QtUserSignupPageComponent {
               private router: Router) {
     this.isAuthorized$.subscribe((result: boolean) => {
       if (result) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/account/dashboard']);
       }
     });
   }

@@ -1,14 +1,15 @@
 <x-form [formModel]="form" (onSubmit)="handleSubmit()">
+  <x-form-message>
+    Create new :)
+  </x-form-message>
   <x-form-group>
-    <x-form-group>
-      <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
-    </x-form-group>
-    <x-form-group>
-      <x-form-textarea [formControl]="content" placeholder="Quote"></x-form-textarea>
-    </x-form-group>
-    <x-form-group>
-      <x-form-input [formControl]="url" placeholder="Url" type="text"></x-form-input>
-    </x-form-group>
+    <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
+  </x-form-group>
+  <x-form-group>
+    <x-form-textarea [formControl]="content" placeholder="Quote"></x-form-textarea>
+  </x-form-group>
+  <x-form-group>
+    <x-form-input [formControl]="url" placeholder="Url" type="text"></x-form-input>
   </x-form-group>
   <x-form-actions>
     <x-button type="submit">Send</x-button>

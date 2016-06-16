@@ -5,14 +5,15 @@ import {
   XFormTextareaComponent,
   XFormActionsComponent,
   XFormInputComponent,
-  XFormGroupComponent
+  XFormGroupComponent,
+  XFormMessageComponent
 } from '../../components/form';
 import { XButtonComponent } from '../../components/button';
 
 @Component({
   selector: 'qt-dashboard-quote-add',
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
-    XButtonComponent, XFormInputComponent],
+    XButtonComponent, XFormInputComponent, XFormMessageComponent],
   template: require('./dashboard-quote-add.component.html'),
   styles: [require('./dashboard-quote-add.component.less')],
 })
