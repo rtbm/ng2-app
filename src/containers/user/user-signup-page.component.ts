@@ -19,11 +19,11 @@ export class QtUserSignupPageComponent {
 
   constructor(private sessionActions: SessionActions,
               private router: Router) {
-    this.isAuthorized$.subscribe((result: boolean) => {
+    /*this.isAuthorized$.subscribe((result: boolean) => {
       if (result) {
         this.router.navigate(['/account/dashboard']);
       }
-    });
+    });*/
   }
 
   ngOnDestroy() {

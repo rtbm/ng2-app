@@ -6,7 +6,7 @@ import 'ts-helpers';
 import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { ROUTER_PROVIDERS } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common/index';
 import { NgRedux } from 'ng2-redux';
 import { ServerService } from './services/server';
@@ -16,6 +16,7 @@ import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
 import { DashboardActions } from './actions/dashboard';
 import { UserService } from './services/user';
+import { ROUTER_CONFIG } from './router.config';
 
 declare let __PRODUCTION__: any;
 
@@ -28,8 +29,7 @@ if (__PRODUCTION__) {
 bootstrap(QtApp, [
   NgRedux,
   HTTP_PROVIDERS,
-  ROUTER_PROVIDERS,
-  provide(APP_BASE_HREF, { useValue: '/' }),
+  provideRouter(ROUTER_CONFIG),
   ServerService,
   AuthService,
   UserService,
