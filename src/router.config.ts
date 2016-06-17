@@ -4,23 +4,23 @@ import { QtAccountPageComponent } from './containers/account';
 import { QtHomePageComponent } from './containers/home';
 
 export const ROUTER_CONFIG = [{
-  path: '/',
+  path: ' ',
   component: QtHomePageComponent,
 }, {
-  path: '/account',
+  path: 'account',
   component: QtAccountPageComponent,
   children: [{
-    path: '/dashboard',
+    path: 'dashboard',
     component: QtDashboardPageComponent,
   }]
 }, {
-  path: '/user',
+  path: 'user',
   component: QtUserPageComponent,
   children: [{
-    path: '/signin',
+    path: 'signin',
     component: QtUserSigninPageComponent,
   }, {
-    path: '/signup',
+    path: 'signup',
     component: QtUserSignupPageComponent,
   }]
 }];
