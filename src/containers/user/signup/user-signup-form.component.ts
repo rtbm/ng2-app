@@ -6,11 +6,11 @@ import {
   XFormActionsComponent,
   XFormMessageComponent,
   XFormErrorComponent
-} from '../../components/form';
-import { XLabelComponent } from '../../components/label';
-import { XButtonComponent } from '../../components/button';
+} from '../../../components/form';
+import { XLabelComponent } from '../../../components/label';
+import { XButtonComponent } from '../../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
-import { UserActions } from '../../actions/user';
+import { UserActions } from '../../../actions/user';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 

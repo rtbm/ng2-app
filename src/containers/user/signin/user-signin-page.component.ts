@@ -3,8 +3,8 @@ import { QtUserSigninFormComponent } from './user-signin-form.component';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
-import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
-import { XFormMessageComponent } from '../../components/form/form-message.component';
+import { XWrapperComponent } from '../../../components/wrapper/wrapper.component';
+import { XFormMessageComponent } from '../../../components/form/form-message.component';
 
 @Component({
   selector: 'qt-user-signin-page',

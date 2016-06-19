@@ -1,11 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { QtUserSignupFormComponent } from './user-signup-form.component';
-import { SessionActions } from '../../actions/session';
-import { XWrapperComponent } from '../../components/wrapper/wrapper.component';
+import { SessionActions } from '../../../actions/session';
+import { XWrapperComponent } from '../../../components/wrapper/wrapper.component';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
 import { Router, ROUTER_DIRECTIVES } from '@angular/router';
-import { XFormGroupComponent } from '../../components/form/form-group.component';
+import { XFormGroupComponent } from '../../../components/form/form-group.component';
 
 @Component({
   selector: 'qt-user-signup-page',

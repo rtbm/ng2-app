@@ -6,35 +6,42 @@ import {
   XFormActionsComponent,
   XFormMessageComponent,
   XFormErrorComponent
-} from '../../components/form';
-import { XLabelComponent } from '../../components/label';
-import { XButtonComponent } from '../../components/button';
+} from '../../../components/form';
+import { XLabelComponent } from '../../../components/label';
+import { XButtonComponent } from '../../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { UserActions } from '../../actions/user';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { UserActions } from '../../../actions/user';
 
 @Component({
   selector: 'qt-user-reset-password-form',
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
-  template: require('./user-reset-password-form.component.html'),
-  styles: [require('./user-reset-password-form.component.less')],
+  template: require('./user-change-password-form.component.html'),
+  styles: [require('./user-change-password-form.component.less')],
 })
-export class QtUserResetPasswordFormComponent implements OnDestroy {
+export class QtUserChangePasswordFormComponent implements OnDestroy {
   private form: ControlGroup;
-  private email: Control;
+  private token: Control;
   private password: Control;
   private password_confirm: Control;
   private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
-              private userActions: UserActions) {
-    this.email = new Control('', Validators.required);
+              private userActions: UserActions,
+              r: ActivatedRoute) {
+    this.token = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
     this.password_confirm = new Control('', Validators.required);
 
     this.form = this.builder.group({
-      email: this.email,
+      password: this.password,
+      password_confirm: this.password_confirm,
+      token: this.token,
+    });
+
+    r.params.subscribe((params:any) => {
+      this.token.updateValue(params.token);
     });
   }
 

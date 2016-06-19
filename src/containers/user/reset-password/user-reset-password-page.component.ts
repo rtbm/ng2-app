@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { QtUserResetPasswordFormComponent } from './user-reset-password-form.component';
-import { XWrapperComponent } from '../../components/wrapper';
+import { XWrapperComponent } from '../../../components/wrapper';
 
 @Component({
   selector: 'qt-user-reset-password-page',

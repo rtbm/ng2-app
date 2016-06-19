@@ -105,10 +105,15 @@ module.exports = {
         return next(err);
       }
 
-      const hash = md5(new Date().getTime() + config.secretSalt);
-      redisClient.set(req.body.email, hash);
+      const token = md5(new Date().getTime() + config.secretSalt);
+      redisClient.set(req.body.email, token);
+
+      const body = `
+        <p>Hi!</p>
+        <p><a href="http://localhost:8080/user/change-password/${token}">Click here</a> to change Your password.</p>
+      `;
       
-      mailer.send('marcin@bogusz.cc', 'test', hash, (err, result) => {
+      mailer.send(req.body.email, 'Reset password request', body, (err, result) => {
         if (err) { next(err); }
         return res.json(result);
       });

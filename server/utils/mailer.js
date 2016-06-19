@@ -1,12 +1,12 @@
 'use strict';
-const smtpConfig = require('./../config/app.config').smtp;
-const nodemailerTransport = require('nodemailer').createTransport(smtpConfig.server);
+const mailerConfig = require('./../config/app.config').mailer;
+const nodemailerTransport = require('nodemailer').createTransport(mailerConfig.smtpConfig);
 const winston = require('winston');
 
 module.exports = {
   send: (to, subject, html, options, callback) => {
     let mailOptions = {
-      from: smtpConfig.from,
+      from: mailerConfig.from,
       to,
       subject,
       html,

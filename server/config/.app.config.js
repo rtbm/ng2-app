@@ -1,7 +1,18 @@
 module.exports = {
   secret: 'secretpass',
-  smtp: {
-    from: 'noreply@localhost',
-    server: 'smtp://user:password@server',
+  mailer: {
+    from: 'no-reply@localhost',
+    smtpConfig: {
+      host: 'localhost',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'no-reply',
+        pass: '',
+      },
+      tls: {
+        rejectUnauthorized: true,
+      },
+    },
   },
 };
