@@ -1,4 +1,5 @@
 'use strict';
+const config = require('./config/app.config');
 const express = require('express');
 const winston = require('winston');
 const path = require('path');
@@ -9,7 +10,6 @@ const helmet = require('helmet');
 const logger = require('./utils/logger');
 const cors = require('cors');
 const jwt = require('express-jwt');
-const config = require('./config/config');
 
 const distPath = path.join(__dirname, '../public');
 
@@ -19,13 +19,33 @@ app.use(require('morgan')('dev', { stream: logger.stream }));
 
 mongoose.connect('mongodb://localhost:27017/ng2app-db');
 
-//app.use(helmet());
+/*app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'", 'localhost:8080'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'", 'data:'],
+      sandbox: ['allow-forms', 'allow-scripts'],
+      reportUri: '/report-violation',
+      objectSrc: [],
+    },
+    reportOnly: false,
+    setAllHeaders: false,
+    disableAndroid: false,
+    browserSniff: false,
+  }
+}));*/
+
 app.use(cors());
+
 app.use(
-  jwt({ secret: config.secret }).unless({
+  jwt({ secret: config.secretSalt }).unless({
     path: [
       '/api/auth/signin',
       '/api/auth/signup',
+      '/api/auth/reset-password',
+      '/api/auth/change-password',
     ]
   })
 );

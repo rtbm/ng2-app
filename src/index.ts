@@ -14,7 +14,7 @@ import { SessionActions } from './actions/session';
 import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
 import { DashboardActions } from './actions/dashboard';
-import { UserService } from './services/user';
+import { UserActions } from './actions/user';
 import { ROUTER_CONFIG } from './router.config';
 
 declare let __PRODUCTION__: any;
@@ -31,7 +31,7 @@ bootstrap(QtApp, [
   provideRouter(ROUTER_CONFIG),
   ServerService,
   AuthService,
-  UserService,
+  UserActions,
   QuotesService,
   SessionActions,
   DashboardActions,

@@ -10,19 +10,17 @@ import {
 import { XLabelComponent } from '../../components/label';
 import { XButtonComponent } from '../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
-import { UserActions } from '../../actions/user';
-import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { UserActions } from '../../actions/user';
 
 @Component({
-  selector: 'qt-user-signup-form',
+  selector: 'qt-user-reset-password-form',
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
-  template: require('./user-signup-form.component.html'),
+  template: require('./user-reset-password-form.component.html'),
+  styles: [require('./user-reset-password-form.component.less')],
 })
-export class QtUserSignupFormComponent implements OnDestroy {
-  @select(state => state.session.get('status')) private status$;
-
+export class QtUserResetPasswordFormComponent implements OnDestroy {
   private form: ControlGroup;
   private email: Control;
   private password: Control;
@@ -37,19 +35,16 @@ export class QtUserSignupFormComponent implements OnDestroy {
 
     this.form = this.builder.group({
       email: this.email,
-      password: this.password,
-      password_confirm: this.password_confirm
     });
   }
 
   handleSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      this.userActions.signup(this.form.value);
+      this.userActions.resetPassword(this.form.value);
     }
   }
 
   ngOnDestroy() {
-    this.status$.unsubscribe();
   }
 }

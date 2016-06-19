@@ -10,7 +10,9 @@
       </x-list-item-content>
 
       <x-list-item-actions>
-        <div *ngIf="quote.owner === userService.userId">
+        <p>{{ userId$ | async }}</p>
+
+        <div *ngIf="quote.owner === (userId$ | async)">
           <x-button size="normal" preset="negative"
                     (onClick)="dashboardActions.showRemoveQuoteConfirm(quote)">Delete
           </x-button>

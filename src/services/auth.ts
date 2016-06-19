@@ -30,4 +30,14 @@ export class AuthService {
         );
     });
   }
+
+  resetPassword(credentials: Credentials) {
+    return new Promise((resolve, reject) => {
+      this.serverService.post('/auth/reset-password', credentials)
+        .subscribe(
+          res => resolve(),
+          err => reject(err)
+        );
+    });
+  }
 }

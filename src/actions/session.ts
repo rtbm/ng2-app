@@ -1,62 +1,31 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
-import { AuthService } from '../services/auth';
+import { JwtHelper } from 'angular2-jwt/angular2-jwt';
 
 @Injectable()
 export class SessionActions {
-  static SIGNIN_USER_SUCCESS = 'SIGNIN_USER_SUCCESS';
-  static SIGNIN_USER_PENDING = 'SIGNIN_USER_PENDING';
-  static SIGNIN_USER_ERROR = 'SIGNIN_USER_ERROR';
+  static SESSION_SET_TOKEN = 'SESSION_SET_TOKEN';
+  static SESSION_UNSET_TOKEN = 'SESSION_UNSET_TOKEN';
 
-  static SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
-  static SIGNUP_USER_PENDING = 'SIGNUP_USER_PENDING';
-  static SIGNUP_USER_ERROR = 'SIGNUP_USER_ERROR';
-
-  static LOGOUT_USER = 'LOGOUT_USER';
-
-  constructor(private ngRedux: NgRedux<IAppState>,
-              private authService: AuthService) {
+  constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
-  signin(credentials) {
+  setToken(id_token) {
+    const user = new JwtHelper().decodeToken(id_token);
+
     this.ngRedux.dispatch({
-      type: SessionActions.SIGNIN_USER_PENDING
+      type: SessionActions.SESSION_SET_TOKEN,
+      payload: {
+        id_token,
+        user
+      },
     });
-
-    this.authService.signin(credentials)
-      .then(result => this.ngRedux.dispatch({
-        type: SessionActions.SIGNIN_USER_SUCCESS,
-        payload: result
-      }))
-      .catch(err => {
-        console.log(err);
-        this.ngRedux.dispatch({
-          type: SessionActions.SIGNIN_USER_ERROR,
-          payload: err
-        })
-      });
   }
 
-  signup(credentials) {
+  unsetToken() {
     this.ngRedux.dispatch({
-      type: SessionActions.SIGNUP_USER_PENDING
-    });
-
-    this.authService.signup(credentials)
-      .then(result => this.ngRedux.dispatch({
-        type: SessionActions.SIGNUP_USER_SUCCESS,
-        payload: result
-      }))
-      .catch(err => this.ngRedux.dispatch({
-        type: SessionActions.SIGNUP_USER_ERROR,
-        payload: err
-      }));
-  }
-
-  logout() {
-    this.ngRedux.dispatch({
-      type: SessionActions.LOGOUT_USER
+      type: SessionActions.SESSION_UNSET_TOKEN,
     });
   }
 }

@@ -33,3 +33,4 @@ typings
 .idea
 
 *.component.css
+server/config/app.config.js

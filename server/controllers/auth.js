@@ -1,6 +1,9 @@
+const config = require('./../config/app.config');
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
-const User = require('../models/user');
+const md5 = require('md5');
+const User = require('./../models/user');
+const redisClient = require('redis').createClient();
+const mailer = require('./../utils/mailer');
 
 module.exports = {
   signup: (req, res, next) => {
@@ -32,7 +35,7 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secret)
+          }, config.secretSalt)
         });
       });
     });
@@ -63,9 +66,52 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secret)
+          }, config.secretSalt)
         });
       });
     });
   },
+
+  changePassword: (req, res, next) => {
+    User.findOne({
+      email: req.body.email,
+    }).exec((err, user) => {
+      if (err) { return next(err); }
+
+      if (!user) {
+        err = new Error('Unprocessable Entity');
+        err.status = 404;
+        return next(err);
+      }
+      
+      user.password = req.body.password;
+
+      user.save((err) => {
+        if (err) { return next(err); }
+        return res.end();
+      });
+    });
+  },
+  
+  resetPassword: (req, res, next) => {
+    User.findOne({
+      email: req.body.email,
+    }).exec((err, user) => {
+      if (err) { return next(err); }
+
+      if (!user) {
+        err = new Error('Unprocessable Entity');
+        err.status = 404;
+        return next(err);
+      }
+
+      const hash = md5(new Date().getTime() + config.secretSalt);
+      redisClient.set(req.body.email, hash);
+      
+      mailer.send('marcin@bogusz.cc', 'test', hash, (err, result) => {
+        if (err) { next(err); }
+        return res.json(result);
+      });
+    });
+  }
 };

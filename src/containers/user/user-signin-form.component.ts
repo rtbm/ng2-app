@@ -10,7 +10,7 @@ import {
 import { XLabelComponent } from '../../components/label';
 import { XButtonComponent } from '../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe } from '@angular/common';
-import { SessionActions } from '../../actions/session';
+import { UserActions } from '../../actions/user';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class QtUserSigninFormComponent implements OnDestroy {
   private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
-              private sessionActions: SessionActions) {
+              private userActions: UserActions) {
     this.email = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
 
@@ -43,7 +43,7 @@ export class QtUserSigninFormComponent implements OnDestroy {
   handleSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      this.sessionActions.signin(this.form.value);
+      this.userActions.signin(this.form.value);
     }
   }
 

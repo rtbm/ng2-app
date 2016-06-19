@@ -1,4 +1,4 @@
-const Quote = require('../models/quote');
+const Quote = require('./../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {

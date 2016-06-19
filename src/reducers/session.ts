@@ -2,70 +2,31 @@ import { SessionActions } from '../actions/session';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
-  isPending: false,
-  isError: false,
+  user: {},
   isAuthorized: false,
   id_token: '',
-  status: 0
 });
 
 export type ISession = Map<string, any>;
 
 export function sessionReducer(state: ISession = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case SessionActions.SIGNIN_USER_PENDING:
-    {
-      return state.merge(INITIAL_STATE, {
-        isPending: true
-      });
-    }
-
-    case SessionActions.SIGNIN_USER_SUCCESS:
+    case SessionActions.SESSION_SET_TOKEN:
     {
       return state.merge({
-        isPending: false,
         isAuthorized: true,
-        id_token: action.payload.id_token
+        id_token: action.payload.id_token,
+        user: action.payload.user,
       });
     }
 
-    case SessionActions.SIGNIN_USER_ERROR:
+    case SessionActions.SESSION_UNSET_TOKEN:
     {
       return state.merge({
-        isPending: false,
-        isError: true,
-        status: action.payload.status
+        isAuthorized: false,
+        id_token: '',
+        user: {},
       });
-    }
-
-    case SessionActions.SIGNUP_USER_PENDING:
-    {
-      return state.merge(INITIAL_STATE, {
-        isPending: true
-      });
-    }
-
-    case SessionActions.SIGNUP_USER_SUCCESS:
-    {
-      return state.merge({
-        isPending: false,
-        isAuthorized: true,
-        id_token: action.payload.id_token
-      });
-    }
-
-    case SessionActions.SIGNUP_USER_ERROR:
-    {
-      return state.merge({
-        isPending: false,
-        isError: true,
-        status: action.payload.status
-      });
-    }
-
-    case SessionActions.LOGOUT_USER:
-    {
-      return state.merge(INITIAL_STATE);
     }
 
     default:

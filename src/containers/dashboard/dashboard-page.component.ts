@@ -12,10 +12,11 @@ import { XButtonComponent } from '../../components/button';
 import { XDialogConfirmComponent } from '../../components/dialog';
 import { QtDashboardQuoteAddComponent } from './dashboard-quote-add.component';
 import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit.component';
-import { UserService } from '../../services/user';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'qt-dashboard',
+  pipes: [AsyncPipe],
   directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
     XListItemActionsComponent, XDialogConfirmComponent, QtDashboardQuoteAddComponent,
     QtDashboardQuoteEditComponent],
@@ -25,11 +26,11 @@ import { UserService } from '../../services/user';
 
 export class QtDashboardPageComponent implements OnDestroy {
   @select('dashboard') private dashboard$;
+  @select(state => state.user.getIn(['user', '_id'])) private userId$;
 
   private dashboard: Object = {};
 
-  constructor(private dashboardActions: DashboardActions,
-              private userService: UserService) {
+  constructor(private dashboardActions: DashboardActions) {
     this.dashboardActions.fetchData();
 
     this.dashboard$.subscribe((dashboard: any) => {
@@ -39,5 +40,6 @@ export class QtDashboardPageComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.dashboard$.unsubscribe();
+    this.userId$.unsubscribe();
   }
 }

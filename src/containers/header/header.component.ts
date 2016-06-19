@@ -4,9 +4,9 @@ import { AsyncPipe } from '@angular/common';
 import { XLogoComponent } from '../../components/logo';
 import { XWrapperComponent } from '../../components/wrapper';
 import { XMenuItemComponent, XMenuComponent } from '../../components/menu';
-import { SessionActions } from '../../actions/session';
-import { UserService } from '../../services/user';
+import { UserActions } from '../../actions/user';
 import { XButtonComponent } from '../../components/button';
+import { select } from 'ng2-redux/lib/index';
 
 @Component({
   selector: 'qt-header',
@@ -17,9 +17,11 @@ import { XButtonComponent } from '../../components/button';
   styles: [require('./header.component.less')],
 })
 export class QtHeaderComponent {
+  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
+  @select(state => state.session.getIn(['user', 'email'])) private email$;
+
   constructor(private router: Router,
-              private sessionActions: SessionActions,
-              private userService: UserService) {
+              private userActions: UserActions) {
   }
 
   handleSigninClick() {
@@ -31,7 +33,6 @@ export class QtHeaderComponent {
   }
 
   handleLogoutClick() {
-    this.sessionActions.logout();
-    this.router.navigate(['/']);
+    this.userActions.logout();
   }
 }
