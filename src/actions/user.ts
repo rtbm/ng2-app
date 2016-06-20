@@ -43,7 +43,7 @@ export class UserActions {
       .catch(err => {
         this.ngRedux.dispatch({
           type: UserActions.USER_SIGNIN_ERROR,
-          payload: err,
+          payload: { errorCode: err.status},
         })
       });
   }
@@ -63,7 +63,7 @@ export class UserActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: UserActions.USER_SIGNUP_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -79,7 +79,7 @@ export class UserActions {
       }))
       .catch(err => this.ngRedux.dispatch({
         type: UserActions.USER_RESET_PASSWORD_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -95,7 +95,7 @@ export class UserActions {
       }))
       .catch(err => this.ngRedux.dispatch({
         type: UserActions.USER_CHANGE_PASSWORD_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 

@@ -48,8 +48,9 @@ export class DashboardActions {
         type: DashboardActions.DASHBOARD_QUOTES_FETCH_SUCCESS,
         payload: result
       }))
-      .catch(() => this.ngRedux.dispatch({
+      .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTES_FETCH_ERROR,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -69,7 +70,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_SAVE_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -89,7 +90,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_REMOVE_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -123,7 +124,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 
@@ -149,7 +150,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_UPDATE_ERROR,
-        payload: err,
+        payload: { errorCode: err.status},
       }));
   }
 }

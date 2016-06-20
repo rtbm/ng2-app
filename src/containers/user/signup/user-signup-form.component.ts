@@ -21,7 +21,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   template: require('./user-signup-form.component.html'),
 })
 export class QtUserSignupFormComponent implements OnDestroy {
-  @select(state => state.session.get('status')) private status$;
+  @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;
@@ -50,6 +50,6 @@ export class QtUserSignupFormComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.status$.unsubscribe();
+    this.errorCode$.unsubscribe();
   }
 }
