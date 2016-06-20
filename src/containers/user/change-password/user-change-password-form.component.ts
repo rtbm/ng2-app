@@ -22,6 +22,7 @@ import { UserActions } from '../../../actions/user';
 })
 export class QtUserChangePasswordFormComponent implements OnDestroy {
   private form: ControlGroup;
+  private email: Control;
   private token: Control;
   private password: Control;
   private password_confirm: Control;
@@ -30,6 +31,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   constructor(private builder: FormBuilder,
               private userActions: UserActions,
               r: ActivatedRoute) {
+    this.email = new Control('', Validators.required);
     this.token = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
     this.password_confirm = new Control('', Validators.required);
@@ -48,7 +50,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   handleSubmit() {
     this.submitted = true;
     if (this.form.valid) {
-      this.userActions.resetPassword(this.form.value);
+      this.userActions.changePassword(this.form.value);
     }
   }
 

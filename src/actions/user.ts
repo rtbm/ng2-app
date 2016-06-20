@@ -18,6 +18,10 @@ export class UserActions {
   static USER_RESET_PASSWORD_SUCCESS = 'USER_RESET_PASSWORD_SUCCESS';
   static USER_RESET_PASSWORD_ERROR = 'USER_RESET_PASSWORD_ERROR';
 
+  static USER_CHANGE_PASSWORD_PENDING = 'USER_CHANGE_PASSWORD_PENDING';
+  static USER_CHANGE_PASSWORD_SUCCESS = 'USER_CHANGE_PASSWORD_SUCCESS';
+  static USER_CHANGE_PASSWORD_ERROR = 'USER_CHANGE_PASSWORD_ERROR';
+
   constructor(private ngRedux: NgRedux<IAppState>,
               private authService: AuthService,
               private sessionActions: SessionActions) {
@@ -75,6 +79,22 @@ export class UserActions {
       }))
       .catch(err => this.ngRedux.dispatch({
         type: UserActions.USER_RESET_PASSWORD_ERROR,
+        payload: err,
+      }));
+  }
+
+  changePassword(credentials) {
+    this.ngRedux.dispatch({
+      type: UserActions.USER_CHANGE_PASSWORD_PENDING,
+    });
+
+    this.authService.changePassword(credentials)
+      .then(result => this.ngRedux.dispatch({
+        type: UserActions.USER_CHANGE_PASSWORD_SUCCESS,
+        payload: result,
+      }))
+      .catch(err => this.ngRedux.dispatch({
+        type: UserActions.USER_CHANGE_PASSWORD_ERROR,
         payload: err,
       }));
   }

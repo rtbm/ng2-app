@@ -1,5 +1,6 @@
 module.exports = {
-  secret: 'secretpass',
+  secretSalt: 'secretpass',
+  baseUrl: 'http://localhost:8080/',
   mailer: {
     from: 'no-reply@localhost',
     smtpConfig: {

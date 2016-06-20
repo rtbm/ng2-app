@@ -1,3 +1,4 @@
+'use strict';
 const config = require('./../config/app.config');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
@@ -49,7 +50,7 @@ module.exports = {
 
       if (!user) {
         err = new Error('Unprocessable Entity');
-        err.status = 404;
+        err.status = 422;
         return next(err);
       }
 
@@ -73,26 +74,44 @@ module.exports = {
   },
 
   changePassword: (req, res, next) => {
-    User.findOne({
-      email: req.body.email,
-    }).exec((err, user) => {
-      if (err) { return next(err); }
+    if(!req.body.token) {
+      let err = new Error('Bad Request');
+      err.status = 400;
+      return next(err);
+    }
 
-      if (!user) {
-        err = new Error('Unprocessable Entity');
-        err.status = 404;
+    redisClient.get(req.body.token, (err, email) => {
+      redisClient.del(req.body.token);
+
+      if (err) { next(err); }
+
+      if (!email) {
+        err = new Error('Request Timeout');
+        err.status = 408;
         return next(err);
       }
-      
-      user.password = req.body.password;
 
-      user.save((err) => {
+      User.findOne({
+        email,
+      }).exec((err, user) => {
         if (err) { return next(err); }
-        return res.end();
+
+        if (!user) {
+          err = new Error('Unprocessable Entity');
+          err.status = 422;
+          return next(err);
+        }
+
+        user.password = req.body.password;
+
+        user.save((err) => {
+          if (err) { return next(err); }
+          return res.json({});
+        });
       });
     });
   },
-  
+
   resetPassword: (req, res, next) => {
     User.findOne({
       email: req.body.email,
@@ -105,15 +124,18 @@ module.exports = {
         return next(err);
       }
 
-      const token = md5(new Date().getTime() + config.secretSalt);
-      redisClient.set(req.body.email, token);
+      const token = md5(new Date().getTime() + user.email + config.secretSalt);
+      redisClient.set(token, user.email);
+      redisClient.expire(token, 600);
 
       const body = `
         <p>Hi!</p>
-        <p><a href="http://localhost:8080/user/change-password/${token}">Click here</a> to change Your password.</p>
+        <p><a href="${config.baseUrl}user/change-password/${token}">Click here</a>
+          to change Your password.</p>
+        <p>Notice that this link will expire in 10 minutes.</p>
       `;
-      
-      mailer.send(req.body.email, 'Reset password request', body, (err, result) => {
+
+      mailer.send(user.email, 'Reset password request', body, (err, result) => {
         if (err) { next(err); }
         return res.json(result);
       });
