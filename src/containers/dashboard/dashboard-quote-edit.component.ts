@@ -10,12 +10,13 @@ import {
 } from '../../components/form';
 import { XModalContentComponent, XModalActionsComponent } from '../../components/modal';
 import { XButtonComponent } from '../../components/button';
-import { XModalMessageComponent } from '../../components/modal/modal-message.component';
+import { XModalMessageComponent } from '../../components/modal';
+import { XLabelComponent } from '../../components/label';
 
 @Component({
   selector: 'qt-dashboard-quote-edit',
   directives: [XOverlayComponent, XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
-    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent],
+    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent, XLabelComponent],
   template: require('./dashboard-quote-edit.component.html'),
   styles: [require('./dashboard-quote-edit.component.less')],
 })

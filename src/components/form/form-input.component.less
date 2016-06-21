@@ -2,9 +2,17 @@
 
 input {
   border: .1rem solid @border;
-  padding: .75rem .5rem;
+  padding: .75rem;
   outline: 0;
   width: 100%;
   box-sizing: border-box;
-  background: @white;;
+  background: @white;
+
+  &:hover {
+    border: .1rem solid darken(@border, 10%);
+  }
+
+  &:focus {
+    border: .1rem solid darken(@border, 20%);
+  }
 }
