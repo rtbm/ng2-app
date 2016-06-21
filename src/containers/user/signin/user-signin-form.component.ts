@@ -4,12 +4,14 @@ import {
   XFormInputComponent,
   XFormActionsComponent,
   XFormMessageComponent,
-  XFormErrorComponent,
   XFormGroupComponent
 } from '../../../components/form';
 import { XLabelComponent } from '../../../components/label';
 import { XButtonComponent } from '../../../components/button';
-import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe } from '@angular/common';
+import {
+  FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe, NgSwitch,
+  NgSwitchDefault, NgSwitchCase
+} from '@angular/common';
 import { UserActions } from '../../../actions/user';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -17,17 +19,17 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signin-form',
   pipes: [AsyncPipe],
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
+  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
+    XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
+    XFormMessageComponent],
   template: require('./user-signin-form.component.html'),
 })
 export class QtUserSigninFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['signin', 'errorCode'])) private errorCode$;
+  @select(state => state.user.getIn(['signinForm', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;
   private password: Control;
-  private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
@@ -41,7 +43,6 @@ export class QtUserSigninFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
-    this.submitted = true;
     if (this.form.valid) {
       this.userActions.signin(this.form.value);
     }

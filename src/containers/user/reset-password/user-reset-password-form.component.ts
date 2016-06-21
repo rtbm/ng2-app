@@ -4,26 +4,27 @@ import {
   XFormInputComponent,
   XFormGroupComponent,
   XFormActionsComponent,
-  XFormMessageComponent,
-  XFormErrorComponent
+  XFormMessageComponent
 } from '../../../components/form';
 import { XLabelComponent } from '../../../components/label';
 import { XButtonComponent } from '../../../components/button';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { UserActions } from '../../../actions/user';
+import { select } from 'ng2-redux/lib/index';
 
 @Component({
   selector: 'qt-user-reset-password-form',
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: require('./user-reset-password-form.component.html'),
   styles: [require('./user-reset-password-form.component.less')],
 })
 export class QtUserResetPasswordFormComponent implements OnDestroy {
+  @select(state => state.user.getIn(['resetPasswordForm', 'errorCode'])) private errorCode$;
+
   private form: ControlGroup;
   private email: Control;
-  private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
@@ -35,12 +36,12 @@ export class QtUserResetPasswordFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
-    this.submitted = true;
     if (this.form.valid) {
       this.userActions.resetPassword(this.form.value);
     }
   }
 
   ngOnDestroy() {
+    this.errorCode$.unsubscribe();
   }
 }

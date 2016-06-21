@@ -5,7 +5,6 @@ import {
   XFormGroupComponent,
   XFormActionsComponent,
   XFormMessageComponent,
-  XFormErrorComponent
 } from '../../../components/form';
 import { XLabelComponent } from '../../../components/label';
 import { XButtonComponent } from '../../../components/button';
@@ -16,7 +15,7 @@ import { UserActions } from '../../../actions/user';
 @Component({
   selector: 'qt-user-reset-password-form',
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.less')],
 })
@@ -26,7 +25,6 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   private token: Control;
   private password: Control;
   private password_confirm: Control;
-  private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions,
@@ -48,7 +46,6 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
-    this.submitted = true;
     if (this.form.valid) {
       this.userActions.changePassword(this.form.value);
     }

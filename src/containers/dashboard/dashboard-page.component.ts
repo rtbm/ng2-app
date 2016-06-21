@@ -26,7 +26,7 @@ import { AsyncPipe } from '@angular/common';
 
 export class QtDashboardPageComponent implements OnDestroy {
   @select('dashboard') private dashboard$;
-  @select(state => state.user.getIn(['user', '_id'])) private userId$;
+  @select(state => state.session.getIn(['user', '_id'])) private userId$;
 
   private dashboard: Object = {};
 

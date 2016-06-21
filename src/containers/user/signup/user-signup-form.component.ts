@@ -4,8 +4,7 @@ import {
   XFormInputComponent,
   XFormGroupComponent,
   XFormActionsComponent,
-  XFormMessageComponent,
-  XFormErrorComponent
+  XFormMessageComponent
 } from '../../../components/form';
 import { XLabelComponent } from '../../../components/label';
 import { XButtonComponent } from '../../../components/button';
@@ -17,17 +16,16 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signup-form',
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormErrorComponent],
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: require('./user-signup-form.component.html'),
 })
 export class QtUserSignupFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;
+  @select(state => state.user.getIn(['signupForm', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;
   private password: Control;
   private password_confirm: Control;
-  private submitted: boolean = false;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
@@ -43,7 +41,6 @@ export class QtUserSignupFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
-    this.submitted = true;
     if (this.form.valid) {
       this.userActions.signup(this.form.value);
     }

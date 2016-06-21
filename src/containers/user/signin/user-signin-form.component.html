@@ -1,13 +1,13 @@
 <x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
-  <x-form-message>Type Your credentials to login.</x-form-message>
+  <div [ngSwitch]="(errorCode$ | async)">
+    <x-form-message preset="error" *ngSwitchCase="422">
+      Provided e-mail/password is incorrect.
+    </x-form-message>
 
-  <x-form-error *ngIf="submitted && (errorCode$ | async) === 422">
-    Provided e-mail/password is incorrect.
-  </x-form-error>
-
-  <x-form-error *ngIf="submitted && (errorCode$ | async) === 404">
-    Account not exist.
-  </x-form-error>
+    <x-form-message preset="error" *ngSwitchCase="404">
+      Account not exist.
+    </x-form-message>
+  </div>
 
   <x-form-group>
     <x-label>E-mail</x-label>
@@ -20,9 +20,6 @@
   </x-form-group>
 
   <x-form-actions>
-    <x-button size="big" type="submit">Login</x-button>
+    <x-button preset="positive" type="submit">Login</x-button>
   </x-form-actions>
-
-  <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>
-  <p>Forgot password? <a [routerLink]="['/user/reset-password']">Reset password</a></p>
 </x-form>

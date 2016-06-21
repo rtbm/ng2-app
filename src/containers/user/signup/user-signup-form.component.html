@@ -1,9 +1,7 @@
 <x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
-  <x-form-message>Fill in the Register form.</x-form-message>
-
-  <x-form-error *ngIf="submitted && (errorCode$ | async) === 409">
+  <x-form-message preset="error" *ngIf="submitted && (errorCode$ | async) === 409">
     Account already exists.
-  </x-form-error>
+  </x-form-message>
 
   <x-form-group>
     <x-label>E-mail</x-label>
@@ -25,8 +23,6 @@
   </x-form-error>
 
   <x-form-actions>
-    <x-button size="big" type="submit">Create an account</x-button>
+    <x-button preset="positive" type="submit">Create an account</x-button>
   </x-form-actions>
-
-  <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
 </x-form>

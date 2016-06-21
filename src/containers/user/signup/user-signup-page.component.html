@@ -1,4 +1,9 @@
 <x-wrapper>
-  <h1>Sign up</h1>
-  <qt-user-signup-form></qt-user-signup-form>
+  <x-box>
+    <x-box-header>Sign up</x-box-header>
+    <x-box-content>
+      <qt-user-signup-form></qt-user-signup-form>
+    </x-box-content>
+  </x-box>
+  <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
 </x-wrapper>

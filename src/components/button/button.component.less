@@ -8,41 +8,35 @@
 button {
   outline: 0;
   background: transparent;
-  text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(to bottom, @light 0%, @grey-2 100%);
   border-radius: @radius;
-  border: .1rem solid @grey-2;
   transition: .1s all linear;
-}
-
-.size-normal {
-  padding: .75rem 1.5rem;
-  font-size: 1.2rem;
-}
-
-.size-big {
-  padding: 1rem 3rem;
-  font-size: 1.5rem;
+  padding: 0 2.5rem;
+  height: 3.8rem;
+  border: 0 none;
 }
 
 .preset-casual {
   color: @dark;
+  background: @background;
+  border-bottom: .2rem solid darken(@background, 5%);
+}
+
+.preset-neutral {
+  color: @white;
+  background: @blue;
+  border-bottom: .2rem solid darken(@blue, 10%);
 }
 
 .preset-positive {
-  color: @green-1;
-
-  &:hover {
-    border: .1rem solid @green-1;
-  }
+  color: @white;
+  background: @green;
+  border-bottom: .2rem solid darken(@green, 10%);
 }
 
 .preset-negative {
-  color: @red-1;
-
-  &:hover {
-    border: .1rem solid @red-1;
-  }
+  color: @white;
+  background: @red;
+  border-bottom: .2rem solid darken(@red, 20%);
 }

@@ -9,11 +9,15 @@ import {
   XFormMessageComponent
 } from '../../components/form';
 import { XButtonComponent } from '../../components/button';
+import { XBoxComponent } from '../../components/box';
+import { XBoxHeaderComponent } from '../../components/box';
+import { XBoxContentComponent } from '../../components/box';
 
 @Component({
   selector: 'qt-dashboard-quote-add',
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
-    XButtonComponent, XFormInputComponent, XFormMessageComponent],
+    XButtonComponent, XFormInputComponent, XFormMessageComponent, XBoxComponent, XBoxHeaderComponent,
+    XBoxContentComponent],
   template: require('./dashboard-quote-add.component.html'),
   styles: [require('./dashboard-quote-add.component.less')],
 })
