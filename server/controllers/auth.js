@@ -1,5 +1,5 @@
 'use strict';
-const config = require('./../config/app.config');
+const config = require('./../config');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const User = require('./../models/user');
@@ -20,8 +20,8 @@ module.exports = {
       }
 
       if (req.body.password !== req.body.password_confirm) {
-        err = new Error('Validation failed');
-        err.status = 500;
+        err = new Error('Bad request');
+        err.status = 400;
         return next(err);
       }
 
@@ -120,7 +120,7 @@ module.exports = {
 
       if (!user) {
         err = new Error('Unprocessable Entity');
-        err.status = 404;
+        err.status = 422;
         return next(err);
       }
 
