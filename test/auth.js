@@ -9,7 +9,10 @@ const User = require('../server/models/user');
 chai.use(chaiHttp);
 
 describe('/api/auth', () => {
-  before(() => User.collection.drop());
+  afterEach(done => {
+    User.collection.drop();
+    done();
+  });
 
   describe('/api/auth/signup', () => {
     it('should return validation error status', done => {
@@ -42,9 +45,15 @@ describe('/api/auth', () => {
         .post('/api/auth/signup')
         .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
         .end((err, res) => {
-          res.should.have.a.status(409);
-          done();
+          chai.request(server)
+            .post('/api/auth/signup')
+            .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
+            .end((err, res) => {
+              res.should.have.a.status(409);
+              done();
+            });
         });
     });
+
   });
 });
