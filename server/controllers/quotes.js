@@ -109,5 +109,44 @@ module.exports = {
 
         return res.json({ _id: req.params.quoteId });
       });
-  }
+  },
+
+  search: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    Quote.find({
+      $and: [
+        {
+          $text: { $search: req.query.q },
+        }, {
+          $or: [
+            { status: 'public' },
+            { owner: req.user._id },
+          ],
+        },
+      ],
+    }, {
+      score: {
+        $meta: 'textScore',
+      },
+    }).sort({
+      score: {
+        $meta: 'textScore',
+      },
+    }).exec((err, quotes) => {
+      if (err) return next(err);
+
+      if (!quotes) {
+        err = new Error('Not Found');
+        err.status = 404;
+        return next(err);
+      }
+
+      return res.json(quotes);
+    });
+  },
 };

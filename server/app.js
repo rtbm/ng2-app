@@ -15,7 +15,7 @@ const distPath = path.join(__dirname, '../public');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/ng2app-db');
+mongoose.connect(config.database);
 
 /*app.use(helmet({
   contentSecurityPolicy: {
@@ -54,7 +54,6 @@ app.use(express.static(distPath));
 
 app.use('/api/quotes', require('./routes/quotes'));
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/search', require('./routes/search'));
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 // catch 404 and forward to error handler
@@ -70,7 +69,7 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(require('morgan')('dev', { stream: logger.stream }));
-  
+
   app.use((err, req, res, next) => {
     winston.log('error', err);
     res.status(err.status || 500);

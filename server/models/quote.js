@@ -3,18 +3,19 @@ const mongoose = require('mongoose');
 const quoteSchema = new mongoose.Schema({
   name: {
     type: String,
-    trim: true,
     required: true,
+    index: true,
+    trim: true,
   },
   content: {
     type: String,
-    trim: true,
     required: true,
+    trim: true,
   },
   url: {
     type: String,
-    trim: true,
     required: true,
+    trim: true,
   },
   owner: {
     type: mongoose.Schema.ObjectId,
