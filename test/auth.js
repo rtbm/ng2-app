@@ -9,7 +9,7 @@ const User = require('../server/models/user');
 chai.use(chaiHttp);
 
 describe('/api/auth', () => {
-  afterEach(done => {
+  beforeEach(done => {
     User.collection.drop();
     done();
   });

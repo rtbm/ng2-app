@@ -15,8 +15,6 @@ const distPath = path.join(__dirname, '../public');
 
 const app = express();
 
-app.use(require('morgan')('dev', { stream: logger.stream }));
-
 mongoose.connect('mongodb://localhost:27017/ng2app-db');
 
 /*app.use(helmet({
@@ -71,6 +69,8 @@ app.use((req, res, next) => {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+  app.use(require('morgan')('dev', { stream: logger.stream }));
+  
   app.use((err, req, res, next) => {
     winston.log('error', err);
     res.status(err.status || 500);
