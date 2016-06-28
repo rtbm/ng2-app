@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { QtUserSigninFormComponent } from './user-signin-form.component';
 import { AsyncPipe } from '@angular/common';
 import { select } from 'ng2-redux';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { XWrapperComponent } from '../../../components/wrapper/wrapper.component';
 import { XFormMessageComponent } from '../../../components/form/form-message.component';
 import { XBoxContentComponent } from '../../../components/box';
@@ -18,18 +18,4 @@ import { XBoxComponent } from '../../../components/box';
   styles: [require('./user-signin-page.component.less')],
 })
 
-export class QtUserSigninPageComponent implements OnDestroy {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
-
-  constructor(private router: Router) {
-    this.isAuthorized$.subscribe((result: boolean) => {
-      if (result) {
-        //this.router.navigate(['/account/dashboard']);
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.isAuthorized$.unsubscribe();
-  }
-}
+export class QtUserSigninPageComponent {}

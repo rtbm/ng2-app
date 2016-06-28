@@ -7,11 +7,11 @@ import {
   XFormInputComponent,
   XFormGroupComponent,
   XFormMessageComponent
-} from '../../components/form';
-import { XButtonComponent } from '../../components/button';
-import { XBoxComponent } from '../../components/box';
-import { XBoxHeaderComponent } from '../../components/box';
-import { XBoxContentComponent } from '../../components/box';
+} from '../../../components/form';
+import { XButtonComponent } from '../../../components/button';
+import { XBoxComponent } from '../../../components/box';
+import { XBoxHeaderComponent } from '../../../components/box';
+import { XBoxContentComponent } from '../../../components/box';
 
 @Component({
   selector: 'qt-dashboard-quote-add',

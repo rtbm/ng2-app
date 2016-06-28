@@ -3,7 +3,7 @@
 
   <x-menu>
     <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
-    <x-menu-item><a [routerLink]="['/account/dashboard']">Account</a></x-menu-item>
+    <x-menu-item><a *ngIf="isAuthorized$ | async" [routerLink]="['/account/dashboard']">Account</a></x-menu-item>
   </x-menu>
 
   <div class="account-box">

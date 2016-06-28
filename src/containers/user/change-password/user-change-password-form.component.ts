@@ -19,7 +19,7 @@ import { UserActions } from '../../../actions/user';
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.less')],
 })
-export class QtUserChangePasswordFormComponent implements OnDestroy {
+export class QtUserChangePasswordFormComponent {
   private form: ControlGroup;
   private email: Control;
   private token: Control;
@@ -28,7 +28,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions,
-              r: ActivatedRoute) {
+              private r: ActivatedRoute) {
     this.email = new Control('', Validators.required);
     this.token = new Control('', Validators.required);
     this.password = new Control('', Validators.required);
@@ -49,8 +49,5 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
     if (this.form.valid) {
       this.userActions.changePassword(this.form.value);
     }
-  }
-
-  ngOnDestroy() {
   }
 }

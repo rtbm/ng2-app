@@ -10,8 +10,8 @@ import { select } from 'ng2-redux/lib/index';
 import { DashboardActions } from '../../actions/dashboard';
 import { XButtonComponent } from '../../components/button';
 import { XDialogConfirmComponent } from '../../components/dialog';
-import { QtDashboardQuoteAddComponent } from './dashboard-quote-add.component';
-import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit.component';
+import { QtDashboardQuoteAddComponent } from './dashboard-quote-add';
+import { QtDashboardQuoteEditComponent } from './dashboard-quote-edit';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

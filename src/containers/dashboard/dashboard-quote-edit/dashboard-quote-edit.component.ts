@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { XOverlayComponent } from '../../components/overlay/overlay.component';
+import { XOverlayComponent } from '../../../components/overlay';
 import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
 import { select } from 'ng2-redux';
 import {
@@ -7,11 +7,10 @@ import {
   XFormInputComponent,
   XFormGroupComponent,
   XFormTextareaComponent
-} from '../../components/form';
-import { XModalContentComponent, XModalActionsComponent } from '../../components/modal';
-import { XButtonComponent } from '../../components/button';
-import { XModalMessageComponent } from '../../components/modal';
-import { XLabelComponent } from '../../components/label';
+} from '../../../components/form';
+import { XModalContentComponent, XModalActionsComponent, XModalMessageComponent } from '../../../components/modal';
+import { XButtonComponent } from '../../../components/button';
+import { XLabelComponent } from '../../../components/label';
 
 @Component({
   selector: 'qt-dashboard-quote-edit',

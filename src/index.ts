@@ -15,20 +15,24 @@ import { QtApp } from './app';
 import { QuotesService } from './services/quotes';
 import { DashboardActions } from './actions/dashboard';
 import { UserActions } from './actions/user';
-import { ROUTER_CONFIG } from './router.config';
+import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
 
 declare let __PRODUCTION__: any;
 
 if (__PRODUCTION__) {
   enableProdMode();
 } else {
-  require('zone.js/dist/long-stack-trace-zone');
+  require("zone.js/dist/long-stack-trace-zone");
 }
 
 bootstrap(QtApp, [
   NgRedux,
   HTTP_PROVIDERS,
-  provideRouter(ROUTER_CONFIG),
+  provideRouter([
+    ...ACCOUNT_ROUTES,
+    ...HOME_ROUTES,
+    ...USER_ROUTES,
+  ]),
   ServerService,
   AuthService,
   UserActions,
