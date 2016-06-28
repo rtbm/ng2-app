@@ -18,7 +18,7 @@ export class SessionActions {
       type: SessionActions.SESSION_SET_TOKEN,
       payload: {
         id_token,
-        user
+        user,
       },
     });
   }

@@ -36,7 +36,7 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secretSalt)
+          }, config.secret)
         });
       });
     });
@@ -67,7 +67,7 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secretSalt)
+          }, config.secret)
         });
       });
     });

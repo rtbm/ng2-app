@@ -46,7 +46,7 @@ export class DashboardActions {
     this.quotesService.fetchAll()
       .then(result => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTES_FETCH_SUCCESS,
-        payload: result
+        payload: result,
       }))
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTES_FETCH_ERROR,

@@ -1,3 +1,4 @@
+'use strict';
 const Quote = require('./../models/quote');
 
 module.exports = {

@@ -12,10 +12,12 @@ module.exports = {
       html,
     };
 
-    if (typeof options !== 'function') {
+    if (typeof options === 'object') {
       mailOptions = Object.assign(mailOptions, options);
-    } else {
+    } else if (typeof options === 'function') {
       callback = options;
+    } else {
+      callback = function() {}
     }
 
     nodemailerTransport.sendMail(mailOptions, (err, info) => {
