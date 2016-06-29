@@ -36,7 +36,7 @@ const plugins = basePlugins
 
 module.exports = {
   entry: {
-    app: './src/index.ts'
+    app: './src/boot.ts'
   },
 
   output: {
@@ -64,10 +64,6 @@ module.exports = {
     }, {
       test: /\.html$/,
       loader: 'raw',
-      exclude: /node_modules/
-    }, {
-      test: /\.css$/,
-      loader: 'to-string!css',
       exclude: /node_modules/
     }, {
       test: /\.less$/,

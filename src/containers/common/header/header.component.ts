@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
-import { XLogoComponent } from '../../components/logo';
-import { XWrapperComponent } from '../../components/wrapper';
-import { XMenuItemComponent, XMenuComponent } from '../../components/menu';
-import { UserActions } from '../../actions/user';
-import { XButtonComponent } from '../../components/button';
-import { select } from 'ng2-redux/lib/index';
+import {
+  XLogoComponent,
+  XWrapperComponent,
+  XMenuItemComponent,
+  XMenuComponent,
+  XButtonComponent
+} from '../../../components';
+import { UserActions } from '../../../actions';
+import { select } from 'ng2-redux';
 
 @Component({
   selector: 'qt-header',
+  template: require('./header.component.html'),
+  styles: [require('./header.component.less')],
   directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, XMenuComponent,
     XMenuItemComponent, XButtonComponent],
   pipes: [AsyncPipe],
-  template: require('./header.component.html'),
-  styles: [require('./header.component.less')],
 })
 export class QtHeaderComponent {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$;

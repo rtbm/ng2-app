@@ -1,4 +1,4 @@
-import { QtHomePageComponent } from '../containers/home';
+import { QtHomePageComponent } from '../containers';
 
 export const HOME_ROUTES = [{
   path: '',

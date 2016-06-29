@@ -1,11 +1,17 @@
-import { QtAccountPageComponent } from '../containers/account';
-import { QtDashboardPageComponent } from '../containers/dashboard';
+import {
+  QtAccountPageComponent,
+  QtAccountDashboardPageComponent,
+  QtAccountUsersPageComponent
+} from '../containers';
 
 export const ACCOUNT_ROUTES = [{
   path: 'account',
   component: QtAccountPageComponent,
   children: [{
     path: 'dashboard',
-    component: QtDashboardPageComponent,
+    component: QtAccountDashboardPageComponent,
+  }, {
+    path: 'users',
+    component: QtAccountUsersPageComponent
   }],
 }];

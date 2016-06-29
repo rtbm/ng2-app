@@ -1,23 +1,23 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
   XFormGroupComponent,
   XFormActionsComponent,
   XFormMessageComponent,
-} from '../../../components/form';
-import { XLabelComponent } from '../../../components/label';
-import { XButtonComponent } from '../../../components/button';
+  XLabelComponent,
+  XButtonComponent
+} from '../../../components';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
-import { UserActions } from '../../../actions/user';
+import { UserActions } from '../../../actions';
 
 @Component({
   selector: 'qt-user-reset-password-form',
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.less')],
+  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
 })
 export class QtUserChangePasswordFormComponent {
   private form: ControlGroup;

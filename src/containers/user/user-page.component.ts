@@ -1,12 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { QtHeaderComponent } from '../header';
+import { QtHeaderComponent } from '../common';
 import { select } from 'ng2-redux';
 
 @Component({
   selector: 'x-user-page',
-  directives: [ROUTER_DIRECTIVES, QtHeaderComponent],
   template: require('./user-page.component.html'),
+  directives: [ROUTER_DIRECTIVES, QtHeaderComponent],
 })
 
 export class QtUserPageComponent implements OnDestroy {

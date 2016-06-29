@@ -1,19 +1,18 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import rootReducer, { IAppState } from './reducers';
-import { middlewares } from './state/middlewares';
-import { enhancers } from './state/enhancers';
-import { NgRedux } from 'ng2-redux/lib/index';
+import { middlewares, enhancers } from './state';
+import { NgRedux } from 'ng2-redux';
 
 @Component({
   selector: 'qt-app',
   directives: [ROUTER_DIRECTIVES],
   template: `<router-outlet></router-outlet>`,
-  styles: [require('./app.less')],
+  styles: [require('./app.component.less')],
   encapsulation: ViewEncapsulation.None,
 })
 
-export class QtApp {
+export class QtAppComponent {
   constructor(private ngRedux: NgRedux<IAppState>,
               private router: Router) {
     ngRedux.configureStore(rootReducer, {}, middlewares, enhancers);

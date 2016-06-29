@@ -4,7 +4,7 @@ import {
   QtUserPageComponent,
   QtUserResetPasswordPageComponent,
   QtUserChangePasswordPageComponent
-} from '../containers/user';
+} from '../containers';
 
 export const USER_ROUTES = [{
   path: 'user',

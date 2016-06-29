@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./server/bin/www",
     "dev": "webpack-dev-server -d --inline --progress --no-info",
-    "server:dev": "cross-env NODE_ENV=development node ./server/bin/www",
+    "dev:server": "cross-env NODE_ENV=development node ./server/bin/www",
     "build": "cross-env NODE_ENV=production webpack",
     "typings": "typings install",
     "postinstall": "npm run typings",
@@ -20,6 +20,7 @@
     "cross-env": "^1.0.8",
     "express": "~4.14.0",
     "express-jwt": "^3.4.0",
+    "express-jwt-permissions": "^0.2.2",
     "jsonwebtoken": "^7.0.1",
     "md5": "^2.1.0",
     "mongoose": "^4.5.2",

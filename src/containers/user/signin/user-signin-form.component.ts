@@ -4,25 +4,32 @@ import {
   XFormInputComponent,
   XFormActionsComponent,
   XFormMessageComponent,
-  XFormGroupComponent
-} from '../../../components/form';
-import { XLabelComponent } from '../../../components/label';
-import { XButtonComponent } from '../../../components/button';
+  XFormGroupComponent,
+  XLabelComponent,
+  XButtonComponent
+} from '../../../components';
 import {
-  FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators, AsyncPipe, NgSwitch,
-  NgSwitchDefault, NgSwitchCase
+  FORM_DIRECTIVES,
+  FormBuilder,
+  ControlGroup,
+  Control,
+  Validators,
+  AsyncPipe,
+  NgSwitch,
+  NgSwitchDefault,
+  NgSwitchCase
 } from '@angular/common';
-import { UserActions } from '../../../actions/user';
+import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'qt-user-signin-form',
-  pipes: [AsyncPipe],
+  template: require('./user-signin-form.component.html'),
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
     XFormMessageComponent],
-  template: require('./user-signin-form.component.html'),
+  pipes: [AsyncPipe],
 })
 export class QtUserSigninFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signinForm', 'errorCode'])) private errorCode$;

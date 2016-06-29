@@ -6,22 +6,22 @@ import {
   XFormActionsComponent,
   XFormInputComponent,
   XFormGroupComponent,
-  XFormMessageComponent
-} from '../../../components/form';
-import { XButtonComponent } from '../../../components/button';
-import { XBoxComponent } from '../../../components/box';
-import { XBoxHeaderComponent } from '../../../components/box';
-import { XBoxContentComponent } from '../../../components/box';
+  XFormMessageComponent,
+  XButtonComponent,
+  XBoxComponent,
+  XBoxHeaderComponent,
+  XBoxContentComponent
+} from '../../../../components';
 
 @Component({
-  selector: 'qt-dashboard-quote-add',
+  selector: 'qt-common-forms-quote-add',
+  template: require('./quote-add.component.html'),
+  styles: [require('./quote-add.component.less')],
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
     XButtonComponent, XFormInputComponent, XFormMessageComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent],
-  template: require('./dashboard-quote-add.component.html'),
-  styles: [require('./dashboard-quote-add.component.less')],
 })
-export class QtDashboardQuoteAddComponent {
+export class QtCommonFormsQuoteAddComponent {
   @Output() private onSubmit = new EventEmitter();
 
   private form: ControlGroup;

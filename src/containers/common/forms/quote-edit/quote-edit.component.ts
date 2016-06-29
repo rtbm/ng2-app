@@ -1,25 +1,27 @@
 import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { XOverlayComponent } from '../../../components/overlay';
-import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
-import { select } from 'ng2-redux';
 import {
+  XOverlayComponent,
   XFormComponent,
   XFormInputComponent,
   XFormGroupComponent,
-  XFormTextareaComponent
-} from '../../../components/form';
-import { XModalContentComponent, XModalActionsComponent, XModalMessageComponent } from '../../../components/modal';
-import { XButtonComponent } from '../../../components/button';
-import { XLabelComponent } from '../../../components/label';
+  XFormTextareaComponent,
+  XModalContentComponent,
+  XModalActionsComponent,
+  XModalMessageComponent,
+  XButtonComponent,
+  XLabelComponent
+} from '../../../../components';
+import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
+import { select } from 'ng2-redux';
 
 @Component({
-  selector: 'qt-dashboard-quote-edit',
+  selector: 'qt-common-forms-quote-edit',
+  template: require('./quote-edit.component.html'),
+  styles: [require('./quote-edit.component.less')],
   directives: [XOverlayComponent, XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
     XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent, XLabelComponent],
-  template: require('./dashboard-quote-edit.component.html'),
-  styles: [require('./dashboard-quote-edit.component.less')],
 })
-export class QtDashboardQuoteEditComponent implements OnDestroy {
+export class QtCommonFormsQuoteEditComponent implements OnDestroy {
   @select(state => state.dashboard.getIn(['updateQuote', 'item'])) private updateQuote$;
 
   @Output() onCancel = new EventEmitter();

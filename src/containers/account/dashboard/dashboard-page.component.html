@@ -1,5 +1,5 @@
 <x-wrapper>
-  <qt-dashboard-quote-add (onSubmit)="dashboardActions.saveQuote($event)"></qt-dashboard-quote-add>
+  <qt-common-forms-quote-add (onSubmit)="dashboardActions.saveQuote($event)"></qt-common-forms-quote-add>
 
   <x-list>
     <x-list-item *ngFor="let quote of dashboard.quotes.items">
@@ -32,7 +32,7 @@
   Are you sure?
 </x-dialog-confirm>
 
-<qt-dashboard-quote-edit *ngIf="dashboard.updateQuote.isModalVisible"
+<qt-common-forms-quote-edit *ngIf="dashboard.updateQuote.isModalVisible"
                          (onSubmit)="dashboardActions.updateQuote($event)"
                          (onCancel)="dashboardActions.updateQuoteModalCancel()">
-</qt-dashboard-quote-edit>
+</qt-common-forms-quote-edit>

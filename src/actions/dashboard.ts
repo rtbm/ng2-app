@@ -34,10 +34,6 @@ export class DashboardActions {
               private quotesService: QuotesService) {
   }
 
-  fetchData() {
-    this.fetchQuotes();
-  }
-
   fetchQuotes() {
     this.ngRedux.dispatch({
       type: DashboardActions.DASHBOARD_QUOTES_FETCH_PENDING,
@@ -50,7 +46,7 @@ export class DashboardActions {
       }))
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTES_FETCH_ERROR,
-        payload: { errorCode: err.status},
+        payload: { errorCode: err.status },
       }));
   }
 
@@ -70,7 +66,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_SAVE_ERROR,
-        payload: { errorCode: err.status},
+        payload: { errorCode: err.status },
       }));
   }
 
@@ -90,7 +86,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_REMOVE_ERROR,
-        payload: { errorCode: err.status},
+        payload: { errorCode: err.status },
       }));
   }
 
@@ -124,7 +120,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_ERROR,
-        payload: { errorCode: err.status},
+        payload: { errorCode: err.status },
       }));
   }
 
@@ -150,7 +146,7 @@ export class DashboardActions {
       })
       .catch(err => this.ngRedux.dispatch({
         type: DashboardActions.DASHBOARD_QUOTE_UPDATE_ERROR,
-        payload: { errorCode: err.status},
+        payload: { errorCode: err.status },
       }));
   }
 }
