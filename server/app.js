@@ -27,8 +27,10 @@ app.use(express.static(distPath, {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/api/quotes', auth.check, require('./routes/quotes'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/quotes', auth.check, require('./routes/quotes'));
+app.use('/api/users', auth.check, require('./routes/users'));
+
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 // catch 404 and forward to error handler

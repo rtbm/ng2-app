@@ -1,10 +1,10 @@
 'use strict';
-const config = require('./../config');
+const config = require('../config');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
-const User = require('./../models/user');
+const User = require('../models/user');
 const redisClient = require('redis').createClient();
-const mailer = require('./../utils/mailer');
+const mailer = require('../utils/mailer');
 
 module.exports = {
   signup: (req, res, next) => {

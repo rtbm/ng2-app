@@ -1,5 +1,5 @@
 'use strict';
-const Quote = require('./../models/quote');
+const Quote = require('../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {
@@ -11,6 +11,26 @@ module.exports = {
     }).exec((err, quotes) => {
       if (err) return next(err);
       return res.json(quotes);
+    });
+  },
+
+  save: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    const quote = new Quote({
+      name: req.body.name,
+      content: req.body.content,
+      url: req.body.url,
+      owner: req.user._id,
+    });
+
+    quote.save(err => {
+      if (err) return next(err);
+      return res.json(quote);
     });
   },
 
@@ -35,26 +55,6 @@ module.exports = {
         return next(err);
       }
 
-      return res.json(quote);
-    });
-  },
-
-  save: (req, res, next) => {
-    if (!req.user || !req.user._id) {
-      const err = new Error('Unauthorized');
-      err.status = 401;
-      return next(err);
-    }
-
-    const quote = new Quote({
-      name: req.body.name,
-      content: req.body.content,
-      url: req.body.url,
-      owner: req.user._id,
-    });
-
-    quote.save(err => {
-      if (err) return next(err);
       return res.json(quote);
     });
   },
@@ -100,16 +100,16 @@ module.exports = {
       _id: req.params.quoteId,
       owner: req.user._id,
     }).exec((err, quote) => {
-        if (err) return next(err);
+      if (err) return next(err);
 
-        if (!quote) {
-          err = new Error('Unprocessable Entity');
-          err.status = 422;
-          return next(err);
-        }
+      if (!quote) {
+        err = new Error('Unprocessable Entity');
+        err.status = 422;
+        return next(err);
+      }
 
-        return res.json({ _id: req.params.quoteId });
-      });
+      return res.json(quote);
+    });
   },
 
   search: (req, res, next) => {

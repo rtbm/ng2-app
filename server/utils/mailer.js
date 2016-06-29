@@ -1,5 +1,5 @@
 'use strict';
-const mailerConfig = require('./../config').mailer;
+const mailerConfig = require('../config').mailer;
 const nodemailerTransport = require('nodemailer').createTransport(mailerConfig.smtpConfig);
 const winston = require('winston');
 

@@ -13,6 +13,9 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  permissions: [{
+    type: String,
+  }],
 }, {
   autoIndex: false,
   timestamps: true
