@@ -3,6 +3,7 @@
   <ul>
     <li *ngFor="let user of users">
       {{ user.email }}
+      <x-button (onClick)="usersActions.invite(user)">invite</x-button>
     </li>
   </ul>
 </x-wrapper>

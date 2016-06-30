@@ -10,8 +10,8 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.serverService.get('/users')
         .subscribe(
-          users => resolve(users),
-          err => reject()
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }

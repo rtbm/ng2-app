@@ -20,11 +20,13 @@ const quoteSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
+    index: true,
   },
   status: {
     type: String,
     enum: ['private', 'public'],
-    default: 'public'
+    default: 'public',
+    index: true,
   },
 }, {
   autoIndex: false,

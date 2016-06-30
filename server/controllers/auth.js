@@ -25,17 +25,18 @@ module.exports = {
         return next(err);
       }
 
-      user = new User();
-      user.email = req.body.email;
-      user.password = req.body.password;
+      const newUser = new User();
 
-      user.save((err) => {
+      newUser.email = req.body.email;
+      newUser.password = req.body.password;
+
+      newUser.save((err) => {
         if (err) { return next(err); }
 
         return res.json({
           id_token: jwt.sign({
-            _id: user._id,
-            email: user.email
+            _id: newUser._id,
+            email: newUser.email
           }, config.secret)
         });
       });

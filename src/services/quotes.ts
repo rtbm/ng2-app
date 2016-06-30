@@ -14,8 +14,8 @@ export class QuotesService {
     return new Promise((resolve, reject) => {
       this.serverService.get('/quotes')
         .subscribe(
-          quotes => resolve(quotes),
-          err => reject()
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }
@@ -24,8 +24,8 @@ export class QuotesService {
     return new Promise((resolve, reject) => {
       this.serverService.get(`/quotes/${id}`)
         .subscribe(
-          quote => resolve(quote),
-          err => reject()
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }
@@ -34,8 +34,8 @@ export class QuotesService {
     return new Promise((resolve, reject) => {
       this.serverService.post('/quotes', quote)
         .subscribe(
-          quote => resolve(quote),
-          err => reject(quote)
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }
@@ -44,8 +44,8 @@ export class QuotesService {
     return new Promise((resolve, reject) => {
       this.serverService.put('/quotes', id, quote)
         .subscribe(
-          quote => resolve(quote),
-          err => reject(quote)
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }
@@ -54,8 +54,8 @@ export class QuotesService {
     return new Promise((resolve, reject) => {
       this.serverService.delete('/quotes', id)
         .subscribe(
-          quote => resolve(quote),
-          err => reject()
+          res => resolve(res),
+          err => reject(err)
         );
     });
   }

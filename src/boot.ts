@@ -8,16 +8,10 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { provideRouter } from '@angular/router';
 import { NgRedux } from 'ng2-redux';
-import { ServerService } from './services/server';
-import { AuthService } from './services/auth';
-import { SessionActions } from './actions/session';
+import { ServerService, AuthService, QuotesService, UsersService, InvitesService } from './services';
+import { SessionActions, DashboardActions, UserActions, UsersActions } from './actions';
 import { QtAppComponent } from './app.component';
-import { QuotesService } from './services/quotes';
-import { DashboardActions } from './actions/dashboard';
-import { UserActions } from './actions/user';
 import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
-import { UsersActions } from './actions';
-import { UsersService } from './services';
 
 declare let __PRODUCTION__: any;
 
@@ -43,4 +37,5 @@ bootstrap(QtAppComponent, [
   DashboardActions,
   UsersActions,
   UsersService,
+  InvitesService,
 ]);
