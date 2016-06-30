@@ -8,6 +8,7 @@ const inviteSchema = new mongoose.Schema({
   },
   invited: {
     type: mongoose.Schema.ObjectId,
+    ref: 'User',
     required: true,
     index: true,
   },
