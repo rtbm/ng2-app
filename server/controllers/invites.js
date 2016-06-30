@@ -24,7 +24,7 @@ module.exports = {
     }).exec((err, invite) => {
       if (err) return next(err);
 
-      if (invite) {
+      if (invite || req.user._id.toString() === req.body.invited) {
         err = new Error('Conflict');
         err.status = 409;
         return next(err);
@@ -39,6 +39,29 @@ module.exports = {
         if (err) return next(err);
         return res.json(newInvite);
       });
+    });
+  },
+
+  read: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    Invite.findOne({
+      _id: req.params.inviteId,
+      owner: req.user._id,
+    }).exec((err, invite) => {
+      if (err) return next(err);
+
+      if (!invite) {
+        err = new Error('Not Found');
+        err.status = 404;
+        return next(err);
+      }
+
+      return res.json(invite);
     });
   },
 

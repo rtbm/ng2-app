@@ -4,6 +4,7 @@ const invites = require('../controllers/invites');
 
 router.get('/', invites.findAll);
 
+router.get('/:inviteId', invites.read);
 router.post('/', invites.save);
 router.delete('/:inviteId', invites.remove);
 
