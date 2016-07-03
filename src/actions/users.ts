@@ -14,6 +14,10 @@ export class UsersActions {
   static USERS_INVITE_SUCCESS = 'USERS_INVITE_SUCCESS';
   static USERS_INVITE_ERROR = 'USERS_INVITE_ERROR';
 
+  static USERS_FOLLOW_PENDING = 'USERS_FOLLOW_PENDING';
+  static USERS_FOLLOW_SUCCESS = 'USERS_FOLLOW_SUCCESS';
+  static USERS_FOLLOW_ERROR = 'USERS_FOLLOW_ERROR';
+
   constructor(private ngRedux: NgRedux<IAppState>,
               private usersService: UsersService,
               private invitesService: InvitesService) {
@@ -47,6 +51,22 @@ export class UsersActions {
       }))
       .catch(err => this.ngRedux.dispatch({
         type: UsersActions.USERS_INVITE_ERROR,
+        payload: { errorCode: err.status },
+      }));
+  }
+
+  follow(user) {
+    this.ngRedux.dispatch({
+      type: UsersActions.USERS_FOLLOW_PENDING,
+    });
+
+    this.usersService.follow(user)
+      .then(result => this.ngRedux.dispatch({
+        type: UsersActions.USERS_FOLLOW_SUCCESS,
+        payload: result,
+      }))
+      .catch(err => this.ngRedux.dispatch({
+        type: UsersActions.USERS_FOLLOW_ERROR,
         payload: { errorCode: err.status },
       }));
   }

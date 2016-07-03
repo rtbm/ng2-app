@@ -6,19 +6,23 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
     index: true,
     trim: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
+  following: [{
+    type: Schema.ObjectId,
+  }],
   permissions: [{
     type: String,
   }],
 }, {
   autoIndex: false,
-  timestamps: true
+  timestamps: true,
 });
 
 userSchema.methods.verifyPassword = function(password, callback) {

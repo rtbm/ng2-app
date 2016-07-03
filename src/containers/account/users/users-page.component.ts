@@ -22,6 +22,10 @@ export class QtAccountUsersPageComponent implements OnDestroy {
       this.users = users.toJS();
     });
   }
+  
+  follow(user) {
+    this.usersActions.follow(user);
+  }
 
   ngOnDestroy() {
     this.users$.unsubscribe();

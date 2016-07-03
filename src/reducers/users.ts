@@ -15,6 +15,12 @@ export const INITIAL_STATE = fromJS({
     isError: false,
     errorCode: 0,
   },
+  follow: {
+    isPending: false,
+    isSuccess: false,
+    isError: false,
+    errorCode: 0,
+  },
 });
 
 export type IUsers = Map<string, any>;
@@ -69,6 +75,31 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['invite', 'isPending'], false)
         .setIn(['invite', 'isError'], true)
         .setIn(['invite', 'errorCode'], action.payload.errorCode);
+    }
+
+    case UsersActions.USERS_FOLLOW_PENDING:
+    {
+      return state
+        .setIn(['follow', 'isPending'], true)
+        .setIn(['follow', 'isSuccess'], false)
+        .setIn(['follow', 'isError'], false)
+        .setIn(['follow', 'errorCode'], 0);
+    }
+
+    case UsersActions.USERS_FOLLOW_SUCCESS:
+    {
+      return state
+        .setIn(['follow', 'isPending'], false)
+        .setIn(['follow', 'isSuccess'], true)
+        .setIn(['follow', 'items'], fromJS(action.payload));
+    }
+
+    case UsersActions.USERS_FOLLOW_ERROR:
+    {
+      return state
+        .setIn(['follow', 'isPending'], false)
+        .setIn(['follow', 'isError'], true)
+        .setIn(['follow', 'errorCode'], action.payload.errorCode);
     }
 
     default:
