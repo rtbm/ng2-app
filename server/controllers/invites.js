@@ -18,13 +18,19 @@ module.exports = {
       return next(err);
     }
 
+    if (req.user._id === req.body.invited) {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      return next(err);
+    }
+
     Invite.findOne({
       owner: req.user._id,
       invited: req.body.invited,
     }).exec((err, invite) => {
       if (err) return next(err);
 
-      if (invite || req.user._id.toString() === req.body.invited) {
+      if (invite) {
         err = new Error('Conflict');
         err.status = 409;
         return next(err);

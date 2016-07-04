@@ -31,6 +31,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/quotes', auth.check, require('./routes/quotes'));
 app.use('/api/users', auth.check, require('./routes/users'));
 app.use('/api/invites', auth.check, require('./routes/invites'));
+app.use('/api/circles', auth.check, require('./routes/circles'));
 
 app.use('*', (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 

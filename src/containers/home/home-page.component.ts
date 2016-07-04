@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { XBannerComponent } from '../../components';
-import { QtHeaderComponent } from '../common';
+import { QtHeaderComponent } from '../header';
 
 @Component({
   selector: 'qt-home-page',

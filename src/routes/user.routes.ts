@@ -3,7 +3,7 @@ import {
   QtUserSignupPageComponent,
   QtUserPageComponent,
   QtUserResetPasswordPageComponent,
-  QtUserChangePasswordPageComponent
+  QtUserChangePasswordPageComponent,
 } from '../containers';
 
 export const USER_ROUTES = [{

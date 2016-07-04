@@ -3,15 +3,11 @@ const Quote = require('../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {
-    Quote.find({
-      $or: [
-        { status: 'public' },
-        { owner: req.user._id },
-      ]
-    }).exec((err, quotes) => {
-      if (err) return next(err);
-      return res.json(quotes);
-    });
+    Quote.find({ owner: req.user._id })
+      .exec((err, quotes) => {
+        if (err) return next(err);
+        return res.json(quotes);
+      });
   },
 
   save: (req, res, next) => {
@@ -120,16 +116,10 @@ module.exports = {
     }
 
     Quote.find({
-      $and: [
-        {
-          $text: { $search: req.query.q },
-        }, {
-          $or: [
-            { status: 'public' },
-            { owner: req.user._id },
-          ],
-        },
-      ],
+      $text: {
+        $search: req.query.q
+      },
+      owner: req.user._id,
     }, {
       score: {
         $meta: 'textScore',

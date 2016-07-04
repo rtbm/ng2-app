@@ -30,7 +30,7 @@ const quoteSchema = new mongoose.Schema({
     index: true,
   },
 }, {
-  autoIndex: false,
+  autoIndex: true,
   timestamps: true,
 });
 

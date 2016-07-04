@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { QtHeaderComponent } from '../common';
+import { QtHeaderComponent } from '../header';
 import { select } from 'ng2-redux';
 
 @Component({

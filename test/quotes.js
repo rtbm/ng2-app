@@ -3,9 +3,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server/app');
 const should = chai.should();
-const mongoose = require('mongoose');
-const Quote = require('../server/models/quote');
 const User = require('../server/models/user');
+const Quote = require('../server/models/quote');
 
 chai.use(chaiHttp);
 
@@ -14,6 +13,7 @@ let id_token = '';
 describe('/api/quotes', () => {
   before(done => {
     User.collection.drop();
+
     chai.request(server)
       .post('/api/auth/signup')
       .send({ email: 'test@test', password: 'test', password_confirm: 'test' })

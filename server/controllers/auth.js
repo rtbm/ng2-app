@@ -8,20 +8,20 @@ const mailer = require('../utils/mailer');
 
 module.exports = {
   signup: (req, res, next) => {
+    if (req.body.password !== req.body.password_confirm) {
+      const err = new Error('Bad Request');
+      err.status = 400;
+      return next(err);
+    }
+
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
-      if (err) { return next(err); }
+      if (err) return next(err);
 
       if (user) {
         err = new Error('Conflict');
         err.status = 409;
-        return next(err);
-      }
-
-      if (req.body.password !== req.body.password_confirm) {
-        err = new Error('Bad request');
-        err.status = 400;
         return next(err);
       }
 
@@ -31,7 +31,7 @@ module.exports = {
       newUser.password = req.body.password;
 
       newUser.save((err) => {
-        if (err) { return next(err); }
+        if (err) return next(err);
 
         return res.json({
           id_token: jwt.sign({
@@ -47,7 +47,7 @@ module.exports = {
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
-      if (err) { return next(err); }
+      if (err) return next(err);
 
       if (!user) {
         err = new Error('Unprocessable Entity');
@@ -56,7 +56,7 @@ module.exports = {
       }
 
       user.verifyPassword(req.body.password, (err, result) => {
-        if (err) { return next(err); }
+        if (err) return next(err);
 
         if (!result) {
           err = new Error('Unprocessable Entity');
@@ -76,15 +76,13 @@ module.exports = {
 
   changePassword: (req, res, next) => {
     if(!req.body.token) {
-      let err = new Error('Bad Request');
+      const err = new Error('Bad Request');
       err.status = 400;
       return next(err);
     }
 
     redisClient.get(req.body.token, (err, email) => {
-      redisClient.del(req.body.token);
-
-      if (err) { next(err); }
+      if (err) return next(err);
 
       if (!email) {
         err = new Error('Request Timeout');
@@ -95,7 +93,7 @@ module.exports = {
       User.findOne({
         email,
       }).exec((err, user) => {
-        if (err) { return next(err); }
+        if (err) return next(err);
 
         if (!user) {
           err = new Error('Unprocessable Entity');
@@ -106,7 +104,8 @@ module.exports = {
         user.password = req.body.password;
 
         user.save((err) => {
-          if (err) { return next(err); }
+          if (err) return next(err);
+          redisClient.del(req.body.token);
           return res.json({});
         });
       });
@@ -117,7 +116,7 @@ module.exports = {
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
-      if (err) { return next(err); }
+      if (err) return next(err);
 
       if (!user) {
         err = new Error('Unprocessable Entity');
@@ -137,7 +136,7 @@ module.exports = {
       `;
 
       mailer.send(user.email, 'Reset password request', body, (err, result) => {
-        if (err) { next(err); }
+        if (err) return next(err);
         return res.json(result);
       });
     });

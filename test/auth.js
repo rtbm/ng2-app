@@ -3,13 +3,12 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server/app');
 const should = chai.should();
-const mongoose = require('mongoose');
 const User = require('../server/models/user');
 
 chai.use(chaiHttp);
 
 describe('/api/auth', () => {
-  beforeEach(done => {
+  before(done => {
     User.collection.drop();
     done();
   });

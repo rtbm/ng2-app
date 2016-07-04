@@ -1,7 +1,8 @@
 import {
   QtAccountPageComponent,
   QtAccountDashboardPageComponent,
-  QtAccountUsersPageComponent
+  QtAccountUsersPageComponent,
+  QtAccountCirclesPageComponent,
 } from '../containers';
 
 export const ACCOUNT_ROUTES = [{
@@ -12,6 +13,9 @@ export const ACCOUNT_ROUTES = [{
     component: QtAccountDashboardPageComponent,
   }, {
     path: 'users',
-    component: QtAccountUsersPageComponent
+    component: QtAccountUsersPageComponent,
+  }, {
+    path: 'circles',
+    component: QtAccountCirclesPageComponent,
   }],
 }];

@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -14,14 +13,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  following: [{
-    type: Schema.ObjectId,
-  }],
   permissions: [{
     type: String,
+    select: false,
   }],
 }, {
-  autoIndex: false,
+  autoIndex: true,
   timestamps: true,
 });
 

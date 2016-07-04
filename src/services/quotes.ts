@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ServerService } from './server';
 
 export interface Quote {
+  name: string;
   content: string;
+  url: string;
 }
 
 @Injectable()

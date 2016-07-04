@@ -13,7 +13,7 @@ const inviteSchema = new mongoose.Schema({
     index: true,
   },
 }, {
-  autoIndex: false,
+  autoIndex: true,
   timestamps: true,
 });
 

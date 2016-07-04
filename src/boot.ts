@@ -8,8 +8,8 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { provideRouter } from '@angular/router';
 import { NgRedux } from 'ng2-redux';
-import { ServerService, AuthService, QuotesService, UsersService, InvitesService } from './services';
-import { SessionActions, DashboardActions, UserActions, UsersActions } from './actions';
+import { ServerService, AuthService, QuotesService, UsersService, InvitesService, CirclesService } from './services';
+import { SessionActions, DashboardActions, UserActions, UsersActions, CirclesActions } from './actions';
 import { QtAppComponent } from './app.component';
 import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
 
@@ -38,4 +38,6 @@ bootstrap(QtAppComponent, [
   UsersActions,
   UsersService,
   InvitesService,
+  CirclesService,
+  CirclesActions
 ]);

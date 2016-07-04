@@ -3,10 +3,9 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server/app');
 const should = chai.should();
-const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const User = require('../server/models/user');
 const Invite = require('../server/models/invite');
-const jwt = require('jsonwebtoken');
 
 chai.use(chaiHttp);
 
@@ -17,6 +16,7 @@ let invited = '';
 describe('/api/invites', () => {
   before(done => {
     User.collection.drop();
+
     chai.request(server)
       .post('/api/auth/signup')
       .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
@@ -45,7 +45,7 @@ describe('/api/invites', () => {
       .set('Authorization', `Bearer ${id_token}`)
       .send({ invited: _id })
       .end((err, res) => {
-        res.should.have.a.status(409);
+        res.should.have.a.status(400);
         done();
       });
   });
@@ -70,12 +70,12 @@ describe('/api/invites', () => {
     chai.request(server)
       .post('/api/invites')
       .set('Authorization', `Bearer ${id_token}`)
-      .send({ invited: _id })
+      .send({ invited })
       .end((err, res) => {
         chai.request(server)
           .post('/api/invites')
           .set('Authorization', `Bearer ${id_token}`)
-          .send({ invited: _id })
+          .send({ invited })
           .end((err, res) => {
             res.should.have.a.status(409);
             done();
