@@ -3,11 +3,7 @@ import { XWrapperComponent } from '../wrapper';
 
 @Component({
   selector: 'x-banner',
-  template: `
-    <x-wrapper>
-      <ng-content></ng-content>
-    </x-wrapper>
-  `,
+  template: require('./banner.component.html'),
   styles: [require('./banner.component.less')],
   directives: [XWrapperComponent],
 })

@@ -1,0 +1,17 @@
+@import '../../../assets/colors';
+
+textarea {
+  border: .1rem solid @border;
+  padding: .75rem;
+  outline: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:hover {
+    border: .1rem solid darken(@border, 10%);
+  }
+
+  &:focus {
+    border: .1rem solid darken(@border, 20%);
+  }
+}
