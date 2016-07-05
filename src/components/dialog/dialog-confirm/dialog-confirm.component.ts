@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { XModalContentComponent, XModalMessageComponent, XModalActionsComponent } from '../../modal';
 import { XOverlayComponent } from '../../overlay';
-import { XButtonComponent } from '../..//button/button.component';
+import { XButtonComponent } from '../../button';
 
 @Component({
   selector: 'x-dialog-confirm',
