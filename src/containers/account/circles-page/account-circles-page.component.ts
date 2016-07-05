@@ -1,30 +1,43 @@
 import { Component, OnDestroy } from '@angular/core';
-import { XWrapperComponent } from '../../../components';
+import {
+  XListComponent,
+  XListItemComponent,
+  XListItemContentComponent,
+  XListItemActionsComponent,
+  XWrapperComponent,
+  XDialogConfirmComponent,
+  XButtonComponent,
+  XModalFormComponent,
+  XBoxComponent,
+  XBoxContentComponent,
+} from '../../../components';
 import { CirclesActions } from '../../../actions/circles';
 import { select } from 'ng2-redux';
-import { XButtonComponent } from '../../../components';
-import { QtCirclesAddFormComponent } from '../circles-add-form';
+import { QtAccountCircleAddFormComponent } from '../circle-add-form';
+import { QtAccountCircleEditFormComponent } from '../circle-edit-form';
 
 @Component({
   selector: 'qt-account-circles-page',
   template: require('./account-circles-page.component.html'),
   styles: [require('./account-circles-page.component.less')],
-  directives: [XWrapperComponent, XButtonComponent, QtCirclesAddFormComponent],
+  directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
+    XListItemActionsComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent,
+    QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent],
 })
 export class QtAccountCirclesPageComponent implements OnDestroy {
-  @select(state => state.circles.getIn(['circles', 'items'])) private circlesItems$;
+  @select(state => state.circles) private circles$;
 
-  private items = [];
+  private circles;
 
   constructor(private circlesActions: CirclesActions) {
     this.circlesActions.fetchCircles();
 
-    this.circlesItems$.subscribe((items: any) => {
-      this.items = items.toJS();
+    this.circles$.subscribe((circles: any) => {
+      this.circles = circles.toJS();
     });
   }
 
   ngOnDestroy() {
-    this.circlesItems$.unsubscribe();
+    this.circles$.unsubscribe();
   }
 }

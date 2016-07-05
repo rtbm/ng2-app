@@ -6,3 +6,4 @@ export * from './form-input.component';
 export * from './form-message.component';
 export * from './form-textarea.component';
 export * from './form-message.component';
+export * from './form-content.component';

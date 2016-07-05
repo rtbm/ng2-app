@@ -8,9 +8,7 @@ import {
   XFormGroupComponent,
   XFormMessageComponent,
   XButtonComponent,
-  XBoxComponent,
-  XBoxHeaderComponent,
-  XBoxContentComponent,
+  XFormContentComponent,
 } from '../../../components';
 
 @Component({
@@ -18,8 +16,7 @@ import {
   template: require('./account-quote-add-form.component.html'),
   styles: [require('./account-quote-add-form.component.less')],
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
-    XButtonComponent, XFormInputComponent, XFormMessageComponent, XBoxComponent, XBoxHeaderComponent,
-    XBoxContentComponent],
+    XButtonComponent, XFormInputComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtAccountQuoteAddFormComponent {
   @Output() private onSubmit = new EventEmitter();

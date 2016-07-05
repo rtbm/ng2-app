@@ -15,7 +15,7 @@ export class QtUserPageComponent implements OnDestroy {
   constructor(private router: Router) {
     this.isAuthorized$.subscribe((isAuthorized: boolean) => {
       if (isAuthorized) {
-        this.router.navigate(['/account/dashboard']);
+        this.router.navigate(['/account/quotes']);
       }
     });
   }

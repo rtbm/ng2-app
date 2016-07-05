@@ -1,15 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
-import { XWrapperComponent, XButtonComponent } from '../../../components';
+import { XWrapperComponent, XButtonComponent, XModalFormComponent } from '../../../components';
 import { UsersActions } from '../../../actions/users';
 import { select } from 'ng2-redux';
-import { QtAccountCirclesModalComponent } from '../circles-modal';
+import { QtAccountCirclesSelectFormComponent } from '../circles-select-form';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'qt-account-users-page',
   template: require('./account-users-page.component.html'),
   styles: [require('./account-users-page.component.less')],
-  directives: [XWrapperComponent, XButtonComponent, QtAccountCirclesModalComponent],
+  directives: [XWrapperComponent, XButtonComponent, XModalFormComponent, QtAccountCirclesSelectFormComponent],
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnDestroy {

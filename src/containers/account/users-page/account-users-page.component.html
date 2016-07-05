@@ -9,6 +9,7 @@
   </ul>
 </x-wrapper>
 
-<qt-account-circles-modal *ngIf="usersFollow.isModalVisible"
-  (onSubmit)="handleFollow($event)"
-  (onCancel)="usersActions.followModalCancel()"></qt-account-circles-modal>
+<x-modal-form *ngIf="usersFollow.isModalVisible">
+  <qt-account-circles-select-form (onSubmit)="handleFollow($event)"
+    (onCancel)="usersActions.followModalCancel()"></qt-account-circles-select-form>
+</x-modal-form>

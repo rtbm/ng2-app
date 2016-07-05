@@ -6,18 +6,18 @@ import {
   XFormGroupComponent,
   XFormMessageComponent,
   XButtonComponent,
+  XFormContentComponent,
 } from '../../../components';
 import { ControlGroup, Control, FormBuilder, Validators } from '@angular/common';
-import { CirclesActions } from '../../../actions/circles';
 
 @Component({
-  selector: 'qt-circles-add-form',
-  template: require('./circles-add-form.component.html'),
-  styles: [require('./circles-add-form.component.less')],
+  selector: 'qt-account-circle-add-form',
+  template: require('./account-circle-add-form.component.html'),
+  styles: [require('./account-circle-add-form.component.less')],
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
-    XFormMessageComponent],
+    XFormMessageComponent, XFormContentComponent],
 })
-export class QtCirclesAddFormComponent {
+export class QtAccountCircleAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
 
   private form: ControlGroup;

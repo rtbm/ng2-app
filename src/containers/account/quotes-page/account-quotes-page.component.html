@@ -1,0 +1,45 @@
+<x-wrapper>
+  <x-box>
+    <x-box-header>Create new :)</x-box-header>
+    <x-box-content>
+      <qt-account-quote-add-form (onSubmit)="quotesActions.saveQuote($event)"></qt-account-quote-add-form>
+    </x-box-content>
+  </x-box>
+
+  <x-list>
+    <x-list-item *ngFor="let quote of quotes.quotes.items">
+      <x-list-item-content>
+        <h1>{{quote.name}}</h1>
+        <p>{{quote.content}}</p>
+        <p>{{quote.url}}</p>
+      </x-list-item-content>
+
+      <x-list-item-actions>
+        <div *ngIf="quote.owner === (userId$ | async)">
+          <x-button size="normal" preset="neutral"
+            (onClick)="quotesActions.showUpdateQuoteModal(quote)">Edit
+          </x-button>
+          <x-button size="normal" preset="negative"
+            (onClick)="quotesActions.showRemoveQuoteConfirm(quote)">Delete
+          </x-button>
+        </div>
+      </x-list-item-actions>
+
+    </x-list-item>
+  </x-list>
+</x-wrapper>
+
+<x-dialog-confirm *ngIf="quotes.removeQuote.isConfirmVisible"
+  (onConfirm)="quotesActions.removeQuote(quotes.removeQuote.item)"
+  (onCancel)="quotesActions.removeQuoteConfirmCancel()">
+  You are going to remove:<br/>
+  <strong>{{quotes.removeQuote.item.name}}.</strong><br/>
+  Are you sure?
+</x-dialog-confirm>
+
+<x-modal-form *ngIf="quotes.updateQuote.isModalVisible">
+  <qt-account-quote-edit-form
+    (onSubmit)="quotesActions.updateQuote($event)"
+    (onCancel)="quotesActions.updateQuoteModalCancel()">
+  </qt-account-quote-edit-form>
+</x-modal-form>

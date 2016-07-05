@@ -1,11 +1,41 @@
 <x-wrapper>
   <h1>Circles</h1>
+  <x-box>
+    <x-box-content>
+      <qt-account-circle-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-account-circle-add-form>
+    </x-box-content>
+  </x-box>
 
-  <qt-circles-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-circles-add-form>
+  <x-list>
+    <x-list-item *ngFor="let circle of circles.circles.items">
+      <x-list-item-content>
+        <h1>{{circle.name}}</h1>
+      </x-list-item-content>
 
-  <ul>
-    <li *ngFor="let circle of items">
-      {{ circle.name }}
-    </li>
-  </ul>
+      <x-form-item-actions>
+        <x-button size="normal" preset="neutral"
+                  (onClick)="circlesActions.showUpdateCircleModal(circle)">Edit
+        </x-button>
+        <x-button size="normal" preset="negative"
+                  (onClick)="circlesActions.showRemoveCircleConfirm(circle)">Delete
+        </x-button>
+      </x-form-item-actions>
+
+    </x-list-item>
+  </x-list>
+
 </x-wrapper>
+
+<x-dialog-confirm *ngIf="circles.removeCircle.isConfirmVisible"
+  (onConfirm)="circlesActions.removeCircle(circles.removeCircle.item)"
+  (onCancel)="circlesActions.removeCircleConfirmCancel()">
+  You are going to remove:<br/>
+  <strong>{{circles.removeCircle.item.name}}.</strong><br/>
+  Are you sure?
+</x-dialog-confirm>
+
+<x-modal-form *ngIf="circles.updateCircle.isModalVisible">
+  <qt-account-circle-edit-form (onSubmit)="circlesActions.updateCircle($event)"
+    (onCancel)="circlesActions.updateCircleModalCancel()">
+  </qt-account-circle-edit-form>
+</x-modal-form>

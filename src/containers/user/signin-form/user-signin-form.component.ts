@@ -7,6 +7,7 @@ import {
   XFormGroupComponent,
   XLabelComponent,
   XButtonComponent,
+  XFormContentComponent,
 } from '../../../components';
 import {
   FORM_DIRECTIVES,
@@ -28,7 +29,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   template: require('./user-signin-form.component.html'),
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
-    XFormMessageComponent],
+    XFormMessageComponent, XFormContentComponent],
   pipes: [AsyncPipe],
 })
 export class QtUserSigninFormComponent implements OnDestroy {

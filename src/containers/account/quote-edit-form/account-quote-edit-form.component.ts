@@ -10,6 +10,7 @@ import {
   XModalMessageComponent,
   XButtonComponent,
   XLabelComponent,
+  XFormContentComponent,
 } from '../../../components';
 import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
 import { select } from 'ng2-redux';
@@ -19,10 +20,11 @@ import { select } from 'ng2-redux';
   template: require('./account-quote-edit-form.component.html'),
   styles: [require('./account-quote-edit-form.component.less')],
   directives: [XOverlayComponent, XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
-    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent, XLabelComponent],
+    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent, XLabelComponent,
+    XFormContentComponent],
 })
 export class QtAccountQuoteEditFormComponent implements OnDestroy {
-  @select(state => state.dashboard.getIn(['updateQuote', 'item'])) private updateQuote$;
+  @select(state => state.quotes.getIn(['updateQuote', 'item'])) private updateQuote$;
 
   @Output() onCancel = new EventEmitter();
   @Output() onSubmit = new EventEmitter();

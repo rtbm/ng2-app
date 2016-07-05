@@ -7,39 +7,42 @@ import {
   XWrapperComponent,
   XButtonComponent,
   XDialogConfirmComponent,
-  XModalMessageComponent,
+  XModalFormComponent,
+  XBoxComponent,
+  XBoxHeaderComponent,
+  XBoxContentComponent,
 } from '../../../components';
 import { select } from 'ng2-redux';
-import { DashboardActions } from '../../../actions';
+import { QuotesActions } from '../../../actions';
 import { QtAccountQuoteAddFormComponent } from '../quote-add-form';
 import { QtAccountQuoteEditFormComponent } from '../quote-edit-form';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'qt-account-dashboard-page',
-  template: require('./account-dashboard-page.component.html'),
-  styles: [require('./account-dashboard-page.component.less')],
+  selector: 'qt-account-quotes-page',
+  template: require('./account-quotes-page.component.html'),
+  styles: [require('./account-quotes-page.component.less')],
   pipes: [AsyncPipe],
   directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
     XListItemActionsComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
-    QtAccountQuoteEditFormComponent, XModalMessageComponent],
+    QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent, XBoxContentComponent],
 })
-export class QtAccountDashboardPageComponent implements OnDestroy {
-  @select(state => state.dashboard) private dashboard$;
+export class QtAccountQuotesPageComponent implements OnDestroy {
+  @select(state => state.quotes) private quotes$;
   @select(state => state.session.getIn(['user', '_id'])) private userId$;
 
-  private dashboard = {};
+  private quotes = {};
 
-  constructor(private dashboardActions: DashboardActions) {
-    this.dashboardActions.fetchQuotes();
+  constructor(private quotesActions: QuotesActions) {
+    this.quotesActions.fetchQuotes();
 
-    this.dashboard$.subscribe((dashboard: any) => {
-      this.dashboard = dashboard.toJS();
+    this.quotes$.subscribe((quotes: any) => {
+      this.quotes = quotes.toJS();
     });
   }
 
   ngOnDestroy() {
-    this.dashboard$.unsubscribe();
+    this.quotes$.unsubscribe();
     this.userId$.unsubscribe();
   }
 }

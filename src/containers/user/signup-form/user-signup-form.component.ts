@@ -7,6 +7,7 @@ import {
   XFormMessageComponent,
   XLabelComponent,
   XButtonComponent,
+  XFormContentComponent,
 } from '../../../components';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { UserActions } from '../../../actions';
@@ -17,7 +18,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   selector: 'qt-user-signup-form',
   template: require('./user-signup-form.component.html'),
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserSignupFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;

@@ -7,6 +7,7 @@ import {
   XFormMessageComponent,
   XLabelComponent,
   XButtonComponent,
+  XFormContentComponent,
 } from '../../../components';
 import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
@@ -17,7 +18,7 @@ import { UserActions } from '../../../actions';
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.less')],
   directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
+    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserChangePasswordFormComponent {
   private form: ControlGroup;

@@ -1,4 +1,4 @@
-import { DashboardActions } from '../actions/dashboard';
+import { QuotesActions } from '../actions/quotes';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -34,11 +34,11 @@ export const INITIAL_STATE = fromJS({
   },
 });
 
-export type IDashboard = Map<string, any>;
+export type IQuotes = Map<string, any>;
 
-export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any = { type: '' }) {
+export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case DashboardActions.DASHBOARD_QUOTES_FETCH_PENDING:
+    case QuotesActions.QUOTES_FETCH_PENDING:
     {
       return state
         .setIn(['quotes', 'isPending'], true)
@@ -47,7 +47,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['quotes', 'errorCode'], 0);
     }
 
-    case DashboardActions.DASHBOARD_QUOTES_FETCH_SUCCESS:
+    case QuotesActions.QUOTES_FETCH_SUCCESS:
     {
       return state
         .setIn(['quotes', 'isPending'], false)
@@ -55,7 +55,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['quotes', 'items'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTES_FETCH_ERROR:
+    case QuotesActions.QUOTES_FETCH_ERROR:
     {
       return state
         .setIn(['quotes', 'isPending'], false)
@@ -63,7 +63,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['quotes', 'errorCode'], action.payload.errorCode);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_SAVE_PENDING:
+    case QuotesActions.QUOTE_SAVE_PENDING:
     {
       return state
         .setIn(['saveQuote', 'isPending'], true)
@@ -72,7 +72,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['saveQuote', 'errorCode'], 0);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_SAVE_SUCCESS:
+    case QuotesActions.QUOTE_SAVE_SUCCESS:
     {
       return state
         .setIn(['saveQuote', 'isPending'], false)
@@ -80,7 +80,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['saveQuote', 'item'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_SAVE_ERROR:
+    case QuotesActions.QUOTE_SAVE_ERROR:
     {
       return state
         .setIn(['saveQuote', 'isPending'], false)
@@ -88,7 +88,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['saveQuote', 'errorCode'], action.payload.errorCode);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_PENDING:
+    case QuotesActions.QUOTE_UPDATE_FETCH_PENDING:
     {
       return state
         .setIn(['updateQuote', 'isPending'], true)
@@ -98,7 +98,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'item'], fromJS({}));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_SUCCESS:
+    case QuotesActions.QUOTE_UPDATE_FETCH_SUCCESS:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
@@ -106,7 +106,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'item'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_FETCH_ERROR:
+    case QuotesActions.QUOTE_UPDATE_FETCH_ERROR:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
@@ -114,7 +114,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'errorCode'], action.payload.errorCode);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_PENDING:
+    case QuotesActions.QUOTE_UPDATE_PENDING:
     {
       return state
         .setIn(['updateQuote', 'isPending'], true)
@@ -124,7 +124,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'item'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_SUCCESS:
+    case QuotesActions.QUOTE_UPDATE_SUCCESS:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
@@ -133,7 +133,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'item'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_ERROR:
+    case QuotesActions.QUOTE_UPDATE_ERROR:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
@@ -141,33 +141,33 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'errorCode'], action.payload.errorCode);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_MODAL:
+    case QuotesActions.QUOTE_UPDATE_MODAL:
     {
       return state.setIn(['updateQuote', 'isModalVisible'], true);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_UPDATE_MODAL_CANCEL:
+    case QuotesActions.QUOTE_UPDATE_MODAL_CANCEL:
     {
       return state
         .setIn(['updateQuote', 'item'], fromJS({}))
         .setIn(['updateQuote', 'isModalVisible'], false);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_REMOVE_CONFIRM:
+    case QuotesActions.QUOTE_REMOVE_CONFIRM:
     {
       return state
         .setIn(['removeQuote', 'item'], fromJS(action.payload))
         .setIn(['removeQuote', 'isConfirmVisible'], true);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_REMOVE_CONFIRM_CANCEL:
+    case QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL:
     {
       return state
         .setIn(['removeQuote', 'item'], {})
         .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_REMOVE_PENDING:
+    case QuotesActions.QUOTE_REMOVE_PENDING:
     {
       return state
         .setIn(['removeQuote', 'isPending'], true)
@@ -177,7 +177,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_REMOVE_SUCCESS:
+    case QuotesActions.QUOTE_REMOVE_SUCCESS:
     {
       return state
         .setIn(['removeQuote', 'isPending'], false)
@@ -185,7 +185,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['removeQuote', 'item'], fromJS(action.payload));
     }
 
-    case DashboardActions.DASHBOARD_QUOTE_REMOVE_ERROR:
+    case QuotesActions.QUOTE_REMOVE_ERROR:
     {
       return state
         .setIn(['removeQuote', 'isPending'], false)

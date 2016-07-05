@@ -1,26 +1,28 @@
 <x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
-  <x-form-message preset="error" *ngIf="submitted && (errorCode$ | async) === 409">
-    Account already exists.
-  </x-form-message>
+  <x-form-content>
+    <x-form-message preset="error" *ngIf="submitted && (errorCode$ | async) === 409">
+      Account already exists.
+    </x-form-message>
 
-  <x-form-group>
-    <x-label>E-mail</x-label>
-    <x-form-input [formControl]="email" type="email"></x-form-input>
-  </x-form-group>
+    <x-form-group>
+      <x-label>E-mail</x-label>
+      <x-form-input [formControl]="email" type="email"></x-form-input>
+    </x-form-group>
 
-  <x-form-group>
-    <x-label>Password</x-label>
-    <x-form-input [formControl]="password" type="password"></x-form-input>
-  </x-form-group>
+    <x-form-group>
+      <x-label>Password</x-label>
+      <x-form-input [formControl]="password" type="password"></x-form-input>
+    </x-form-group>
 
-  <x-form-group>
-    <x-label>Password confirm</x-label>
-    <x-form-input [formControl]="password_confirm" type="password"></x-form-input>
-  </x-form-group>
+    <x-form-group>
+      <x-label>Password confirm</x-label>
+      <x-form-input [formControl]="password_confirm" type="password"></x-form-input>
+    </x-form-group>
 
-  <x-form-error *ngIf="password_confirm.dirty && password_confirm.value !== password.value">
-    Password doesn't match confirmation.
-  </x-form-error>
+    <x-form-error *ngIf="password_confirm.dirty && password_confirm.value !== password.value">
+      Password doesn't match confirmation.
+    </x-form-error>
+  </x-form-content>
 
   <x-form-actions>
     <x-button preset="positive" type="submit">Create an account</x-button>
