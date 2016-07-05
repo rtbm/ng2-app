@@ -1,33 +1,42 @@
 import { Component, OnDestroy } from '@angular/core';
-import { XWrapperComponent } from '../../../components';
+import { XWrapperComponent, XButtonComponent } from '../../../components';
 import { UsersActions } from '../../../actions/users';
 import { select } from 'ng2-redux';
-import { XButtonComponent } from '../../../components';
+import { QtAccountCirclesModalComponent } from '../circles-modal';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'qt-account-users-page',
   template: require('./account-users-page.component.html'),
   styles: [require('./account-users-page.component.less')],
-  directives: [XWrapperComponent, XButtonComponent],
+  directives: [XWrapperComponent, XButtonComponent, QtAccountCirclesModalComponent],
+  pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnDestroy {
-  @select(state => state.users.getIn(['users', 'items'])) private users$;
+  @select(state => state.users.get('users')) private usersUsers$;
+  @select(state => state.users.get('follow')) private usersFollow$;
 
-  private items = [];
+  private usersUsers;
+  private usersFollow;
 
   constructor(private usersActions: UsersActions) {
     this.usersActions.fetchUsers();
 
-    this.users$.subscribe((items: any) => {
-      this.items = items.toJS();
+    this.usersUsers$.subscribe((items: any) => {
+      this.usersUsers = items.toJS();
+    });
+
+    this.usersFollow$.subscribe((follow: any) => {
+      this.usersFollow = follow.toJS();
     });
   }
 
-  follow(user) {
-    this.usersActions.follow(user);
+  handleFollow(circle) {
+    this.usersActions.follow(circle._id, this.usersFollow.user);
   }
 
   ngOnDestroy() {
-    this.users$.unsubscribe();
+    this.usersUsers$.unsubscribe();
+    this.usersFollow$.unsubscribe();
   }
 }

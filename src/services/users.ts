@@ -15,14 +15,17 @@ export class UsersService {
         );
     });
   }
-  
-  follow(user) {
+
+  follow(circleId, user) {
     return new Promise((resolve, reject) => {
-      this.serverService.post('/users/follow', { uid: user._id })
-        .subscribe(
+      this.serverService.post(`/circles/${circleId}/users`, {
+        user: {
+          _id: user._id,
+        },
+      }).subscribe(
           res => resolve(res),
           err => reject(err)
-        )
+        );
     });
   }
 }

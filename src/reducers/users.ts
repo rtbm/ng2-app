@@ -20,6 +20,8 @@ export const INITIAL_STATE = fromJS({
     isSuccess: false,
     isError: false,
     errorCode: 0,
+    user: {},
+    isModalVisible: false,
   },
 });
 
@@ -91,7 +93,8 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
       return state
         .setIn(['follow', 'isPending'], false)
         .setIn(['follow', 'isSuccess'], true)
-        .setIn(['follow', 'items'], fromJS(action.payload));
+        .setIn(['follow', 'items'], fromJS(action.payload))
+        .setIn(['follow', 'isModalVisible'], false);
     }
 
     case UsersActions.USERS_FOLLOW_ERROR:
@@ -100,6 +103,18 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['follow', 'isPending'], false)
         .setIn(['follow', 'isError'], true)
         .setIn(['follow', 'errorCode'], action.payload.errorCode);
+    }
+
+    case UsersActions.USERS_FOLLOW_MODAL:
+    {
+      return state.setIn(['follow', 'isModalVisible'], true)
+        .setIn(['follow', 'user'], fromJS(action.payload));
+    }
+
+    case UsersActions.USERS_FOLLOW_MODAL_CANCEL:
+    {
+      return state.setIn(['follow', 'isModalVisible'], false)
+        .setIn(['follow', 'user'], fromJS({}));
     }
 
     default:

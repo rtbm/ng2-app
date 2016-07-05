@@ -20,7 +20,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
 })
 export class QtUserSignupFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['signupForm', 'errorCode'])) private errorCode$;
+  @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;

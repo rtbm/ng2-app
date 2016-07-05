@@ -120,7 +120,7 @@ export function dashboardReducer(state: IDashboard = INITIAL_STATE, action: any 
         .setIn(['updateQuote', 'isPending'], true)
         .setIn(['updateQuote', 'isSuccess'], false)
         .setIn(['updateQuote', 'isError'], false)
-        .setIn(['saveQuote', 'errorCode'], 0)
+        .setIn(['updateQuote', 'errorCode'], 0)
         .setIn(['updateQuote', 'item'], fromJS(action.payload));
     }
 

@@ -1,10 +1,14 @@
 <x-wrapper>
   <h1>Users</h1>
   <ul>
-    <li *ngFor="let user of items">
+    <li *ngFor="let user of usersUsers.items">
       {{ user.email }}
       <x-button (onClick)="usersActions.invite(user)">invite</x-button>
-      <x-button (onClick)="usersActions.follow(user)">follow</x-button>
+      <x-button (onClick)="usersActions.showFollowModal(user)">follow</x-button>
     </li>
   </ul>
 </x-wrapper>
+
+<qt-account-circles-modal *ngIf="usersFollow.isModalVisible"
+  (onSubmit)="handleFollow($event)"
+  (onCancel)="usersActions.followModalCancel()"></qt-account-circles-modal>

@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   styles: [require('./overlay.component.less')],
 })
 export class XOverlayComponent {
-  constructor() {
-  }
 }

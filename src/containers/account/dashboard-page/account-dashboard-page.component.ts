@@ -6,7 +6,8 @@ import {
   XListItemActionsComponent,
   XWrapperComponent,
   XButtonComponent,
-  XDialogConfirmComponent
+  XDialogConfirmComponent,
+  XModalMessageComponent,
 } from '../../../components';
 import { select } from 'ng2-redux';
 import { DashboardActions } from '../../../actions';
@@ -21,7 +22,7 @@ import { AsyncPipe } from '@angular/common';
   pipes: [AsyncPipe],
   directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
     XListItemActionsComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
-    QtAccountQuoteEditFormComponent],
+    QtAccountQuoteEditFormComponent, XModalMessageComponent],
 })
 export class QtAccountDashboardPageComponent implements OnDestroy {
   @select(state => state.dashboard) private dashboard$;

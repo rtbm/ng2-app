@@ -15,29 +15,29 @@ export type ICircles = Map<string, any>;
 
 export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case CirclesActions.CIRCLES_FETCH_PENDING:
+    case CirclesActions.CIRCLES_CIRCLES_FETCH_PENDING:
     {
       return state
-        .setIn(['users', 'isPending'], true)
-        .setIn(['users', 'isSuccess'], false)
-        .setIn(['users', 'isError'], false)
-        .setIn(['users', 'errorCode'], 0);
+        .setIn(['circles', 'isPending'], true)
+        .setIn(['circles', 'isSuccess'], false)
+        .setIn(['circles', 'isError'], false)
+        .setIn(['circles', 'errorCode'], 0);
     }
 
-    case CirclesActions.CIRCLES_FETCH_SUCCESS:
+    case CirclesActions.CIRCLES_CIRCLES_FETCH_SUCCESS:
     {
       return state
-        .setIn(['users', 'isPending'], false)
-        .setIn(['users', 'isSuccess'], true)
-        .setIn(['users', 'items'], fromJS(action.payload));
+        .setIn(['circles', 'isPending'], false)
+        .setIn(['circles', 'isSuccess'], true)
+        .setIn(['circles', 'items'], fromJS(action.payload));
     }
 
-    case CirclesActions.CIRCLES_FETCH_ERROR:
+    case CirclesActions.CIRCLES_CIRCLES_FETCH_ERROR:
     {
       return state
-        .setIn(['users', 'isPending'], false)
-        .setIn(['users', 'isError'], true)
-        .setIn(['users', 'errorCode'], action.payload.errorCode);
+        .setIn(['circles', 'isPending'], false)
+        .setIn(['circles', 'isError'], true)
+        .setIn(['circles', 'errorCode'], action.payload.errorCode);
     }
 
     default:

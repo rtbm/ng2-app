@@ -24,7 +24,7 @@ module.exports = {
       owner: req.user._id,
     });
 
-    quote.save(err => {
+    quote.save((err, quote) => {
       if (err) return next(err);
       return res.json(quote);
     });
@@ -38,10 +38,8 @@ module.exports = {
     }
 
     Quote.findOne({
-      $or: [
-        { _id: req.params.quoteId, status: 'public' },
-        { _id: req.params.quoteId, owner: req.user._id },
-      ],
+      _id: req.params.quoteId,
+      owner: req.user._id,
     }).exec((err, quote) => {
       if (err) return next(err);
 
@@ -78,7 +76,7 @@ module.exports = {
       quote.content = req.body.content;
       quote.url = req.body.url;
 
-      quote.save(err => {
+      quote.save((err, quote) => {
         if (err) return next(err);
         return res.json(quote);
       });

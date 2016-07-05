@@ -41,9 +41,9 @@ module.exports = {
         invited: req.body.invited,
       });
 
-      newInvite.save(err => {
+      newInvite.save((err, invite) => {
         if (err) return next(err);
-        return res.json(newInvite);
+        return res.json(invite);
       });
     });
   },

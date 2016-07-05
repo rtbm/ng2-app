@@ -1,0 +1,9 @@
+<x-form [formModel]="form" (onSubmit)="handleSubmit()">
+  <x-form-group>
+    <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
+  </x-form-group>
+
+  <x-form-actions>
+    <x-button type="submit">Submit</x-button>
+  </x-form-actions>
+</x-form>

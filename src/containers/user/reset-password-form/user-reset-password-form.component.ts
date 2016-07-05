@@ -21,7 +21,7 @@ import { select } from 'ng2-redux';
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent],
 })
 export class QtUserResetPasswordFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['resetPasswordForm', 'errorCode'])) private errorCode$;
+  @select(state => state.user.getIn(['resetPassword', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;

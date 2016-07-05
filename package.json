@@ -10,7 +10,8 @@
     "typings": "typings install",
     "postinstall": "npm run typings",
     "clean": "rimraf public/",
-    "test": "cross-env NODE_ENV=test mocha"
+    "test": "cross-env NODE_ENV=test mocha",
+    "lint": "tslint src/**/*.ts"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

@@ -5,9 +5,13 @@ import { CirclesService } from '../services/circles';
 
 @Injectable()
 export class CirclesActions {
-  static CIRCLES_FETCH_PENDING = 'CIRCLES_FETCH_PENDING';
-  static CIRCLES_FETCH_SUCCESS = 'CIRCLES_FETCH_SUCCESS';
-  static CIRCLES_FETCH_ERROR = 'CIRCLES_FETCH_ERROR';
+  static CIRCLES_CIRCLES_FETCH_PENDING = 'CIRCLES_CIRCLES_FETCH_PENDING';
+  static CIRCLES_CIRCLES_FETCH_SUCCESS = 'CIRCLES_CIRCLES_FETCH_SUCCESS';
+  static CIRCLES_CIRCLES_FETCH_ERROR = 'CIRCLES_CIRCLES_FETCH_ERROR';
+
+  static CIRCLES_CIRCLE_SAVE_PENDING = 'CIRCLES_CIRCLE_SAVE_PENDING';
+  static CIRCLES_CIRCLE_SAVE_SUCCESS = 'CIRCLES_CIRCLE_SAVE_SUCCESS';
+  static CIRCLES_CIRCLE_SAVE_ERROR = 'CIRCLES_CIRCLE_SAVE_ERROR';
 
   constructor(private ngRedux: NgRedux<IAppState>,
               private circlesService: CirclesService) {
@@ -15,16 +19,36 @@ export class CirclesActions {
 
   fetchCircles() {
     this.ngRedux.dispatch({
-      type: CirclesActions.CIRCLES_FETCH_PENDING,
+      type: CirclesActions.CIRCLES_CIRCLES_FETCH_PENDING,
     });
 
     this.circlesService.fetchAll()
       .then(result => this.ngRedux.dispatch({
-        type: CirclesActions.CIRCLES_FETCH_SUCCESS,
+        type: CirclesActions.CIRCLES_CIRCLES_FETCH_SUCCESS,
         payload: result,
       }))
       .catch(err => this.ngRedux.dispatch({
-        type: CirclesActions.CIRCLES_FETCH_ERROR,
+        type: CirclesActions.CIRCLES_CIRCLES_FETCH_ERROR,
+        payload: { errorCode: err.status },
+      }));
+  }
+
+  saveCircle(circle) {
+    this.ngRedux.dispatch({
+      type: CirclesActions.CIRCLES_CIRCLE_SAVE_PENDING,
+      payload: circle,
+    });
+
+    this.circlesService.save(circle)
+      .then(result => {
+        this.ngRedux.dispatch({
+          type: CirclesActions.CIRCLES_CIRCLE_SAVE_SUCCESS,
+          payload: result,
+        });
+        this.fetchCircles();
+      })
+      .catch(err => this.ngRedux.dispatch({
+        type: CirclesActions.CIRCLES_CIRCLE_SAVE_ERROR,
         payload: { errorCode: err.status },
       }));
   }

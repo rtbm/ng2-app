@@ -3,6 +3,7 @@ import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
 import { UsersService } from '../services/users';
 import { InvitesService } from '../services/invites';
+import { CirclesActions } from '../actions/circles';
 
 @Injectable()
 export class UsersActions {
@@ -18,9 +19,13 @@ export class UsersActions {
   static USERS_FOLLOW_SUCCESS = 'USERS_FOLLOW_SUCCESS';
   static USERS_FOLLOW_ERROR = 'USERS_FOLLOW_ERROR';
 
+  static USERS_FOLLOW_MODAL = 'USERS_FOLLOW_MODAL';
+  static USERS_FOLLOW_MODAL_CANCEL = 'USERS_FOLLOW_MODAL_CANCEL';
+
   constructor(private ngRedux: NgRedux<IAppState>,
               private usersService: UsersService,
-              private invitesService: InvitesService) {
+              private invitesService: InvitesService,
+              private circlesActions: CirclesActions) {
   }
 
   fetchUsers() {
@@ -55,12 +60,12 @@ export class UsersActions {
       }));
   }
 
-  follow(user) {
+  follow(circleId, user) {
     this.ngRedux.dispatch({
       type: UsersActions.USERS_FOLLOW_PENDING,
     });
 
-    this.usersService.follow(user)
+    this.usersService.follow(circleId, user)
       .then(result => this.ngRedux.dispatch({
         type: UsersActions.USERS_FOLLOW_SUCCESS,
         payload: result,
@@ -69,5 +74,20 @@ export class UsersActions {
         type: UsersActions.USERS_FOLLOW_ERROR,
         payload: { errorCode: err.status },
       }));
+  }
+
+  showFollowModal(user) {
+    this.circlesActions.fetchCircles();
+
+    this.ngRedux.dispatch({
+      type: UsersActions.USERS_FOLLOW_MODAL,
+      payload: user,
+    });
+  }
+
+  followModalCancel() {
+    this.ngRedux.dispatch({
+      type: UsersActions.USERS_FOLLOW_MODAL_CANCEL,
+    });
   }
 }

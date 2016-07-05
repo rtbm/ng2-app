@@ -1,8 +1,12 @@
 <x-wrapper>
   <h1>Circles</h1>
+
+  <qt-circles-add-form (onSubmit)="circlesActions.saveCircle($event)" (onCancel)="circlesActions.hideAddModal()">
+  </qt-circles-add-form>
+
   <ul>
     <li *ngFor="let circle of items">
-      {{ circle.email }}
+      {{ circle.name }}
     </li>
   </ul>
 </x-wrapper>

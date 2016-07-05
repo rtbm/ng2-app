@@ -18,7 +18,7 @@ export class AuthService {
           res => resolve(res),
           err => reject(err)
         );
-    })
+    });
   }
 
   signin(credentials: Credentials) {

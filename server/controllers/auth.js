@@ -30,13 +30,13 @@ module.exports = {
       newUser.email = req.body.email;
       newUser.password = req.body.password;
 
-      newUser.save((err) => {
+      newUser.save((err, user) => {
         if (err) return next(err);
 
         return res.json({
           id_token: jwt.sign({
-            _id: newUser._id,
-            email: newUser.email
+            _id: user._id,
+            email: user.email
           }, config.secret)
         });
       });
@@ -103,7 +103,7 @@ module.exports = {
 
         user.password = req.body.password;
 
-        user.save((err) => {
+        user.save(err => {
           if (err) return next(err);
           redisClient.del(req.body.token);
           return res.json({});

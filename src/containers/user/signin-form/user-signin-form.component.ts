@@ -32,7 +32,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   pipes: [AsyncPipe],
 })
 export class QtUserSigninFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['signinForm', 'errorCode'])) private errorCode$;
+  @select(state => state.user.getIn(['signin', 'errorCode'])) private errorCode$;
 
   private form: ControlGroup;
   private email: Control;

@@ -28,65 +28,65 @@ export function userReducer(state: IUser = INITIAL_STATE, action: any = { type: 
   switch (action.type) {
     case UserActions.USER_SIGNIN_PENDING: {
       return state
-        .setIn(['signinForm', 'isPending'], true)
-        .setIn(['signinForm', 'isSuccess'], false)
-        .setIn(['signinForm', 'isError'], false)
-        .setIn(['signinForm', 'errorCode'], 0);
+        .setIn(['signin', 'isPending'], true)
+        .setIn(['signin', 'isSuccess'], false)
+        .setIn(['signin', 'isError'], false)
+        .setIn(['signin', 'errorCode'], 0);
     }
 
     case UserActions.USER_SIGNIN_SUCCESS: {
       return state
-        .setIn(['signinForm', 'isPending'], false)
-        .setIn(['signinForm', 'isSuccess'], true);
+        .setIn(['signin', 'isPending'], false)
+        .setIn(['signin', 'isSuccess'], true);
     }
 
     case UserActions.USER_SIGNIN_ERROR: {
       return state
-        .setIn(['signinForm', 'isPending'], false)
-        .setIn(['signinForm', 'isError'], true)
-        .setIn(['signinForm', 'errorCode'], action.payload.errorCode);
+        .setIn(['signin', 'isPending'], false)
+        .setIn(['signin', 'isError'], true)
+        .setIn(['signin', 'errorCode'], action.payload.errorCode);
     }
 
     case UserActions.USER_SIGNUP_PENDING: {
       return state
-        .setIn(['signupForm', 'isPending'], true)
-        .setIn(['signupForm', 'isSuccess'], false)
-        .setIn(['signupForm', 'isError'], false)
-        .setIn(['signupForm', 'errorCode'], 0);
+        .setIn(['signup', 'isPending'], true)
+        .setIn(['signup', 'isSuccess'], false)
+        .setIn(['signup', 'isError'], false)
+        .setIn(['signup', 'errorCode'], 0);
     }
 
     case UserActions.USER_SIGNUP_SUCCESS: {
       return state
-        .setIn(['signupForm', 'isPending'], false)
-        .setIn(['signupForm', 'isSuccess'], true);
+        .setIn(['signup', 'isPending'], false)
+        .setIn(['signup', 'isSuccess'], true);
     }
 
     case UserActions.USER_SIGNUP_ERROR: {
       return state
-        .setIn(['signupForm', 'isPending'], false)
-        .setIn(['signupForm', 'isError'], true)
-        .setIn(['signupForm', 'errorCode'], action.payload.errorCode);
+        .setIn(['signup', 'isPending'], false)
+        .setIn(['signup', 'isError'], true)
+        .setIn(['signup', 'errorCode'], action.payload.errorCode);
     }
 
     case UserActions.USER_RESET_PASSWORD_PENDING: {
       return state
-        .setIn(['resetPasswordForm', 'isPending'], true)
-        .setIn(['resetPasswordForm', 'isSuccess'], false)
-        .setIn(['resetPasswordForm', 'isError'], false)
-        .setIn(['resetPasswordForm', 'errorCode'], 0);
+        .setIn(['resetPassword', 'isPending'], true)
+        .setIn(['resetPassword', 'isSuccess'], false)
+        .setIn(['resetPassword', 'isError'], false)
+        .setIn(['resetPassword', 'errorCode'], 0);
     }
 
     case UserActions.USER_RESET_PASSWORD_SUCCESS: {
       return state
-        .setIn(['resetPasswordForm', 'isPending'], false)
-        .setIn(['resetPasswordForm', 'isSuccess'], true);
+        .setIn(['resetPassword', 'isPending'], false)
+        .setIn(['resetPassword', 'isSuccess'], true);
     }
 
     case UserActions.USER_RESET_PASSWORD_ERROR: {
       return state
-        .setIn(['resetPasswordForm', 'isPending'], false)
-        .setIn(['resetPasswordForm', 'isError'], true)
-        .setIn(['resetPasswordForm', 'errorCode'], action.payload.errorCode);
+        .setIn(['resetPassword', 'isPending'], false)
+        .setIn(['resetPassword', 'isError'], true)
+        .setIn(['resetPassword', 'errorCode'], action.payload.errorCode);
     }
 
     default:

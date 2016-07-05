@@ -6,7 +6,7 @@ const enhancers = [
   persistState('session', {
     key: 'qt-app-session',
     serialize: store => {
-      if(store && store.session) {
+      if (store && store.session) {
         const session = store.session.toJS();
         session.user = {};
         return JSON.stringify(session);

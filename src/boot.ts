@@ -39,5 +39,5 @@ bootstrap(QtAppComponent, [
   UsersService,
   InvitesService,
   CirclesService,
-  CirclesActions
+  CirclesActions,
 ]);
