@@ -14,6 +14,7 @@
     "lint": "tslint src/**/*.ts"
   },
   "dependencies": {
+    "@angular/forms": "^0.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.2",
     "compression": "^1.6.2",
@@ -48,7 +49,7 @@
     "debug": "~2.2.0",
     "es6-shim": "^0.35.1",
     "file-loader": "^0.9.0",
-    "ghooks": "^1.3.0",
+    "ghooks": "^1.3.2",
     "html-webpack-plugin": "^2.22.0",
     "immutable": "^3.8.1",
     "karma": "^1.1.0",
@@ -62,7 +63,7 @@
     "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "reflect-metadata": "0.1.3",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.3",
     "rxjs": "5.0.0-beta.9",
     "to-string-loader": "^1.1.4",
     "ts-helpers": "^1.1.1",

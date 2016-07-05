@@ -1,13 +1,13 @@
-<x-form [formModel]="form" (onSubmit)="handleSubmit()">
+<x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
     <x-form-group>
-      <x-form-input [formControl]="name" placeholder="Name" type="text"></x-form-input>
+      <x-form-input [control]="name" placeholder="Name" type="text"></x-form-input>
     </x-form-group>
     <x-form-group>
-      <x-form-textarea [formControl]="content" placeholder="Quote"></x-form-textarea>
+      <x-form-textarea [control]="content" placeholder="Quote"></x-form-textarea>
     </x-form-group>
     <x-form-group>
-      <x-form-input [formControl]="url" placeholder="Url" type="text"></x-form-input>
+      <x-form-input [control]="url" placeholder="Url" type="text"></x-form-input>
     </x-form-group>
   </x-form-content>
   <x-form-actions>

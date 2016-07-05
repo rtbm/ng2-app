@@ -8,7 +8,7 @@ import {
   XFormContentComponent,
 } from '../../../components';
 import { select } from 'ng2-redux';
-import { ControlGroup, FormBuilder } from '@angular/common';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'qt-account-circles-select-form',
@@ -24,7 +24,7 @@ export class QtAccountCirclesSelectFormComponent implements OnDestroy {
   @select(state => state.circles.get('circles')) private circles$;
 
   private circles;
-  private form: ControlGroup;
+  private form: FormGroup;
 
   constructor(private builder: FormBuilder) {
     this.form = this.builder.group({});

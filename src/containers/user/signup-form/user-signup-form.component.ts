@@ -9,7 +9,7 @@ import {
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
-import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -17,22 +17,22 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signup-form',
   template: require('./user-signup-form.component.html'),
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
+  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserSignupFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;
 
-  private form: ControlGroup;
-  private email: Control;
-  private password: Control;
-  private password_confirm: Control;
+  private form: FormGroup;
+  private email: FormControl;
+  private password: FormControl;
+  private password_confirm: FormControl;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
-    this.email = new Control('', Validators.required);
-    this.password = new Control('', Validators.required);
-    this.password_confirm = new Control('', Validators.required);
+    this.email = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
+    this.password_confirm = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       email: this.email,

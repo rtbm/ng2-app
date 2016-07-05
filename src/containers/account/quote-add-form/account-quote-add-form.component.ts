@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ControlGroup, Control, FormBuilder, Validators } from '@angular/common';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
   XFormComponent,
   XFormTextareaComponent,
@@ -21,15 +21,15 @@ import {
 export class QtAccountQuoteAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
 
-  private form: ControlGroup;
-  private name: Control;
-  private content: Control;
-  private url: Control;
+  private form: FormGroup;
+  private name: FormControl;
+  private content: FormControl;
+  private url: FormControl;
 
   constructor(private builder: FormBuilder) {
-    this.name = new Control('', Validators.required);
-    this.content = new Control('', Validators.required);
-    this.url = new Control('', Validators.required);
+    this.name = new FormControl('', Validators.required);
+    this.content = new FormControl('', Validators.required);
+    this.url = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       name: this.name,

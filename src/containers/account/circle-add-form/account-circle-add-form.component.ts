@@ -8,7 +8,7 @@ import {
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
-import { ControlGroup, Control, FormBuilder, Validators } from '@angular/common';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'qt-account-circle-add-form',
@@ -20,11 +20,11 @@ import { ControlGroup, Control, FormBuilder, Validators } from '@angular/common'
 export class QtAccountCircleAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
 
-  private form: ControlGroup;
-  private name: Control;
-
+  private form: FormGroup;
+  private name: FormControl;
+  
   constructor(private builder: FormBuilder) {
-    this.name = new Control('', Validators.required);
+    this.name = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       name: this.name,
@@ -33,6 +33,7 @@ export class QtAccountCircleAddFormComponent {
 
   handleSubmit() {
     if (this.form.status !== 'VALID') { return false; }
+    console.log('onSubmit');
     this.onSubmit.emit(this.form.value);
   }
 }

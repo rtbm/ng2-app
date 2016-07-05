@@ -6,12 +6,9 @@ import {
   XFormGroupComponent,
   XFormMessageComponent,
   XButtonComponent,
-  XOverlayComponent,
-  XModalContentComponent,
-  XModalMessageComponent,
   XFormContentComponent,
 } from '../../../components';
-import { ControlGroup, Control, FormBuilder, Validators } from '@angular/common';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { select } from 'ng2-redux';
 
 @Component({
@@ -19,20 +16,20 @@ import { select } from 'ng2-redux';
   template: require('./account-circle-edit-form.component.html'),
   styles: [require('./account-circle-edit-form.component.less')],
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
-    XFormMessageComponent, XOverlayComponent, XModalContentComponent, XModalMessageComponent, XFormContentComponent],
+    XFormMessageComponent, XFormContentComponent],
 })
 export class QtAccountCircleEditFormComponent {
   @select(state => state.circles.getIn(['updateCircle', 'item'])) private updateCircle$;
 
   @Output() private onSubmit = new EventEmitter();
 
-  private form: ControlGroup;
-  private _id: Control;
-  private name: Control;
+  private form: FormGroup;
+  private _id: FormControl;
+  private name: FormControl;
 
   constructor(private builder: FormBuilder) {
-    this._id = new Control('', Validators.required);
-    this.name = new Control('', Validators.required);
+    this._id = new FormControl('', Validators.required);
+    this.name = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       _id: this._id,

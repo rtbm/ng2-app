@@ -124,7 +124,7 @@ module.exports = {
         return next(err);
       }
 
-      const token = md5(new Date().getTime() + user.email + config.secretSalt);
+      const token = md5(new Date().getTime() + user.email + config.secret);
       redisClient.set(token, user.email);
       redisClient.expire(token, 600);
 

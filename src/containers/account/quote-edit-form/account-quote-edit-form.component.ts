@@ -1,27 +1,22 @@
 import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import {
-  XOverlayComponent,
   XFormComponent,
   XFormInputComponent,
   XFormGroupComponent,
   XFormTextareaComponent,
-  XModalContentComponent,
-  XModalActionsComponent,
-  XModalMessageComponent,
   XButtonComponent,
   XLabelComponent,
   XFormContentComponent,
 } from '../../../components';
-import { FormBuilder, Validators, ControlGroup, Control } from '@angular/common';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { select } from 'ng2-redux';
 
 @Component({
   selector: 'qt-account-quote-edit-form',
   template: require('./account-quote-edit-form.component.html'),
   styles: [require('./account-quote-edit-form.component.less')],
-  directives: [XOverlayComponent, XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
-    XModalMessageComponent, XModalContentComponent, XModalActionsComponent, XFormTextareaComponent, XLabelComponent,
-    XFormContentComponent],
+  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
+    XFormTextareaComponent, XLabelComponent, XFormContentComponent],
 })
 export class QtAccountQuoteEditFormComponent implements OnDestroy {
   @select(state => state.quotes.getIn(['updateQuote', 'item'])) private updateQuote$;
@@ -29,17 +24,17 @@ export class QtAccountQuoteEditFormComponent implements OnDestroy {
   @Output() onCancel = new EventEmitter();
   @Output() onSubmit = new EventEmitter();
 
-  private form: ControlGroup;
-  private _id: Control;
-  private name: Control;
-  private content: Control;
-  private url: Control;
+  private form: FormGroup;
+  private _id: FormControl;
+  private name: FormControl;
+  private content: FormControl;
+  private url: FormControl;
 
   constructor(private builder: FormBuilder) {
-    this._id = new Control('', Validators.required);
-    this.name = new Control('', Validators.required);
-    this.content = new Control('', Validators.required);
-    this.url = new Control('', Validators.required);
+    this._id = new FormControl('', Validators.required);
+    this.name = new FormControl('', Validators.required);
+    this.content = new FormControl('', Validators.required);
+    this.url = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       _id: this._id,

@@ -13,7 +13,4 @@ import { XButtonComponent } from '../button/button.component';
 export class XDialogConfirmComponent {
   @Output() onConfirm = new EventEmitter();
   @Output() onCancel = new EventEmitter();
-
-  constructor() {
-  }
 }

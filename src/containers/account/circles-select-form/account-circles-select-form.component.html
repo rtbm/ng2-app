@@ -1,4 +1,4 @@
-<x-form [formModel]="form">
+<x-form [group]="form">
   <x-form-content>
     <x-form-group *ngFor="let item of circles.items">
       <x-button preset="positive" (onClick)="onSubmit.emit(item)">{{ item.name }}</x-button>

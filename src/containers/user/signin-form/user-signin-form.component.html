@@ -1,4 +1,4 @@
-<x-form [formModel]="form" (onSubmit)="handleSubmit($event)">
+<x-form [group]="form" (onSubmit)="handleSubmit($event)">
   <x-form-content>
     <div [ngSwitch]="(errorCode$ | async)">
       <x-form-message preset="error" *ngSwitchCase="422">
@@ -11,11 +11,11 @@
     </div>
     <x-form-group>
       <x-label>E-mail</x-label>
-      <x-form-input [formControl]="email" type="email" autofocus="true"></x-form-input>
+      <x-form-input [control]="email" type="email" autofocus="true"></x-form-input>
     </x-form-group>
     <x-form-group>
       <x-label>Password</x-label>
-      <x-form-input [formControl]="password" type="password"></x-form-input>
+      <x-form-input [control]="password" type="password"></x-form-input>
     </x-form-group>
   </x-form-content>
   <x-form-actions>

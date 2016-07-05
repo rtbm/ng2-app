@@ -9,7 +9,7 @@ import {
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
-import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 import { UserActions } from '../../../actions';
 
@@ -17,23 +17,23 @@ import { UserActions } from '../../../actions';
   selector: 'qt-user-change-password-form',
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.less')],
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
+  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserChangePasswordFormComponent {
-  private form: ControlGroup;
-  private email: Control;
-  private token: Control;
-  private password: Control;
-  private password_confirm: Control;
+  private form: FormGroup;
+  private email: FormControl;
+  private token: FormControl;
+  private password: FormControl;
+  private password_confirm: FormControl;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions,
               private r: ActivatedRoute) {
-    this.email = new Control('', Validators.required);
-    this.token = new Control('', Validators.required);
-    this.password = new Control('', Validators.required);
-    this.password_confirm = new Control('', Validators.required);
+    this.email = new FormControl('', Validators.required);
+    this.token = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
+    this.password_confirm = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       password: this.password,

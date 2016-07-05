@@ -9,7 +9,7 @@ import {
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
-import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Control, Validators } from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
@@ -18,18 +18,18 @@ import { select } from 'ng2-redux';
   selector: 'qt-user-reset-password-form',
   template: require('./user-reset-password-form.component.html'),
   styles: [require('./user-reset-password-form.component.less')],
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
+  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserResetPasswordFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['resetPassword', 'errorCode'])) private errorCode$;
 
-  private form: ControlGroup;
-  private email: Control;
+  private form: FormGroup;
+  private email: FormControl;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
-    this.email = new Control('', Validators.required);
+    this.email = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       email: this.email,

@@ -9,17 +9,8 @@ import {
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
-import {
-  FORM_DIRECTIVES,
-  FormBuilder,
-  ControlGroup,
-  Control,
-  Validators,
-  AsyncPipe,
-  NgSwitch,
-  NgSwitchDefault,
-  NgSwitchCase,
-} from '@angular/common';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AsyncPipe, NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
 import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -27,7 +18,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signin-form',
   template: require('./user-signin-form.component.html'),
-  directives: [FORM_DIRECTIVES, ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
+  directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
     XFormMessageComponent, XFormContentComponent],
   pipes: [AsyncPipe],
@@ -35,14 +26,14 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 export class QtUserSigninFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signin', 'errorCode'])) private errorCode$;
 
-  private form: ControlGroup;
-  private email: Control;
-  private password: Control;
+  private form: FormGroup;
+  private email: FormControl;
+  private password: FormControl;
 
   constructor(private builder: FormBuilder,
               private userActions: UserActions) {
-    this.email = new Control('', Validators.required);
-    this.password = new Control('', Validators.required);
+    this.email = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
       email: this.email,
