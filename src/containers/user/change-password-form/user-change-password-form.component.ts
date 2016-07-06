@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -11,7 +11,6 @@ import {
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
-import { UserActions } from '../../../actions';
 
 @Component({
   selector: 'qt-user-change-password-form',
@@ -21,6 +20,8 @@ import { UserActions } from '../../../actions';
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserChangePasswordFormComponent {
+  @Output() private onSubmit = new EventEmitter();
+
   private form: FormGroup;
   private email: FormControl;
   private token: FormControl;
@@ -28,7 +29,6 @@ export class QtUserChangePasswordFormComponent {
   private password_confirm: FormControl;
 
   constructor(private builder: FormBuilder,
-              private userActions: UserActions,
               private r: ActivatedRoute) {
     this.email = new FormControl('', Validators.required);
     this.token = new FormControl('', Validators.required);
@@ -48,7 +48,7 @@ export class QtUserChangePasswordFormComponent {
 
   handleSubmit() {
     if (this.form.valid) {
-      this.userActions.changePassword(this.form.value);
+      this.onSubmit.emit(this.form.value);
     }
   }
 }

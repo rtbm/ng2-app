@@ -27,11 +27,11 @@ export class QtAccountCircleEditFormComponent {
   private _id: FormControl;
   private name: FormControl;
 
-  constructor(private builder: FormBuilder) {
+  constructor(builder: FormBuilder) {
     this._id = new FormControl('', Validators.required);
     this.name = new FormControl('', Validators.required);
 
-    this.form = this.builder.group({
+    this.form = builder.group({
       _id: this._id,
       name: this.name,
     });
@@ -43,7 +43,8 @@ export class QtAccountCircleEditFormComponent {
   }
 
   handleSubmit() {
-    if (this.form.status !== 'VALID') { return false; }
-    this.onSubmit.emit(this.form.value);
+    if (this.form.valid) {
+      this.onSubmit.emit(this.form.value);
+    }
   }
 }

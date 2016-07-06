@@ -2,7 +2,7 @@
   <x-box>
     <x-box-header>Sign in</x-box-header>
     <x-box-content>
-      <qt-user-signin-form></qt-user-signin-form>
+      <qt-user-signin-form (onSubmit)="userActions.signin($event)"></qt-user-signin-form>
     </x-box-content>
   </x-box>
   <p>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></p>

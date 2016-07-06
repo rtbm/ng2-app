@@ -1,4 +1,4 @@
-<x-form [group]="form" (onSubmit)="handleSubmit($event)">
+<x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
     <x-form-message preset="error" *ngIf="submitted && (errorCode$ | async) === 409">
       Account already exists.

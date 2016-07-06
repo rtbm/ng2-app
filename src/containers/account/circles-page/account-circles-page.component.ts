@@ -10,6 +10,7 @@ import {
   XModalFormComponent,
   XBoxComponent,
   XBoxContentComponent,
+  XBoxHeaderComponent,
 } from '../../../components';
 import { CirclesActions } from '../../../actions/circles';
 import { select } from 'ng2-redux';
@@ -22,7 +23,7 @@ import { QtAccountCircleEditFormComponent } from '../circle-edit-form';
   styles: [require('./account-circles-page.component.less')],
   directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
     XListItemActionsComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent,
-    QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent],
+    QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent, XBoxHeaderComponent],
 })
 export class QtAccountCirclesPageComponent implements OnDestroy {
   @select(state => state.circles) private circles$;

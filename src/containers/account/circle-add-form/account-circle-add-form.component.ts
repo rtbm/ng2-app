@@ -22,18 +22,18 @@ export class QtAccountCircleAddFormComponent {
 
   private form: FormGroup;
   private name: FormControl;
-  
-  constructor(private builder: FormBuilder) {
+
+  constructor(builder: FormBuilder) {
     this.name = new FormControl('', Validators.required);
 
-    this.form = this.builder.group({
+    this.form = builder.group({
       name: this.name,
     });
   }
 
   handleSubmit() {
-    if (this.form.status !== 'VALID') { return false; }
-    console.log('onSubmit');
-    this.onSubmit.emit(this.form.value);
+    if (this.form.valid) {
+      this.onSubmit.emit(this.form.value);
+    }
   }
 }

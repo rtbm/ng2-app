@@ -3,6 +3,7 @@ import {
   QtAccountQuotesPageComponent,
   QtAccountUsersPageComponent,
   QtAccountCirclesPageComponent,
+  QtAccountProfilePageComponent,
 } from '../containers';
 
 export const ACCOUNT_ROUTES = [{
@@ -17,5 +18,8 @@ export const ACCOUNT_ROUTES = [{
   }, {
     path: 'circles',
     component: QtAccountCirclesPageComponent,
+  }, {
+    path: 'profile',
+    component: QtAccountProfilePageComponent,
   }],
 }];

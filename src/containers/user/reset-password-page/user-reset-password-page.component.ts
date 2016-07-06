@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { QtUserResetPasswordFormComponent } from '../reset-password-form';
 import { XWrapperComponent, XBoxHeaderComponent, XBoxContentComponent, XBoxComponent } from '../../../components';
+import { UserActions } from '../../../actions';
 
 @Component({
   selector: 'qt-user-reset-password-page',
@@ -9,4 +10,7 @@ import { XWrapperComponent, XBoxHeaderComponent, XBoxContentComponent, XBoxCompo
   directives: [XWrapperComponent, QtUserResetPasswordFormComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent],
 })
-export class QtUserResetPasswordPageComponent {}
+export class QtUserResetPasswordPageComponent {
+  constructor(private userActions: UserActions) {
+  }
+}

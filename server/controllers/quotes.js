@@ -3,6 +3,12 @@ const Quote = require('../models/quote');
 
 module.exports = {
   findAll: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
     Quote.find({ owner: req.user._id })
       .exec((err, quotes) => {
         if (err) return next(err);

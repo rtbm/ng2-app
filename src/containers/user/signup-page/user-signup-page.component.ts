@@ -9,6 +9,7 @@ import {
 } from '../../../components';
 import { AsyncPipe } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { UserActions } from '../../../actions';
 
 @Component({
   selector: 'qt-user-signup-page',
@@ -19,4 +20,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   pipes: [AsyncPipe],
 })
 
-export class QtUserSignupPageComponent {}
+export class QtUserSignupPageComponent {
+  constructor(private userActions: UserActions) {
+  }
+}

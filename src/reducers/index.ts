@@ -4,6 +4,7 @@ import { IUser, userReducer } from './user';
 import { IQuotes, quotesReducer } from './quotes';
 import { IUsers, usersReducer } from './users';
 import { ICircles, circlesReducer } from './circles';
+import { IProfile, profileReducer } from './profile';
 
 export interface IAppState {
   session?: ISession;
@@ -11,6 +12,7 @@ export interface IAppState {
   quotes?: IQuotes;
   users?: IUsers;
   circles?: ICircles;
+  profile?: IProfile;
 }
 
 export default combineReducers<IAppState>({
@@ -19,4 +21,5 @@ export default combineReducers<IAppState>({
   quotes: quotesReducer,
   users: usersReducer,
   circles: circlesReducer,
+  profile: profileReducer,
 });

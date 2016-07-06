@@ -13,11 +13,20 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  },
-  permissions: [{
-    type: String,
     select: false,
-  }],
+  },
+  first_name: {
+    type: String,
+    trim: true,
+  },
+  last_name: {
+    type: String,
+    trim: true,
+  },
+  bio: {
+    type: String,
+    trim: true,
+  },
 }, {
   autoIndex: true,
   timestamps: true,

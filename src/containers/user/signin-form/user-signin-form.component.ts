@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -11,7 +11,6 @@ import {
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AsyncPipe, NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
-import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
@@ -25,13 +24,13 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 })
 export class QtUserSigninFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signin', 'errorCode'])) private errorCode$;
+  @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
   private email: FormControl;
   private password: FormControl;
 
-  constructor(private builder: FormBuilder,
-              private userActions: UserActions) {
+  constructor(private builder: FormBuilder) {
     this.email = new FormControl('', Validators.required);
     this.password = new FormControl('', Validators.required);
 
@@ -43,7 +42,7 @@ export class QtUserSigninFormComponent implements OnDestroy {
 
   handleSubmit() {
     if (this.form.valid) {
-      this.userActions.signin(this.form.value);
+      this.onSubmit.emit(this.form.value);
     }
   }
 

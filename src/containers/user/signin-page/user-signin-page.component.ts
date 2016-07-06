@@ -9,6 +9,7 @@ import {
   XBoxHeaderComponent,
   XBoxComponent,
 } from '../../../components';
+import { UserActions } from '../../../actions';
 
 @Component({
   selector: 'qt-user-signin-page',
@@ -19,4 +20,7 @@ import {
   pipes: [AsyncPipe],
 })
 
-export class QtUserSigninPageComponent {}
+export class QtUserSigninPageComponent {
+  constructor(private userActions: UserActions) {
+  }
+}

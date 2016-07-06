@@ -1,6 +1,9 @@
 <x-wrapper>
   <h1>Circles</h1>
   <x-box>
+    <x-box-header>
+      Create new Circle
+    </x-box-header>
     <x-box-content>
       <qt-account-circle-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-account-circle-add-form>
     </x-box-content>

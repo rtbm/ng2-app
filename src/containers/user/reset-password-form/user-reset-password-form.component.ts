@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -11,7 +11,6 @@ import {
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
 
 @Component({
@@ -22,13 +21,14 @@ import { select } from 'ng2-redux';
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtUserResetPasswordFormComponent implements OnDestroy {
+  @Output() private onSubmit = new EventEmitter();
+
   @select(state => state.user.getIn(['resetPassword', 'errorCode'])) private errorCode$;
 
   private form: FormGroup;
   private email: FormControl;
 
-  constructor(private builder: FormBuilder,
-              private userActions: UserActions) {
+  constructor(private builder: FormBuilder) {
     this.email = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
@@ -38,7 +38,7 @@ export class QtUserResetPasswordFormComponent implements OnDestroy {
 
   handleSubmit() {
     if (this.form.valid) {
-      this.userActions.resetPassword(this.form.value);
+      this.onSubmit.emit(this.form.value);
     }
   }
 

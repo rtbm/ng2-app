@@ -1,4 +1,4 @@
-<x-form [group]="form" (onSubmit)="handleSubmit($event)">
+<x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
     <div [ngSwitch]="(errorCode$ | async)">
       <x-form-message preset="error" *ngSwitchCase="422">

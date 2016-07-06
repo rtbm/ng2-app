@@ -52,7 +52,9 @@ export class QtAccountQuoteEditFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
-    this.onSubmit.emit(this.form.value);
+    if (this.form.valid) {
+      this.onSubmit.emit(this.form.value);
+    }
   }
 
   ngOnDestroy() {

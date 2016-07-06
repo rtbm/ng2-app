@@ -39,7 +39,8 @@ export class QtAccountQuoteAddFormComponent {
   }
 
   handleSubmit() {
-    if (this.form.status !== 'VALID') { return false; }
-    this.onSubmit.emit(this.form.value);
+    if (this.form.valid) {
+      this.onSubmit.emit(this.form.value);
+    }
   }
 }
