@@ -46,7 +46,7 @@ export function profileReducer(state: IProfile = INITIAL_STATE, action: any = { 
         .setIn(['profile', 'errorCode'], action.payload.errorCode);
     }
 
-    case ProfileActions.PROFILE_SAVE_PENDING:
+    case ProfileActions.PROFILE_UPDATE_PENDING:
     {
       return state
         .setIn(['profile', 'isPending'], true)
@@ -58,14 +58,14 @@ export function profileReducer(state: IProfile = INITIAL_STATE, action: any = { 
         .setIn(['profile', 'bio'], action.payload.bio);
     }
 
-    case ProfileActions.PROFILE_SAVE_SUCCESS:
+    case ProfileActions.PROFILE_UPDATE_SUCCESS:
     {
       return state
         .setIn(['profile', 'isPending'], false)
         .setIn(['profile', 'isSuccess'], true);
     }
 
-    case ProfileActions.PROFILE_SAVE_ERROR:
+    case ProfileActions.PROFILE_UPDATE_ERROR:
     {
       return state
         .setIn(['profile', 'isPending'], false)

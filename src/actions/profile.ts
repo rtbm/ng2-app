@@ -9,9 +9,9 @@ export class ProfileActions {
   static PROFILE_FETCH_SUCCESS = 'PROFILE_FETCH_SUCCESS';
   static PROFILE_FETCH_ERROR = 'PROFILE_FETCH_ERROR';
 
-  static PROFILE_SAVE_PENDING = 'PROFILE_SAVE_PENDING';
-  static PROFILE_SAVE_SUCCESS = 'PROFILE_SAVE_SUCCESS';
-  static PROFILE_SAVE_ERROR = 'PROFILE_SAVE_ERROR';
+  static PROFILE_UPDATE_PENDING = 'PROFILE_UPDATE_PENDING';
+  static PROFILE_UPDATE_SUCCESS = 'PROFILE_UPDATE_SUCCESS';
+  static PROFILE_UPDATE_ERROR = 'PROFILE_UPDATE_ERROR';
 
   constructor(private ngRedux: NgRedux<IAppState>,
               private profileService: ProfileService) {
@@ -35,19 +35,19 @@ export class ProfileActions {
 
   updateProfile(id, profile) {
     this.ngRedux.dispatch({
-      type: ProfileActions.PROFILE_SAVE_PENDING,
+      type: ProfileActions.PROFILE_UPDATE_PENDING,
       payload: profile,
     });
 
     this.profileService.update(id, profile)
       .then(result => {
         this.ngRedux.dispatch({
-          type: ProfileActions.PROFILE_SAVE_SUCCESS,
+          type: ProfileActions.PROFILE_UPDATE_SUCCESS,
           payload: result,
         });
       })
       .catch(err => this.ngRedux.dispatch({
-        type: ProfileActions.PROFILE_SAVE_ERROR,
+        type: ProfileActions.PROFILE_UPDATE_ERROR,
         payload: { errorCode: err.status },
       }));
   }
