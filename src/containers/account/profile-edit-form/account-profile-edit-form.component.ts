@@ -20,33 +20,30 @@ import { select } from 'ng2-redux';
     XButtonComponent, XFormContentComponent, XFormTextareaComponent],
 })
 export class QtAccountProfileEditFormComponent {
-  @select(state => state.profile.get('profile')) private profile$;
+  @select(state => state.profile) private profile$;
+
   @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
-  private _id: FormControl;
   private first_name: FormControl;
   private last_name: FormControl;
   private bio: FormControl;
 
   constructor(builder: FormBuilder) {
-    this._id = new FormControl('');
     this.first_name = new FormControl('');
     this.last_name = new FormControl('');
     this.bio = new FormControl('');
 
     this.form = builder.group({
-      _id: this._id,
       first_name: this.first_name,
       last_name: this.last_name,
       bio: this.bio,
     });
 
     this.profile$.subscribe((profile: any) => {
-      this._id.updateValue(profile.get('_id'));
-      this.first_name.updateValue(profile.get('first_name'));
-      this.last_name.updateValue(profile.get('last_name'));
-      this.bio.updateValue(profile.get('bio'));
+      this.first_name.updateValue(profile.getIn(['item', 'first_name']));
+      this.last_name.updateValue(profile.getIn(['item', 'last_name']));
+      this.bio.updateValue(profile.getIn(['item', 'bio']));
     });
   }
 

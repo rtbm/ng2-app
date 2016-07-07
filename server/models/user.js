@@ -15,17 +15,22 @@ const userSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  first_name: {
-    type: String,
-    trim: true,
-  },
-  last_name: {
-    type: String,
-    trim: true,
-  },
-  bio: {
-    type: String,
-    trim: true,
+  profile: {
+    first_name: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    last_name: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    bio: {
+      type: String,
+      default: '',
+      trim: true,
+    },
   },
 }, {
   autoIndex: true,

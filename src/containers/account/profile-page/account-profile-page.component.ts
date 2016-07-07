@@ -14,13 +14,16 @@ import { select } from 'ng2-redux';
 export class QtAccountProfilePageComponent {
   @select(state => state.session.getIn(['user', '_id'])) private _id$;
 
+  private _id;
+
   constructor(private profileActions: ProfileActions) {
     this._id$.subscribe((_id: string) => {
+      this._id = _id;
       this.profileActions.readProfile(_id);
     });
   }
 
   handleSubmit(profile) {
-    return this.profileActions.updateProfile(profile._id, profile);
+    return this.profileActions.updateProfile(this._id, profile);
   }
 }

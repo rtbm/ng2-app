@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { ServerService } from './server';
 
 export interface Profile {
-  first_name: string;
-  last_name: string;
-  bio: string;
+  id: String;
+  profile: {
+    first_name: string;
+    last_name: string;
+    bio: string;
+  };
 }
 
 @Injectable()

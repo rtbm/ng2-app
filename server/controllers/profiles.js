@@ -2,7 +2,7 @@
 const User = require('../models/user');
 
 module.exports = {
-  getProfile: (req, res, next) => {
+  read: (req, res, next) => {
     if (!req.user || !req.user._id) {
       const err = new Error('Unauthorized');
       err.status = 401;
@@ -10,8 +10,7 @@ module.exports = {
     }
 
     User.findById(req.params.userId)
-      .select('first_name last_name bio')
-      .exec((err, user) => {
+      .select('profile').exec((err, user) => {
         if (err) return next(err);
 
         if (!user) {
@@ -20,11 +19,11 @@ module.exports = {
           return next(err);
         }
 
-        return res.json(user);
+        return res.json(user.profile);
       });
   },
 
-  updateProfile: (req, res, next) => {
+  update: (req, res, next) => {
     if (!req.user || !req.user._id) {
       const err = new Error('Unauthorized');
       err.status = 401;
@@ -47,13 +46,15 @@ module.exports = {
           return next(err);
         }
 
-        user.first_name = req.body.first_name;
-        user.last_name = req.body.last_name;
-        user.bio = req.body.bio;
+        user.profile = {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          bio: req.body.bio,
+        };
 
         user.save((err, user) => {
           if (err) return next(err);
-          return res.json(user);
+          return res.json(user.profile);
         });
       });
   },

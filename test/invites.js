@@ -104,27 +104,29 @@ describe('/api/invites', () => {
       });
   });
 
-  it('should delete an invite', done => {
-    chai.request(server)
-      .post('/api/invites')
-      .set('Authorization', `Bearer ${id_token}`)
-      .send({ invited })
-      .end((err, res) => {
-        const _id = res.body._id;
-        chai.request(server)
-          .delete(`/api/invites/${_id}`)
-          .set('Authorization', `Bearer ${id_token}`)
-          .send()
-          .end((err, res) => {
-            chai.request(server)
-              .get(`/api/invites/${_id}`)
-              .set('Authorization', `Bearer ${id_token}`)
-              .send()
-              .end((err, res) => {
-                res.should.have.a.status(404);
-                done();
-              });
-          });
-      });
+  describe('/api/invites/:id', () => {
+    it('should delete an invite', done => {
+      chai.request(server)
+        .post('/api/invites')
+        .set('Authorization', `Bearer ${id_token}`)
+        .send({ invited })
+        .end((err, res) => {
+          const _id = res.body._id;
+          chai.request(server)
+            .delete(`/api/invites/${_id}`)
+            .set('Authorization', `Bearer ${id_token}`)
+            .send()
+            .end((err, res) => {
+              chai.request(server)
+                .get(`/api/invites/${_id}`)
+                .set('Authorization', `Bearer ${id_token}`)
+                .send()
+                .end((err, res) => {
+                  res.should.have.a.status(404);
+                  done();
+                });
+            });
+        });
+    });
   });
 });
