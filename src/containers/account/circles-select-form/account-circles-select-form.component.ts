@@ -3,7 +3,6 @@ import {
   XButtonComponent,
   XFormComponent,
   XFormGroupComponent,
-  XLabelComponent,
   XFormActionsComponent,
   XFormContentComponent,
 } from '../../../components';
@@ -12,7 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'qt-account-circles-select-form',
-  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormActionsComponent, XLabelComponent,
+  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormActionsComponent,
     XFormContentComponent],
   template: require('./account-circles-select-form.component.html'),
   styles: [require('./account-circles-select-form.component.less')],

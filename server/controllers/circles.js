@@ -4,6 +4,12 @@ const User = require('../models/user');
 
 module.exports = {
   findAll: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
     Circle.find({ owner: req.user._id })
       .exec((err, circles) => {
         if (err) return next(err);

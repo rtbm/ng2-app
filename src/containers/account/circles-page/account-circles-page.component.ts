@@ -11,6 +11,7 @@ import {
   XBoxComponent,
   XBoxContentComponent,
   XBoxHeaderComponent,
+  XFormMessageComponent,
 } from '../../../components';
 import { CirclesActions } from '../../../actions/circles';
 import { select } from 'ng2-redux';
@@ -22,7 +23,7 @@ import { QtAccountCircleEditFormComponent } from '../circle-edit-form';
   template: require('./account-circles-page.component.html'),
   styles: [require('./account-circles-page.component.less')],
   directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
-    XListItemActionsComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent,
+    XListItemActionsComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent, XFormMessageComponent,
     QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent, XBoxHeaderComponent],
 })
 export class QtAccountCirclesPageComponent implements OnDestroy {

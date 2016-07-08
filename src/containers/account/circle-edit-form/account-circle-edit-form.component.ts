@@ -4,7 +4,6 @@ import {
   XFormActionsComponent,
   XFormInputComponent,
   XFormGroupComponent,
-  XFormMessageComponent,
   XButtonComponent,
   XFormContentComponent,
 } from '../../../components';
@@ -16,7 +15,7 @@ import { select } from 'ng2-redux';
   template: require('./account-circle-edit-form.component.html'),
   styles: [require('./account-circle-edit-form.component.less')],
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
-    XFormMessageComponent, XFormContentComponent],
+    XFormContentComponent],
 })
 export class QtAccountCircleEditFormComponent {
   @select(state => state.circles.getIn(['updateCircle', 'item'])) private updateCircle$;

@@ -50,6 +50,22 @@ export class QuotesActions {
       }));
   }
 
+  fetchQuotesFeed() {
+    this.ngRedux.dispatch({
+      type: QuotesActions.QUOTES_FETCH_PENDING,
+    });
+
+    this.quotesService.fetchFeed()
+      .then(result => this.ngRedux.dispatch({
+        type: QuotesActions.QUOTES_FETCH_SUCCESS,
+        payload: result,
+      }))
+      .catch(err => this.ngRedux.dispatch({
+        type: QuotesActions.QUOTES_FETCH_ERROR,
+        payload: { errorCode: err.status },
+      }));
+  }
+
   saveQuote(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_SAVE_PENDING,
@@ -62,7 +78,7 @@ export class QuotesActions {
           type: QuotesActions.QUOTE_SAVE_SUCCESS,
           payload: result,
         });
-        this.fetchQuotes();
+        this.fetchQuotesFeed();
       })
       .catch(err => this.ngRedux.dispatch({
         type: QuotesActions.QUOTE_SAVE_ERROR,
@@ -82,7 +98,7 @@ export class QuotesActions {
           type: QuotesActions.QUOTE_REMOVE_SUCCESS,
           payload: result,
         });
-        this.fetchQuotes();
+        this.fetchQuotesFeed();
       })
       .catch(err => this.ngRedux.dispatch({
         type: QuotesActions.QUOTE_REMOVE_ERROR,
@@ -142,7 +158,7 @@ export class QuotesActions {
           type: QuotesActions.QUOTE_UPDATE_SUCCESS,
           payload: result,
         });
-        this.fetchQuotes();
+        this.fetchQuotesFeed();
       })
       .catch(err => this.ngRedux.dispatch({
         type: QuotesActions.QUOTE_UPDATE_ERROR,

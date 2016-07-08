@@ -34,7 +34,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   private quotes = {};
 
   constructor(private quotesActions: QuotesActions) {
-    this.quotesActions.fetchQuotes();
+    this.quotesActions.fetchQuotesFeed();
 
     this.quotes$.subscribe((quotes: any) => {
       this.quotes = quotes.toJS();

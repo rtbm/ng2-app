@@ -22,6 +22,16 @@ export class QuotesService {
     });
   }
 
+  fetchFeed() {
+    return new Promise((resolve, reject) => {
+      this.serverService.get('/quotes/feed')
+        .subscribe(
+          res => resolve(res),
+          err => reject(err)
+        );
+    });
+  }
+
   read(id: string) {
     return new Promise((resolve, reject) => {
       this.serverService.get(`/quotes/${id}`)

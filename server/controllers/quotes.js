@@ -1,5 +1,7 @@
 'use strict';
 const Quote = require('../models/quote');
+const Circle = require('../models/circle');
+const mongoose = require('mongoose');
 
 module.exports = {
   findAll: (req, res, next) => {
@@ -144,4 +146,43 @@ module.exports = {
       return res.json(quotes);
     });
   },
+
+  feed: (req, res, next) => {
+    Circle.aggregate([{
+      $match: {
+        owner: mongoose.Types.ObjectId(req.user._id),
+      },
+    }, {
+      $unwind: '$users',
+    }, {
+      $group: {
+        _id: null,
+        _circle: {
+          $addToSet: '$users',
+        },
+      },
+    }, {
+      $project: {
+        _id: 0,
+        users: '$_circle',
+      },
+    }]).exec((err, circle) => {
+      if (err) return next(err);
+
+      const owners = !!circle[0]
+        ? [req.user._id, ...circle[0].users]
+        : [req.user._id];
+
+      Quote.find({
+        $or: [{
+          owner: { $in: owners },
+        }, {
+          owner: req.user._id,
+        }],
+      }).exec((err, quotes) => {
+        if (err) return next(err);
+        return res.json(quotes);
+      });
+    });
+  }
 };

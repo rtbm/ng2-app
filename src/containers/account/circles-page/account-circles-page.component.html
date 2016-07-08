@@ -1,10 +1,12 @@
 <x-wrapper>
   <h1>Circles</h1>
+
   <x-box>
     <x-box-header>
       Create new Circle
     </x-box-header>
     <x-box-content>
+      <x-form-message preset="error" *ngIf="circles.saveCircle.isError">Error occured!</x-form-message>
       <qt-account-circle-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-account-circle-add-form>
     </x-box-content>
   </x-box>
@@ -15,12 +17,12 @@
         <h1>{{circle.name}}</h1>
       </x-list-item-content>
 
-      <x-form-item-actions>
+      <x-list-item-actions>
         <x-button size="normal" preset="neutral"
           (onClick)="circlesActions.showUpdateCircleModal(circle)">Edit</x-button>
         <x-button size="normal" preset="negative"
           (onClick)="circlesActions.showRemoveCircleConfirm(circle)">Delete</x-button>
-      </x-form-item-actions>
+      </x-list-item-actions>
 
     </x-list-item>
   </x-list>
@@ -36,6 +38,7 @@
 </x-dialog-confirm>
 
 <x-modal-form *ngIf="circles.updateCircle.isModalVisible">
+  <x-form-message preset="error" *ngIf="circles.updateCircle.isError">Error occured!</x-form-message>
   <qt-account-circle-edit-form (onSubmit)="circlesActions.updateCircle($event)"
     (onCancel)="circlesActions.updateCircleModalCancel()">
   </qt-account-circle-edit-form>
