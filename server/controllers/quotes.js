@@ -148,6 +148,12 @@ module.exports = {
   },
 
   feed: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
     Circle.aggregate([{
       $match: {
         owner: mongoose.Types.ObjectId(req.user._id),
@@ -174,11 +180,7 @@ module.exports = {
         : [req.user._id];
 
       Quote.find({
-        $or: [{
-          owner: { $in: owners },
-        }, {
-          owner: req.user._id,
-        }],
+        owner: { $in: owners },
       }).exec((err, quotes) => {
         if (err) return next(err);
         return res.json(quotes);
