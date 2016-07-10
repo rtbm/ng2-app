@@ -1,9 +1,8 @@
-import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
   XFormActionsComponent,
-  XFormMessageComponent,
   XFormGroupComponent,
   XLabelComponent,
   XButtonComponent,
@@ -11,7 +10,6 @@ import {
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AsyncPipe, NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
-import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
@@ -19,11 +17,10 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   template: require('./user-signin-form.component.html'),
   directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
-    XFormMessageComponent, XFormContentComponent],
+    XFormContentComponent],
   pipes: [AsyncPipe],
 })
-export class QtUserSigninFormComponent implements OnDestroy {
-  @select(state => state.user.getIn(['signin', 'errorCode'])) private errorCode$;
+export class QtUserSigninFormComponent {
   @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
@@ -44,9 +41,5 @@ export class QtUserSigninFormComponent implements OnDestroy {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
-  }
-
-  ngOnDestroy() {
-    this.errorCode$.unsubscribe();
   }
 }

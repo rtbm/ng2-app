@@ -24,7 +24,7 @@ export class QtAccountCircleAddFormComponent {
 
   constructor(builder: FormBuilder) {
     this.name = new FormControl('', Validators.required);
- 
+
     this.form = builder.group({
       name: this.name,
     });

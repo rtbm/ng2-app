@@ -1,29 +1,51 @@
-import { Component } from '@angular/core';
-import { XWrapperComponent, XBoxComponent, XBoxHeaderComponent, XBoxContentComponent } from '../../../components';
+import { Component, OnDestroy } from '@angular/core';
+import {
+  XWrapperComponent,
+  XBoxComponent,
+  XBoxHeaderComponent,
+  XBoxContentComponent,
+  XFormMessageComponent,
+} from '../../../components';
 import { QtAccountProfileEditFormComponent } from '../profile-edit-form';
 import { ProfileActions } from '../../../actions';
 import { select } from 'ng2-redux';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'qt-account-profile-page',
   template: require('./account-profile-page.component.html'),
   styles: [require('./account-profile-page.component.less')],
   directives: [XWrapperComponent, QtAccountProfileEditFormComponent, XBoxComponent, XBoxHeaderComponent,
-    XBoxContentComponent],
+    XBoxContentComponent, XFormMessageComponent],
+  pipes: [AsyncPipe],
 })
-export class QtAccountProfilePageComponent {
-  @select(state => state.session.getIn(['user', '_id'])) private _id$;
+export class QtAccountProfilePageComponent implements OnDestroy {
+  @select(state => state.session.getIn(['user', '_id'])) private userId$;
+  @select(state => state.profile) private profile$;
 
-  private _id;
+  private userId: string;
+  private isUpdateProfileError$: Observable<boolean>;
+  private isUpdateProfileSuccess$: Observable<boolean>;
 
   constructor(private profileActions: ProfileActions) {
-    this._id$.subscribe((_id: string) => {
-      this._id = _id;
-      this.profileActions.readProfile(_id);
-    });
+    this.isUpdateProfileError$ = this.profile$.map(s => s.getIn(['updateProfile', 'isError']));
+    this.isUpdateProfileSuccess$ = this.profile$.map(s => s.getIn(['updateProfile', 'isSuccess']));
+
+    this.userId$
+      .first()
+      .subscribe((_id: string) => { this.userId = _id; })
+      .unsubscribe();
+
+    this.profileActions.readProfile(this.userId);
   }
 
   handleSubmit(profile) {
-    return this.profileActions.updateProfile(this._id, profile);
+    return this.profileActions.updateProfile(this.userId, profile);
+  }
+
+  ngOnDestroy() {
+    this.userId$.unsubscribe();
+    this.profile$.unsubscribe();
   }
 }

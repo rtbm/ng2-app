@@ -2,12 +2,14 @@
   <x-box>
     <x-box-header>Create new :)</x-box-header>
     <x-box-content>
+      <x-form-message preset="success" *ngIf="isSaveQuoteSuccess$ | async">Successfully saved.</x-form-message>
+      <x-form-message preset="error" *ngIf="isSaveQuoteError$ | async">Error occured!</x-form-message>
       <qt-account-quote-add-form (onSubmit)="quotesActions.saveQuote($event)"></qt-account-quote-add-form>
     </x-box-content>
   </x-box>
 
   <x-list>
-    <x-list-item *ngFor="let quote of quotes.quotes.items">
+    <x-list-item *ngFor="let quote of (quotesItems$ | async)">
       <x-list-item-content>
         <h1>{{quote.name}}</h1>
         <p>{{quote.content}}</p>
@@ -29,15 +31,16 @@
   </x-list>
 </x-wrapper>
 
-<x-dialog-confirm *ngIf="quotes.removeQuote.isConfirmVisible"
-  (onConfirm)="quotesActions.removeQuote(quotes.removeQuote.item)"
+<x-dialog-confirm *ngIf="isRemoveQuoteConfirmVisible$ | async"
+  (onConfirm)="handleRemoveQuote()"
   (onCancel)="quotesActions.removeQuoteConfirmCancel()">
   You are going to remove:<br/>
-  <strong>{{quotes.removeQuote.item.name}}.</strong><br/>
+  <strong>{{removeQuoteItemName$ | async}}.</strong><br/>
   Are you sure?
 </x-dialog-confirm>
 
-<x-modal-form *ngIf="quotes.updateQuote.isModalVisible">
+<x-modal-form *ngIf="isUpdateQuoteModalVisible$ | async">
+  <x-form-message preset="error" *ngIf="isUpdateQuoteError$ | async">Error occured!</x-form-message>
   <qt-account-quote-edit-form
     (onSubmit)="quotesActions.updateQuote($event)"
     (onCancel)="quotesActions.updateQuoteModalCancel()">

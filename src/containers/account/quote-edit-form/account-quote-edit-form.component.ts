@@ -21,8 +21,8 @@ import { select } from 'ng2-redux';
 export class QtAccountQuoteEditFormComponent implements OnDestroy {
   @select(state => state.quotes.getIn(['updateQuote', 'item'])) private updateQuote$;
 
-  @Output() onCancel = new EventEmitter();
-  @Output() onSubmit = new EventEmitter();
+  @Output() private onCancel = new EventEmitter();
+  @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
   private _id: FormControl;
@@ -43,12 +43,15 @@ export class QtAccountQuoteEditFormComponent implements OnDestroy {
       url: this.url,
     });
 
-    this.updateQuote$.subscribe((updateQuote: any) => {
-      this._id.updateValue(updateQuote.get('_id'));
-      this.name.updateValue(updateQuote.get('name'));
-      this.content.updateValue(updateQuote.get('content'));
-      this.url.updateValue(updateQuote.get('url'));
-    });
+    this.updateQuote$
+      .first()
+      .subscribe((updateQuote: any) => {
+        this._id.updateValue(updateQuote.get('_id'));
+        this.name.updateValue(updateQuote.get('name'));
+        this.content.updateValue(updateQuote.get('content'));
+        this.url.updateValue(updateQuote.get('url'));
+      })
+      .unsubscribe();
   }
 
   handleSubmit() {

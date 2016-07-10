@@ -6,13 +6,14 @@
       Create new Circle
     </x-box-header>
     <x-box-content>
-      <x-form-message preset="error" *ngIf="circles.saveCircle.isError">Error occured!</x-form-message>
+      <x-form-message preset="success" *ngIf="isSaveCircleSuccess$ | async">Successfully saved.</x-form-message>
+      <x-form-message preset="error" *ngIf="isSaveCircleError$ | async">Error occured!</x-form-message>
       <qt-account-circle-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-account-circle-add-form>
     </x-box-content>
   </x-box>
 
   <x-list>
-    <x-list-item *ngFor="let circle of circles.circles.items">
+    <x-list-item *ngFor="let circle of (circlesItems$ | async)">
       <x-list-item-content>
         <h1>{{circle.name}}</h1>
       </x-list-item-content>
@@ -29,16 +30,16 @@
 
 </x-wrapper>
 
-<x-dialog-confirm *ngIf="circles.removeCircle.isConfirmVisible"
-  (onConfirm)="circlesActions.removeCircle(circles.removeCircle.item)"
+<x-dialog-confirm *ngIf="isRemoveCircleConfirmVisible$ | async"
+  (onConfirm)="handleRemoveCircle()"
   (onCancel)="circlesActions.removeCircleConfirmCancel()">
   You are going to remove:<br/>
-  <strong>{{circles.removeCircle.item.name}}.</strong><br/>
+  <strong>{{removeCircleItemName$ | async}}.</strong><br/>
   Are you sure?
 </x-dialog-confirm>
 
-<x-modal-form *ngIf="circles.updateCircle.isModalVisible">
-  <x-form-message preset="error" *ngIf="circles.updateCircle.isError">Error occured!</x-form-message>
+<x-modal-form *ngIf="isUpdateCircleModalVisible$ | async">
+  <x-form-message preset="error" *ngIf="isUpdateCircleError$ | async">Error occured!</x-form-message>
   <qt-account-circle-edit-form (onSubmit)="circlesActions.updateCircle($event)"
     (onCancel)="circlesActions.updateCircleModalCancel()">
   </qt-account-circle-edit-form>

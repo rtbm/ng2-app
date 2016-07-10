@@ -163,7 +163,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL:
     {
       return state
-        .setIn(['removeQuote', 'item'], {})
+        .setIn(['removeQuote', 'item'], fromJS({}))
         .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import {
   XFormComponent,
   XFormActionsComponent,
@@ -19,8 +19,8 @@ import { select } from 'ng2-redux';
   directives: [XFormComponent, XFormActionsComponent, XFormInputComponent, XFormGroupComponent, XFormMessageComponent,
     XButtonComponent, XFormContentComponent, XFormTextareaComponent],
 })
-export class QtAccountProfileEditFormComponent {
-  @select(state => state.profile) private profile$;
+export class QtAccountProfileEditFormComponent implements OnDestroy {
+  @select(state => state.profile.getIn(['profile', 'item'])) private profileItem$;
 
   @Output() private onSubmit = new EventEmitter();
 
@@ -40,16 +40,23 @@ export class QtAccountProfileEditFormComponent {
       bio: this.bio,
     });
 
-    this.profile$.subscribe((profile: any) => {
-      this.first_name.updateValue(profile.getIn(['item', 'first_name']));
-      this.last_name.updateValue(profile.getIn(['item', 'last_name']));
-      this.bio.updateValue(profile.getIn(['item', 'bio']));
-    });
+    this.profileItem$
+      .first()
+      .subscribe((profile: any) => {
+        this.first_name.updateValue(profile.get('first_name'));
+        this.last_name.updateValue(profile.get('last_name'));
+        this.bio.updateValue(profile.get('bio'));
+      })
+      .unsubscribe();
   }
 
   handleSubmit() {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
+  }
+
+  ngOnDestroy() {
+    this.profileItem$.unsubscribe();
   }
 }

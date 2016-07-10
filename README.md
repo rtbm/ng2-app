@@ -1,14 +1,33 @@
-# angular2+express app
+# ng2-quottr (WIP)
 
-App boilerplate with:
+Google+ inspired social app on. Work in progress.
 
-* redux (+logger, persist state)
-* Express+mongoose (+logger)
-* [Atomic Design components structure](http://atomicdesign.bradfrost.com/chapter-2/)
+## What's done?
+* user sign in, sign up, forgot/reset password, profile
+* managing entries (quotes)
+* creating circles
+* attaching user to circle
+* listing circles entries
+* sending invites
 
-## work in progress
+## What's in code?
+* evergreen angular 2, redux, express, mongodb, redis
+* typescript, less
+* reset password by in email token
+* nested outlet's routes
+* jwt support
+* modal dialogs/forms
+* slice (text-trim), filter (string or in object properties) pipe
 
-### Install npm dependencies
+### Host dependencies
+* node, npm
+* redis
+* mongodb
+* smtp service
+
+## Running
+
+### Install package dependencies
 ```
 npm install
 ```

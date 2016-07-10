@@ -2,19 +2,19 @@ import { UserActions } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
-  signupForm: {
+  signup: {
     isPending: false,
     isSuccess: false,
     isError: false,
     errorCode: 0,
   },
-  signinForm: {
+  signin: {
     isPending: false,
     isSuccess: false,
     isError: false,
     errorCode: 0,
   },
-  resetPasswordForm: {
+  resetPassword: {
     isPending: false,
     isSuccess: false,
     isError: false,

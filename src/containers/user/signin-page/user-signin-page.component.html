@@ -2,6 +2,15 @@
   <x-box>
     <x-box-header>Sign in</x-box-header>
     <x-box-content>
+      <div *ngIf="isSigninError$ | async" [ngSwitch]="signinErrorCode$ | async">
+        <x-form-message preset="error" *ngSwitchCase="422">
+          Provided e-mail/password is incorrect.
+        </x-form-message>
+
+        <x-form-message preset="error" *ngSwitchCase="404">
+          Account not exist.
+        </x-form-message>
+      </div>
       <qt-user-signin-form (onSubmit)="userActions.signin($event)"></qt-user-signin-form>
     </x-box-content>
   </x-box>

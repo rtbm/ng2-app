@@ -163,7 +163,7 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_REMOVE_CONFIRM_CANCEL:
     {
       return state
-        .setIn(['removeCircle', 'item'], {})
+        .setIn(['removeCircle', 'item'], fromJS({}))
         .setIn(['removeCircle', 'isConfirmVisible'], false);
     }
 
