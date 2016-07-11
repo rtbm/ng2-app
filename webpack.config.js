@@ -14,20 +14,19 @@ const basePlugins = [
   ]),
   new HtmlWebpackPlugin({
     template: './src/index.html',
-    inject: 'body'
+    inject: 'body',
   }),
-  new webpack.NoErrorsPlugin()
+  new webpack.NoErrorsPlugin(),
 ];
 
 const prodPlugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     mangle: true,
     compress: {
-      warnings: false
-    }
-  })
+      warnings: false,
+    },
+  }),
 ];
 
 const plugins = basePlugins
@@ -36,40 +35,40 @@ const plugins = basePlugins
 
 module.exports = {
   entry: {
-    app: './src/boot.ts'
+    app: './src/boot.ts',
   },
 
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].[hash].js',
     publicPath: '/',
-    chunkFilename: '[id].chunk.js'
+    chunkFilename: '[id].chunk.js',
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts'],
   },
 
   plugins,
 
   devServer: {
-    historyApiFallback: { index: '/' }
+    historyApiFallback: { index: '/' },
   },
 
   module: {
     loaders: [{
       test: /\.ts$/,
       loader: 'ts',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.html$/,
       loader: 'raw',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }, {
       test: /\.less$/,
       loader: 'to-string!css!less',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     }],
-    noParse: [/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/]
-  }
+    noParse: [/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/],
+  },
 };
