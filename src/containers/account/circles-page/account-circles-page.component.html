@@ -40,7 +40,9 @@
 
 <x-modal-form *ngIf="isUpdateCircleModalVisible$ | async">
   <x-form-message preset="error" *ngIf="isUpdateCircleError$ | async">Error occured!</x-form-message>
-  <qt-account-circle-edit-form (onSubmit)="circlesActions.updateCircle($event)"
+  <qt-account-circle-edit-form
+    [circleModel]="updateCircleItem$ | async"
+    (onSubmit)="circlesActions.updateCircle($event)"
     (onCancel)="circlesActions.updateCircleModalCancel()">
   </qt-account-circle-edit-form>
 </x-modal-form>

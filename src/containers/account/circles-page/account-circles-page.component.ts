@@ -40,6 +40,7 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
   private isUpdateCircleModalVisible$: Observable<boolean>;
   private isUpdateCircleSuccess$: Observable<boolean>;
   private isUpdateCircleError$: Observable<boolean>;
+  private updateCircleItem$: Observable<any>;
 
   private isRemoveCircleConfirmVisible$: Observable<boolean>;
   private removeCircleItem$: Observable<any>;
@@ -58,6 +59,7 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
     this.isUpdateCircleModalVisible$ = this.circles$.map(s => s.getIn(['updateCircle', 'isModalVisible']));
     this.isUpdateCircleSuccess$ = this.circles$.map(s => s.getIn(['updateCircle', 'isSuccess']));
     this.isUpdateCircleError$ = this.circles$.map(s => s.getIn(['updateCircle', 'isError']));
+    this.updateCircleItem$ = this.circles$.map(s => s.getIn(['updateCircle', 'item']).toJS());
 
     this.isRemoveCircleConfirmVisible$ = this.circles$.map(s => s.getIn(['removeCircle', 'isConfirmVisible']));
     this.removeCircleItem$ = this.circles$.map(s => s.getIn(['removeCircle', 'item']).toJS());

@@ -18,7 +18,6 @@ import {
   UsersService,
   InvitesService,
   CirclesService,
-  ProfileService,
 } from './services';
 
 import {
@@ -62,6 +61,5 @@ bootstrap(QtAppComponent, [
   InvitesService,
   CirclesService,
   CirclesActions,
-  ProfileService,
   ProfileActions,
 ]);

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from './server';
+import { Profile } from '../models';
 
 @Injectable()
 export class UsersService {
@@ -23,6 +24,26 @@ export class UsersService {
           _id: user._id,
         },
       }).subscribe(
+          res => resolve(res),
+          err => reject(err)
+        );
+    });
+  }
+
+  readProfile(_id: string) {
+    return new Promise((resolve, reject) => {
+      this.serverService.get(`/users/${_id}/profile`)
+        .subscribe(
+          res => resolve(res),
+          err => reject(err)
+        );
+    });
+  }
+
+  updateProfile(_id: string, profile: Profile) {
+    return new Promise((resolve, reject) => {
+      this.serverService.put(`/users/${_id}/profile`, profile)
+        .subscribe(
           res => resolve(res),
           err => reject(err)
         );

@@ -41,6 +41,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   private isUpdateQuoteModalVisible$: Observable<boolean>;
   private isUpdateQuoteSuccess$: Observable<boolean>;
   private isUpdateQuoteError$: Observable<boolean>;
+  private updateQuoteItem$: Observable<any>;
 
   private isRemoveQuoteConfirmVisible$: Observable<boolean>;
   private removeQuoteItem$: Observable<any>;
@@ -57,6 +58,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
     this.isUpdateQuoteModalVisible$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isModalVisible']));
     this.isUpdateQuoteSuccess$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isSuccess']));
     this.isUpdateQuoteError$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isError']));
+    this.updateQuoteItem$ = this.quotes$.map(s => s.getIn(['updateQuote', 'item']).toJS());
 
     this.isRemoveQuoteConfirmVisible$ = this.quotes$.map(s => s.getIn(['removeQuote', 'isConfirmVisible']));
     this.removeQuoteItem$ = this.quotes$.map(s => s.getIn(['removeQuote', 'item']).toJS());

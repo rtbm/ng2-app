@@ -23,6 +23,10 @@ const quoteSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  votes: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  }],
   status: {
     type: String,
     enum: ['private', 'public'],

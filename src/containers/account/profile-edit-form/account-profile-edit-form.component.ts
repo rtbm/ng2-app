@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
 import {
   XFormComponent,
   XFormActionsComponent,
@@ -23,6 +23,7 @@ export class QtAccountProfileEditFormComponent implements OnDestroy {
   @select(state => state.profile.getIn(['profile', 'item'])) private profileItem$;
 
   @Output() private onSubmit = new EventEmitter();
+  @Input() private profileModel;
 
   private form: FormGroup;
   private first_name: FormControl;
@@ -39,15 +40,12 @@ export class QtAccountProfileEditFormComponent implements OnDestroy {
       last_name: this.last_name,
       bio: this.bio,
     });
+  }
 
-    this.profileItem$
-      .first()
-      .subscribe((profile: any) => {
-        this.first_name.updateValue(profile.get('first_name'));
-        this.last_name.updateValue(profile.get('last_name'));
-        this.bio.updateValue(profile.get('bio'));
-      })
-      .unsubscribe();
+  ngOnChanges(values) {
+    this.first_name.updateValue(values.profileModel.currentValue.first_name);
+    this.last_name.updateValue(values.profileModel.currentValue.last_name);
+    this.bio.updateValue(values.profileModel.currentValue.bio);
   }
 
   handleSubmit() {

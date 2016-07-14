@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -9,7 +9,6 @@ import {
   XFormContentComponent,
 } from '../../../components';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { select } from 'ng2-redux';
 
 @Component({
   selector: 'qt-account-quote-edit-form',
@@ -18,11 +17,10 @@ import { select } from 'ng2-redux';
   directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
     XFormTextareaComponent, XLabelComponent, XFormContentComponent],
 })
-export class QtAccountQuoteEditFormComponent implements OnDestroy {
-  @select(state => state.quotes.getIn(['updateQuote', 'item'])) private updateQuote$;
-
-  @Output() private onCancel = new EventEmitter();
+export class QtAccountQuoteEditFormComponent implements OnChanges {
   @Output() private onSubmit = new EventEmitter();
+  @Output() private onCancel = new EventEmitter();
+  @Input() private quoteModel;
 
   private form: FormGroup;
   private _id: FormControl;
@@ -42,25 +40,18 @@ export class QtAccountQuoteEditFormComponent implements OnDestroy {
       content: this.content,
       url: this.url,
     });
+  }
 
-    this.updateQuote$
-      .first()
-      .subscribe((updateQuote: any) => {
-        this._id.updateValue(updateQuote.get('_id'));
-        this.name.updateValue(updateQuote.get('name'));
-        this.content.updateValue(updateQuote.get('content'));
-        this.url.updateValue(updateQuote.get('url'));
-      })
-      .unsubscribe();
+  ngOnChanges(values) {
+    this._id.updateValue(values.quoteModel.currentValue._id);
+    this.name.updateValue(values.quoteModel.currentValue.name);
+    this.content.updateValue(values.quoteModel.currentValue.content);
+    this.url.updateValue(values.quoteModel.currentValue.url);
   }
 
   handleSubmit() {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
-  }
-
-  ngOnDestroy() {
-    this.updateQuote$.unsubscribe();
   }
 }

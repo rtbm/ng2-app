@@ -31,13 +31,13 @@ export class ServerService {
       .map((res: Response) => res.json());
   }
 
-  put(path, id, data) {
-    return this.http.put(`${this.BASE_URL}${path}/${id}`, JSON.stringify(data), { headers: this.HEADERS })
+  put(path, data) {
+    return this.http.put(`${this.BASE_URL}${path}`, JSON.stringify(data), { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 
-  delete(path, id) {
-    return this.http.delete(`${this.BASE_URL}${path}/${id}`, { headers: this.HEADERS })
+  delete(path) {
+    return this.http.delete(`${this.BASE_URL}${path}`, { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 }

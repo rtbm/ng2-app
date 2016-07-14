@@ -27,10 +27,12 @@ export class QtAccountProfilePageComponent implements OnDestroy {
   private userId: string;
   private isUpdateProfileError$: Observable<boolean>;
   private isUpdateProfileSuccess$: Observable<boolean>;
+  private profileItem$: Observable<any>;
 
   constructor(private profileActions: ProfileActions) {
     this.isUpdateProfileError$ = this.profile$.map(s => s.getIn(['updateProfile', 'isError']));
     this.isUpdateProfileSuccess$ = this.profile$.map(s => s.getIn(['updateProfile', 'isSuccess']));
+    this.profileItem$ = this.profile$.map(s => s.getIn(['profile', 'item']).toJS());
 
     this.userId$
       .first()

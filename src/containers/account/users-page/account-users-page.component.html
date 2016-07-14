@@ -1,12 +1,12 @@
 <x-wrapper>
   <h1>Users</h1>
-  <ul>
-    <li *ngFor="let user of usersUsers.items">
-      {{user.email}}
+  <x-list>
+    <x-list-item *ngFor="let user of usersUsers.items">
+      {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
       <x-button (onClick)="usersActions.invite(user)">invite</x-button>
       <x-button (onClick)="usersActions.showFollowModal(user)">follow</x-button>
-    </li>
-  </ul>
+    </x-list-item>
+  </x-list>
 </x-wrapper>
 
 <x-modal-form *ngIf="usersFollow.isModalVisible">

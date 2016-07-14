@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
-import { ProfileService } from '../services/profile';
+import { UsersService } from '../services/users';
 
 @Injectable()
 export class ProfileActions {
@@ -14,7 +14,7 @@ export class ProfileActions {
   static PROFILE_UPDATE_ERROR = 'PROFILE_UPDATE_ERROR';
 
   constructor(private ngRedux: NgRedux<IAppState>,
-              private profileService: ProfileService) {
+              private usersService: UsersService) {
   }
 
   readProfile(id) {
@@ -22,7 +22,7 @@ export class ProfileActions {
       type: ProfileActions.PROFILE_FETCH_PENDING,
     });
 
-    this.profileService.read(id)
+    this.usersService.readProfile(id)
       .then(result => this.ngRedux.dispatch({
         type: ProfileActions.PROFILE_FETCH_SUCCESS,
         payload: result,
@@ -39,7 +39,7 @@ export class ProfileActions {
       payload: profile,
     });
 
-    this.profileService.update(id, profile)
+    this.usersService.updateProfile(id, profile)
       .then(result => {
         this.ngRedux.dispatch({
           type: ProfileActions.PROFILE_UPDATE_SUCCESS,

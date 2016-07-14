@@ -59,7 +59,8 @@ export function profileReducer(state: IProfile = INITIAL_STATE, action: any = { 
     {
       return state
         .setIn(['updateProfile', 'isPending'], false)
-        .setIn(['updateProfile', 'isSuccess'], true);
+        .setIn(['updateProfile', 'isSuccess'], true)
+        .setIn(['profile', 'item'], fromJS(action.payload));
     }
 
     case ProfileActions.PROFILE_UPDATE_ERROR:

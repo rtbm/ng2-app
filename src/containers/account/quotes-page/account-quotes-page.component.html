@@ -42,6 +42,7 @@
 <x-modal-form *ngIf="isUpdateQuoteModalVisible$ | async">
   <x-form-message preset="error" *ngIf="isUpdateQuoteError$ | async">Error occured!</x-form-message>
   <qt-account-quote-edit-form
+    [quoteModel]="updateQuoteItem$ | async"
     (onSubmit)="quotesActions.updateQuote($event)"
     (onCancel)="quotesActions.updateQuoteModalCancel()">
   </qt-account-quote-edit-form>

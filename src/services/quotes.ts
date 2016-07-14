@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from './server';
-
-export interface Quote {
-  name: string;
-  content: string;
-  url: string;
-}
+import { Quote } from '../models';
 
 @Injectable()
 export class QuotesService {
@@ -32,9 +27,9 @@ export class QuotesService {
     });
   }
 
-  read(id: string) {
+  read(_id: string) {
     return new Promise((resolve, reject) => {
-      this.serverService.get(`/quotes/${id}`)
+      this.serverService.get(`/quotes/${_id}`)
         .subscribe(
           res => resolve(res),
           err => reject(err)
@@ -52,9 +47,9 @@ export class QuotesService {
     });
   }
 
-  update(id: string, quote: Quote) {
+  update(_id: string, quote: Quote) {
     return new Promise((resolve, reject) => {
-      this.serverService.put('/quotes', id, quote)
+      this.serverService.put(`/quotes/${_id}`, quote)
         .subscribe(
           res => resolve(res),
           err => reject(err)
@@ -62,9 +57,9 @@ export class QuotesService {
     });
   }
 
-  remove(id: string) {
+  remove(_id: string) {
     return new Promise((resolve, reject) => {
-      this.serverService.delete('/quotes', id)
+      this.serverService.delete(`/quotes/${_id}`)
         .subscribe(
           res => resolve(res),
           err => reject(err)

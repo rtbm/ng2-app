@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import {
   XFormComponent,
   XFormActionsComponent,
@@ -17,10 +17,11 @@ import { select } from 'ng2-redux';
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
     XFormContentComponent],
 })
-export class QtAccountCircleEditFormComponent implements OnDestroy {
+export class QtAccountCircleEditFormComponent implements OnChanges, OnDestroy {
   @select(state => state.circles.getIn(['updateCircle', 'item'])) private updateCircle$;
 
   @Output() private onSubmit = new EventEmitter();
+  @Input() private circleModel;
 
   private form: FormGroup;
   private _id: FormControl;
@@ -34,14 +35,11 @@ export class QtAccountCircleEditFormComponent implements OnDestroy {
       _id: this._id,
       name: this.name,
     });
+  }
 
-    this.updateCircle$
-      .first()
-      .subscribe((updateCircle: any) => {
-        this._id.updateValue(updateCircle.get('_id'));
-        this.name.updateValue(updateCircle.get('name'));
-      })
-      .unsubscribe();
+  ngOnChanges(values) {
+    this._id.updateValue(values.circleModel.currentValue._id);
+    this.name.updateValue(values.circleModel.currentValue.name);
   }
 
   handleSubmit() {

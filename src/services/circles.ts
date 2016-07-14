@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from './server';
-
-export interface Circle {
-  name: string;
-}
+import { Circle } from '../models';
 
 @Injectable()
 export class CirclesService {
@@ -20,9 +17,9 @@ export class CirclesService {
     });
   }
 
-  read(id: string) {
+  read(_id: string) {
     return new Promise((resolve, reject) => {
-      this.serverService.get(`/circles/${id}`)
+      this.serverService.get(`/circles/${_id}`)
         .subscribe(
           res => resolve(res),
           err => reject(err)
@@ -30,9 +27,9 @@ export class CirclesService {
     });
   }
 
-  save(quote: Circle) {
+  save(circle: Circle) {
     return new Promise((resolve, reject) => {
-      this.serverService.post('/circles', quote)
+      this.serverService.post('/circles', circle)
         .subscribe(
           res => resolve(res),
           err => reject(err)
@@ -40,9 +37,9 @@ export class CirclesService {
     });
   }
 
-  update(id: string, quote: Circle) {
+  update(_id: string, circle: Circle) {
     return new Promise((resolve, reject) => {
-      this.serverService.put('/circles', id, quote)
+      this.serverService.put(`/circles/${_id}`, circle)
         .subscribe(
           res => resolve(res),
           err => reject(err)
@@ -50,9 +47,9 @@ export class CirclesService {
     });
   }
 
-  remove(id: string) {
+  remove(_id: string) {
     return new Promise((resolve, reject) => {
-      this.serverService.delete('/circles', id)
+      this.serverService.delete(`/circles/${_id}`)
         .subscribe(
           res => resolve(res),
           err => reject(err)

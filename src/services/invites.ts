@@ -18,7 +18,7 @@ export class InvitesService {
 
   remove(_id) {
     return new Promise((resolve, reject) => {
-      this.serverService.delete('/invites', _id)
+      this.serverService.delete(`/invites/${_id}`)
         .subscribe(
           res => resolve(res),
           err => reject(err)
