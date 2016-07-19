@@ -2,12 +2,10 @@
 
 :host {
   display: block;
-  height: 100vh;
-  background: @dark;
-  width: 8rem;
-  position: fixed;
-  top: 0;
   left: 0;
+  position: fixed;
+  top: 7.5rem;
+  width: 21.5rem;
 }
 
 x-menu {
@@ -17,15 +15,24 @@ x-menu {
 x-menu-item {
   display: block;
   margin: 0;
-}
 
-x-menu-item a {
-  color: @white;
-  display: block;
-  padding: 2rem 0;
-}
+  x-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 8rem;
+  }
 
-x-menu-item a:hover {
-  color: @dark;
-  background: @background;
+  a {
+    display: block;
+    padding: 1.5rem 0;
+
+    &:hover {
+      background: darken(@background, 5%);
+    }
+
+    &.active-link {
+      background: @green;
+      color: white;
+    }
+  }
 }
