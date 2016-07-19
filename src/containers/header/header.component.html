@@ -9,7 +9,7 @@
   <div class="account-box">
     <x-menu *ngIf="isAuthorized$ | async">
       <x-menu-item>
-        <div class="email">{{email$ | async}}</div>
+        <div class="email">{{userEmail$ | async}}</div>
       </x-menu-item>
       <x-menu-item>
         <x-button (onClick)="handleLogoutClick()">Logout</x-button>
@@ -21,4 +21,6 @@
       <x-button (onClick)="handleSignupClick()">Sign up</x-button>
     </x-menu>
   </div>
+
+  <div class="clearfix"></div>
 </x-wrapper>

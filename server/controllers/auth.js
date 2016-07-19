@@ -46,7 +46,7 @@ module.exports = {
   signin: (req, res, next) => {
     User.findOne({
       email: req.body.email,
-    }).select('password').exec((err, user) => {
+    }).select('email password').exec((err, user) => {
       if (err) return next(err);
 
       if (!user) {

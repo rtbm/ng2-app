@@ -21,7 +21,7 @@ import { select } from 'ng2-redux';
 })
 export class QtHeaderComponent implements OnDestroy {
   @select(state => state.session.get('isAuthorized')) private isAuthorized$;
-  @select(state => state.session.getIn(['user', 'email'])) private email$;
+  @select(state => state.session.getIn(['user', 'email'])) private userEmail$;
 
   constructor(private router: Router,
               private userActions: UserActions) {
@@ -41,6 +41,6 @@ export class QtHeaderComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.isAuthorized$.unsubscribe();
-    this.email$.unsubscribe();
+    this.userEmail$.unsubscribe();
   }
 }

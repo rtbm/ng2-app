@@ -3,6 +3,7 @@ export * from './circle-add-form';
 export * from './circle-edit-form';
 export * from './circles-page';
 export * from './circles-select-form';
+export * from './header';
 export * from './profile-edit-form';
 export * from './profile-page';
 export * from './quote-add-form';
