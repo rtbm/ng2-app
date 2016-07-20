@@ -1,4 +1,4 @@
-import { CirclesActions } from '../actions/circles';
+import { CirclesActions } from '../actions/circles.actions';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -38,7 +38,7 @@ export type ICircles = Map<string, any>;
 
 export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case CirclesActions.CIRCLES_FETCH_PENDING:
+    case CirclesActions.CIRCLES_FETCH:
     {
       return state
         .setIn(['circles', 'isPending'], true)
@@ -63,7 +63,7 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['circles', 'errorCode'], action.payload.errorCode);
     }
 
-    case CirclesActions.CIRCLE_SAVE_PENDING:
+    case CirclesActions.CIRCLE_SAVE:
     {
       return state
         .setIn(['saveCircle', 'isPending'], true)
@@ -77,7 +77,9 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
       return state
         .setIn(['saveCircle', 'isPending'], false)
         .setIn(['saveCircle', 'isSuccess'], true)
-        .setIn(['saveCircle', 'item'], fromJS(action.payload));
+        .updateIn(['circles', 'items'],
+          list => list.push(fromJS(action.payload))
+        );
     }
 
     case CirclesActions.CIRCLE_SAVE_ERROR:
@@ -88,7 +90,7 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['saveCircle', 'errorCode'], action.payload.errorCode);
     }
 
-    case CirclesActions.CIRCLE_UPDATE_FETCH_PENDING:
+    case CirclesActions.CIRCLE_UPDATE_MODAL:
     {
       return state
         .setIn(['updateCircle', 'isPending'], true)
@@ -98,15 +100,16 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['updateCircle', 'item'], fromJS({}));
     }
 
-    case CirclesActions.CIRCLE_UPDATE_FETCH_SUCCESS:
+    case CirclesActions.CIRCLE_UPDATE_MODAL_SUCCESS:
     {
       return state
         .setIn(['updateCircle', 'isPending'], false)
         .setIn(['updateCircle', 'isSuccess'], true)
-        .setIn(['updateCircle', 'item'], fromJS(action.payload));
+        .setIn(['updateCircle', 'item'], fromJS(action.payload))
+        .setIn(['updateCircle', 'isModalVisible'], true);
     }
 
-    case CirclesActions.CIRCLE_UPDATE_FETCH_ERROR:
+    case CirclesActions.CIRCLE_UPDATE_MODAL_ERROR:
     {
       return state
         .setIn(['updateCircle', 'isPending'], false)
@@ -114,7 +117,14 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['updateCircle', 'errorCode'], action.payload.errorCode);
     }
 
-    case CirclesActions.CIRCLE_UPDATE_PENDING:
+    case CirclesActions.CIRCLE_UPDATE_MODAL_CANCEL:
+    {
+      return state
+        .setIn(['updateCircle', 'item'], fromJS({}))
+        .setIn(['updateCircle', 'isModalVisible'], false);
+    }
+
+    case CirclesActions.CIRCLE_UPDATE:
     {
       return state
         .setIn(['updateCircle', 'isPending'], true)
@@ -130,7 +140,10 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['updateCircle', 'isPending'], false)
         .setIn(['updateCircle', 'isSuccess'], true)
         .setIn(['updateCircle', 'isModalVisible'], false)
-        .setIn(['updateCircle', 'item'], fromJS(action.payload));
+        .updateIn(['circles', 'items'], list => list.update(
+          list.findIndex(circle => circle.get('id') === action.payload._id),
+          item => fromJS(action.payload)
+        ));
     }
 
     case CirclesActions.CIRCLE_UPDATE_ERROR:
@@ -139,18 +152,6 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['updateCircle', 'isPending'], false)
         .setIn(['updateCircle', 'isError'], true)
         .setIn(['updateCircle', 'errorCode'], action.payload.errorCode);
-    }
-
-    case CirclesActions.CIRCLE_UPDATE_MODAL:
-    {
-      return state.setIn(['updateCircle', 'isModalVisible'], true);
-    }
-
-    case CirclesActions.CIRCLE_UPDATE_MODAL_CANCEL:
-    {
-      return state
-        .setIn(['updateCircle', 'item'], fromJS({}))
-        .setIn(['updateCircle', 'isModalVisible'], false);
     }
 
     case CirclesActions.CIRCLE_REMOVE_CONFIRM:
@@ -167,7 +168,7 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['removeCircle', 'isConfirmVisible'], false);
     }
 
-    case CirclesActions.CIRCLE_REMOVE_PENDING:
+    case CirclesActions.CIRCLE_REMOVE:
     {
       return state
         .setIn(['removeCircle', 'isPending'], true)
@@ -182,7 +183,10 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
       return state
         .setIn(['removeCircle', 'isPending'], false)
         .setIn(['removeCircle', 'isSuccess'], true)
-        .setIn(['removeCircle', 'item'], fromJS(action.payload));
+        .setIn(['removeCircle', 'item'], fromJS(action.payload))
+        .updateIn(['circles', 'items'],
+          list => list.filter(circle => circle.get('_id') !== action.payload._id)
+        );
     }
 
     case CirclesActions.CIRCLE_REMOVE_ERROR:

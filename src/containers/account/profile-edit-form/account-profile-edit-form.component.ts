@@ -10,7 +10,6 @@ import {
   XFormTextareaComponent,
 } from '../../../components';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { select } from 'ng2-redux';
 
 @Component({
   selector: 'qt-account-profile-edit-form',
@@ -19,42 +18,57 @@ import { select } from 'ng2-redux';
   directives: [XFormComponent, XFormActionsComponent, XFormInputComponent, XFormGroupComponent, XFormMessageComponent,
     XButtonComponent, XFormContentComponent, XFormTextareaComponent],
 })
-export class QtAccountProfileEditFormComponent implements OnDestroy {
-  @select(state => state.profile.getIn(['profile', 'item'])) private profileItem$;
-
+export class QtAccountProfileEditFormComponent {
   @Output() private onSubmit = new EventEmitter();
-  @Input() private profileModel;
+  @Input() private user: Object;
 
   private form: FormGroup;
+  private _id: FormControl;
   private first_name: FormControl;
   private last_name: FormControl;
   private bio: FormControl;
 
   constructor(builder: FormBuilder) {
+    this._id = new FormControl('');
     this.first_name = new FormControl('');
     this.last_name = new FormControl('');
     this.bio = new FormControl('');
 
     this.form = builder.group({
-      first_name: this.first_name,
-      last_name: this.last_name,
-      bio: this.bio,
+      _id: this._id,
+      profile: builder.group({
+        first_name: this.first_name,
+        last_name: this.last_name,
+        bio: this.bio,
+      }),
     });
   }
 
   ngOnChanges(values) {
-    this.first_name.updateValue(values.profileModel.currentValue.first_name);
-    this.last_name.updateValue(values.profileModel.currentValue.last_name);
-    this.bio.updateValue(values.profileModel.currentValue.bio);
+    const currVal = values.user.currentValue;
+
+    if (currVal._id) {
+      this._id.updateValue(currVal._id);
+    }
+
+    if (currVal.profile) {
+      if (currVal.profile.first_name) {
+        this.first_name.updateValue(currVal.profile.first_name);
+      }
+
+      if (currVal.profile.last_name) {
+        this.last_name.updateValue(currVal.profile.last_name);
+      }
+
+      if (currVal.profile.bio) {
+        this.bio.updateValue(currVal.profile.bio);
+      }
+    }
   }
 
   handleSubmit() {
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
-  }
-
-  ngOnDestroy() {
-    this.profileItem$.unsubscribe();
   }
 }

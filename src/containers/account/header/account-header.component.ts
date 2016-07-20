@@ -4,24 +4,28 @@ import { Observable } from 'rxjs/Rx';
 import { AsyncPipe } from '@angular/common';
 import { UserActions } from '../../../actions';
 import { XButtonComponent, XMenuComponent, XMenuItemComponent } from '../../../components';
+import { JwtHelper } from 'angular2-jwt/angular2-jwt';
 
 @Component({
   selector: 'qt-account-header',
   template: require('./account-header.component.html'),
   styles: [require('./account-header.component.less')],
   directives: [XButtonComponent, XMenuComponent, XMenuItemComponent],
-  pipes: [AsyncPipe],
 })
 export class QtAccountHeaderComponent {
-  @select(state => state.session) private session$;
+  @select(state => state.user.get('id_token')) private id_token$;
 
-  private userEmail$: Observable<string>;
+  private user: Object;
 
   constructor(private userActions: UserActions) {
-    this.userEmail$ = this.session$.map(n => n.getIn(['user', 'email']));
+    this.id_token$
+      .filter(id_token => !!id_token)
+      .subscribe((id_token: string) => {
+        this.user = new JwtHelper().decodeToken(id_token);
+      });
   }
 
   handleLogoutClick() {
-    this.userActions.logout();
+    this.userActions.signout();
   }
 }

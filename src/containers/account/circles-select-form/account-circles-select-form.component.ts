@@ -8,6 +8,7 @@ import {
 } from '../../../components';
 import { select } from 'ng2-redux';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'qt-account-circles-select-form',
@@ -22,15 +23,12 @@ export class QtAccountCirclesSelectFormComponent implements OnDestroy {
 
   @select(state => state.circles.get('circles')) private circles$;
 
-  private circles;
+  private circlesItems$: Observable<any>;
   private form: FormGroup;
 
   constructor(private builder: FormBuilder) {
     this.form = this.builder.group({});
-
-    this.circles$.subscribe((circles: any) => {
-      this.circles = circles.toJS();
-    });
+    this.circlesItems$ = this.circles$.map(s => s.get('items').toJS());
   }
 
   ngOnDestroy() {

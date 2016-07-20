@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { QtHeaderComponent } from '../header';
 import { select } from 'ng2-redux';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'x-user-page',
@@ -10,17 +11,21 @@ import { select } from 'ng2-redux';
 })
 
 export class QtUserPageComponent implements OnDestroy {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
+  @select(state => state.user) private user$;
+
+  private userToken$: Observable<string>;
 
   constructor(private router: Router) {
-    this.isAuthorized$.subscribe((isAuthorized: boolean) => {
-      if (isAuthorized) {
+    this.userToken$ = this.user$.map(s => s.get('id_token'));
+
+    this.userToken$
+      .filter(id_token => !!id_token)
+      .subscribe((id_token: string) => {
         this.router.navigate(['/account/quotes']);
-      }
-    });
+      });
   }
 
   ngOnDestroy() {
-    this.isAuthorized$.unsubscribe();
+    this.user$.unsubscribe();
   }
 }

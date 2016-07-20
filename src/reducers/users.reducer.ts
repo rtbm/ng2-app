@@ -1,4 +1,4 @@
-import { UsersActions } from '../actions/users';
+import { UsersActions } from '../actions/users.actions';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -20,8 +20,8 @@ export const INITIAL_STATE = fromJS({
     isSuccess: false,
     isError: false,
     errorCode: 0,
-    user: {},
     isModalVisible: false,
+    item: {},
   },
 });
 
@@ -29,7 +29,7 @@ export type IUsers = Map<string, any>;
 
 export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case UsersActions.USERS_FETCH_PENDING:
+    case UsersActions.USERS_FETCH:
     {
       return state
         .setIn(['users', 'isPending'], true)
@@ -54,7 +54,7 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['users', 'errorCode'], action.payload.errorCode);
     }
 
-    case UsersActions.USERS_INVITE_PENDING:
+    case UsersActions.USERS_INVITE:
     {
       return state
         .setIn(['invite', 'isPending'], true)
@@ -79,7 +79,7 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['invite', 'errorCode'], action.payload.errorCode);
     }
 
-    case UsersActions.USERS_FOLLOW_PENDING:
+    case UsersActions.USERS_FOLLOW:
     {
       return state
         .setIn(['follow', 'isPending'], true)
@@ -108,13 +108,13 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
     case UsersActions.USERS_FOLLOW_MODAL:
     {
       return state.setIn(['follow', 'isModalVisible'], true)
-        .setIn(['follow', 'user'], fromJS(action.payload));
+        .setIn(['follow', 'item'], fromJS(action.payload));
     }
 
     case UsersActions.USERS_FOLLOW_MODAL_CANCEL:
     {
       return state.setIn(['follow', 'isModalVisible'], false)
-        .setIn(['follow', 'user'], fromJS({}));
+        .setIn(['follow', 'item'], fromJS({}));
     }
 
     default:

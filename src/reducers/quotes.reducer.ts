@@ -1,4 +1,4 @@
-import { QuotesActions } from '../actions/quotes';
+import { QuotesActions } from '../actions/quotes.actions';
 import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
@@ -38,7 +38,7 @@ export type IQuotes = Map<string, any>;
 
 export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { type: '' }) {
   switch (action.type) {
-    case QuotesActions.QUOTES_FETCH_PENDING:
+    case QuotesActions.QUOTES_FETCH:
     {
       return state
         .setIn(['quotes', 'isPending'], true)
@@ -63,7 +63,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['quotes', 'errorCode'], action.payload.errorCode);
     }
 
-    case QuotesActions.QUOTE_SAVE_PENDING:
+    case QuotesActions.QUOTE_SAVE:
     {
       return state
         .setIn(['saveQuote', 'isPending'], true)
@@ -77,7 +77,9 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
       return state
         .setIn(['saveQuote', 'isPending'], false)
         .setIn(['saveQuote', 'isSuccess'], true)
-        .setIn(['saveQuote', 'item'], fromJS(action.payload));
+        .updateIn(['quotes', 'items'],
+          list => list.push(fromJS(action.payload))
+        );
     }
 
     case QuotesActions.QUOTE_SAVE_ERROR:
@@ -88,7 +90,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['saveQuote', 'errorCode'], action.payload.errorCode);
     }
 
-    case QuotesActions.QUOTE_UPDATE_FETCH_PENDING:
+    case QuotesActions.QUOTE_UPDATE_MODAL:
     {
       return state
         .setIn(['updateQuote', 'isPending'], true)
@@ -98,15 +100,16 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['updateQuote', 'item'], fromJS({}));
     }
 
-    case QuotesActions.QUOTE_UPDATE_FETCH_SUCCESS:
+    case QuotesActions.QUOTE_UPDATE_MODAL_SUCCESS:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isSuccess'], true)
-        .setIn(['updateQuote', 'item'], fromJS(action.payload));
+        .setIn(['updateQuote', 'item'], fromJS(action.payload))
+        .setIn(['updateQuote', 'isModalVisible'], true);
     }
 
-    case QuotesActions.QUOTE_UPDATE_FETCH_ERROR:
+    case QuotesActions.QUOTE_UPDATE_MODAL_ERROR:
     {
       return state
         .setIn(['updateQuote', 'isPending'], false)
@@ -114,7 +117,14 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['updateQuote', 'errorCode'], action.payload.errorCode);
     }
 
-    case QuotesActions.QUOTE_UPDATE_PENDING:
+    case QuotesActions.QUOTE_UPDATE_MODAL_CANCEL:
+    {
+      return state
+        .setIn(['updateQuote', 'item'], fromJS({}))
+        .setIn(['updateQuote', 'isModalVisible'], false);
+    }
+
+    case QuotesActions.QUOTE_UPDATE:
     {
       return state
         .setIn(['updateQuote', 'isPending'], true)
@@ -130,7 +140,10 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isSuccess'], true)
         .setIn(['updateQuote', 'isModalVisible'], false)
-        .setIn(['updateQuote', 'item'], fromJS(action.payload));
+        .updateIn(['quotes', 'items'], list => list.update(
+          list.findIndex(circle => circle.get('id') === action.payload._id),
+          item => fromJS(action.payload)
+        ));
     }
 
     case QuotesActions.QUOTE_UPDATE_ERROR:
@@ -139,18 +152,6 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isError'], true)
         .setIn(['updateQuote', 'errorCode'], action.payload.errorCode);
-    }
-
-    case QuotesActions.QUOTE_UPDATE_MODAL:
-    {
-      return state.setIn(['updateQuote', 'isModalVisible'], true);
-    }
-
-    case QuotesActions.QUOTE_UPDATE_MODAL_CANCEL:
-    {
-      return state
-        .setIn(['updateQuote', 'item'], fromJS({}))
-        .setIn(['updateQuote', 'isModalVisible'], false);
     }
 
     case QuotesActions.QUOTE_REMOVE_CONFIRM:
@@ -167,7 +168,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['removeQuote', 'isConfirmVisible'], false);
     }
 
-    case QuotesActions.QUOTE_REMOVE_PENDING:
+    case QuotesActions.QUOTE_REMOVE:
     {
       return state
         .setIn(['removeQuote', 'isPending'], true)
@@ -182,7 +183,10 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
       return state
         .setIn(['removeQuote', 'isPending'], false)
         .setIn(['removeQuote', 'isSuccess'], true)
-        .setIn(['removeQuote', 'item'], fromJS(action.payload));
+        .setIn(['removeQuote', 'item'], fromJS(action.payload))
+        .updateIn(['quotes', 'items'],
+          list => list.filter(circle => circle.get('_id') !== action.payload._id)
+        );
     }
 
     case QuotesActions.QUOTE_REMOVE_ERROR:

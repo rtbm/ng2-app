@@ -1,2 +1,2 @@
-export * from './filter';
-export * from './slice';
+export * from './filter.pipe';
+export * from './slice.pipe';

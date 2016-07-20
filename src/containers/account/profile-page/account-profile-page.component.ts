@@ -21,29 +21,23 @@ import { Observable } from 'rxjs/Rx';
   pipes: [AsyncPipe],
 })
 export class QtAccountProfilePageComponent implements OnDestroy {
-  @select(state => state.session.getIn(['user', '_id'])) private userId$;
+  @select(state => state.user.getIn(['user', '_id'])) private userId$;
   @select(state => state.profile) private profile$;
 
-  private userId: string;
   private isUpdateProfileError$: Observable<boolean>;
   private isUpdateProfileSuccess$: Observable<boolean>;
-  private profileItem$: Observable<any>;
+  private userItem$: Observable<any>;
 
   constructor(private profileActions: ProfileActions) {
     this.isUpdateProfileError$ = this.profile$.map(s => s.getIn(['updateProfile', 'isError']));
     this.isUpdateProfileSuccess$ = this.profile$.map(s => s.getIn(['updateProfile', 'isSuccess']));
-    this.profileItem$ = this.profile$.map(s => s.getIn(['profile', 'item']).toJS());
+    this.userItem$ = this.profile$.map(s => s.getIn(['user', 'item']).toJS());
 
-    this.userId$
-      .first()
-      .subscribe((_id: string) => { this.userId = _id; })
-      .unsubscribe();
-
-    this.profileActions.readProfile(this.userId);
+    this.userId$.first().subscribe((_id: string) => this.profileActions.fetchUser(_id));
   }
 
-  handleSubmit(profile) {
-    return this.profileActions.updateProfile(this.userId, profile);
+  handleSubmit(user) {
+    return this.profileActions.updateUser(user);
   }
 
   ngOnDestroy() {

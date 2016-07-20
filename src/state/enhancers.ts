@@ -1,27 +1,31 @@
 import { fromJS } from 'immutable';
-import { JwtHelper } from 'angular2-jwt/angular2-jwt';
-const persistState = require('redux-localstorage');
+import { JwtHelper } from 'angular2-jwt';
+
+function sessionStore() {
+  return next => (reducer, initialState) => {
+    const id_token = localStorage.getItem('id_token');
+    const user = !!id_token ? new JwtHelper().decodeToken(id_token) : {};
+
+    const userState = {
+      user: fromJS({
+        id_token,
+        user,
+      }),
+    };
+
+    const store = next(reducer, userState);
+
+    store.subscribe(() => {
+      const state = store.getState();
+      localStorage.setItem('id_token', state.user.get('id_token'));
+    });
+
+    return store;
+  };
+}
 
 const enhancers = [
-  persistState('session', {
-    key: 'qt-app-session',
-    serialize: store => {
-      if (store && store.session) {
-        const session = store.session.toJS();
-        session.user = {};
-        return JSON.stringify(session);
-      }
-      return store;
-    },
-    deserialize: state => {
-      if (state) {
-        const session = JSON.parse(state);
-        session.user = session.id_token ? new JwtHelper().decodeToken(session.id_token) : {};
-        return { session: fromJS(session) };
-      }
-      return { session: fromJS({}) };
-    },
-  }),
+  sessionStore(),
 ];
 
 export { enhancers };

@@ -3,7 +3,7 @@ const router = express.Router();
 const users = require('../controllers/users');
 
 router.get('/', users.findAll);
-router.get('/:userId/profile', users.readProfile);
-router.put('/:userId/profile', users.updateProfile);
+router.get('/:userId', users.read);
+router.put('/:userId', users.update);
 
 module.exports = router;

@@ -13,7 +13,7 @@ import {
   XBoxHeaderComponent,
   XFormMessageComponent,
 } from '../../../components';
-import { CirclesActions } from '../../../actions/circles';
+import { CirclesActions } from '../../../actions/circles.actions';
 import { select } from 'ng2-redux';
 import { QtAccountCircleAddFormComponent } from '../circle-add-form';
 import { QtAccountCircleEditFormComponent } from '../circle-edit-form';

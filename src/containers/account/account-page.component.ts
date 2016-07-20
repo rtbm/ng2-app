@@ -11,17 +11,17 @@ import { QtAccountHeaderComponent } from './header';
   directives: [ROUTER_DIRECTIVES, QtAccountAsideMenuComponent, QtAccountHeaderComponent],
 })
 export class QtAccountPageComponent implements OnDestroy {
-  @select(state => state.session.get('isAuthorized')) private isAuthorized$;
+  @select(state => state.user.get('id_token')) private id_token$;
 
   constructor(private router: Router) {
-    this.isAuthorized$.subscribe((isAuthorized: boolean) => {
-      if (!isAuthorized) {
+    this.id_token$
+      .filter(id_token => !id_token)
+      .subscribe((id_token: string) => {
         this.router.navigate(['/user/signin']);
-      }
     });
   }
 
   ngOnDestroy() {
-    this.isAuthorized$.unsubscribe();
+    this.id_token$.unsubscribe();
   }
 }

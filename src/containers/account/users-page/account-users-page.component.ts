@@ -6,10 +6,11 @@ import {
   XListComponent,
   XListItemComponent,
 } from '../../../components';
-import { UsersActions } from '../../../actions/users';
+import { UsersActions } from '../../../actions/users.actions';
 import { select } from 'ng2-redux';
 import { QtAccountCirclesSelectFormComponent } from '../circles-select-form';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'qt-account-users-page',
@@ -20,30 +21,32 @@ import { AsyncPipe } from '@angular/common';
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnDestroy {
-  @select(state => state.users.get('users')) private usersUsers$;
-  @select(state => state.users.get('follow')) private usersFollow$;
+  @select(state => state.users) private users$;
 
-  private usersUsers;
-  private usersFollow;
+  private usersUsers$: Observable<any>;
+  private usersFollow$: Observable<any>;
+  private isFollowModalVisible$: Observable<boolean>;
+  private usersFollowItem$: Observable<any>;
 
   constructor(private usersActions: UsersActions) {
     this.usersActions.fetchUsers();
 
-    this.usersUsers$.subscribe((items: any) => {
-      this.usersUsers = items.toJS();
-    });
-
-    this.usersFollow$.subscribe((follow: any) => {
-      this.usersFollow = follow.toJS();
-    });
+    this.usersUsers$ = this.users$.map(s => s.getIn(['users', 'items']).toJS());
+    this.usersFollow$ = this.users$.map(s => s.getIn(['follow']));
+    this.usersFollowItem$ = this.users$.map(s => s.getIn(['follow', 'item']).toJS());
+    this.isFollowModalVisible$ = this.users$.map(s => s.getIn(['follow', 'isModalVisible']));
   }
 
   handleFollow(circle) {
-    this.usersActions.follow(circle._id, this.usersFollow.user);
+    let user = {};
+
+    this.usersFollowItem$.first()
+      .subscribe(result => { user = result; });
+
+    this.usersActions.follow(circle._id, user);
   }
 
   ngOnDestroy() {
-    this.usersUsers$.unsubscribe();
-    this.usersFollow$.unsubscribe();
+    this.users$.unsubscribe();
   }
 }

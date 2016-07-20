@@ -17,7 +17,7 @@ module.exports = {
       });
   },
 
-  readProfile: (req, res, next) => {
+  read: (req, res, next) => {
     if (!req.user || !req.user._id) {
       const err = new Error('Unauthorized');
       err.status = 401;
@@ -34,11 +34,11 @@ module.exports = {
         return next(err);
       }
 
-      return res.json(user.profile);
+      return res.json(user);
     });
   },
 
-  updateProfile: (req, res, next) => {
+  update: (req, res, next) => {
     if (!req.user || !req.user._id) {
       const err = new Error('Unauthorized');
       err.status = 401;
@@ -61,13 +61,13 @@ module.exports = {
           return next(err);
         }
 
-        user.profile.first_name = req.body.first_name;
-        user.profile.last_name = req.body.last_name;
-        user.profile.bio = req.body.bio;
+        user.profile.first_name = req.body.profile.first_name;
+        user.profile.last_name = req.body.profile.last_name;
+        user.profile.bio = req.body.profile.bio;
 
         user.save((err, user) => {
           if (err) return next(err);
-          return res.json(user.profile);
+          return res.json(user);
         });
       });
   },

@@ -21,13 +21,20 @@ import {
 } from './services';
 
 import {
-  SessionActions,
   QuotesActions,
   UserActions,
   UsersActions,
   CirclesActions,
   ProfileActions,
 } from './actions';
+
+import {
+  UserEpics,
+  CirclesEpics,
+  ProfileEpics,
+  QuotesEpics,
+  UsersEpics,
+} from './epics';
 
 import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
 import { QtAppComponent } from './app.component';
@@ -40,6 +47,31 @@ if (__PRODUCTION__) {
   require("zone.js/dist/long-stack-trace-zone");
 }
 
+const SERVICES = [
+  ServerService,
+  AuthService,
+  InvitesService,
+  CirclesService,
+  QuotesService,
+  UsersService,
+];
+
+const ACTIONS = [
+  QuotesActions,
+  UsersActions,
+  CirclesActions,
+  ProfileActions,
+  UserActions,
+];
+
+const EPICS = [
+  UserEpics,
+  CirclesEpics,
+  ProfileEpics,
+  QuotesEpics,
+  UsersEpics,
+];
+
 bootstrap(QtAppComponent, [
   NgRedux,
   HTTP_PROVIDERS,
@@ -50,16 +82,7 @@ bootstrap(QtAppComponent, [
   ]),
   disableDeprecatedForms(),
   provideForms(),
-  ServerService,
-  AuthService,
-  UserActions,
-  QuotesService,
-  SessionActions,
-  QuotesActions,
-  UsersActions,
-  UsersService,
-  InvitesService,
-  CirclesService,
-  CirclesActions,
-  ProfileActions,
+  ...SERVICES,
+  ...ACTIONS,
+  ...EPICS,
 ]);

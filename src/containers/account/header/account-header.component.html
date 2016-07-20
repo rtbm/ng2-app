@@ -1,7 +1,7 @@
 <div class="account-box">
   <x-menu>
     <x-menu-item>
-      <div class="email">{{userEmail$ | async}}</div>
+      <div class="email">{{user.email}}</div>
     </x-menu-item>
     <x-menu-item>
       <x-button (onClick)="handleLogoutClick()">Logout</x-button>

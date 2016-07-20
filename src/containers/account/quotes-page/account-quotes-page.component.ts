@@ -31,7 +31,7 @@ import { Observable } from 'rxjs/Rx';
 })
 export class QtAccountQuotesPageComponent implements OnDestroy {
   @select(state => state.quotes) private quotes$;
-  @select(state => state.session.getIn(['user', '_id'])) private userId$;
+  @select(state => state.user.getIn(['user', '_id'])) private userId$;
 
   private quotesItems$: Observable<Array<Object>>;
 
@@ -48,7 +48,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   private removeQuoteItemName$: Observable<string>;
 
   constructor(private quotesActions: QuotesActions) {
-    this.quotesActions.fetchQuotesFeed();
+    this.quotesActions.fetchQuotes();
 
     this.quotesItems$ = this.quotes$.map(s => s.getIn(['quotes', 'items']).toJS());
 
@@ -68,10 +68,8 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   handleRemoveQuote() {
     let quote: Object = {};
 
-    this.removeQuoteItem$
-      .first()
-      .subscribe(result => { quote = result; })
-      .unsubscribe();
+    this.removeQuoteItem$.first()
+      .subscribe(result => { quote = result; });
 
     this.quotesActions.removeQuote(quote);
   }
