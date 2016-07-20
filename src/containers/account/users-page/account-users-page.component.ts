@@ -10,7 +10,7 @@ import { UsersActions } from '../../../actions/users.actions';
 import { select } from 'ng2-redux';
 import { QtAccountCirclesSelectFormComponent } from '../circles-select-form';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-users-page',

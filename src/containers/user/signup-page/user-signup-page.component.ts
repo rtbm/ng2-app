@@ -11,7 +11,7 @@ import {
 import { AsyncPipe } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { UserActions } from '../../../actions';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { select } from 'ng2-redux';
 
 @Component({

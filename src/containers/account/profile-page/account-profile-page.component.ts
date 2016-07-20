@@ -10,7 +10,7 @@ import { QtAccountProfileEditFormComponent } from '../profile-edit-form';
 import { ProfileActions } from '../../../actions';
 import { select } from 'ng2-redux';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-profile-page',
@@ -33,7 +33,9 @@ export class QtAccountProfilePageComponent implements OnDestroy {
     this.isUpdateProfileSuccess$ = this.profile$.map(s => s.getIn(['updateProfile', 'isSuccess']));
     this.userItem$ = this.profile$.map(s => s.getIn(['user', 'item']).toJS());
 
-    this.userId$.first().subscribe((_id: string) => this.profileActions.fetchUser(_id));
+    this.userId$
+      .first()
+      .subscribe((_id: string) => this.profileActions.fetchUser(_id));
   }
 
   handleSubmit(user) {

@@ -11,30 +11,9 @@ import { provideRouter } from '@angular/router';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { NgRedux } from 'ng2-redux';
 
-import {
-  ServerService,
-  AuthService,
-  QuotesService,
-  UsersService,
-  InvitesService,
-  CirclesService,
-} from './services';
-
-import {
-  QuotesActions,
-  UserActions,
-  UsersActions,
-  CirclesActions,
-  ProfileActions,
-} from './actions';
-
-import {
-  UserEpics,
-  CirclesEpics,
-  ProfileEpics,
-  QuotesEpics,
-  UsersEpics,
-} from './epics';
+import { SERVICES_PROVIDERS } from './services';
+import { ACTIONS_PROVIDERS } from './actions';
+import { EPICS_PROVIDERS } from './epics';
 
 import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
 import { QtAppComponent } from './app.component';
@@ -44,33 +23,8 @@ declare let __PRODUCTION__: any;
 if (__PRODUCTION__) {
   enableProdMode();
 } else {
-  require("zone.js/dist/long-stack-trace-zone");
+  require('zone.js/dist/long-stack-trace-zone');
 }
-
-const SERVICES = [
-  ServerService,
-  AuthService,
-  InvitesService,
-  CirclesService,
-  QuotesService,
-  UsersService,
-];
-
-const ACTIONS = [
-  QuotesActions,
-  UsersActions,
-  CirclesActions,
-  ProfileActions,
-  UserActions,
-];
-
-const EPICS = [
-  UserEpics,
-  CirclesEpics,
-  ProfileEpics,
-  QuotesEpics,
-  UsersEpics,
-];
 
 bootstrap(QtAppComponent, [
   NgRedux,
@@ -82,7 +36,7 @@ bootstrap(QtAppComponent, [
   ]),
   disableDeprecatedForms(),
   provideForms(),
-  ...SERVICES,
-  ...ACTIONS,
-  ...EPICS,
+  ...SERVICES_PROVIDERS,
+  ...ACTIONS_PROVIDERS,
+  ...EPICS_PROVIDERS,
 ]);

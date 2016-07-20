@@ -11,7 +11,7 @@ import {
 } from '../../../components';
 import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-user-signin-page',

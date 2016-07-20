@@ -17,7 +17,7 @@ import { CirclesActions } from '../../../actions/circles.actions';
 import { select } from 'ng2-redux';
 import { QtAccountCircleAddFormComponent } from '../circle-add-form';
 import { QtAccountCircleEditFormComponent } from '../circle-edit-form';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

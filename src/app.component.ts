@@ -24,29 +24,27 @@ export class QtAppComponent {
               private quotesEpics: QuotesEpics,
               private usersEpics: UsersEpics) {
 
-    middlewares.push(createEpicMiddleware(this.userEpics.signin));
-    middlewares.push(createEpicMiddleware(this.userEpics.signup));
-    middlewares.push(createEpicMiddleware(this.userEpics.resetPassword));
-    middlewares.push(createEpicMiddleware(this.userEpics.changePassword));
-
-    middlewares.push(createEpicMiddleware(this.circlesEpics.fetchCircles));
-    middlewares.push(createEpicMiddleware(this.circlesEpics.saveCircle));
-    middlewares.push(createEpicMiddleware(this.circlesEpics.updateCircleModal));
-    middlewares.push(createEpicMiddleware(this.circlesEpics.updateCircle));
-    middlewares.push(createEpicMiddleware(this.circlesEpics.removeCircle));
-
-    middlewares.push(createEpicMiddleware(this.profileEpics.fetchUser));
-    middlewares.push(createEpicMiddleware(this.profileEpics.updateUser));
-
-    middlewares.push(createEpicMiddleware(this.quotesEpics.fetchQuotes));
-    middlewares.push(createEpicMiddleware(this.quotesEpics.saveQuote));
-    middlewares.push(createEpicMiddleware(this.quotesEpics.updateQuoteModal));
-    middlewares.push(createEpicMiddleware(this.quotesEpics.updateQuote));
-    middlewares.push(createEpicMiddleware(this.quotesEpics.removeQuote));
-
-    middlewares.push(createEpicMiddleware(this.usersEpics.fetchUsers));
-    middlewares.push(createEpicMiddleware(this.usersEpics.inviteUser));
-    middlewares.push(createEpicMiddleware(this.usersEpics.followUser));
+    middlewares.push(
+      createEpicMiddleware(this.userEpics.signin),
+      createEpicMiddleware(this.userEpics.signup),
+      createEpicMiddleware(this.userEpics.resetPassword),
+      createEpicMiddleware(this.userEpics.changePassword),
+      createEpicMiddleware(this.circlesEpics.fetchCircles),
+      createEpicMiddleware(this.circlesEpics.saveCircle),
+      createEpicMiddleware(this.circlesEpics.updateCircleModal),
+      createEpicMiddleware(this.circlesEpics.updateCircle),
+      createEpicMiddleware(this.circlesEpics.removeCircle),
+      createEpicMiddleware(this.profileEpics.fetchUser),
+      createEpicMiddleware(this.profileEpics.updateUser),
+      createEpicMiddleware(this.quotesEpics.fetchQuotes),
+      createEpicMiddleware(this.quotesEpics.saveQuote),
+      createEpicMiddleware(this.quotesEpics.updateQuoteModal),
+      createEpicMiddleware(this.quotesEpics.updateQuote),
+      createEpicMiddleware(this.quotesEpics.removeQuote),
+      createEpicMiddleware(this.usersEpics.fetchUsers),
+      createEpicMiddleware(this.usersEpics.inviteUser),
+      createEpicMiddleware(this.usersEpics.followUser)
+    );
 
     ngRedux.configureStore(rootReducer, {}, middlewares, enhancers);
   }

@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { QtHeaderComponent } from '../header';
 import { select } from 'ng2-redux';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'x-user-page',

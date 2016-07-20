@@ -18,7 +18,7 @@ import { QuotesActions } from '../../../actions';
 import { QtAccountQuoteAddFormComponent } from '../quote-add-form';
 import { QtAccountQuoteEditFormComponent } from '../quote-edit-form';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-quotes-page',

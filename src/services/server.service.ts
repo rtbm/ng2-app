@@ -12,9 +12,9 @@ export class ServerService {
   setHeaders() {
     const id_token = localStorage.getItem('id_token');
 
-    if (id_token && !this.HEADERS.has('Authorization')) {
-      this.HEADERS.append('Authorization', `Bearer ${id_token}`);
-    } else if (!id_token && this.HEADERS.has('Authorization')) {
+    if (id_token) {
+      this.HEADERS.set('Authorization', `Bearer ${id_token}`);
+    } else {
       this.HEADERS.delete('Authorization');
     }
   }

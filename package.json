@@ -63,7 +63,6 @@
     "ng2-redux": "^3.2.1-beta.1",
     "raw-loader": "^0.5.1",
     "redux": "^3.5.2",
-    "redux-localstorage": "^0.4.1",
     "redux-logger": "^2.6.1",
     "redux-observable": "^0.7.2",
     "reflect-metadata": "^0.1.3",

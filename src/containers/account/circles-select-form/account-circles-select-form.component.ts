@@ -8,7 +8,7 @@ import {
 } from '../../../components';
 import { select } from 'ng2-redux';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-circles-select-form',
