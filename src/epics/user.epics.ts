@@ -3,6 +3,7 @@ import { ActionsObservable } from 'redux-observable';
 import { UserActions } from '../actions';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class UserEpics {
@@ -15,7 +16,10 @@ export class UserEpics {
         return this.authService.signin(payload)
           .map(result => ({
             type: UserActions.USER_SIGNIN_SUCCESS,
-            payload: result,
+            payload: {
+              id_token: result.id_token,
+              user: new JwtHelper().decodeToken(result.id_token),
+            },
           }))
           .catch(error => Observable.of({
             type: UserActions.USER_SIGNIN_ERROR,
@@ -30,7 +34,10 @@ export class UserEpics {
         return this.authService.signup(payload)
           .map(result => ({
             type: UserActions.USER_SIGNUP_SUCCESS,
-            payload: result,
+            payload: {
+              id_token: result.id_token,
+              user: new JwtHelper().decodeToken(result.id_token),
+            },
           }))
           .catch(error => Observable.of({
             type: UserActions.USER_SIGNUP_ERROR,
@@ -42,7 +49,7 @@ export class UserEpics {
   resetPassword = (action$: ActionsObservable) => {
     return action$.ofType(UserActions.USER_RESET_PASSWORD)
       .flatMap(({payload}) => {
-        return this.authService.signup(payload)
+        return this.authService.resetPassword(payload)
           .map(result => ({
             type: UserActions.USER_RESET_PASSWORD_SUCCESS,
             payload: result,
@@ -57,7 +64,7 @@ export class UserEpics {
   changePassword = (action$: ActionsObservable) => {
     return action$.ofType(UserActions.USER_CHANGE_PASSWORD)
       .flatMap(({payload}) => {
-        return this.authService.signup(payload)
+        return this.authService.changePassword(payload)
           .map(result => ({
             type: UserActions.USER_CHANGE_PASSWORD_SUCCESS,
             payload: result,

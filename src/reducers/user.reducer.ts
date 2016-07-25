@@ -3,6 +3,7 @@ import { Map, fromJS } from 'immutable';
 
 export const INITIAL_STATE = fromJS({
   id_token: '',
+  user: {},
   signup: {
     isPending: false,
     isSuccess: false,
@@ -39,7 +40,8 @@ export function userReducer(state: IUser = INITIAL_STATE, action: any = { type: 
       return state
         .setIn(['signin', 'isPending'], false)
         .setIn(['signin', 'isSuccess'], true)
-        .set('id_token', action.payload.id_token);
+        .set('id_token', action.payload.id_token)
+        .set('user', fromJS(action.payload.user));
     }
 
     case UserActions.USER_SIGNIN_ERROR: {
@@ -61,7 +63,8 @@ export function userReducer(state: IUser = INITIAL_STATE, action: any = { type: 
       return state
         .setIn(['signup', 'isPending'], false)
         .setIn(['signup', 'isSuccess'], true)
-        .set('id_token', action.payload.id_token);
+        .set('id_token', action.payload.id_token)
+        .set('user', fromJS(action.payload.user));
     }
 
     case UserActions.USER_SIGNUP_ERROR: {
@@ -94,7 +97,8 @@ export function userReducer(state: IUser = INITIAL_STATE, action: any = { type: 
 
     case UserActions.USER_SIGNOUT: {
       return state
-        .set('id_token', '');
+        .set('id_token', '')
+        .set('user', fromJS({}));
     }
 
     default:

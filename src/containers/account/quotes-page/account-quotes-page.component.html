@@ -44,6 +44,6 @@
   <qt-account-quote-edit-form
     [quoteModel]="updateQuoteItem$ | async"
     (onSubmit)="quotesActions.updateQuote($event)"
-    (onCancel)="quotesActions.updateQuoteModalCancel()">
+    (onCancel)="quotesActions.updateQuoteCancel()">
   </qt-account-quote-edit-form>
 </x-modal-form>
