@@ -36,6 +36,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
 
   private quotesItems$: Observable<Array<Object>>;
 
+  private isSaveQuoteModalVisible$: Observable<boolean>;
   private isSaveQuoteSuccess$: Observable<boolean>;
   private isSaveQuoteError$: Observable<boolean>;
 
@@ -53,6 +54,7 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
 
     this.quotesItems$ = this.quotes$.map(s => s.getIn(['quotes', 'items']).toJS());
 
+    this.isSaveQuoteModalVisible$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isModalVisible']));
     this.isSaveQuoteSuccess$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isSuccess']));
     this.isSaveQuoteError$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isError']));
 

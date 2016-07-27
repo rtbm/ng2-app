@@ -10,6 +10,7 @@ export const INITIAL_STATE = fromJS({
     items: [],
   },
   saveQuote: {
+    isModalVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
@@ -17,18 +18,18 @@ export const INITIAL_STATE = fromJS({
     item: {},
   },
   updateQuote: {
+    isModalVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
-    isModalVisible: false,
     errorCode: 0,
     item: {},
   },
   removeQuote: {
+    isConfirmVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
-    isConfirmVisible: false,
     errorCode: 0,
     item: {},
   },
@@ -63,6 +64,18 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['quotes', 'errorCode'], action.payload.errorCode);
     }
 
+    case QuotesActions.QUOTE_SAVE_MODAL:
+    {
+      return state
+        .setIn(['saveQuote', 'isModalVisible'], true);
+    }
+
+    case QuotesActions.QUOTE_SAVE_MODAL_CANCEL:
+    {
+      return state
+        .setIn(['saveQuote', 'isModalVisible'], false);
+    }
+
     case QuotesActions.QUOTE_SAVE:
     {
       return state
@@ -75,6 +88,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_SAVE_SUCCESS:
     {
       return state
+        .setIn(['saveQuote', 'isModalVisible'], false)
         .setIn(['saveQuote', 'isPending'], false)
         .setIn(['saveQuote', 'isSuccess'], true)
         .updateIn(['quotes', 'items'],
@@ -103,10 +117,10 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_UPDATE_MODAL_SUCCESS:
     {
       return state
+        .setIn(['updateQuote', 'isModalVisible'], true)
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isSuccess'], true)
-        .setIn(['updateQuote', 'item'], fromJS(action.payload))
-        .setIn(['updateQuote', 'isModalVisible'], true);
+        .setIn(['updateQuote', 'item'], fromJS(action.payload));
     }
 
     case QuotesActions.QUOTE_UPDATE_MODAL_ERROR:
@@ -120,8 +134,8 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_UPDATE_MODAL_CANCEL:
     {
       return state
-        .setIn(['updateQuote', 'item'], fromJS({}))
-        .setIn(['updateQuote', 'isModalVisible'], false);
+        .setIn(['updateQuote', 'isModalVisible'], false)
+        .setIn(['updateQuote', 'item'], fromJS({}));
     }
 
     case QuotesActions.QUOTE_UPDATE:
@@ -137,9 +151,9 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_UPDATE_SUCCESS:
     {
       return state
+        .setIn(['updateQuote', 'isModalVisible'], false)
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isSuccess'], true)
-        .setIn(['updateQuote', 'isModalVisible'], false)
         .updateIn(['quotes', 'items'], list => list.update(
           list.findIndex(circle => circle.get('id') === action.payload._id),
           item => fromJS(action.payload)
@@ -157,25 +171,25 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
     case QuotesActions.QUOTE_REMOVE_CONFIRM:
     {
       return state
-        .setIn(['removeQuote', 'item'], fromJS(action.payload))
-        .setIn(['removeQuote', 'isConfirmVisible'], true);
+        .setIn(['removeQuote', 'isConfirmVisible'], true)
+        .setIn(['removeQuote', 'item'], fromJS(action.payload));
     }
 
     case QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL:
     {
       return state
-        .setIn(['removeQuote', 'item'], fromJS({}))
-        .setIn(['removeQuote', 'isConfirmVisible'], false);
+        .setIn(['removeQuote', 'isConfirmVisible'], false)
+        .setIn(['removeQuote', 'item'], fromJS({}));
     }
 
     case QuotesActions.QUOTE_REMOVE:
     {
       return state
+        .setIn(['removeQuote', 'isConfirmVisible'], false)
         .setIn(['removeQuote', 'isPending'], true)
         .setIn(['removeQuote', 'isSuccess'], false)
         .setIn(['removeQuote', 'isError'], false)
-        .setIn(['removeQuote', 'errorCode'], 0)
-        .setIn(['removeQuote', 'isConfirmVisible'], false);
+        .setIn(['removeQuote', 'errorCode'], 0);
     }
 
     case QuotesActions.QUOTE_REMOVE_SUCCESS:

@@ -9,6 +9,9 @@ export class QuotesActions {
   static QUOTES_FETCH_SUCCESS = 'QUOTES_FETCH_SUCCESS';
   static QUOTES_FETCH_ERROR = 'QUOTES_FETCH_ERROR';
 
+  static QUOTE_SAVE_MODAL = 'QUOTE_SAVE_MODAL';
+  static QUOTE_SAVE_MODAL_CANCEL = 'QUOTE_SAVE_MODAL_CANCEL';
+
   static QUOTE_SAVE = 'QUOTE_SAVE';
   static QUOTE_SAVE_SUCCESS = 'QUOTE_SAVE_SUCCESS';
   static QUOTE_SAVE_ERROR = 'QUOTE_SAVE_ERROR';
@@ -39,16 +42,21 @@ export class QuotesActions {
     });
   }
 
-  saveQuote(circle) {
+  saveQuoteModal() {
     this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_SAVE,
-      payload: circle,
+      type: QuotesActions.QUOTE_SAVE_MODAL,
     });
   }
 
-  removeQuote(circle) {
+  saveQuoteModalCancel() {
     this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_REMOVE,
+      type: QuotesActions.QUOTE_SAVE_MODAL_CANCEL,
+    });
+  }
+
+  saveQuote(circle) {
+    this.ngRedux.dispatch({
+      type: QuotesActions.QUOTE_SAVE,
       payload: circle,
     });
   }
@@ -63,6 +71,13 @@ export class QuotesActions {
   removeQuoteConfirmCancel() {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL,
+    });
+  }
+
+  removeQuote(circle) {
+    this.ngRedux.dispatch({
+      type: QuotesActions.QUOTE_REMOVE,
+      payload: circle,
     });
   }
 

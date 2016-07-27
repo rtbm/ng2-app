@@ -1,12 +1,5 @@
 <x-wrapper>
-  <x-box>
-    <x-box-header>Create new :)</x-box-header>
-    <x-box-content>
-      <x-form-message preset="success" *ngIf="isSaveQuoteSuccess$ | async">Successfully saved.</x-form-message>
-      <x-form-message preset="error" *ngIf="isSaveQuoteError$ | async">Error occured!</x-form-message>
-      <qt-account-quote-add-form (onSubmit)="quotesActions.saveQuote($event)"></qt-account-quote-add-form>
-    </x-box-content>
-  </x-box>
+  <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
 
   <x-list>
     <x-list-item *ngFor="let quote of (quotesItems$ | async)">
@@ -39,8 +32,16 @@
   Are you sure?
 </x-dialog-confirm>
 
+<x-modal-form *ngIf="isSaveQuoteModalVisible$ | async">
+  <x-form-message preset="error" *ngIf="isSaveQuoteError$ | async">Error occured! Try again!</x-form-message>
+  <qt-account-quote-add-form
+    (onSubmit)="quotesActions.saveQuote($event)"
+    (onCancel)="quotesActions.saveQuoteModalCancel()">
+  </qt-account-quote-add-form>
+</x-modal-form>
+
 <x-modal-form *ngIf="isUpdateQuoteModalVisible$ | async">
-  <x-form-message preset="error" *ngIf="isUpdateQuoteError$ | async">Error occured!</x-form-message>
+  <x-form-message preset="error" *ngIf="isUpdateQuoteError$ | async">Error occured! Try again!</x-form-message>
   <qt-account-quote-edit-form
     [quoteModel]="updateQuoteItem$ | async"
     (onSubmit)="quotesActions.updateQuote($event)"

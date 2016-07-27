@@ -20,6 +20,7 @@ import {
 })
 export class QtAccountQuoteAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
+  @Output() private onCancel = new EventEmitter();
 
   private form: FormGroup;
   private name: FormControl;
