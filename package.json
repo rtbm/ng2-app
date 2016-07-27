@@ -61,6 +61,7 @@
     "less-loader": "^2.2.3",
     "mocha": "^2.5.3",
     "ng2-redux": "^3.3.1",
+    "q": "^1.4.1",
     "raw-loader": "^0.5.1",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",

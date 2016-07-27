@@ -31,8 +31,8 @@ describe('/api/auth', () => {
         .end((err, res) => {
           res.should.have.a.status(200);
           res.should.be.a.json;
-          res.body.should.be.a('object');
-          res.body.should.have.property('id_token');
+          res.body.should.be.an.object;
+          res.body.should.have.a.property('id_token');
           res.body.id_token.should.be.a.string;
           res.body.id_token.should.be.not.empty;
           done();
@@ -44,13 +44,8 @@ describe('/api/auth', () => {
         .post('/api/auth/signup')
         .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
         .end((err, res) => {
-          chai.request(server)
-            .post('/api/auth/signup')
-            .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
-            .end((err, res) => {
-              res.should.have.a.status(409);
-              done();
-            });
+          res.should.have.a.status(409);
+          done();
         });
     });
   });
@@ -58,36 +53,26 @@ describe('/api/auth', () => {
   describe('/api/auth/signin', () => {
     it('should authenticate user and send JWT token', done => {
       chai.request(server)
-        .post('/api/auth/signup')
-        .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
+        .post('/api/auth/signin')
+        .send({ email: 'test@test', password: 'test' })
         .end((err, res) => {
-          chai.request(server)
-            .post('/api/auth/signin')
-            .send({ email: 'test@test', password: 'test' })
-            .end((err, res) => {
-              res.should.have.a.status(200);
-              res.should.be.a.json;
-              res.body.should.be.a('object');
-              res.body.should.have.property('id_token');
-              res.body.id_token.should.be.a.string;
-              res.body.id_token.should.be.not.empty;
-              done();
-            });
+          res.should.have.a.status(200);
+          res.should.be.a.json;
+          res.body.should.be.an.object;
+          res.body.should.have.a.property('id_token');
+          res.body.id_token.should.be.a.string;
+          res.body.id_token.should.be.not.empty;
+          done();
         });
     });
 
     it('should NOT authenticate user', done => {
       chai.request(server)
-        .post('/api/auth/signup')
-        .send({ email: 'test@test', password: 'test', password_confirm: 'test' })
+        .post('/api/auth/signin')
+        .send({ email: 'test@test', password: 'test2' })
         .end((err, res) => {
-          chai.request(server)
-            .post('/api/auth/signin')
-            .send({ email: 'test@test', password: 'test2' })
-            .end((err, res) => {
-              res.should.have.a.status(422);
-              done();
-            });
+          res.should.have.a.status(422);
+          done();
         });
     });
   });

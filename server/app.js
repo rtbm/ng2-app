@@ -9,7 +9,9 @@ const auth = require('./utils/auth');
 const distPath = path.join(__dirname, '../public');
 const app = express();
 
-require('mongoose').connect(config.database);
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(config.database);
 
 if(app.get('env') === 'development') {
   app.use(require('morgan')('dev', { stream: logger.stream }));
