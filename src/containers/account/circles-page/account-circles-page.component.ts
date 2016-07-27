@@ -69,14 +69,9 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
   }
 
   handleRemoveCircle() {
-    let removeCircleItem: Object = {};
-
     this.removeCircleItem$
       .first()
-      .subscribe((circle: Object) => { removeCircleItem = circle; })
-      .unsubscribe();
-
-    this.circlesActions.removeCircle(removeCircleItem);
+      .subscribe((circle: Object) => this.circlesActions.removeCircle(circle));
   }
 
   ngOnDestroy() {

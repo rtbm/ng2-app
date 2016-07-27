@@ -38,12 +38,8 @@ export class QtAccountUsersPageComponent implements OnDestroy {
   }
 
   handleFollow(circle) {
-    let user = {};
-
     this.usersFollowItem$.first()
-      .subscribe(result => { user = result; });
-
-    this.usersActions.follow(circle._id, user);
+      .subscribe((user: any) => this.usersActions.follow(circle._id, user));
   }
 
   ngOnDestroy() {

@@ -16,7 +16,7 @@ export class QtAccountPageComponent implements OnDestroy {
   constructor(private router: Router) {
     this.id_token$
       .filter(id_token => !id_token)
-      .subscribe((id_token: string) => {
+      .subscribe(() => {
         this.router.navigate(['/user/signin']);
     });
   }

@@ -66,12 +66,8 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   }
 
   handleRemoveQuote() {
-    let quote: Object = {};
-
     this.removeQuoteItem$.first()
-      .subscribe(result => { quote = result; });
-
-    this.quotesActions.removeQuote(quote);
+      .subscribe(quote => this.quotesActions.removeQuote(quote));
   }
 
   ngOnDestroy() {
