@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from './server.service';
-import { Profile } from '../models';
+import { User } from '../models';
 
 @Injectable()
 export class UsersService {
@@ -15,11 +15,11 @@ export class UsersService {
     return this.serverService.get(`/users/${_id}`);
   }
 
-  update(_id: string, profile: Profile) {
-    return this.serverService.put(`/users/${_id}`, profile);
+  update(_id: string, user: User) {
+    return this.serverService.put(`/users/${_id}`, user);
   }
 
-  follow(circleId, user) {
+  follow(circleId, user: User) {
     return this.serverService.post(`/circles/${circleId}/users`, {
       user: {
         _id: user._id,

@@ -20,9 +20,7 @@ export class QtUserPageComponent implements OnDestroy {
 
     this.userToken$
       .filter(id_token => !!id_token)
-      .subscribe((id_token: string) => {
-        this.router.navigate(['/account/quotes']);
-      });
+      .subscribe(() => this.router.navigate(['/account/quotes']));
   }
 
   ngOnDestroy() {

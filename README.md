@@ -1,4 +1,4 @@
-# ng2-quottr (WIP)
+# ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-app.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-app)
 
 Google+ inspired social app on. Work in progress.
 

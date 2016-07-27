@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 6
+
+dependencies:
+  pre:
+    - rm -rf node_modules
+
+test:
+  post:
+    - npm run build
+    - npm start:
+        background: true

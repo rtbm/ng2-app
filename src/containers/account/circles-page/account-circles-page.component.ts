@@ -19,6 +19,7 @@ import { QtAccountCircleAddFormComponent } from '../circle-add-form';
 import { QtAccountCircleEditFormComponent } from '../circle-edit-form';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Circle } from '../../../models';
 
 @Component({
   selector: 'qt-account-circles-page',
@@ -71,7 +72,7 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
   handleRemoveCircle() {
     this.removeCircleItem$
       .first()
-      .subscribe((circle: Object) => this.circlesActions.removeCircle(circle));
+      .subscribe((circle: Circle) => this.circlesActions.removeCircle(circle));
   }
 
   ngOnDestroy() {

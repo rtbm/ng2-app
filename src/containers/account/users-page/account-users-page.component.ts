@@ -11,6 +11,7 @@ import { select } from 'ng2-redux';
 import { QtAccountCirclesSelectFormComponent } from '../circles-select-form';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { User } from '../../../models';
 
 @Component({
   selector: 'qt-account-users-page',
@@ -38,8 +39,9 @@ export class QtAccountUsersPageComponent implements OnDestroy {
   }
 
   handleFollow(circle) {
-    this.usersFollowItem$.first()
-      .subscribe((user: any) => this.usersActions.follow(circle._id, user));
+    this.usersFollowItem$
+      .first()
+      .subscribe((user: User) => this.usersActions.follow(circle._id, user));
   }
 
   ngOnDestroy() {

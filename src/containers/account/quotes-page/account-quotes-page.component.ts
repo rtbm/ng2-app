@@ -19,6 +19,7 @@ import { QtAccountQuoteAddFormComponent } from '../quote-add-form';
 import { QtAccountQuoteEditFormComponent } from '../quote-edit-form';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Quote } from '../../../models';
 
 @Component({
   selector: 'qt-account-quotes-page',
@@ -66,8 +67,9 @@ export class QtAccountQuotesPageComponent implements OnDestroy {
   }
 
   handleRemoveQuote() {
-    this.removeQuoteItem$.first()
-      .subscribe(quote => this.quotesActions.removeQuote(quote));
+    this.removeQuoteItem$
+      .first()
+      .subscribe((quote: Quote) => this.quotesActions.removeQuote(quote));
   }
 
   ngOnDestroy() {
