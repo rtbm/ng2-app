@@ -18,6 +18,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class QtAccountCircleAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
+  @Output() private onCancel = new EventEmitter();
 
   private form: FormGroup;
   private name: FormControl;

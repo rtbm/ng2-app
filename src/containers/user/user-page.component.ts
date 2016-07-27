@@ -13,13 +13,13 @@ import { Observable } from 'rxjs';
 export class QtUserPageComponent implements OnDestroy {
   @select(state => state.user) private user$;
 
-  private userToken$: Observable<string>;
+  private isAuthorized$: Observable<boolean>;
 
   constructor(private router: Router) {
-    this.userToken$ = this.user$.map(s => s.get('id_token'));
+    this.isAuthorized$ = this.user$.map(s => !!s.get('id_token'));
 
-    this.userToken$
-      .filter(id_token => !!id_token)
+    this.isAuthorized$
+      .filter(id_token => id_token)
       .subscribe(() => this.router.navigate(['/account/quotes']));
   }
 

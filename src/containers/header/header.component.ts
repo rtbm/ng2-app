@@ -11,7 +11,6 @@ import {
 import { UserActions } from '../../actions';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
-import { JwtHelper } from 'angular2-jwt/angular2-jwt';
 
 @Component({
   selector: 'qt-header',
@@ -19,20 +18,18 @@ import { JwtHelper } from 'angular2-jwt/angular2-jwt';
   styles: [require('./header.component.less')],
   directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, XMenuComponent,
     XMenuItemComponent, XButtonComponent],
+  pipes: [AsyncPipe],
 })
 export class QtHeaderComponent implements OnDestroy {
-  @select(state => state.user.get('id_token')) private id_token$;
+  @select(state => state.user) private user$;
 
-  private user: Object;
+  private isAuthorized$: Observable<boolean>;
+  private userEmail$: Observable<string>;
 
   constructor(private router: Router,
               private userActions: UserActions) {
-
-    this.id_token$
-      .filter(id_token => !!id_token)
-      .subscribe((id_token: string) => {
-        this.user = new JwtHelper().decodeToken(id_token);
-      });
+    this.isAuthorized$ = this.user$.map(s => !!s.get('id_token'));
+    this.userEmail$ = this.user$.map(s => s.getIn(['user', 'email']));
   }
 
   handleSigninClick() {
@@ -48,6 +45,6 @@ export class QtHeaderComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.id_token$.unsubscribe();
+    this.user$.unsubscribe();
   }
 }

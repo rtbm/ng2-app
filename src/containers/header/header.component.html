@@ -3,20 +3,20 @@
 
   <x-menu>
     <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
-    <x-menu-item><a *ngIf="user" [routerLink]="['/account/quotes']">Account</a></x-menu-item>
+    <x-menu-item><a *ngIf="isAuthorized$ | async" [routerLink]="['/account/quotes']">Account</a></x-menu-item>
   </x-menu>
 
   <div class="account-box">
-    <x-menu *ngIf="user">
+    <x-menu *ngIf="isAuthorized$ | async">
       <x-menu-item>
-        <div class="email">{{user.email}}</div>
+        <div class="email">{{userEmail$ | async}}</div>
       </x-menu-item>
       <x-menu-item>
         <x-button (onClick)="handleLogoutClick()">Logout</x-button>
       </x-menu-item>
     </x-menu>
 
-    <x-menu *ngIf="!user">
+    <x-menu *ngIf="!(isAuthorized$ | async)">
       <x-button (onClick)="handleSigninClick()">Sign in</x-button>
       <x-button (onClick)="handleSignupClick()">Sign up</x-button>
     </x-menu>

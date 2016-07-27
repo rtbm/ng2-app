@@ -10,6 +10,7 @@ export const INITIAL_STATE = fromJS({
     items: [],
   },
   saveCircle: {
+    isModalVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
@@ -17,18 +18,18 @@ export const INITIAL_STATE = fromJS({
     item: {},
   },
   updateCircle: {
+    isModalVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
-    isModalVisible: false,
     errorCode: 0,
     item: {},
   },
   removeCircle: {
+    isConfirmVisible: false,
     isPending: false,
     isSuccess: false,
     isError: false,
-    isConfirmVisible: false,
     errorCode: 0,
     item: {},
   },
@@ -63,6 +64,18 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
         .setIn(['circles', 'errorCode'], action.payload.errorCode);
     }
 
+    case CirclesActions.CIRCLE_SAVE_MODAL:
+    {
+      return state
+        .setIn(['saveCircle', 'isModalVisible'], true);
+    }
+
+    case CirclesActions.CIRCLE_SAVE_MODAL_CANCEL:
+    {
+      return state
+        .setIn(['saveCircle', 'isModalVisible'], false);
+    }
+
     case CirclesActions.CIRCLE_SAVE:
     {
       return state
@@ -75,6 +88,7 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_SAVE_SUCCESS:
     {
       return state
+        .setIn(['saveCircle', 'isModalVisible'], false)
         .setIn(['saveCircle', 'isPending'], false)
         .setIn(['saveCircle', 'isSuccess'], true)
         .updateIn(['circles', 'items'],
@@ -103,10 +117,10 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_UPDATE_MODAL_SUCCESS:
     {
       return state
+        .setIn(['updateCircle', 'isModalVisible'], true)
         .setIn(['updateCircle', 'isPending'], false)
         .setIn(['updateCircle', 'isSuccess'], true)
-        .setIn(['updateCircle', 'item'], fromJS(action.payload))
-        .setIn(['updateCircle', 'isModalVisible'], true);
+        .setIn(['updateCircle', 'item'], fromJS(action.payload));
     }
 
     case CirclesActions.CIRCLE_UPDATE_MODAL_ERROR:
@@ -120,8 +134,8 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_UPDATE_MODAL_CANCEL:
     {
       return state
-        .setIn(['updateCircle', 'item'], fromJS({}))
-        .setIn(['updateCircle', 'isModalVisible'], false);
+        .setIn(['updateCircle', 'isModalVisible'], false)
+        .setIn(['updateCircle', 'item'], fromJS({}));
     }
 
     case CirclesActions.CIRCLE_UPDATE:
@@ -137,9 +151,9 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_UPDATE_SUCCESS:
     {
       return state
+        .setIn(['updateCircle', 'isModalVisible'], false)
         .setIn(['updateCircle', 'isPending'], false)
         .setIn(['updateCircle', 'isSuccess'], true)
-        .setIn(['updateCircle', 'isModalVisible'], false)
         .updateIn(['circles', 'items'], list => list.update(
           list.findIndex(circle => circle.get('id') === action.payload._id),
           item => fromJS(action.payload)
@@ -157,25 +171,25 @@ export function circlesReducer(state: ICircles = INITIAL_STATE, action: any = { 
     case CirclesActions.CIRCLE_REMOVE_CONFIRM:
     {
       return state
-        .setIn(['removeCircle', 'item'], fromJS(action.payload))
-        .setIn(['removeCircle', 'isConfirmVisible'], true);
+        .setIn(['removeCircle', 'isConfirmVisible'], true)
+        .setIn(['removeCircle', 'item'], fromJS(action.payload));
     }
 
     case CirclesActions.CIRCLE_REMOVE_CONFIRM_CANCEL:
     {
       return state
-        .setIn(['removeCircle', 'item'], fromJS({}))
-        .setIn(['removeCircle', 'isConfirmVisible'], false);
+        .setIn(['removeCircle', 'isConfirmVisible'], false)
+        .setIn(['removeCircle', 'item'], fromJS({}));
     }
 
     case CirclesActions.CIRCLE_REMOVE:
     {
       return state
+        .setIn(['removeCircle', 'isConfirmVisible'], false)
         .setIn(['removeCircle', 'isPending'], true)
         .setIn(['removeCircle', 'isSuccess'], false)
         .setIn(['removeCircle', 'isError'], false)
-        .setIn(['removeCircle', 'errorCode'], 0)
-        .setIn(['removeCircle', 'isConfirmVisible'], false);
+        .setIn(['removeCircle', 'errorCode'], 0);
     }
 
     case CirclesActions.CIRCLE_REMOVE_SUCCESS:

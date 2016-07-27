@@ -1,9 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import {
-  XListComponent,
-  XListItemComponent,
-  XListItemContentComponent,
-  XListItemActionsComponent,
   XWrapperComponent,
   XButtonComponent,
   XDialogConfirmComponent,
@@ -26,9 +22,9 @@ import { Quote } from '../../../models';
   template: require('./account-quotes-page.component.html'),
   styles: [require('./account-quotes-page.component.less')],
   pipes: [AsyncPipe],
-  directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
-    XListItemActionsComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent, XFormMessageComponent,
-    QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent, XBoxContentComponent],
+  directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
+    XFormMessageComponent, QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent,
+    XBoxContentComponent],
 })
 export class QtAccountQuotesPageComponent implements OnDestroy {
   @select(state => state.quotes) private quotes$;

@@ -1,33 +1,25 @@
 <x-wrapper>
   <h1>Circles</h1>
 
-  <x-box>
+  <p>
+    <x-button preset="positive" (onClick)="circlesActions.saveCircleModal()">Add new! :)</x-button>
+  </p>
+
+  <x-box *ngFor="let circle of (circlesItems$ | async)">
     <x-box-header>
-      Create new Circle
+      {{circle.createdAt}}
     </x-box-header>
+
     <x-box-content>
-      <x-form-message preset="success" *ngIf="isSaveCircleSuccess$ | async">Successfully saved.</x-form-message>
-      <x-form-message preset="error" *ngIf="isSaveCircleError$ | async">Error occured!</x-form-message>
-      <qt-account-circle-add-form (onSubmit)="circlesActions.saveCircle($event)"></qt-account-circle-add-form>
-    </x-box-content>
-  </x-box>
-
-  <x-list>
-    <x-list-item *ngFor="let circle of (circlesItems$ | async)">
-      <x-list-item-content>
-        <h1>{{circle.name}}</h1>
-      </x-list-item-content>
-
-      <x-list-item-actions>
+      <h1>{{circle.name}}</h1>
+      <div>
         <x-button size="normal" preset="neutral"
           (onClick)="circlesActions.updateCircleModal(circle)">Edit</x-button>
         <x-button size="normal" preset="negative"
           (onClick)="circlesActions.removeCircleConfirm(circle)">Delete</x-button>
-      </x-list-item-actions>
-
-    </x-list-item>
-  </x-list>
-
+      </div>
+    </x-box-content>
+  </x-box>
 </x-wrapper>
 
 <x-dialog-confirm *ngIf="isRemoveCircleConfirmVisible$ | async"
@@ -45,4 +37,12 @@
     (onSubmit)="circlesActions.updateCircle($event)"
     (onCancel)="circlesActions.updateCircleModalCancel()">
   </qt-account-circle-edit-form>
+</x-modal-form>
+
+<x-modal-form *ngIf="isSaveCircleModalVisible$ | async">
+  <x-form-message preset="error" *ngIf="isSaveCircleError$ | async">Error occured!</x-form-message>
+  <qt-account-circle-add-form
+    (onSubmit)="circlesActions.saveCircle($event)"
+    (onCancel)="circlesActions.saveCircleModalCancel()">
+  ></qt-account-circle-add-form>
 </x-modal-form>

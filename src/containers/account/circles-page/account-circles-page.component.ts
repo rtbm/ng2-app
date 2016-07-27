@@ -1,9 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import {
-  XListComponent,
-  XListItemComponent,
-  XListItemContentComponent,
-  XListItemActionsComponent,
   XWrapperComponent,
   XDialogConfirmComponent,
   XButtonComponent,
@@ -25,9 +21,9 @@ import { Circle } from '../../../models';
   selector: 'qt-account-circles-page',
   template: require('./account-circles-page.component.html'),
   styles: [require('./account-circles-page.component.less')],
-  directives: [XWrapperComponent, XButtonComponent, XListComponent, XListItemComponent, XListItemContentComponent,
-    XListItemActionsComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent, XFormMessageComponent,
-    QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent, XBoxHeaderComponent],
+  directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent,
+    XFormMessageComponent, QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent,
+    XBoxHeaderComponent],
   pipes: [AsyncPipe],
 })
 export class QtAccountCirclesPageComponent implements OnDestroy {
@@ -35,6 +31,7 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
 
   private circlesItems$: Observable<Object>;
 
+  private isSaveCircleModalVisible$: Observable<boolean>;
   private isSaveCircleSuccess$: Observable<boolean>;
   private isSaveCircleError$: Observable<boolean>;
 
@@ -54,6 +51,7 @@ export class QtAccountCirclesPageComponent implements OnDestroy {
 
     this.circlesItems$ = this.circles$.map(s => s.getIn(['circles', 'items']).toJS());
 
+    this.isSaveCircleModalVisible$ = this.circles$.map(s => s.getIn(['saveCircle', 'isModalVisible']));
     this.isSaveCircleSuccess$ = this.circles$.map(s => s.getIn(['saveCircle', 'isSuccess']));
     this.isSaveCircleError$ = this.circles$.map(s => s.getIn(['saveCircle', 'isError']));
 

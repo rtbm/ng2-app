@@ -11,11 +11,15 @@ module.exports = {
       return next(err);
     }
 
-    Quote.find({ owner: req.user._id })
-      .exec((err, quotes) => {
-        if (err) return next(err);
-        return res.json(quotes);
-      });
+    Quote.find({
+      owner: req.user._id
+    }).populate({
+      path: 'owner',
+      select: 'profile.first_name profile.last_name',
+    }).exec((err, quotes) => {
+      if (err) return next(err);
+      return res.json(quotes);
+    });
   },
 
   save: (req, res, next) => {
@@ -25,16 +29,24 @@ module.exports = {
       return next(err);
     }
 
-    const quote = new Quote({
+    const newQuote = new Quote({
       name: req.body.name,
       content: req.body.content,
       url: req.body.url,
       owner: req.user._id,
     });
 
-    quote.save((err, quote) => {
+    newQuote.save((err, savedQuote) => {
       if (err) return next(err);
-      return res.json(quote);
+
+      Quote.populate(savedQuote, {
+        path: 'owner',
+        select: 'profile.first_name profile.last_name',
+      }, (err, quote) => {
+        if (err) return next(err);
+
+        return res.json(quote);
+      });
     });
   },
 
@@ -48,6 +60,9 @@ module.exports = {
     Quote.findOne({
       _id: req.params.quoteId,
       owner: req.user._id,
+    }).populate({
+      path: 'owner',
+      select: 'profile.first_name profile.last_name',
     }).exec((err, quote) => {
       if (err) return next(err);
 
@@ -71,22 +86,29 @@ module.exports = {
     Quote.findOne({
       _id: req.params.quoteId,
       owner: req.user._id,
-    }).exec((err, quote) => {
+    }).exec((err, foundQuote) => {
       if (err) return next(err);
 
-      if (!quote) {
+      if (!foundQuote) {
         err = new Error('Unprocessable Entity');
         err.status = 422;
         return next(err);
       }
 
-      quote.name = req.body.name;
-      quote.content = req.body.content;
-      quote.url = req.body.url;
+      foundQuote.name = req.body.name;
+      foundQuote.content = req.body.content;
+      foundQuote.url = req.body.url;
 
-      quote.save((err, quote) => {
+      foundQuote.save((err, updatedQuote) => {
         if (err) return next(err);
-        return res.json(quote);
+
+        Quote.populate(updatedQuote, {
+          path: 'owner',
+          select: 'profile.first_name profile.last_name',
+        }, (err, quote) => {
+          if (err) return next(err);
+          return res.json(quote);
+        });
       });
     });
   },
@@ -101,16 +123,16 @@ module.exports = {
     Quote.findOneAndRemove({
       _id: req.params.quoteId,
       owner: req.user._id,
-    }).exec((err, quote) => {
+    }).exec((err, removedQuote) => {
       if (err) return next(err);
 
-      if (!quote) {
+      if (!removedQuote) {
         err = new Error('Unprocessable Entity');
         err.status = 422;
         return next(err);
       }
 
-      return res.json(quote);
+      return res.json(removedQuote);
     });
   },
 

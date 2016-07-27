@@ -1,27 +1,30 @@
 <x-wrapper>
-  <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
+  <h1>Quotes</h1>
 
-  <x-list>
-    <x-list-item *ngFor="let quote of (quotesItems$ | async)">
-      <x-list-item-content>
-        <h1>{{quote.name}}</h1>
-        <p>{{quote.content}}</p>
-        <p>{{quote.url}}</p>
-      </x-list-item-content>
+  <p>
+    <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
+  </p>
 
-      <x-list-item-actions>
-        <div *ngIf="quote.owner === (userId$ | async)">
-          <x-button size="normal" preset="neutral"
-            (onClick)="quotesActions.updateQuoteModal(quote)">Edit
-          </x-button>
-          <x-button size="normal" preset="negative"
-            (onClick)="quotesActions.removeQuoteConfirm(quote)">Delete
-          </x-button>
-        </div>
-      </x-list-item-actions>
+  <x-box *ngFor="let quote of (quotesItems$ | async)">
+    <x-box-header>
+      {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
+    </x-box-header>
 
-    </x-list-item>
-  </x-list>
+    <x-box-content>
+      <h1>{{quote.name}}</h1>
+      <p>{{quote.content}}</p>
+      <p>{{quote.url}}</p>
+
+      <div *ngIf="quote.owner._id === (userId$ | async)">
+        <x-button size="normal" preset="neutral"
+                  (onClick)="quotesActions.updateQuoteModal(quote)">Edit
+        </x-button>
+        <x-button size="normal" preset="negative"
+                  (onClick)="quotesActions.removeQuoteConfirm(quote)">Delete
+        </x-button>
+      </div>
+    </x-box-content>
+  </x-box>
 </x-wrapper>
 
 <x-dialog-confirm *ngIf="isRemoveQuoteConfirmVisible$ | async"

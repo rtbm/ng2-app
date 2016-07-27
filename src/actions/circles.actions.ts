@@ -9,6 +9,9 @@ export class CirclesActions {
   static CIRCLES_FETCH_SUCCESS = 'CIRCLES_FETCH_SUCCESS';
   static CIRCLES_FETCH_ERROR = 'CIRCLES_FETCH_ERROR';
 
+  static CIRCLE_SAVE_MODAL = 'CIRCLE_SAVE_MODAL';
+  static CIRCLE_SAVE_MODAL_CANCEL = 'CIRCLE_SAVE_MODAL_CANCEL';
+
   static CIRCLE_SAVE = 'CIRCLE_SAVE';
   static CIRCLE_SAVE_SUCCESS = 'CIRCLE_SAVE_SUCCESS';
   static CIRCLE_SAVE_ERROR = 'CIRCLE_SAVE_ERROR';
@@ -39,16 +42,21 @@ export class CirclesActions {
     });
   }
 
-  saveCircle(circle) {
+  saveCircleModal() {
     this.ngRedux.dispatch({
-      type: CirclesActions.CIRCLE_SAVE,
-      payload: circle,
+      type: CirclesActions.CIRCLE_SAVE_MODAL,
     });
   }
 
-  removeCircle(circle) {
+  saveCircleModalCancel() {
     this.ngRedux.dispatch({
-      type: CirclesActions.CIRCLE_REMOVE,
+      type: CirclesActions.CIRCLE_SAVE_MODAL_CANCEL,
+    });
+  }
+
+  saveCircle(circle) {
+    this.ngRedux.dispatch({
+      type: CirclesActions.CIRCLE_SAVE,
       payload: circle,
     });
   }
@@ -66,6 +74,13 @@ export class CirclesActions {
     });
   }
 
+  removeCircle(circle) {
+    this.ngRedux.dispatch({
+      type: CirclesActions.CIRCLE_REMOVE,
+      payload: circle,
+    });
+  }
+
   updateCircleModal(circle) {
     this.ngRedux.dispatch({
       type: CirclesActions.CIRCLE_UPDATE_MODAL,
@@ -73,7 +88,7 @@ export class CirclesActions {
     });
   }
 
-  updateCircleCancel() {
+  updateCircleModalCancel() {
     this.ngRedux.dispatch({
       type: CirclesActions.CIRCLE_UPDATE_MODAL_CANCEL,
     });
