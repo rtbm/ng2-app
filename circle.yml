@@ -2,9 +2,14 @@ machine:
   node:
     version: 6
 
+  services:
+    - redis
+
 dependencies:
   pre:
     - rm -rf node_modules
+    - cp server/config/.default.js server/config/production.js
+    - cp server/config/.default.js server/config/test.js
 
 test:
   post:

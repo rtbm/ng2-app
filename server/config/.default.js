@@ -1,5 +1,5 @@
 module.exports = {
-  secret: '',
+  secret: '123',
   baseUrl: 'http://localhost:8080/',
   database: 'mongodb://localhost:27017/ng2app-default',
   mailer: {
