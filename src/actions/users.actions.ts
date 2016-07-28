@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
-import { UsersService } from '../services/users.service';
-import { InvitesService } from '../services/invites.service';
 import { CirclesActions } from './circles.actions';
 
 @Injectable()

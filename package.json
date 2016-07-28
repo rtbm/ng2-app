@@ -3,17 +3,17 @@
   "version": "0.0.0",
   "license": "ISC",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./server/bin/www",
+    "build": "cross-env NODE_ENV=production webpack",
+    "clean": "rimraf public/",
     "dev": "npm install && concurrently -r 'npm run dev:client' 'npm run dev:server'",
     "dev:client": "webpack-dev-server -d --inline --progress --no-info",
     "dev:server": "cross-env NODE_ENV=development node ./server/bin/www",
-    "build": "cross-env NODE_ENV=production webpack",
-    "typings": "typings install",
-    "postinstall": "npm run typings",
+    "lint": "tslint src/**/*.ts",
+    "postinstall": "npm run typings && npm run lint",
     "prestart": "npm run build",
-    "clean": "rimraf public/",
+    "start": "cross-env NODE_ENV=production node ./server/bin/www",
     "test": "cross-env NODE_ENV=test mocha",
-    "lint": "tslint src/**/*.ts"
+    "typings": "typings install"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
