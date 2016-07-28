@@ -9,7 +9,7 @@
     "dev:client": "webpack-dev-server -d --inline --progress --no-info",
     "dev:server": "cross-env NODE_ENV=development node ./server/bin/www",
     "lint": "tslint src/**/*.ts",
-    "postinstall": "npm run typings && npm run lint",
+    "postinstall": "npm run typings",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node ./server/bin/www",
     "test": "cross-env NODE_ENV=test mocha",
@@ -82,7 +82,8 @@
   },
   "config": {
     "ghooks": {
-      "post-merge": "npm install"
+      "post-merge": "npm install",
+      "pre-push": "npm run lint"
     }
   }
 }
