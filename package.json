@@ -85,5 +85,8 @@
       "post-merge": "npm install",
       "pre-push": "npm run lint"
     }
+  },
+  "engines": {
+    "node": "6.3.1"
   }
 }
