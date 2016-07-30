@@ -1,6 +1,7 @@
-# ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-app.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-app)
+# ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-app.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-app) 
 
-Google+ inspired social app on. Work in progress.
+Google+ inspired social app. Work in progress.
+Live demo: [click](https://ng2-quottr.herokuapp.com)
 
 ## What's done?
 * user sign in, sign up, forgot/reset password, profile
@@ -25,20 +26,12 @@ Google+ inspired social app on. Work in progress.
 * mongodb
 * smtp service
 
-## Running
+## Running locally
 
-### Install package dependencies
-```
-npm install
-```
+### Set up environment
+Rename .env.sample to .env and make appropriate changes.
 
-### Build an app with Webpack
-```
-npm run build
-```
-
-### Start Express (http://localhost:3000)
-
+### Run server (http://localhost:3000)
 ```
 npm start
 ```
@@ -48,3 +41,4 @@ npm start
 ```
 npm run dev
 ```
+

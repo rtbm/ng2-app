@@ -6,7 +6,7 @@
     "start": "nf start web",
     "build": "nf start build",
     "test": "nf start test",
-    "webpack": "webpack-dev-server -d --inline --progress --no-info",
+    "dev": "webpack-dev-server -d --inline --progress --no-info",
     "lint": "tslint src/**/*.ts",
     "typings": "typings install",
     "postinstall": "npm run typings && npm run build",

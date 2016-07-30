@@ -7,6 +7,7 @@ const basePlugins = [
   new webpack.DefinePlugin({
     __DEV__: process.env.NODE_ENV !== 'production',
     __PRODUCTION__: process.env.NODE_ENV === 'production',
+    __BASE_URL__: process.env.BASE_URL,
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   new SplitByPathPlugin([

@@ -18,8 +18,6 @@ import { EPICS_PROVIDERS } from './epics';
 import { ACCOUNT_ROUTES, HOME_ROUTES, USER_ROUTES } from './routes';
 import { QtAppComponent } from './app.component';
 
-declare let __PRODUCTION__: any;
-
 if (__PRODUCTION__) {
   enableProdMode();
 } else {
