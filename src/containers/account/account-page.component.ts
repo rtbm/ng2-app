@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'qt-account-page',
   template: require('./account-page.component.html'),
-  styles: [require('./account-page.component.less')],
+  styles: [require('./account-page.component.scss')],
   directives: [ROUTER_DIRECTIVES, QtAccountAsideMenuComponent, QtAccountHeaderComponent],
 })
 export class QtAccountPageComponent implements OnDestroy {

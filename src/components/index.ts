@@ -1,4 +1,3 @@
-export * from './banner';
 export * from './box';
 export * from './button';
 export * from './content';

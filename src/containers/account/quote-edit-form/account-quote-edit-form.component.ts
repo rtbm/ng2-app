@@ -13,7 +13,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 @Component({
   selector: 'qt-account-quote-edit-form',
   template: require('./account-quote-edit-form.component.html'),
-  styles: [require('./account-quote-edit-form.component.less')],
+  styles: [require('./account-quote-edit-form.component.scss')],
   directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
     XFormTextareaComponent, XLabelComponent, XFormContentComponent],
 })

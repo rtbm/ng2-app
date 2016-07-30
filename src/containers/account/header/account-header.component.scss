@@ -1,0 +1,17 @@
+@import '../../../assets/colors.scss';
+
+:host {
+  background: $white;
+  border-bottom: .1rem solid $border;
+  box-sizing: border-box;
+  display: block;
+  left: 0;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.account-box {
+  float: right;
+}

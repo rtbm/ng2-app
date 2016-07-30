@@ -20,7 +20,7 @@ import { Quote } from '../../../models';
 @Component({
   selector: 'qt-account-quotes-page',
   template: require('./account-quotes-page.component.html'),
-  styles: [require('./account-quotes-page.component.less')],
+  styles: [require('./account-quotes-page.component.scss')],
   pipes: [AsyncPipe],
   directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
     XFormMessageComponent, QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent,

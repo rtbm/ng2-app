@@ -5,7 +5,7 @@ import { REACTIVE_FORM_DIRECTIVES, FormGroup } from '@angular/forms';
   selector: 'x-form',
   directives: [REACTIVE_FORM_DIRECTIVES],
   template: require('./form.component.html'),
-  styles: [require('./form.component.less')],
+  styles: [require('./form.component.scss')],
 })
 export class XFormComponent {
   @Input() group: FormGroup;

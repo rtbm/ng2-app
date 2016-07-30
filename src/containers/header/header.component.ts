@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'qt-header',
   template: require('./header.component.html'),
-  styles: [require('./header.component.less')],
+  styles: [require('./header.component.scss')],
   directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, XMenuComponent,
     XMenuItemComponent, XButtonComponent],
   pipes: [AsyncPipe],

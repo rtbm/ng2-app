@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'qt-user-signin-page',
   template: require('./user-signin-page.component.html'),
-  styles: [require('./user-signin-page.component.less')],
+  styles: [require('./user-signin-page.component.scss')],
   directives: [ROUTER_DIRECTIVES, QtUserSigninFormComponent, XWrapperComponent, XFormMessageComponent,
     QtUserSigninFormComponent, XBoxComponent, XBoxHeaderComponent, XBoxContentComponent],
   pipes: [AsyncPipe],

@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'qt-account-quote-add-form',
   template: require('./account-quote-add-form.component.html'),
-  styles: [require('./account-quote-add-form.component.less')],
+  styles: [require('./account-quote-add-form.component.scss')],
   directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent,
     XButtonComponent, XFormInputComponent, XFormMessageComponent, XFormContentComponent],
 })

@@ -16,7 +16,7 @@ import { User } from '../../../models';
 @Component({
   selector: 'qt-account-users-page',
   template: require('./account-users-page.component.html'),
-  styles: [require('./account-users-page.component.less')],
+  styles: [require('./account-users-page.component.scss')],
   directives: [XWrapperComponent, XButtonComponent, XModalFormComponent, QtAccountCirclesSelectFormComponent,
     XListComponent, XListItemComponent],
   pipes: [AsyncPipe],

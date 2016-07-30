@@ -14,7 +14,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'qt-account-profile-edit-form',
   template: require('./account-profile-edit-form.component.html'),
-  styles: [require('./account-profile-edit-form.component.less')],
+  styles: [require('./account-profile-edit-form.component.scss')],
   directives: [XFormComponent, XFormActionsComponent, XFormInputComponent, XFormGroupComponent, XFormMessageComponent,
     XButtonComponent, XFormContentComponent, XFormTextareaComponent],
 })

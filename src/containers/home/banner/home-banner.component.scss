@@ -1,0 +1,42 @@
+@import '../../../assets/colors';
+
+:host {
+  align-items: center;
+  background: url('../../../assets/images/mountains-863474_1920.jpg') center no-repeat;
+  background-size: cover;
+  color: white;
+  display: flex;
+  height: 50rem;
+  width: 100%;
+}
+
+cite {
+  display: block;
+  font-style: normal;
+  text-align: left;
+}
+
+h1, h2 {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.2rem;
+  line-height: 1.2em;
+  margin: 0;
+  padding: .25rem;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.1em;
+  margin: 0 0 1.5rem;
+
+  span {
+    font-size: 6rem;
+    display: block;
+  }
+}
+
+h2 {
+  font-weight: 700;
+}

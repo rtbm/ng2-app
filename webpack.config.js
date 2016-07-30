@@ -1,40 +1,6 @@
 const path = require('path');
-const webpack = require('webpack');
-const SplitByPathPlugin = require('webpack-split-by-path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const basePlugins = [
-  new webpack.DefinePlugin({
-    __DEV__: process.env.NODE_ENV !== 'production',
-    __PRODUCTION__: process.env.NODE_ENV === 'production',
-    __BASE_URL__: process.env.BASE_URL,
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  }),
-  new SplitByPathPlugin([
-    { name: 'vendor', path: [__dirname + '/node_modules/'] }
-  ]),
-  new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: 'body',
-  }),
-  new webpack.NoErrorsPlugin(),
-];
-
-const prodPlugins = [
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    mangle: true,
-    compress: {
-      warnings: false,
-    },
-  }),
-];
-
-const devPlugins = [];
-
-const plugins = basePlugins
-  .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
-  .concat(process.env.NODE_ENV === 'development' ? devPlugins : []);
+const loaders = require('./webpack/loaders');
+const plugins = require('./webpack/plugins');
 
 module.exports = {
   entry: {
@@ -59,19 +25,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
-      test: /\.ts$/,
-      loader: 'ts',
-      exclude: /node_modules/,
-    }, {
-      test: /\.html$/,
-      loader: 'raw',
-      exclude: /node_modules/,
-    }, {
-      test: /\.less$/,
-      loader: 'to-string!css!less',
-      exclude: /node_modules/,
-    }],
+    loaders,
     noParse: [/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/],
   },
 };

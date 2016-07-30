@@ -15,7 +15,7 @@ import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'qt-user-change-password-form',
   template: require('./user-change-password-form.component.html'),
-  styles: [require('./user-change-password-form.component.less')],
+  styles: [require('./user-change-password-form.component.scss')],
   directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })

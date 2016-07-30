@@ -6,7 +6,7 @@ import { UserActions } from '../../../actions';
 @Component({
   selector: 'qt-user-reset-password-page',
   template: require('./user-reset-password-page.component.html'),
-  styles: [require('./user-reset-password-page.component.less')],
+  styles: [require('./user-reset-password-page.component.scss')],
   directives: [XWrapperComponent, QtUserResetPasswordFormComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent],
 })

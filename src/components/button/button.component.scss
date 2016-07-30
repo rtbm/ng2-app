@@ -1,0 +1,42 @@
+@import '../../assets/colors.scss';
+@import '../../assets/variables.scss';
+
+:host {
+  display: inline-block;
+}
+
+button {
+  outline: 0;
+  background: transparent;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: $radius;
+  transition: .1s all linear;
+  padding: 0 2.5rem;
+  height: 3.8rem;
+  border: 0 none;
+}
+
+.preset-casual {
+  color: $dark;
+  background: $background;
+  border-bottom: .2rem solid darken($background, 5%);
+}
+
+.preset-neutral {
+  color: $white;
+  background: $blue;
+  border-bottom: .2rem solid darken($blue, 10%);
+}
+
+.preset-positive {
+  color: $white;
+  background: $green;
+  border-bottom: .2rem solid darken($green, 10%);
+}
+
+.preset-negative {
+  color: $white;
+  background: $red;
+  border-bottom: .2rem solid darken($red, 20%);
+}

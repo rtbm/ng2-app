@@ -11,7 +11,7 @@ import { enhancers } from './state/enhancers';
   selector: 'qt-app',
   directives: [ROUTER_DIRECTIVES],
   template: `<router-outlet></router-outlet>`,
-  styles: [require('./app.component.less')],
+  styles: [require('./app.component.scss')],
   encapsulation: ViewEncapsulation.None,
 })
 

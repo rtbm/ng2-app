@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <span class="material-icons"><ng-content></ng-content></span>
   `,
-  styles: [require('./icon.component.less')]
+  styles: [require('./icon.component.scss')]
 })
 export class XIconComponent {
 }

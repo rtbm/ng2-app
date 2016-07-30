@@ -15,7 +15,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-reset-password-form',
   template: require('./user-reset-password-form.component.html'),
-  styles: [require('./user-reset-password-form.component.less')],
+  styles: [require('./user-reset-password-form.component.scss')],
   directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
     XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
 })

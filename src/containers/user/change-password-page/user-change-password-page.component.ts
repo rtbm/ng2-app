@@ -6,7 +6,7 @@ import { UserActions } from '../../../actions';
 @Component({
   selector: 'qt-user-change-password-page',
   template: require('./user-change-password-page.component.html'),
-  styles: [require('./user-change-password-page.component.less')],
+  styles: [require('./user-change-password-page.component.scss')],
   directives: [XWrapperComponent, QtUserChangePasswordFormComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent],
 })

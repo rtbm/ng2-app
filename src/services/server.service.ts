@@ -4,6 +4,7 @@ import { Http, Response, Headers } from '@angular/http';
 @Injectable()
 export class ServerService {
   private HEADERS = new Headers({ 'Content-Type': 'application/json' });
+  private API = `${__BASE_URL__}/api`;
 
   constructor(private http: Http) {
   }
@@ -21,28 +22,28 @@ export class ServerService {
   post(path, data) {
     this.setHeaders();
 
-    return this.http.post(`${BASE_URL}${path}`, JSON.stringify(data), { headers: this.HEADERS })
+    return this.http.post(`${this.API}${path}`, JSON.stringify(data), { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 
   get(path) {
     this.setHeaders();
 
-    return this.http.get(`${BASE_URL}${path}`, { headers: this.HEADERS })
+    return this.http.get(`${this.API}${path}`, { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 
   put(path, data) {
     this.setHeaders();
 
-    return this.http.put(`${BASE_URL}${path}`, JSON.stringify(data), { headers: this.HEADERS })
+    return this.http.put(`${this.API}${path}`, JSON.stringify(data), { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 
   delete(path) {
     this.setHeaders();
 
-    return this.http.delete(`${BASE_URL}${path}`, { headers: this.HEADERS })
+    return this.http.delete(`${this.API}${path}`, { headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 }

@@ -17,7 +17,7 @@ import { select } from 'ng2-redux';
 @Component({
   selector: 'qt-user-signup-page',
   template: require('./user-signup-page.component.html'),
-  styles: [require('./user-signup-page.component.less')],
+  styles: [require('./user-signup-page.component.scss')],
   directives: [ROUTER_DIRECTIVES, QtUserSignupFormComponent, XWrapperComponent, XFormGroupComponent, XBoxComponent,
     XBoxHeaderComponent, XBoxContentComponent, XFormMessageComponent],
   pipes: [AsyncPipe],

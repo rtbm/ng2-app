@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'x-button',
   template: require('./button.component.html'),
-  styles: [require('./button.component.less')],
+  styles: [require('./button.component.scss')],
 })
 
 export class XButtonComponent {

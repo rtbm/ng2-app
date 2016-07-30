@@ -8,7 +8,7 @@ import { XButtonComponent } from '../../button';
   directives: [XOverlayComponent, XModalContentComponent, XModalMessageComponent, XModalActionsComponent,
     XButtonComponent],
   template: require('./dialog-confirm.component.html'),
-  styles: [require('./dialog-confirm.component.less')],
+  styles: [require('./dialog-confirm.component.scss')],
 })
 export class XDialogConfirmComponent {
   @Output() onConfirm = new EventEmitter();

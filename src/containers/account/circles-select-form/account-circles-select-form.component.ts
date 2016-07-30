@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
   directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormActionsComponent,
     XFormContentComponent],
   template: require('./account-circles-select-form.component.html'),
-  styles: [require('./account-circles-select-form.component.less')],
+  styles: [require('./account-circles-select-form.component.scss')],
 })
 export class QtAccountCirclesSelectFormComponent implements OnDestroy {
   @Output() onSubmit = new EventEmitter();

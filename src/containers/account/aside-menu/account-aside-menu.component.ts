@@ -5,7 +5,7 @@ import { XMenuComponent, XMenuItemComponent, XIconComponent } from '../../../com
 @Component({
   selector: 'qt-account-aside-menu',
   template: require('./account-aside-menu.component.html'),
-  styles: [require('./account-aside-menu.component.less')],
+  styles: [require('./account-aside-menu.component.scss')],
   directives: [ROUTER_DIRECTIVES, XMenuComponent, XMenuItemComponent, XIconComponent],
 })
 export class QtAccountAsideMenuComponent {

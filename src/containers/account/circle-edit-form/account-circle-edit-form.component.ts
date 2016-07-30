@@ -13,7 +13,7 @@ import { select } from 'ng2-redux';
 @Component({
   selector: 'qt-account-circle-edit-form',
   template: require('./account-circle-edit-form.component.html'),
-  styles: [require('./account-circle-edit-form.component.less')],
+  styles: [require('./account-circle-edit-form.component.scss')],
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
     XFormContentComponent],
 })

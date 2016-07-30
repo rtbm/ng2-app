@@ -20,7 +20,7 @@ import { Circle } from '../../../models';
 @Component({
   selector: 'qt-account-circles-page',
   template: require('./account-circles-page.component.html'),
-  styles: [require('./account-circles-page.component.less')],
+  styles: [require('./account-circles-page.component.scss')],
   directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountCircleAddFormComponent,
     XFormMessageComponent, QtAccountCircleEditFormComponent, XModalFormComponent, XBoxComponent, XBoxContentComponent,
     XBoxHeaderComponent],

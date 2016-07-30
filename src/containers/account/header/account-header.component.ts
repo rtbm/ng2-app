@@ -9,7 +9,7 @@ import { JwtHelper } from 'angular2-jwt/angular2-jwt';
 @Component({
   selector: 'qt-account-header',
   template: require('./account-header.component.html'),
-  styles: [require('./account-header.component.less')],
+  styles: [require('./account-header.component.scss')],
   directives: [XButtonComponent, XMenuComponent, XMenuItemComponent],
 })
 export class QtAccountHeaderComponent {

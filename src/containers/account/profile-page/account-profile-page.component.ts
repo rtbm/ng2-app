@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'qt-account-profile-page',
   template: require('./account-profile-page.component.html'),
-  styles: [require('./account-profile-page.component.less')],
+  styles: [require('./account-profile-page.component.scss')],
   directives: [XWrapperComponent, QtAccountProfileEditFormComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent, XFormMessageComponent],
   pipes: [AsyncPipe],

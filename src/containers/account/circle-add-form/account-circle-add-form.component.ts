@@ -12,7 +12,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 @Component({
   selector: 'qt-account-circle-add-form',
   template: require('./account-circle-add-form.component.html'),
-  styles: [require('./account-circle-add-form.component.less')],
+  styles: [require('./account-circle-add-form.component.scss')],
   directives: [XFormComponent, XFormGroupComponent, XFormInputComponent, XButtonComponent, XFormActionsComponent,
     XFormContentComponent],
 })

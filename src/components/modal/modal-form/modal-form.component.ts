@@ -5,7 +5,7 @@ import { XModalContentComponent } from '../modal-content/modal-content.component
 @Component({
   selector: 'x-modal-form',
   template: require('./modal-form.component.html'),
-  styles: [require('./modal-form.component.less')],
+  styles: [require('./modal-form.component.scss')],
   directives: [XOverlayComponent, XModalContentComponent],
 })
 
