@@ -34,5 +34,5 @@ typings
 
 *.component.css
 
-server/config
-!server/config/.default.js
+.env
+

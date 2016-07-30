@@ -29,6 +29,8 @@ const prodPlugins = [
   }),
 ];
 
+const devPlugins = [];
+
 const plugins = basePlugins
   .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
   .concat(process.env.NODE_ENV === 'development' ? devPlugins : []);

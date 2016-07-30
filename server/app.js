@@ -1,5 +1,4 @@
 'use strict';
-const config = require('./config');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -11,7 +10,7 @@ const app = express();
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+mongoose.connect(process.env.MONGODB_URI);
 
 if(app.get('env') === 'development') {
   app.use(require('morgan')('dev', { stream: logger.stream }));

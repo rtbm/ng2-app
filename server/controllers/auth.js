@@ -1,5 +1,4 @@
 'use strict';
-const config = require('../config');
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const User = require('../models/user');
@@ -37,7 +36,7 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secret)
+          }, process.env.SECRET)
         });
       });
     });
@@ -68,7 +67,7 @@ module.exports = {
           id_token: jwt.sign({
             _id: user._id,
             email: user.email
-          }, config.secret)
+          }, process.env.SECRET)
         });
       });
     });
@@ -124,13 +123,13 @@ module.exports = {
         return next(err);
       }
 
-      const token = md5(new Date().getTime() + user.email + config.secret);
+      const token = md5(new Date().getTime() + user.email + process.env.SECRET);
       redisClient.set(token, user.email);
       redisClient.expire(token, 600);
 
       const body = `
         <p>Hi!</p>
-        <p><a href="${config.baseUrl}user/change-password/${token}">Click here</a>
+        <p><a href="${process.env.BASE_URL}user/change-password/${token}">Click here</a>
           to change Your password.</p>
         <p>Notice that this link will expire in 10 minutes.</p>
       `;

@@ -1,12 +1,26 @@
 'use strict';
-const mailerConfig = require('../config').mailer;
-const nodemailerTransport = require('nodemailer').createTransport(mailerConfig.smtpConfig);
+const nodemailer = require('nodemailer');
 const winston = require('winston');
+
+const transportOptions = {
+  host: process.env.MAILER_SMTP_HOST,
+  port: process.env.MAILER_SMTP_PORT,
+  secure: process.env.MAILER_SMTP_SECURE,
+  auth: {
+    user: process.env.MAILER_SMTP_USER,
+    pass: process.env.MAILER_SMTP_PASS,
+  },
+  tls: {
+    rejectUnauthorized: process.env.MAILER_SMTP_TLS_REJECT_UNAUTHORIZED,
+  },
+};
+
+const nodemailerTransport = nodemailer.createTransport(transportOptions);
 
 module.exports = {
   send: (to, subject, html, options, callback) => {
     let mailOptions = {
-      from: mailerConfig.from,
+      from: process.env.MAILER_FROM,
       to,
       subject,
       html,
