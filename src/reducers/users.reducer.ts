@@ -92,7 +92,7 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['unfollow', 'isSuccess'], false)
         .setIn(['unfollow', 'isError'], false)
         .setIn(['unfollow', 'errorCode'], 0)
-        .setIn(['follow', 'item'], action.payload.user);
+        .setIn(['unfollow', 'item'], action.payload.user);
     }
 
     case UsersActions.USERS_UNFOLLOW_SUCCESS:
