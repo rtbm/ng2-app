@@ -1,50 +1,52 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   XWrapperComponent,
   XButtonComponent,
   XModalFormComponent,
   XListComponent,
   XListItemComponent,
+  XListItemActionsComponent,
+  XTabComponent,
 } from '../../../components';
 import { UsersActions } from '../../../actions/users.actions';
 import { select } from 'ng2-redux';
-import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
-import { User } from '../../../models';
+import { AsyncPipe, NgSwitch, NgSwitchCase } from '@angular/common';
+import { Observable, Subscription } from 'rxjs';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'qt-account-users-page',
   template: require('./account-users-page.component.html'),
   styles: [require('./account-users-page.component.scss')],
-  directives: [XWrapperComponent, XButtonComponent, XModalFormComponent, XListComponent, XListItemComponent],
+  directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, XWrapperComponent, XButtonComponent, XModalFormComponent,
+    XListComponent, XListItemComponent, XListItemActionsComponent, XTabComponent],
   pipes: [AsyncPipe],
 })
-export class QtAccountUsersPageComponent implements OnDestroy {
+export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   @select(state => state.users) private users$;
+  @select(state => state.user.getIn(['user', '_id'])) private userId$;
 
-  private usersUsers$: Observable<any>;
-  private usersFollow$: Observable<any>;
-  private isFollowModalVisible$: Observable<boolean>;
-  private usersFollowItem$: Observable<any>;
+  private usersUsersItems$: Observable<any>;
+  private routeParams$: Subscription;
+  private filter: string;
 
-  constructor(private usersActions: UsersActions) {
-    this.usersActions.fetchUsers();
-
-    this.usersUsers$ = this.users$.map(s => s.getIn(['users', 'items']).toJS());
-    this.usersFollow$ = this.users$.map(s => s.getIn(['follow']));
-    this.usersFollowItem$ = this.users$.map(s => s.getIn(['follow', 'item']).toJS());
-    this.isFollowModalVisible$ = this.users$.map(s => s.getIn(['follow', 'isModalVisible']));
+  constructor(
+    private usersActions: UsersActions,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.usersUsersItems$ = this.users$.map(s => s.getIn(['users', 'items']).toJS());
   }
 
-  handleFollow(circles) {
-    this.usersFollowItem$
-      .first()
-      .subscribe((user: User) => {
-        this.usersActions.follow(user, circles);
-      });
+  ngOnInit() {
+    this.routeParams$ = this.activatedRoute.params.subscribe((params: any) => {
+      this.filter = params.filter || '';
+      this.usersActions.fetchUsers(this.filter);
+    });
   }
 
   ngOnDestroy() {
     this.users$.unsubscribe();
+    this.userId$.unsubscribe();
+    this.routeParams$.unsubscribe();
   }
 }

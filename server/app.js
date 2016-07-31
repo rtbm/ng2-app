@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const logger = require('./utils/logger');
-const auth = require('./utils/auth');
+const auth = require('./middlewares/auth');
 
 const distPath = path.join(__dirname, '../public');
 const app = express();

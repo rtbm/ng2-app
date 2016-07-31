@@ -1,9 +1,21 @@
 <x-wrapper>
   <h1>Users</h1>
+
+  <x-tab [active]="filter === ''">
+    <a [routerLink]="['/account/users']">All</a>
+  </x-tab>
+
+  <x-tab [active]="filter === 'following'">
+    <a [routerLink]="['/account/users', {filter: 'following'}]">Following</a>
+  </x-tab>
+
   <x-list>
-    <x-list-item *ngFor="let user of (usersUsers$ | async)">
+    <x-list-item *ngFor="let user of (usersUsersItems$ | async)">
       {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
-      <x-button (onClick)="usersActions.follow(user)">follow</x-button>
+      <x-list-item-actions *ngIf="user._id !== (userId$ | async)">
+        <x-button *ngIf="!user.followed" (onClick)="usersActions.follow(user)">follow</x-button>
+        <x-button *ngIf="user.followed" (onClick)="usersActions.unfollow(user)">unfollow</x-button>
+      </x-list-item-actions>
     </x-list-item>
   </x-list>
 </x-wrapper>

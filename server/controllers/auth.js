@@ -15,28 +15,28 @@ module.exports = {
 
     User.findOne({
       email: req.body.email,
-    }).exec((err, user) => {
+    }).exec((err, _user) => {
       if (err) return next(err);
 
-      if (user) {
+      if (_user) {
         err = new Error('Conflict');
         err.status = 409;
         return next(err);
       }
 
-      const newUser = new User();
+      const __user = new User();
 
-      newUser.email = req.body.email;
-      newUser.password = req.body.password;
+      __user.email = req.body.email;
+      __user.password = req.body.password;
 
-      newUser.save((err, user) => {
+      __user.save((err, user) => {
         if (err) return next(err);
 
         return res.json({
           id_token: jwt.sign({
             _id: user._id,
-            email: user.email
-          }, process.env.SECRET)
+            email: user.email,
+          }, process.env.SECRET),
         });
       });
     });
@@ -54,10 +54,10 @@ module.exports = {
         return next(err);
       }
 
-      user.verifyPassword(req.body.password, (err, result) => {
+      user.verifyPassword(req.body.password, (err, isValid) => {
         if (err) return next(err);
 
-        if (!result) {
+        if (!isValid) {
           err = new Error('Unprocessable Entity');
           err.status = 422;
           return next(err);
@@ -66,15 +66,15 @@ module.exports = {
         return res.json({
           id_token: jwt.sign({
             _id: user._id,
-            email: user.email
-          }, process.env.SECRET)
+            email: user.email,
+          }, process.env.SECRET),
         });
       });
     });
   },
 
   changePassword: (req, res, next) => {
-    if(!req.body.token) {
+    if (!req.body.token) {
       const err = new Error('Bad Request');
       err.status = 400;
       return next(err);
@@ -91,7 +91,7 @@ module.exports = {
 
       User.findOne({
         email,
-      }).exec((err, user) => {
+      }).exec((err, _user) => {
         if (err) return next(err);
 
         if (!user) {
@@ -100,12 +100,17 @@ module.exports = {
           return next(err);
         }
 
-        user.password = req.body.password;
+        _user.password = req.body.password;
 
-        user.save(err => {
+        _user.save((err, user) => {
           if (err) return next(err);
+
           redisClient.del(req.body.token);
-          return res.json({});
+
+          return res.json({
+            _id: user._id,
+            email: user.email
+          });
         });
       });
     });
@@ -124,6 +129,7 @@ module.exports = {
       }
 
       const token = md5(new Date().getTime() + user.email + process.env.SECRET);
+
       redisClient.set(token, user.email);
       redisClient.expire(token, 600);
 
@@ -134,10 +140,14 @@ module.exports = {
         <p>Notice that this link will expire in 10 minutes.</p>
       `;
 
-      mailer.send(user.email, 'Reset password request', body, (err, result) => {
+      mailer.send(user.email, 'Reset password request', body, err => {
         if (err) return next(err);
-        return res.json(result);
+
+        return res.json({
+          _id: user._id,
+          email: user.email,
+        });
       });
     });
-  }
+  },
 };

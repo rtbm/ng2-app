@@ -7,8 +7,8 @@ export class UsersService {
   constructor(private serverService: ServerService) {
   }
 
-  fetchAll() {
-    return this.serverService.get('/users');
+  fetchAll(filter) {
+    return this.serverService.get(`/users?filter=${filter}`);
   }
 
   read(_id: string) {
@@ -19,7 +19,11 @@ export class UsersService {
     return this.serverService.put(`/users/${_id}`, user);
   }
 
-  follow(user: User, circles) {
-    return this.serverService.post(`/users/${user._id}/follow`, { circles });
+  follow(user: User) {
+    return this.serverService.post(`/users/${user._id}/follow`, {});
+  }
+
+  unfollow(user: User) {
+    return this.serverService.delete(`/users/${user._id}/follow`);
   }
 }
