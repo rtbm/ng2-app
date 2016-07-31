@@ -1,0 +1,24 @@
+@import '../../../assets/colors';
+
+@mixin active {
+  border-bottom: .3rem solid $green;
+}
+
+:host {
+  display: inline-block;
+
+  a {
+    display: block;
+    padding: .5rem 2rem;
+
+    &.active {
+      @include active;
+    }
+  }
+
+  .active {
+    a {
+      @include active;
+    }
+  }
+}

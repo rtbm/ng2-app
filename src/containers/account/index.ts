@@ -1,5 +1,4 @@
 export * from './aside-menu';
-export * from './header';
 export * from './profile-edit-form';
 export * from './profile-page';
 export * from './quote-add-form';

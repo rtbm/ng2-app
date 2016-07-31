@@ -6,6 +6,8 @@ import {
   XListComponent,
   XListItemComponent,
   XListItemActionsComponent,
+  XListItemContentComponent,
+  XTabsComponent,
   XTabComponent,
 } from '../../../components';
 import { UsersActions } from '../../../actions/users.actions';
@@ -19,7 +21,8 @@ import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
   template: require('./account-users-page.component.html'),
   styles: [require('./account-users-page.component.scss')],
   directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, XWrapperComponent, XButtonComponent, XModalFormComponent,
-    XListComponent, XListItemComponent, XListItemActionsComponent, XTabComponent],
+    XListComponent, XListItemComponent, XListItemContentComponent, XListItemActionsComponent, XTabsComponent,
+    XTabComponent],
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
