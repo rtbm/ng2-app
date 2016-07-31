@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { ActionsObservable } from 'redux-observable';
 import { UsersActions } from '../actions';
 import { Observable } from 'rxjs';
-import { UsersService, InvitesService } from '../services';
+import { UsersService } from '../services';
 
 @Injectable()
 export class UsersEpics {
-  constructor(private usersService: UsersService,
-              private invitesService: InvitesService) {
+  constructor(private usersService: UsersService) {
   }
 
   fetchUsers = (action$: ActionsObservable) => {
@@ -25,25 +24,10 @@ export class UsersEpics {
       });
   };
 
-  inviteUser = (action$: ActionsObservable) => {
-    return action$.ofType(UsersActions.USERS_INVITE)
-      .flatMap(({payload}) => {
-        return this.invitesService.save({ invited: payload._id })
-          .map(result => ({
-            type: UsersActions.USERS_INVITE_SUCCESS,
-            payload: result,
-          }))
-          .catch(error => Observable.of({
-            type: UsersActions.USERS_INVITE_ERROR,
-            payload: { errorCode: error.status },
-          }));
-      });
-  };
-
   followUser = (action$: ActionsObservable) => {
     return action$.ofType(UsersActions.USERS_FOLLOW)
       .flatMap(({payload}) => {
-        return this.usersService.follow(payload.circleId, payload.user)
+        return this.usersService.follow(payload.user, payload.circles)
           .map(result => ({
             type: UsersActions.USERS_FOLLOW_SUCCESS,
             payload: result,

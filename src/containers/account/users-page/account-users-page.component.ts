@@ -8,7 +8,6 @@ import {
 } from '../../../components';
 import { UsersActions } from '../../../actions/users.actions';
 import { select } from 'ng2-redux';
-import { QtAccountCirclesSelectFormComponent } from '../circles-select-form';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { User } from '../../../models';
@@ -17,8 +16,7 @@ import { User } from '../../../models';
   selector: 'qt-account-users-page',
   template: require('./account-users-page.component.html'),
   styles: [require('./account-users-page.component.scss')],
-  directives: [XWrapperComponent, XButtonComponent, XModalFormComponent, QtAccountCirclesSelectFormComponent,
-    XListComponent, XListItemComponent],
+  directives: [XWrapperComponent, XButtonComponent, XModalFormComponent, XListComponent, XListItemComponent],
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnDestroy {
@@ -38,10 +36,12 @@ export class QtAccountUsersPageComponent implements OnDestroy {
     this.isFollowModalVisible$ = this.users$.map(s => s.getIn(['follow', 'isModalVisible']));
   }
 
-  handleFollow(circle) {
+  handleFollow(circles) {
     this.usersFollowItem$
       .first()
-      .subscribe((user: User) => this.usersActions.follow(circle._id, user));
+      .subscribe((user: User) => {
+        this.usersActions.follow(user, circles);
+      });
   }
 
   ngOnDestroy() {

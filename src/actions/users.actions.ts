@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../reducers';
-import { CirclesActions } from './circles.actions';
 
 @Injectable()
 export class UsersActions {
@@ -20,8 +19,7 @@ export class UsersActions {
   static USERS_FOLLOW_MODAL = 'USERS_FOLLOW_MODAL';
   static USERS_FOLLOW_MODAL_CANCEL = 'USERS_FOLLOW_MODAL_CANCEL';
 
-  constructor(private ngRedux: NgRedux<IAppState>,
-              private circlesActions: CirclesActions) {
+  constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
   fetchUsers() {
@@ -30,32 +28,10 @@ export class UsersActions {
     });
   }
 
-  invite(user) {
-    this.ngRedux.dispatch({
-      type: UsersActions.USERS_INVITE,
-      payload: user,
-    });
-  }
-
-  follow(circleId, user) {
+  follow(user, circles) {
     this.ngRedux.dispatch({
       type: UsersActions.USERS_FOLLOW,
-      payload: { circleId, user },
-    });
-  }
-
-  followModal(user) {
-    this.circlesActions.fetchCircles();
-
-    this.ngRedux.dispatch({
-      type: UsersActions.USERS_FOLLOW_MODAL,
-      payload: user,
-    });
-  }
-
-  followModalCancel() {
-    this.ngRedux.dispatch({
-      type: UsersActions.USERS_FOLLOW_MODAL_CANCEL,
+      payload: { user, circles },
     });
   }
 }

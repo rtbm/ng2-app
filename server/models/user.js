@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
       trim: true,
     },
   },
+  following: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  }],
 }, {
   autoIndex: true,
   timestamps: true,

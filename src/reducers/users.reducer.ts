@@ -20,8 +20,6 @@ export const INITIAL_STATE = fromJS({
     isSuccess: false,
     isError: false,
     errorCode: 0,
-    isModalVisible: false,
-    item: {},
   },
 });
 
@@ -54,31 +52,6 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['users', 'errorCode'], action.payload.errorCode);
     }
 
-    case UsersActions.USERS_INVITE:
-    {
-      return state
-        .setIn(['invite', 'isPending'], true)
-        .setIn(['invite', 'isSuccess'], false)
-        .setIn(['invite', 'isError'], false)
-        .setIn(['invite', 'errorCode'], 0);
-    }
-
-    case UsersActions.USERS_INVITE_SUCCESS:
-    {
-      return state
-        .setIn(['invite', 'isPending'], false)
-        .setIn(['invite', 'isSuccess'], true)
-        .setIn(['invite', 'items'], fromJS(action.payload));
-    }
-
-    case UsersActions.USERS_INVITE_ERROR:
-    {
-      return state
-        .setIn(['invite', 'isPending'], false)
-        .setIn(['invite', 'isError'], true)
-        .setIn(['invite', 'errorCode'], action.payload.errorCode);
-    }
-
     case UsersActions.USERS_FOLLOW:
     {
       return state
@@ -103,18 +76,6 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['follow', 'isPending'], false)
         .setIn(['follow', 'isError'], true)
         .setIn(['follow', 'errorCode'], action.payload.errorCode);
-    }
-
-    case UsersActions.USERS_FOLLOW_MODAL:
-    {
-      return state.setIn(['follow', 'isModalVisible'], true)
-        .setIn(['follow', 'item'], fromJS(action.payload));
-    }
-
-    case UsersActions.USERS_FOLLOW_MODAL_CANCEL:
-    {
-      return state.setIn(['follow', 'isModalVisible'], false)
-        .setIn(['follow', 'item'], fromJS({}));
     }
 
     default:

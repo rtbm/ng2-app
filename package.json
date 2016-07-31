@@ -7,12 +7,14 @@
     "build": "nf start build",
     "test": "nf start test",
     "dev": "nf start dev",
+    "server": "nf start web",
     "lint": "tslint src/**/*.ts",
     "typings": "typings install",
     "postinstall": "npm run typings && npm run build",
     "prestart": "npm install"
   },
   "dependencies": {
+    "auth0-lock": "^10.0.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.2",
     "compression": "^1.6.2",

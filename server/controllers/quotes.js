@@ -1,7 +1,5 @@
 'use strict';
 const Quote = require('../models/quote');
-const Circle = require('../models/circle');
-const mongoose = require('mongoose');
 
 module.exports = {
   findAll: (req, res, next) => {
@@ -135,78 +133,4 @@ module.exports = {
       return res.json(removedQuote);
     });
   },
-
-  search: (req, res, next) => {
-    if (!req.user || !req.user._id) {
-      const err = new Error('Unauthorized');
-      err.status = 401;
-      return next(err);
-    }
-
-    Quote.find({
-      $text: {
-        $search: req.query.q
-      },
-      owner: req.user._id,
-    }, {
-      score: {
-        $meta: 'textScore',
-      },
-    }).sort({
-      score: {
-        $meta: 'textScore',
-      },
-    }).exec((err, quotes) => {
-      if (err) return next(err);
-
-      if (!quotes) {
-        err = new Error('Not Found');
-        err.status = 404;
-        return next(err);
-      }
-
-      return res.json(quotes);
-    });
-  },
-
-  feed: (req, res, next) => {
-    if (!req.user || !req.user._id) {
-      const err = new Error('Unauthorized');
-      err.status = 401;
-      return next(err);
-    }
-
-    Circle.aggregate([{
-      $match: {
-        owner: mongoose.Types.ObjectId(req.user._id),
-      },
-    }, {
-      $unwind: '$users',
-    }, {
-      $group: {
-        _id: null,
-        _circle: {
-          $addToSet: '$users',
-        },
-      },
-    }, {
-      $project: {
-        _id: 0,
-        users: '$_circle',
-      },
-    }]).exec((err, circle) => {
-      if (err) return next(err);
-
-      const owners = !!circle[0]
-        ? [req.user._id, ...circle[0].users]
-        : [req.user._id];
-
-      Quote.find({
-        owner: { $in: owners },
-      }).exec((err, quotes) => {
-        if (err) return next(err);
-        return res.json(quotes);
-      });
-    });
-  }
 };

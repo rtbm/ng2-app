@@ -3,13 +3,7 @@
   <x-list>
     <x-list-item *ngFor="let user of (usersUsers$ | async)">
       {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
-      <x-button (onClick)="usersActions.invite(user)">invite</x-button>
-      <x-button (onClick)="usersActions.followModal(user)">follow</x-button>
+      <x-button (onClick)="usersActions.follow(user)">follow</x-button>
     </x-list-item>
   </x-list>
 </x-wrapper>
-
-<x-modal-form *ngIf="(isFollowModalVisible$ | async)">
-  <qt-account-circles-select-form (onSubmit)="handleFollow($event)"
-    (onCancel)="usersActions.followModalCancel()"></qt-account-circles-select-form>
-</x-modal-form>

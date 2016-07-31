@@ -26,17 +26,18 @@ h1, h2 {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1.1em;
   margin: 0 0 1.5rem;
 
   span {
-    font-size: 6rem;
     display: block;
+    margin-left: -1.3rem;
   }
 }
 
 h2 {
   font-weight: 700;
+  font-size: 2.5rem;
 }

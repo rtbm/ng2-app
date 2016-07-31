@@ -2,7 +2,6 @@ import {
   QtAccountPageComponent,
   QtAccountQuotesPageComponent,
   QtAccountUsersPageComponent,
-  QtAccountCirclesPageComponent,
   QtAccountProfilePageComponent,
 } from '../containers';
 
@@ -15,9 +14,6 @@ export const ACCOUNT_ROUTES = [{
   }, {
     path: 'users',
     component: QtAccountUsersPageComponent,
-  }, {
-    path: 'circles',
-    component: QtAccountCirclesPageComponent,
   }, {
     path: 'profile',
     component: QtAccountProfilePageComponent,

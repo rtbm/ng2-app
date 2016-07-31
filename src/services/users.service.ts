@@ -19,11 +19,7 @@ export class UsersService {
     return this.serverService.put(`/users/${_id}`, user);
   }
 
-  follow(circleId, user: User) {
-    return this.serverService.post(`/circles/${circleId}/users`, {
-      user: {
-        _id: user._id,
-      },
-    });
+  follow(user: User, circles) {
+    return this.serverService.post(`/users/${user._id}/follow`, { circles });
   }
 }
