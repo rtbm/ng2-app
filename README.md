@@ -1,4 +1,4 @@
-# ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-app.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-app) 
+# ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-quottr.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-quottr) 
 
 Work in progress. Live demo: [https://ng2-quottr.herokuapp.com](https://ng2-quottr.herokuapp.com)
 
