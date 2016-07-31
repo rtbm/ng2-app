@@ -1,24 +1,21 @@
 # ng2-quottr (WIP) [![CircleCI](https://circleci.com/gh/rtbm/ng2-app.svg?style=svg)](https://circleci.com/gh/rtbm/ng2-app) 
 
-Google+ inspired social app. Work in progress.
-Live demo: [click](https://ng2-quottr.herokuapp.com)
+Work in progress. Live demo: [https://ng2-quottr.herokuapp.com](https://ng2-quottr.herokuapp.com)
 
 ## What's done?
-* user sign in, sign up, forgot/reset password, profile
+* user sign in, sign up, forgot/reset password, update profile
 * managing entries (quotes)
-* creating circles
-* attaching user to circle
-* listing circles entries
-* sending invites
+* following users
 
 ## What's in code?
+* ECMA Script 6 (backend), TypeScript (frontend), sass, html
 * evergreen angular 2, redux, express, mongodb, redis
-* typescript, less
 * reset password by in email token
 * nested outlet's routes
 * jwt support
 * modal dialogs/forms
 * slice (text-trim), filter (string or in object properties) pipe
+* circleci, heroku ready
 
 ### Host dependencies
 * node, npm
