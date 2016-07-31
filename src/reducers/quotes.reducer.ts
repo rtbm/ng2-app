@@ -92,7 +92,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['saveQuote', 'isPending'], false)
         .setIn(['saveQuote', 'isSuccess'], true)
         .updateIn(['quotes', 'items'],
-          list => list.push(fromJS(action.payload))
+          list => list.unshift(fromJS(action.payload))
         );
     }
 
@@ -155,7 +155,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['updateQuote', 'isPending'], false)
         .setIn(['updateQuote', 'isSuccess'], true)
         .updateIn(['quotes', 'items'], list => list.update(
-          list.findIndex(circle => circle.get('id') === action.payload._id),
+          list.findIndex(item => item.get('_id') === action.payload._id),
           item => fromJS(action.payload)
         ));
     }
@@ -199,7 +199,7 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['removeQuote', 'isSuccess'], true)
         .setIn(['removeQuote', 'item'], fromJS(action.payload))
         .updateIn(['quotes', 'items'],
-          list => list.filter(circle => circle.get('_id') !== action.payload._id)
+          list => list.filter(item => item.get('_id') !== action.payload._id)
         );
     }
 

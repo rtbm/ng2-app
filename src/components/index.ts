@@ -10,4 +10,5 @@ export * from './logo';
 export * from './menu';
 export * from './modal';
 export * from './overlay';
+export * from './tab';
 export * from './wrapper';

@@ -9,17 +9,19 @@ export const INITIAL_STATE = fromJS({
     errorCode: 0,
     items: [],
   },
-  invite: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-  },
   follow: {
     isPending: false,
     isSuccess: false,
     isError: false,
     errorCode: 0,
+    item: {},
+  },
+  unfollow: {
+    isPending: false,
+    isSuccess: false,
+    isError: false,
+    errorCode: 0,
+    item: {},
   },
 });
 
@@ -58,7 +60,8 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['follow', 'isPending'], true)
         .setIn(['follow', 'isSuccess'], false)
         .setIn(['follow', 'isError'], false)
-        .setIn(['follow', 'errorCode'], 0);
+        .setIn(['follow', 'errorCode'], 0)
+        .setIn(['follow', 'item'], action.payload.user);
     }
 
     case UsersActions.USERS_FOLLOW_SUCCESS:
@@ -67,15 +70,50 @@ export function usersReducer(state: IUsers = INITIAL_STATE, action: any = { type
         .setIn(['follow', 'isPending'], false)
         .setIn(['follow', 'isSuccess'], true)
         .setIn(['follow', 'items'], fromJS(action.payload))
-        .setIn(['follow', 'isModalVisible'], false);
+        .setIn(['follow', 'isModalVisible'], false)
+        .updateIn(['users', 'items'], list => list.update(
+          list.findIndex(item => item.get('_id') === action.payload._id),
+          item => item.set('followed', true)
+        ));
     }
 
     case UsersActions.USERS_FOLLOW_ERROR:
     {
       return state
-        .setIn(['follow', 'isPending'], false)
-        .setIn(['follow', 'isError'], true)
-        .setIn(['follow', 'errorCode'], action.payload.errorCode);
+        .setIn(['unfollow', 'isPending'], false)
+        .setIn(['unfollow', 'isError'], true)
+        .setIn(['unfollow', 'errorCode'], action.payload.errorCode);
+    }
+
+    case UsersActions.USERS_UNFOLLOW:
+    {
+      return state
+        .setIn(['unfollow', 'isPending'], true)
+        .setIn(['unfollow', 'isSuccess'], false)
+        .setIn(['unfollow', 'isError'], false)
+        .setIn(['unfollow', 'errorCode'], 0)
+        .setIn(['follow', 'item'], action.payload.user);
+    }
+
+    case UsersActions.USERS_UNFOLLOW_SUCCESS:
+    {
+      return state
+        .setIn(['unfollow', 'isPending'], false)
+        .setIn(['unfollow', 'isSuccess'], true)
+        .setIn(['unfollow', 'items'], fromJS(action.payload))
+        .setIn(['unfollow', 'isModalVisible'], false)
+        .updateIn(['users', 'items'], list => list.update(
+          list.findIndex(item => item.get('_id') === action.payload._id),
+          item => item.set('followed', false)
+        ));
+    }
+
+    case UsersActions.USERS_UNFOLLOW_ERROR:
+    {
+      return state
+        .setIn(['unfollow', 'isPending'], false)
+        .setIn(['unfollow', 'isError'], true)
+        .setIn(['unfollow', 'errorCode'], action.payload.errorCode);
     }
 
     default:

@@ -11,8 +11,8 @@ export class UsersEpics {
 
   fetchUsers = (action$: ActionsObservable) => {
     return action$.ofType(UsersActions.USERS_FETCH)
-      .flatMap(() => {
-        return this.usersService.fetchAll()
+      .flatMap(({payload}) => {
+        return this.usersService.fetchAll(payload.filter)
           .map(result => ({
             type: UsersActions.USERS_FETCH_SUCCESS,
             payload: result,
@@ -27,13 +27,28 @@ export class UsersEpics {
   followUser = (action$: ActionsObservable) => {
     return action$.ofType(UsersActions.USERS_FOLLOW)
       .flatMap(({payload}) => {
-        return this.usersService.follow(payload.user, payload.circles)
+        return this.usersService.follow(payload.user)
           .map(result => ({
             type: UsersActions.USERS_FOLLOW_SUCCESS,
             payload: result,
           }))
           .catch(error => Observable.of({
             type: UsersActions.USERS_FOLLOW_ERROR,
+            payload: { errorCode: error.status },
+          }));
+      });
+  };
+
+  unfollowUser = (action$: ActionsObservable) => {
+    return action$.ofType(UsersActions.USERS_UNFOLLOW)
+      .flatMap(({payload}) => {
+        return this.usersService.unfollow(payload.user)
+          .map(result => ({
+            type: UsersActions.USERS_UNFOLLOW_SUCCESS,
+            payload: result,
+          }))
+          .catch(error => Observable.of({
+            type: UsersActions.USERS_UNFOLLOW_ERROR,
             payload: { errorCode: error.status },
           }));
       });
