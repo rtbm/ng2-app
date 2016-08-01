@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -8,18 +8,20 @@ import {
   XLabelComponent,
   XButtonComponent,
   XFormContentComponent,
+  XFormErrorComponent,
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'qt-user-change-password-form',
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.scss')],
-  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent],
+  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
+    XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent, XFormErrorComponent],
 })
-export class QtUserChangePasswordFormComponent {
+export class QtUserChangePasswordFormComponent implements OnDestroy {
   @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
@@ -27,9 +29,11 @@ export class QtUserChangePasswordFormComponent {
   private token: FormControl;
   private password: FormControl;
   private password_confirm: FormControl;
+  private isSubmitted: boolean;
+  private routeParamsSubscription: Subscription;
 
   constructor(private builder: FormBuilder,
-              private r: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute) {
     this.email = new FormControl('', Validators.required);
     this.token = new FormControl('', Validators.required);
     this.password = new FormControl('', Validators.required);
@@ -41,14 +45,20 @@ export class QtUserChangePasswordFormComponent {
       token: this.token,
     });
 
-    r.params.subscribe((params: any) => {
+    this.routeParamsSubscription = this.activatedRoute.params.subscribe((params: any) => {
       this.token.updateValue(params.token);
     });
   }
 
   handleSubmit() {
+    this.isSubmitted = true;
+
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
+  }
+
+  ngOnDestroy() {
+    this.routeParamsSubscription.unsubscribe();
   }
 }

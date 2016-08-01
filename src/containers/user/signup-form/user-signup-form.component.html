@@ -1,26 +1,37 @@
 <x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
+
     <x-form-group>
       <x-label>E-mail</x-label>
       <x-form-input [control]="email" type="email"></x-form-input>
+      <x-form-error *ngIf="(isSubmitted || email.touched) && !email.value">
+        Field is required.
+      </x-form-error>
     </x-form-group>
 
     <x-form-group>
       <x-label>Password</x-label>
       <x-form-input [control]="password" type="password"></x-form-input>
+      <x-form-error *ngIf="(isSubmitted || password.touched) && !password.value">
+        Field is required.
+      </x-form-error>
     </x-form-group>
 
     <x-form-group>
       <x-label>Password confirm</x-label>
       <x-form-input [control]="password_confirm" type="password"></x-form-input>
+      <x-form-error *ngIf="(isSubmitted || password_confirm.touched) && !password_confirm.value">
+        Field is required.
+      </x-form-error>
+      <x-form-error *ngIf="password_confirm.dirty && password_confirm.value
+        && password_confirm.value !== password.value">
+        Password doesn't match confirmation.
+      </x-form-error>
     </x-form-group>
 
-    <x-form-error *ngIf="password_confirm.dirty && password_confirm.value !== password.value">
-      Password doesn't match confirmation.
-    </x-form-error>
   </x-form-content>
 
   <x-form-actions>
-    <x-button preset="positive" type="submit">Create an account</x-button>
+    <x-button preset="positive" size="big" type="submit">Create an account</x-button>
   </x-form-actions>
 </x-form>

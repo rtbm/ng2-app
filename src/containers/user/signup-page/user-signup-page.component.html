@@ -1,6 +1,7 @@
 <x-wrapper>
   <x-box>
     <x-box-header>Sign up</x-box-header>
+
     <x-box-content>
       <div *ngIf="isSignupError$ | async" [ngSwitch]="signupErrorCode$ | async">
         <x-form-message preset="error" *ngSwitchCase="409">
@@ -10,5 +11,6 @@
       <qt-user-signup-form (onSubmit)="userActions.signup($event)"></qt-user-signup-form>
     </x-box-content>
   </x-box>
-  <p>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></p>
+
+  <div>Got an account? <a [routerLink]="['/user/signin']">Sign In</a></div>
 </x-wrapper>

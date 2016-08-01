@@ -1,7 +1,9 @@
 @import '../../../assets/colors';
+@import '../../../assets/variables';
 
 textarea {
   border: .1rem solid $border;
+  border-radius: $radius;
   box-sizing: border-box;
   outline: 0;
   padding: 1.25rem 1.5rem;

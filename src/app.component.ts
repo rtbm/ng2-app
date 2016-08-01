@@ -37,8 +37,12 @@ export class QtAppComponent {
       this.usersEpics.fetchUsers,
       this.usersEpics.followUser,
       this.usersEpics.unfollowUser,
-    ].reduce((acc: Array<any>, epic: any) => acc.concat(createEpicMiddleware(<Epic> epic)), []);
+    ];
 
-    ngRedux.configureStore(rootReducer, {}, [...middlewares, ...epics], enhancers);
+    const epicsMiddlewares = epics.reduce(
+        (acc: Array<any>, epic: any) => acc.concat(createEpicMiddleware(<Epic> epic)), []
+    );
+
+    ngRedux.configureStore(rootReducer, {}, [...middlewares, ...epicsMiddlewares], enhancers);
   }
 }

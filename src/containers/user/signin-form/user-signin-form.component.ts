@@ -7,6 +7,7 @@ import {
   XLabelComponent,
   XButtonComponent,
   XFormContentComponent,
+  XFormErrorComponent,
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AsyncPipe, NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
@@ -17,7 +18,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   template: require('./user-signin-form.component.html'),
   directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
-    XFormContentComponent],
+    XFormContentComponent, XFormErrorComponent],
   pipes: [AsyncPipe],
 })
 export class QtUserSigninFormComponent {
@@ -26,6 +27,7 @@ export class QtUserSigninFormComponent {
   private form: FormGroup;
   private email: FormControl;
   private password: FormControl;
+  private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
     this.email = new FormControl('', Validators.required);
@@ -38,6 +40,8 @@ export class QtUserSigninFormComponent {
   }
 
   handleSubmit() {
+    this.isSubmitted = true;
+
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }
