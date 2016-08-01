@@ -17,7 +17,7 @@ function sessionStore() {
 
     store.subscribe(() => {
       const state = store.getState();
-      localStorage.setItem('id_token', state.user.get('id_token'));
+      localStorage.setItem('id_token', state.user.get('id_token') || '');
     });
 
     return store;

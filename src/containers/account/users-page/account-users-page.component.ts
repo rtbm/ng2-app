@@ -30,7 +30,7 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   @select(state => state.user.getIn(['user', '_id'])) private userId$;
 
   private usersUsersItems$: Observable<any>;
-  private routeParams$: Subscription;
+  private routeParamsSubscription: Subscription;
   private filter: string;
 
   constructor(
@@ -41,7 +41,7 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.routeParams$ = this.activatedRoute.params.subscribe((params: any) => {
+    this.routeParamsSubscription = this.activatedRoute.params.subscribe((params: any) => {
       this.filter = params.filter || '';
       this.usersActions.fetchUsers(this.filter);
     });
@@ -50,6 +50,6 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.users$.unsubscribe();
     this.userId$.unsubscribe();
-    this.routeParams$.unsubscribe();
+    this.routeParamsSubscription.unsubscribe();
   }
 }

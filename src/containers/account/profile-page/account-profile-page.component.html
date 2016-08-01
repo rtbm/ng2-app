@@ -5,6 +5,7 @@
     <x-box-header>
       Update Profile
     </x-box-header>
+
     <x-box-content>
       <x-form-message *ngIf="isUpdateProfileError$ | async" preset="error">Profile update error!</x-form-message>
       <x-form-message *ngIf="isUpdateProfileSuccess$ | async" preset="success">Profile successfully updated.</x-form-message>

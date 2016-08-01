@@ -1,11 +1,13 @@
 @import '../../../assets/colors';
+@import '../../../assets/variables';
 
 :host {
   display: block;
   margin: 0 0 1.5rem;
 }
 
-div {
+.message {
+  border-radius: $radius;
   padding: 1rem 1.5rem;
 }
 

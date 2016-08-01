@@ -7,6 +7,7 @@ import {
   XLabelComponent,
   XButtonComponent,
   XFormContentComponent,
+  XFormErrorComponent,
 } from '../../../components';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { select } from 'ng2-redux';
@@ -15,8 +16,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signup-form',
   template: require('./user-signup-form.component.html'),
-  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent,
-    XFormInputComponent, XFormGroupComponent, XFormActionsComponent, XFormContentComponent],
+  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
+    XFormGroupComponent, XFormActionsComponent, XFormContentComponent, XFormErrorComponent],
 })
 export class QtUserSignupFormComponent implements OnDestroy {
   @select(state => state.user.getIn(['signup', 'errorCode'])) private errorCode$;
@@ -26,6 +27,7 @@ export class QtUserSignupFormComponent implements OnDestroy {
   private email: FormControl;
   private password: FormControl;
   private password_confirm: FormControl;
+  private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
     this.email = new FormControl('', Validators.required);
@@ -40,6 +42,8 @@ export class QtUserSignupFormComponent implements OnDestroy {
   }
 
   handleSubmit() {
+    this.isSubmitted = true;
+
     if (this.form.valid) {
       this.onSubmit.emit(this.form.value);
     }

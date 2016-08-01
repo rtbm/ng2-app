@@ -3,13 +3,16 @@
     <x-form-group>
       <x-form-input [control]="name" placeholder="Name" type="text"></x-form-input>
     </x-form-group>
+
     <x-form-group>
       <x-form-textarea [control]="content" placeholder="Quote"></x-form-textarea>
     </x-form-group>
+
     <x-form-group>
       <x-form-input [control]="url" placeholder="Url" type="text"></x-form-input>
     </x-form-group>
   </x-form-content>
+
   <x-form-actions>
     <x-button (onClick)="onCancel.emit($event)" preset="negative">Cancel</x-button>
     <x-button preset="positive" type="submit">Send</x-button>
