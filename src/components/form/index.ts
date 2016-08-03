@@ -1,4 +1,5 @@
 export * from './form-actions';
+export * from './form-checkbox';
 export * from './form-content';
 export * from './form-error';
 export * from './form-group';

@@ -17,6 +17,10 @@ const quoteSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  private: {
+    type: Boolean,
+    default: true,
+  },
   owner: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',

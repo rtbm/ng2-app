@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 import {
   XFormComponent,
   XFormInputComponent,
+  XFormCheckboxComponent,
   XFormGroupComponent,
   XFormTextareaComponent,
   XButtonComponent,
@@ -14,7 +15,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   selector: 'qt-account-quote-edit-form',
   template: require('./account-quote-edit-form.component.html'),
   styles: [require('./account-quote-edit-form.component.scss')],
-  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent,
+  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent, XFormCheckboxComponent,
     XFormTextareaComponent, XLabelComponent, XFormContentComponent],
 })
 export class QtAccountQuoteEditFormComponent implements OnChanges {
@@ -27,18 +28,21 @@ export class QtAccountQuoteEditFormComponent implements OnChanges {
   private name: FormControl;
   private content: FormControl;
   private url: FormControl;
+  private private: FormControl;
 
   constructor(private builder: FormBuilder) {
     this._id = new FormControl('', Validators.required);
     this.name = new FormControl('', Validators.required);
     this.content = new FormControl('', Validators.required);
     this.url = new FormControl('', Validators.required);
+    this.private = new FormControl(false);
 
     this.form = this.builder.group({
       _id: this._id,
       name: this.name,
       content: this.content,
       url: this.url,
+      private: this.private,
     });
   }
 
@@ -47,6 +51,7 @@ export class QtAccountQuoteEditFormComponent implements OnChanges {
     this.name.updateValue(values.quoteModel.currentValue.name);
     this.content.updateValue(values.quoteModel.currentValue.content);
     this.url.updateValue(values.quoteModel.currentValue.url);
+    this.private.updateValue(values.quoteModel.currentValue.private);
   }
 
   handleSubmit() {

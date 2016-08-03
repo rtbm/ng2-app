@@ -10,12 +10,14 @@ module.exports = {
     }
 
     Quote.find({
-      owner: {
-        $in: [
-          ...[req.user._id],
-          ...req.user.following,
-        ]
-      },
+      $or: [{
+        owner: {
+          $in: req.user.following,
+        },
+        private: false,
+      }, {
+        owner: req.user._id,
+      }]
     })
     .sort('-createdAt')
     .populate({
@@ -38,6 +40,7 @@ module.exports = {
       name: req.body.name,
       content: req.body.content,
       url: req.body.url,
+      private: req.body.private,
       owner: req.user._id,
     });
 
@@ -102,6 +105,7 @@ module.exports = {
       _quote.name = req.body.name;
       _quote.content = req.body.content;
       _quote.url = req.body.url;
+      _quote.private = req.body.private;
 
       _quote.save((err, __quote) => {
         if (err) return next(err);
