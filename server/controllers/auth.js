@@ -144,7 +144,6 @@ module.exports = {
         if (err) return next(err);
 
         return res.json({
-          _id: user._id,
           email: user.email,
         });
       });
