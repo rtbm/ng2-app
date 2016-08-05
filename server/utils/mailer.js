@@ -1,6 +1,6 @@
 'use strict';
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-const winston = require('winston');
+const logger = require('../utils/logger');
 
 module.exports = {
   send: (email, subject, body, callback) => {
@@ -22,9 +22,9 @@ module.exports = {
       },
     });
 
-    sg.API(request, err => {
+    sg.API(request, (err, res) => {
       if (err) {
-        winston.error(`Mailer error occured! ${JSON.toString(err)}`);
+        logger.error(`Mailer error occured! ${JSON.stringify(err)} ${JSON.stringify(res)}`);
 
         if (callback) {
           err = new Error('Service Unavailable');

@@ -5,7 +5,7 @@ import {
   XBoxHeaderComponent,
   XBoxContentComponent,
   XBoxComponent,
-  XFormMessageComponent
+  XFormMessageComponent,
 } from '../../../components';
 import { UserActions } from '../../../actions';
 import { select } from 'ng2-redux';
