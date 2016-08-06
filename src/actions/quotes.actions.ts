@@ -32,6 +32,14 @@ export class QuotesActions {
   static QUOTE_REMOVE_CONFIRM = 'QUOTE_REMOVE_CONFIRM';
   static QUOTE_REMOVE_CONFIRM_CANCEL = 'QUOTE_REMOVE_CONFIRM_CANCEL';
 
+  static QUOTE_RECOMMEND = 'QUOTE_RECOMMEND';
+  static QUOTE_RECOMMEND_SUCCESS = 'QUOTE_RECOMMEND_SUCCESS';
+  static QUOTE_RECOMMEND_ERROR = 'QUOTE_RECOMMEND_ERROR';
+
+  static QUOTE_UNRECOMMEND = 'QUOTE_UNRECOMMEND';
+  static QUOTE_UNRECOMMEND_SUCCESS = 'QUOTE_UNRECOMMEND_SUCCESS';
+  static QUOTE_UNRECOMMEND_ERROR = 'QUOTE_UNRECOMMEND_ERROR';
+
   constructor(private ngRedux: NgRedux<IAppState>,
               private quotesService: QuotesService) {
   }
@@ -54,17 +62,17 @@ export class QuotesActions {
     });
   }
 
-  saveQuote(circle) {
+  saveQuote(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_SAVE,
-      payload: circle,
+      payload: quote,
     });
   }
 
-  removeQuoteConfirm(circle) {
+  removeQuoteConfirm(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_REMOVE_CONFIRM,
-      payload: circle,
+      payload: quote,
     });
   }
 
@@ -74,17 +82,17 @@ export class QuotesActions {
     });
   }
 
-  removeQuote(circle) {
+  removeQuote(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_REMOVE,
-      payload: circle,
+      payload: quote,
     });
   }
 
-  updateQuoteModal(circle) {
+  updateQuoteModal(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_UPDATE_MODAL,
-      payload: circle,
+      payload: quote,
     });
   }
 
@@ -94,10 +102,24 @@ export class QuotesActions {
     });
   }
 
-  updateQuote(circle) {
+  updateQuote(quote) {
     this.ngRedux.dispatch({
       type: QuotesActions.QUOTE_UPDATE,
-      payload: circle,
+      payload: quote,
+    });
+  }
+
+  recommendQuote(quote) {
+    this.ngRedux.dispatch({
+      type: QuotesActions.QUOTE_RECOMMEND,
+      payload: quote,
+    });
+  }
+
+  unrecommendQuote(quote) {
+    this.ngRedux.dispatch({
+      type: QuotesActions.QUOTE_UNRECOMMEND,
+      payload: quote,
     });
   }
 }

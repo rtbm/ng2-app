@@ -11,10 +11,6 @@ export class QuotesService {
     return this.serverService.get('/quotes');
   }
 
-  fetchFeed() {
-    return this.serverService.get('/quotes/feed');
-  }
-
   read(_id: string) {
     return this.serverService.get(`/quotes/${_id}`);
   }
@@ -29,5 +25,13 @@ export class QuotesService {
 
   remove(_id: string) {
     return this.serverService.delete(`/quotes/${_id}`);
+  }
+
+  recommend(quote) {
+    return this.serverService.post(`/quotes/${quote._id}/recommend`, {});
+  }
+
+  unrecommend(quote) {
+    return this.serverService.delete(`/quotes/${quote._id}/recommend`);
   }
 }

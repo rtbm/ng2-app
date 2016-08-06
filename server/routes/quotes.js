@@ -9,4 +9,7 @@ router.get('/:quoteId', quotes.read);
 router.put('/:quoteId', quotes.update);
 router.delete('/:quoteId', quotes.remove);
 
+router.post('/:quoteId/recommend', quotes.recommend);
+router.delete('/:quoteId/recommend', quotes.unrecommend);
+
 module.exports = router;

@@ -33,6 +33,20 @@ export const INITIAL_STATE = fromJS({
     errorCode: 0,
     item: {},
   },
+  recommendQuote: {
+    isPending: false,
+    isSuccess: false,
+    isError: false,
+    errorCode: 0,
+    item: {},
+  },
+  unrecommendQuote: {
+    isPending: false,
+    isSuccess: false,
+    isError: false,
+    errorCode: 0,
+    item: {},
+  },
 });
 
 export type IQuotes = Map<string, any>;
@@ -209,6 +223,64 @@ export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { ty
         .setIn(['removeQuote', 'isPending'], false)
         .setIn(['removeQuote', 'isError'], true)
         .setIn(['removeQuote', 'errorCode'], action.payload.errorCode);
+    }
+
+    case QuotesActions.QUOTE_RECOMMEND:
+    {
+      return state
+        .setIn(['recommendQuote', 'isPending'], true)
+        .setIn(['recommendQuote', 'isSuccess'], false)
+        .setIn(['recommendQuote', 'isError'], false)
+        .setIn(['recommendQuote', 'errorCode'], 0);
+    }
+
+    case QuotesActions.QUOTE_RECOMMEND_SUCCESS:
+    {
+      return state
+        .setIn(['recommendQuote', 'isPending'], false)
+        .setIn(['recommendQuote', 'isSuccess'], true)
+        .setIn(['recommendQuote', 'item'], fromJS(action.payload))
+        .updateIn(['quotes', 'items'], list => list.update(
+          list.findIndex(item => item.get('_id') === action.payload._id),
+          item => fromJS(action.payload)
+        ));
+    }
+
+    case QuotesActions.QUOTE_RECOMMEND_ERROR:
+    {
+      return state
+        .setIn(['recommendQuote', 'isPending'], false)
+        .setIn(['recommendQuote', 'isError'], true)
+        .setIn(['recommendQuote', 'errorCode'], action.payload.errorCode);
+    }
+
+    case QuotesActions.QUOTE_UNRECOMMEND:
+    {
+      return state
+        .setIn(['unrecommendQuote', 'isPending'], true)
+        .setIn(['unrecommendQuote', 'isSuccess'], false)
+        .setIn(['unrecommendQuote', 'isError'], false)
+        .setIn(['unrecommendQuote', 'errorCode'], 0);
+    }
+
+    case QuotesActions.QUOTE_UNRECOMMEND_SUCCESS:
+    {
+      return state
+        .setIn(['unrecommendQuote', 'isPending'], false)
+        .setIn(['unrecommendQuote', 'isSuccess'], true)
+        .setIn(['unrecommendQuote', 'item'], fromJS(action.payload))
+        .updateIn(['quotes', 'items'], list => list.update(
+          list.findIndex(item => item.get('_id') === action.payload._id),
+          item => fromJS(action.payload)
+        ));
+    }
+
+    case QuotesActions.QUOTE_UNRECOMMEND_ERROR:
+    {
+      return state
+        .setIn(['unrecommendQuote', 'isPending'], false)
+        .setIn(['unrecommendQuote', 'isError'], true)
+        .setIn(['unrecommendQuote', 'errorCode'], action.payload.errorCode);
     }
 
     default:

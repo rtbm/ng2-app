@@ -27,6 +27,10 @@ const quoteSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  recommended: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  }],
 }, {
   autoIndex: true,
   timestamps: true,

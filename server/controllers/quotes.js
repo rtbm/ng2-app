@@ -143,4 +143,60 @@ module.exports = {
       return res.json(quote);
     });
   },
+
+  recommend: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    Quote.update({
+      _id: req.params.quoteId,
+      private: false,
+    }, {
+      $addToSet: {
+        recommended: req.user._id,
+      },
+    }).exec(err => {
+      if (err) return next(err);
+
+      Quote.findById(req.params.quoteId)
+        .populate({
+          path: 'owner',
+          select: 'profile.first_name profile.last_name',
+        }).exec((err, quote) => {
+          if (err) return next(err);
+          return res.json(quote);
+        });
+    });
+  },
+
+  unrecommend: (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      return next(err);
+    }
+
+    Quote.update({
+      _id: req.params.quoteId,
+      private: false,
+    }, {
+      $pull: {
+        recommended: req.user._id,
+      },
+    }).exec(err => {
+      if (err) return next(err);
+
+      Quote.findById(req.params.quoteId)
+        .populate({
+          path: 'owner',
+          select: 'profile.first_name profile.last_name',
+        }).exec((err, quote) => {
+        if (err) return next(err);
+        return res.json(quote);
+      });
+    });
+  },
 };

@@ -15,13 +15,26 @@
       <p>{{quote.content}}</p>
       <p>{{quote.url}}</p>
 
-      <div *ngIf="quote.owner._id === (userId$ | async)">
+      <p *ngIf="quote.owner._id === (userId$ | async)">
         <x-button size="normal" preset="neutral"
                   (onClick)="quotesActions.updateQuoteModal(quote)">Edit
         </x-button>
 
         <x-button size="normal" preset="negative"
                   (onClick)="quotesActions.removeQuoteConfirm(quote)">Delete
+        </x-button>
+      </p>
+
+      <div *ngIf="!quote.private">
+        Recommends:
+        <strong>{{ quote.recommended.length }}</strong>
+
+        <x-button size="normal" preset="positive" *ngIf="quote.recommended.indexOf(userId$ | async) === -1"
+                  (onClick)="quotesActions.recommendQuote(quote)">Recommend
+        </x-button>
+
+        <x-button size="normal" preset="casual" *ngIf="quote.recommended.indexOf(userId$ | async) !== -1"
+                  (onClick)="quotesActions.unrecommendQuote(quote)">Unrecommend
         </x-button>
       </div>
     </x-box-content>

@@ -34,6 +34,8 @@ export class QtAppComponent {
       this.quotesEpics.updateQuoteModal,
       this.quotesEpics.updateQuote,
       this.quotesEpics.removeQuote,
+      this.quotesEpics.recommendQuote,
+      this.quotesEpics.unrecommendQuote,
       this.usersEpics.fetchUsers,
       this.usersEpics.followUser,
       this.usersEpics.unfollowUser,
