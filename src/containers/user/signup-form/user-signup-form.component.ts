@@ -12,6 +12,7 @@ import {
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { select } from 'ng2-redux';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { EmailValidator } from '../../../validators/email.validator';
 
 @Component({
   selector: 'qt-user-signup-form',
@@ -30,7 +31,7 @@ export class QtUserSignupFormComponent implements OnDestroy {
   private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
-    this.email = new FormControl('', Validators.required);
+    this.email = new FormControl('', EmailValidator.validate);
     this.password = new FormControl('', Validators.required);
     this.password_confirm = new FormControl('', Validators.required);
 

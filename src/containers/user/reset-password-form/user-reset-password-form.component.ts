@@ -10,8 +10,9 @@ import {
   XFormContentComponent,
   XFormErrorComponent,
 } from '../../../components';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { EmailValidator } from '../../../validators/email.validator';
 
 @Component({
   selector: 'qt-user-reset-password-form',
@@ -28,7 +29,7 @@ export class QtUserResetPasswordFormComponent {
   private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
-    this.email = new FormControl('', Validators.required);
+    this.email = new FormControl('', EmailValidator.validate);
 
     this.form = this.builder.group({
       email: this.email,

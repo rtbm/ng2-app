@@ -9,6 +9,7 @@ import {
   XFormContentComponent,
   XFormErrorComponent,
 } from '../../../components';
+import { EmailValidator } from '../../../validators';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AsyncPipe, NgSwitch, NgSwitchDefault, NgSwitchCase } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
@@ -30,7 +31,7 @@ export class QtUserSigninFormComponent {
   private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
-    this.email = new FormControl('', Validators.required);
+    this.email = new FormControl('', EmailValidator.validate);
     this.password = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
