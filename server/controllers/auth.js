@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
 const User = require('../models/user');
-const redisClient = require('redis').createClient();
+const redisClient = require('redis').createClient(process.env.REDIS_URL);
 const mailer = require('../utils/mailer');
 
 module.exports = {
