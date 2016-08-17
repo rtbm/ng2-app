@@ -1,11 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import rootReducer, { IAppState } from './reducers';
+import rootReducer, { IAppState, middlewares, enhancers } from './state';
 import { createEpicMiddleware, Epic } from 'redux-observable';
-import { middlewares } from './state';
 import { NgRedux } from 'ng2-redux';
 import { UserEpics, ProfileEpics, QuotesEpics, UsersEpics } from './epics';
-import { enhancers } from './state/enhancers';
 
 @Component({
   selector: 'qt-app',

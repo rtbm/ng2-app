@@ -1,32 +1,9 @@
-import { UserActions } from '../actions/user.actions';
-import { Map, fromJS } from 'immutable';
+import { IPayloadAction, UserActions } from '../../actions';
+import { fromJS } from 'immutable';
+import { IUserRecord } from './user.types';
+import { INITIAL_STATE } from './user.initial-state';
 
-export const INITIAL_STATE = fromJS({
-  id_token: '',
-  user: {},
-  signup: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-  },
-  signin: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-  },
-  resetPassword: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-  },
-});
-
-export type IUser = Map<string, any>;
-
-export function userReducer(state: IUser = INITIAL_STATE, action: any = { type: '' }) {
+export function userReducer(state: IUserRecord = INITIAL_STATE, action: IPayloadAction): IUserRecord {
   switch (action.type) {
     case UserActions.USER_SIGNIN: {
       return state

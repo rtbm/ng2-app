@@ -1,57 +1,9 @@
-import { QuotesActions } from '../actions/quotes.actions';
-import { Map, fromJS } from 'immutable';
+import { IPayloadAction, QuotesActions } from '../../actions';
+import { fromJS } from 'immutable';
+import { IQuotesRecord } from './quotes.types';
+import { INITIAL_STATE } from './quotes.initial-state';
 
-export const INITIAL_STATE = fromJS({
-  quotes: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    items: [],
-  },
-  saveQuote: {
-    isModalVisible: false,
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-  updateQuote: {
-    isModalVisible: false,
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-  removeQuote: {
-    isConfirmVisible: false,
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-  recommendQuote: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-  unrecommendQuote: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-});
-
-export type IQuotes = Map<string, any>;
-
-export function quotesReducer(state: IQuotes = INITIAL_STATE, action: any = { type: '' }) {
+export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPayloadAction): IQuotesRecord {
   switch (action.type) {
     case QuotesActions.QUOTES_FETCH:
     {

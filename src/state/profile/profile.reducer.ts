@@ -1,25 +1,9 @@
-import { ProfileActions } from '../actions/profile.actions';
-import { Map, fromJS } from 'immutable';
+import { IPayloadAction, ProfileActions } from '../../actions';
+import { fromJS } from 'immutable';
+import { IProfileRecord } from './profile.types';
+import { INITIAL_STATE } from './profile.initial-state';
 
-export const INITIAL_STATE = fromJS({
-  user: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-    item: {},
-  },
-  updateUser: {
-    isPending: false,
-    isSuccess: false,
-    isError: false,
-    errorCode: 0,
-  },
-});
-
-export type IProfile = Map<string, any>;
-
-export function profileReducer(state: IProfile = INITIAL_STATE, action: any = { type: '' }) {
+export function profileReducer(state: IProfileRecord = INITIAL_STATE, action: IPayloadAction): IProfileRecord {
   switch (action.type) {
     case ProfileActions.USER_FETCH:
     {

@@ -2,6 +2,7 @@ import { ProfileActions } from './profile.actions';
 import { QuotesActions } from './quotes.actions';
 import { UserActions } from './user.actions';
 import { UsersActions } from './users.actions';
+import { Action } from 'redux';
 
 export * from './profile.actions';
 export * from './quotes.actions';
@@ -14,3 +15,7 @@ export const ACTIONS_PROVIDERS = [
   UserActions,
   UsersActions,
 ];
+
+export interface IPayloadAction extends Action {
+  payload?: any;
+}

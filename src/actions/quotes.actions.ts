@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../reducers';
-import { QuotesService } from '../services/quotes.service';
+import { IAppState } from '../state';
+import { QuotesService } from '../services';
 
 @Injectable()
 export class QuotesActions {
