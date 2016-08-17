@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnDestroy, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import {
   XFormComponent,
   XFormActionsComponent,
@@ -45,25 +45,17 @@ export class QtAccountProfileEditFormComponent {
   }
 
   ngOnChanges(values) {
-    const currVal = values.user.currentValue;
-
-    if (currVal._id) {
-      this._id.updateValue(currVal._id);
+    if (this._id.value || !values.user.currentValue._id) {
+      return false;
     }
 
-    if (currVal.profile) {
-      if (currVal.profile.first_name) {
-        this.first_name.updateValue(currVal.profile.first_name);
-      }
+    this._id.updateValue(values.user.currentValue._id);
 
-      if (currVal.profile.last_name) {
-        this.last_name.updateValue(currVal.profile.last_name);
+    Object.keys(values.user.currentValue.profile).map(key => {
+      if (this[key] && this[key] instanceof FormControl) {
+        this[key].updateValue(values.user.currentValue.profile[key]);
       }
-
-      if (currVal.profile.bio) {
-        this.bio.updateValue(currVal.profile.bio);
-      }
-    }
+    });
   }
 
   handleSubmit() {

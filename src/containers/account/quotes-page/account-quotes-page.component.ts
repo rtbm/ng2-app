@@ -26,52 +26,30 @@ import { Quote } from '../../../models';
     XFormMessageComponent, QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent,
     XBoxContentComponent],
 })
-export class QtAccountQuotesPageComponent implements OnDestroy {
-  @select(state => state.quotes) private quotes$;
-  @select(state => state.user.getIn(['user', '_id'])) private userId$;
+export class QtAccountQuotesPageComponent {
+  @select(['user', 'user', '_id']) userId$: Observable<string>;
+  @select(['quotes', 'quotes', 'items']) quotesItems$: Observable<any>;
 
-  private quotesItems$: Observable<Array<Object>>;
+  @select(['quotes', 'saveQuote', 'isModalVisible']) isSaveQuoteModalVisible$: Observable<boolean>;
+  @select(['quotes', 'saveQuote', 'isSuccess']) isSaveQuoteSuccess$: Observable<boolean>;
+  @select(['quotes', 'saveQuote', 'isError']) isSaveQuoteError$: Observable<boolean>;
 
-  private isSaveQuoteModalVisible$: Observable<boolean>;
-  private isSaveQuoteSuccess$: Observable<boolean>;
-  private isSaveQuoteError$: Observable<boolean>;
+  @select(['quotes', 'updateQuote', 'isModalVisible']) isUpdateQuoteModalVisible$: Observable<boolean>;
+  @select(['quotes', 'updateQuote', 'isSuccess']) isUpdateQuoteSuccess$: Observable<boolean>;
+  @select(['quotes', 'updateQuote', 'isError']) isUpdateQuoteError$: Observable<boolean>;
+  @select(['quotes', 'updateQuote', 'item']) updateQuoteItem$: Observable<any>;
 
-  private isUpdateQuoteModalVisible$: Observable<boolean>;
-  private isUpdateQuoteSuccess$: Observable<boolean>;
-  private isUpdateQuoteError$: Observable<boolean>;
-  private updateQuoteItem$: Observable<any>;
-
-  private isRemoveQuoteConfirmVisible$: Observable<boolean>;
-  private removeQuoteItem$: Observable<any>;
-  private removeQuoteItemName$: Observable<string>;
+  @select(['quotes', 'removeQuote', 'isConfirmVisible']) isRemoveQuoteConfirmVisible$: Observable<any>;
+  @select(['quotes', 'removeQuote', 'item']) removeQuoteItem$: Observable<any>;
+  @select(['quotes', 'removeQuote', 'item', 'name']) removeQuoteItemName$: Observable<any>;
 
   constructor(private quotesActions: QuotesActions) {
     this.quotesActions.fetchQuotes();
-
-    this.quotesItems$ = this.quotes$.map(s => s.getIn(['quotes', 'items']).toJS());
-
-    this.isSaveQuoteModalVisible$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isModalVisible']));
-    this.isSaveQuoteSuccess$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isSuccess']));
-    this.isSaveQuoteError$ = this.quotes$.map(s => s.getIn(['saveQuote', 'isError']));
-
-    this.isUpdateQuoteModalVisible$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isModalVisible']));
-    this.isUpdateQuoteSuccess$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isSuccess']));
-    this.isUpdateQuoteError$ = this.quotes$.map(s => s.getIn(['updateQuote', 'isError']));
-    this.updateQuoteItem$ = this.quotes$.map(s => s.getIn(['updateQuote', 'item']).toJS());
-
-    this.isRemoveQuoteConfirmVisible$ = this.quotes$.map(s => s.getIn(['removeQuote', 'isConfirmVisible']));
-    this.removeQuoteItem$ = this.quotes$.map(s => s.getIn(['removeQuote', 'item']).toJS());
-    this.removeQuoteItemName$ = this.quotes$.map(s => s.getIn(['removeQuote', 'item', 'name']));
   }
 
   handleRemoveQuote() {
     this.removeQuoteItem$
       .first()
       .subscribe((quote: Quote) => this.quotesActions.removeQuote(quote));
-  }
-
-  ngOnDestroy() {
-    this.quotes$.unsubscribe();
-    this.userId$.unsubscribe();
   }
 }

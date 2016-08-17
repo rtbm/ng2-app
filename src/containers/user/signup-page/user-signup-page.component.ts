@@ -23,18 +23,10 @@ import { select } from 'ng2-redux';
   pipes: [AsyncPipe],
 })
 
-export class QtUserSignupPageComponent implements OnDestroy {
-  @select(state => state.user) private user$;
-
-  private isSignupError$: Observable<number>;
-  private signupErrorCode$: Observable<number>;
+export class QtUserSignupPageComponent {
+  @select(['user', 'signup', 'isError']) isSignupError$: Observable<boolean>;
+  @select(['user', 'signup', 'errorCode']) signupErrorCode$: Observable<number>;
 
   constructor(private userActions: UserActions) {
-    this.isSignupError$ = this.user$.map(s => s.getIn(['signup', 'isError']));
-    this.signupErrorCode$ = this.user$.map(s => s.getIn(['signup', 'errorCode']));
-  }
-
-  ngOnDestroy() {
-    this.user$.unsubscribe();
   }
 }

@@ -5,7 +5,7 @@
     <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
   </p>
 
-  <x-box *ngFor="let quote of (quotesItems$ | async)">
+  <x-box *ngFor="let quote of (quotesItems$ | async).toJS()">
     <x-box-header>
       {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
     </x-box-header>
@@ -60,7 +60,7 @@
 <x-modal-form *ngIf="isUpdateQuoteModalVisible$ | async">
   <x-form-message preset="error" *ngIf="isUpdateQuoteError$ | async">Error occured! Try again!</x-form-message>
   <qt-account-quote-edit-form
-    [quoteModel]="updateQuoteItem$ | async"
+    [quoteModel]="(updateQuoteItem$ | async).toJS()"
     (onSubmit)="quotesActions.updateQuote($event)"
     (onCancel)="quotesActions.updateQuoteCancel()">
   </qt-account-quote-edit-form>

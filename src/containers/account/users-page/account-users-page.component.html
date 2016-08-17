@@ -11,7 +11,7 @@
   </x-tabs>
 
   <x-list>
-    <x-list-item *ngFor="let user of (usersUsersItems$ | async)">
+    <x-list-item *ngFor="let user of (usersItems$ | async).toJS()">
       <x-list-item-content>
         {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
       </x-list-item-content>

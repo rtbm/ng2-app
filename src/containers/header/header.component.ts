@@ -20,16 +20,12 @@ import { Observable } from 'rxjs';
     XMenuItemComponent, XButtonComponent],
   pipes: [AsyncPipe],
 })
-export class QtHeaderComponent implements OnDestroy {
-  @select(state => state.user) private user$;
-
-  private isAuthorized$: Observable<boolean>;
-  private userEmail$: Observable<string>;
+export class QtHeaderComponent {
+  @select(['user', 'id_token']) idToken$: Observable<string>;
+  @select(['user', 'user', 'email']) userEmail$: Observable<string>;
 
   constructor(private router: Router,
               private userActions: UserActions) {
-    this.isAuthorized$ = this.user$.map(s => !!s.get('id_token'));
-    this.userEmail$ = this.user$.map(s => s.getIn(['user', 'email']));
   }
 
   handleSigninClick() {
@@ -42,9 +38,5 @@ export class QtHeaderComponent implements OnDestroy {
 
   handleLogoutClick() {
     this.userActions.signout();
-  }
-
-  ngOnDestroy() {
-    this.user$.unsubscribe();
   }
 }

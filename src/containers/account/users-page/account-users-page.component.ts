@@ -26,10 +26,9 @@ import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
-  @select(state => state.users) private users$;
-  @select(state => state.user.getIn(['user', '_id'])) private userId$;
+  @select(['user', 'user', '_id']) userId$: Observable<string>;
+  @select(['users', 'users', 'items']) usersItems$: Observable<Array<any>>;
 
-  private usersUsersItems$: Observable<any>;
   private routeParamsSubscription: Subscription;
   private filter: string;
 
@@ -37,7 +36,6 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
     private usersActions: UsersActions,
     private activatedRoute: ActivatedRoute
   ) {
-    this.usersUsersItems$ = this.users$.map(s => s.getIn(['users', 'items']).toJS());
   }
 
   ngOnInit() {
@@ -48,8 +46,6 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.users$.unsubscribe();
-    this.userId$.unsubscribe();
     this.routeParamsSubscription.unsubscribe();
   }
 }

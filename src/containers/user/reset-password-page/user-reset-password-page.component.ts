@@ -19,13 +19,9 @@ import { Observable } from 'rxjs';
     XBoxContentComponent, XFormMessageComponent],
 })
 export class QtUserResetPasswordPageComponent {
-  @select(state => state.user) private user$;
-
-  private isResetPasswordError$: Observable<boolean>;
-  private isResetPasswordSuccess$: Observable<boolean>;
+  @select(['user', 'resetPassword', 'isSuccess']) isResetPasswordSuccess$: Observable<boolean>;
+  @select(['user', 'resetPassword', 'isError']) isResetPasswordError$: Observable<boolean>;
 
   constructor(private userActions: UserActions) {
-    this.isResetPasswordError$ = this.user$.map(s => s.getIn(['resetPassword', 'isError']));
-    this.isResetPasswordSuccess$ = this.user$.map(s => s.getIn(['resetPassword', 'isSuccess']));
   }
 }

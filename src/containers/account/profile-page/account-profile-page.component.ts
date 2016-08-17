@@ -20,19 +20,13 @@ import { Observable } from 'rxjs';
     XBoxContentComponent, XFormMessageComponent],
   pipes: [AsyncPipe],
 })
-export class QtAccountProfilePageComponent implements OnDestroy {
-  @select(state => state.user.getIn(['user', '_id'])) private userId$;
-  @select(state => state.profile) private profile$;
-
-  private isUpdateProfileError$: Observable<boolean>;
-  private isUpdateProfileSuccess$: Observable<boolean>;
-  private userItem$: Observable<any>;
+export class QtAccountProfilePageComponent {
+  @select(['user', 'user', '_id']) userId$: Observable<string>;
+  @select(['profile', 'updateUser', 'isError']) isUpdateProfileError$: Observable<boolean>;
+  @select(['profile', 'updateUser', 'isSuccess']) isUpdateProfileSuccess$: Observable<boolean>;
+  @select(['profile', 'user', 'item']) userItem$: Observable<any>;
 
   constructor(private profileActions: ProfileActions) {
-    this.isUpdateProfileError$ = this.profile$.map(s => s.getIn(['updateUser', 'isError']));
-    this.isUpdateProfileSuccess$ = this.profile$.map(s => s.getIn(['updateUser', 'isSuccess']));
-    this.userItem$ = this.profile$.map(s => s.getIn(['user', 'item']).toJS());
-
     this.userId$
       .first()
       .subscribe((_id: string) => this.profileActions.fetchUser(_id));
@@ -40,10 +34,5 @@ export class QtAccountProfilePageComponent implements OnDestroy {
 
   handleSubmit(user) {
     return this.profileActions.updateUser(user);
-  }
-
-  ngOnDestroy() {
-    this.userId$.unsubscribe();
-    this.profile$.unsubscribe();
   }
 }

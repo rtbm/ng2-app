@@ -47,11 +47,15 @@ export class QtAccountQuoteEditFormComponent implements OnChanges {
   }
 
   ngOnChanges(values) {
-    this._id.updateValue(values.quoteModel.currentValue._id);
-    this.name.updateValue(values.quoteModel.currentValue.name);
-    this.content.updateValue(values.quoteModel.currentValue.content);
-    this.url.updateValue(values.quoteModel.currentValue.url);
-    this.private.updateValue(values.quoteModel.currentValue.private);
+    if (this._id.value || !values.quoteModel.currentValue._id) {
+      return false;
+    }
+
+    Object.keys(values.quoteModel.currentValue).map(key => {
+      if (this[key] && this[key] instanceof FormControl) {
+        this[key].updateValue(values.quoteModel.currentValue[key]);
+      }
+    });
   }
 
   handleSubmit() {

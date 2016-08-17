@@ -12,13 +12,10 @@ import { Observable } from 'rxjs';
   directives: [ROUTER_DIRECTIVES, QtAccountAsideMenuComponent, QtHeaderComponent],
 })
 export class QtAccountPageComponent implements OnDestroy {
+  @select(['user', 'id_token']) isAuthorized$: Observable<string>;
   @select(state => state.user) private user$;
 
-  private isAuthorized$: Observable<boolean>;
-
   constructor(private router: Router) {
-    this.isAuthorized$ = this.user$.map(s => !!s.get('id_token'));
-
     this.isAuthorized$
       .filter(id_token => !id_token)
       .subscribe(() => this.router.navigate(['/user/signin']));
