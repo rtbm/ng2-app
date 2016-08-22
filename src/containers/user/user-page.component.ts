@@ -23,7 +23,5 @@ export class QtUserPageComponent implements OnDestroy {
       .subscribe(() => this.router.navigate(['/account/quotes']));
   }
 
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-  }
+  ngOnDestroy = () => this.user$.unsubscribe();
 }

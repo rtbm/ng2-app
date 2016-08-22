@@ -32,7 +32,5 @@ export class QtAccountProfilePageComponent {
       .subscribe((_id: string) => this.profileActions.fetchUser(_id));
   }
 
-  handleSubmit(user) {
-    return this.profileActions.updateUser(user);
-  }
+  handleSubmit = user => this.profileActions.updateUser(user);
 }

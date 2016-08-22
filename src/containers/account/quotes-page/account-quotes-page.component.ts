@@ -47,9 +47,7 @@ export class QtAccountQuotesPageComponent {
     this.quotesActions.fetchQuotes();
   }
 
-  handleRemoveQuote() {
-    this.removeQuoteItem$
-      .first()
-      .subscribe((quote: any) => this.quotesActions.removeQuote(quote.toJS()));
-  }
+  handleRemoveQuote = () => this.removeQuoteItem$
+    .first()
+    .subscribe((quote: any) => this.quotesActions.removeQuote(quote.toJS()));
 }

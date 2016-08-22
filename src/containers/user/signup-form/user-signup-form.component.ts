@@ -50,7 +50,5 @@ export class QtUserSignupFormComponent implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.errorCode$.unsubscribe();
-  }
+  ngOnDestroy = () => this.errorCode$.unsubscribe();
 }

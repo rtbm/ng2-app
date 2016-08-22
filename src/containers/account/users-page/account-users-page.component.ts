@@ -45,7 +45,5 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.routeParamsSubscription.unsubscribe();
-  }
+  ngOnDestroy = () => this.routeParamsSubscription.unsubscribe();
 }

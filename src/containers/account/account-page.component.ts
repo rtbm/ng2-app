@@ -21,7 +21,5 @@ export class QtAccountPageComponent implements OnDestroy {
       .subscribe(() => this.router.navigate(['/user/signin']));
   }
 
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-  }
+  ngOnDestroy = () => this.user$.unsubscribe();
 }

@@ -28,15 +28,9 @@ export class QtHeaderComponent {
               private userActions: UserActions) {
   }
 
-  handleSigninClick() {
-    this.router.navigate(['/user/signin']);
-  }
+  handleSigninClick = () => this.router.navigate(['/user/signin']);
 
-  handleSignupClick() {
-    this.router.navigate(['/user/signup']);
-  }
+  handleSignupClick = () => this.router.navigate(['/user/signup']);
 
-  handleLogoutClick() {
-    this.userActions.signout();
-  }
+  handleLogoutClick = () => this.userActions.signout();
 }

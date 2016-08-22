@@ -33,7 +33,5 @@ export class QtUserSigninPageComponent implements OnDestroy {
     this.signinErrorCode$ = this.user$.map(s => s.getIn(['signin', 'errorCode']));
   }
 
-  ngOnDestroy() {
-    this.user$.unsubscribe();
-  }
+  ngOnDestroy = () => this.user$.unsubscribe();
 }
