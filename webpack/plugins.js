@@ -21,12 +21,13 @@ const basePlugins = [
 
 const prodPlugins = [
   new webpack.optimize.DedupePlugin(),
-  /*new webpack.optimize.UglifyJsPlugin({
-    mangle: true,
+  new webpack.optimize.UglifyJsPlugin({
+    mangle: false,
+    screwIE8: true,
     compress: {
       warnings: false,
     },
-  }),*/
+  }),
 ];
 
 const devPlugins = [];
