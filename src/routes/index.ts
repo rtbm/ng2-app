@@ -9,4 +9,4 @@ const appRoutes: Routes = [
   ...USER_ROUTES,
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const ROUTING = RouterModule.forRoot(appRoutes);

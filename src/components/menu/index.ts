@@ -1,2 +1,12 @@
-export * from './menu-item';
-export * from './menu.component';
+import { XMenuItemComponent } from './menu-item';
+import { XMenuComponent } from './menu.component';
+
+export const MENU_COMPONENTS = [
+  XMenuItemComponent,
+  XMenuComponent,
+];
+
+export {
+  XMenuItemComponent,
+  XMenuComponent,
+}
