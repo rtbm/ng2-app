@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../state';
-import { QuotesService } from '../services';
 
 @Injectable()
 export class QuotesActions {
@@ -40,8 +39,7 @@ export class QuotesActions {
   static QUOTE_UNRECOMMEND_SUCCESS = 'QUOTE_UNRECOMMEND_SUCCESS';
   static QUOTE_UNRECOMMEND_ERROR = 'QUOTE_UNRECOMMEND_ERROR';
 
-  constructor(private ngRedux: NgRedux<IAppState>,
-              private quotesService: QuotesService) {
+  constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
   fetchQuotes() {

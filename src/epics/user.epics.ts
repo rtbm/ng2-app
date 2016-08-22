@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActionsObservable } from 'redux-observable';
-import { UserActions } from '../actions';
+import { UserActions, IPayloadAction } from '../actions';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services';
 import { JwtHelper } from 'angular2-jwt';
@@ -10,8 +9,8 @@ export class UserEpics {
   constructor(private authService: AuthService) {
   }
 
-  signin = (action$: ActionsObservable) => {
-    return action$.ofType(UserActions.USER_SIGNIN)
+  signin = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UserActions.USER_SIGNIN)
       .flatMap(({payload}) => {
         return this.authService.signin(payload)
           .map(result => ({
@@ -28,8 +27,8 @@ export class UserEpics {
       });
   };
 
-  signup = (action$: ActionsObservable) => {
-    return action$.ofType(UserActions.USER_SIGNUP)
+  signup = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UserActions.USER_SIGNUP)
       .flatMap(({payload}) => {
         return this.authService.signup(payload)
           .map(result => ({
@@ -46,8 +45,8 @@ export class UserEpics {
       });
   };
 
-  resetPassword = (action$: ActionsObservable) => {
-    return action$.ofType(UserActions.USER_RESET_PASSWORD)
+  resetPassword = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UserActions.USER_RESET_PASSWORD)
       .flatMap(({payload}) => {
         return this.authService.resetPassword(payload)
           .map(result => ({
@@ -61,8 +60,8 @@ export class UserEpics {
       });
   };
 
-  changePassword = (action$: ActionsObservable) => {
-    return action$.ofType(UserActions.USER_CHANGE_PASSWORD)
+  changePassword = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UserActions.USER_CHANGE_PASSWORD)
       .flatMap(({payload}) => {
         return this.authService.changePassword(payload)
           .map(result => ({

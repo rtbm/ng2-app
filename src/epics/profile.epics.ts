@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActionsObservable } from 'redux-observable';
-import { ProfileActions } from '../actions';
+import { ProfileActions, IPayloadAction } from '../actions';
 import { Observable } from 'rxjs';
 import { UsersService } from '../services';
 
@@ -9,8 +8,8 @@ export class ProfileEpics {
   constructor(private usersService: UsersService) {
   }
 
-  fetchUser = (action$: ActionsObservable) => {
-    return action$.ofType(ProfileActions.USER_FETCH)
+  fetchUser = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === ProfileActions.USER_FETCH)
       .flatMap(({payload}) => {
         return this.usersService.read(payload)
           .map(result => ({
@@ -24,8 +23,8 @@ export class ProfileEpics {
       });
   };
 
-  updateUser = (action$: ActionsObservable) => {
-    return action$.ofType(ProfileActions.USER_UPDATE)
+  updateUser = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === ProfileActions.USER_UPDATE)
       .flatMap(({payload}) => {
         return this.usersService.update(payload._id, payload)
           .map(result => ({

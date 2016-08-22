@@ -29,7 +29,7 @@ export class ServerService {
   get(path) {
     this.setHeaders();
 
-    return this.http.get(`${this.API_URL}${path}`, { headers: this.HEADERS })
+    return this.http.get(`${this.API_URL}${path}`, { body: '', headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 
@@ -43,7 +43,7 @@ export class ServerService {
   delete(path) {
     this.setHeaders();
 
-    return this.http.delete(`${this.API_URL}${path}`, { headers: this.HEADERS })
+    return this.http.delete(`${this.API_URL}${path}`, { body: '', headers: this.HEADERS })
       .map((res: Response) => res.json());
   }
 }

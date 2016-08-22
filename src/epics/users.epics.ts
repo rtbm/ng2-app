@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActionsObservable } from 'redux-observable';
-import { UsersActions } from '../actions';
+import { UsersActions, IPayloadAction } from '../actions';
 import { Observable } from 'rxjs';
 import { UsersService } from '../services';
 
@@ -9,8 +8,8 @@ export class UsersEpics {
   constructor(private usersService: UsersService) {
   }
 
-  fetchUsers = (action$: ActionsObservable) => {
-    return action$.ofType(UsersActions.USERS_FETCH)
+  fetchUsers = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UsersActions.USERS_FETCH)
       .flatMap(({payload}) => {
         return this.usersService.fetchAll(payload.filter)
           .map(result => ({
@@ -24,8 +23,8 @@ export class UsersEpics {
       });
   };
 
-  followUser = (action$: ActionsObservable) => {
-    return action$.ofType(UsersActions.USERS_FOLLOW)
+  followUser = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UsersActions.USERS_FOLLOW)
       .flatMap(({payload}) => {
         return this.usersService.follow(payload.user)
           .map(result => ({
@@ -39,8 +38,8 @@ export class UsersEpics {
       });
   };
 
-  unfollowUser = (action$: ActionsObservable) => {
-    return action$.ofType(UsersActions.USERS_UNFOLLOW)
+  unfollowUser = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === UsersActions.USERS_UNFOLLOW)
       .flatMap(({payload}) => {
         return this.usersService.unfollow(payload.user)
           .map(result => ({

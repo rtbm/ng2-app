@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActionsObservable } from 'redux-observable';
+import { QuotesActions, IPayloadAction } from '../actions';
 import { Observable } from 'rxjs';
-import { QuotesActions } from '../actions';
 import { QuotesService } from '../services';
 
 @Injectable()
@@ -9,14 +8,16 @@ export class QuotesEpics {
   constructor(private quotesService: QuotesService) {
   }
 
-  fetchQuotes = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTES_FETCH)
+  fetchQuotes = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTES_FETCH)
       .flatMap(() => {
         return this.quotesService.fetchAll()
-          .map(result => ({
-            type: QuotesActions.QUOTES_FETCH_SUCCESS,
-            payload: result,
-          }))
+          .map(result => {
+            return {
+              type: QuotesActions.QUOTES_FETCH_SUCCESS,
+              payload: result,
+            };
+          })
           .catch(error => Observable.of({
             type: QuotesActions.QUOTES_FETCH_ERROR,
             payload: { errorCode: error.status },
@@ -24,8 +25,8 @@ export class QuotesEpics {
       });
   };
 
-  saveQuote = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_SAVE)
+  saveQuote = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_SAVE)
       .flatMap(({payload}) => {
         return this.quotesService.save(payload)
           .map(result => ({
@@ -39,8 +40,8 @@ export class QuotesEpics {
       });
   };
 
-  updateQuoteModal = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_UPDATE_MODAL)
+  updateQuoteModal = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_UPDATE_MODAL)
       .flatMap(({payload}) => {
         return this.quotesService.read(payload._id)
           .map(result => ({
@@ -54,8 +55,8 @@ export class QuotesEpics {
       });
   };
 
-  updateQuote = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_UPDATE)
+  updateQuote = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_UPDATE)
       .flatMap(({payload}) => {
         return this.quotesService.update(payload._id, payload)
           .map(result => ({
@@ -69,8 +70,8 @@ export class QuotesEpics {
       });
   };
 
-  removeQuote = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_REMOVE)
+  removeQuote = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_REMOVE)
       .flatMap(({payload}) => {
         return this.quotesService.remove(payload._id)
           .map(result => ({
@@ -84,8 +85,8 @@ export class QuotesEpics {
       });
   };
 
-  recommendQuote = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_RECOMMEND)
+  recommendQuote = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_RECOMMEND)
       .flatMap(({payload}) => {
         return this.quotesService.recommend(payload)
           .map(result => ({
@@ -99,8 +100,8 @@ export class QuotesEpics {
       });
   };
 
-  unrecommendQuote = (action$: ActionsObservable) => {
-    return action$.ofType(QuotesActions.QUOTE_UNRECOMMEND)
+  unrecommendQuote = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({type}) => type === QuotesActions.QUOTE_UNRECOMMEND)
       .flatMap(({payload}) => {
         return this.quotesService.unrecommend(payload)
           .map(result => ({

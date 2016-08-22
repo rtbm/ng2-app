@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   XWrapperComponent,
   XButtonComponent,
@@ -50,6 +50,6 @@ export class QtAccountQuotesPageComponent {
   handleRemoveQuote() {
     this.removeQuoteItem$
       .first()
-      .subscribe((quote: Quote) => this.quotesActions.removeQuote(quote));
+      .subscribe((quote: any) => this.quotesActions.removeQuote(quote.toJS()));
   }
 }
