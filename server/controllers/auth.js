@@ -109,7 +109,7 @@ module.exports = {
 
           return res.json({
             _id: user._id,
-            email: user.email
+            email: user.email,
           });
         });
       });

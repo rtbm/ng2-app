@@ -17,6 +17,7 @@ import { EmailValidator } from '../../../validators/email.validator';
 @Component({
   selector: 'qt-user-signup-form',
   template: require('./user-signup-form.component.html'),
+  styles: [require('./user-signup-form.component.scss')],
   directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
     XFormGroupComponent, XFormActionsComponent, XFormContentComponent, XFormErrorComponent],
 })

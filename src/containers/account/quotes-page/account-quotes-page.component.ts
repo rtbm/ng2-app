@@ -8,6 +8,7 @@ import {
   XBoxHeaderComponent,
   XBoxContentComponent,
   XFormMessageComponent,
+  XBoxFooterComponent,
 } from '../../../components';
 import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
@@ -24,7 +25,7 @@ import { Observable } from 'rxjs';
   pipes: [AsyncPipe],
   directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
     XFormMessageComponent, QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent,
-    XBoxContentComponent],
+    XBoxContentComponent, XBoxFooterComponent],
 })
 export class QtAccountQuotesPageComponent {
   @select(['user', 'user', '_id']) userId$: Observable<string>;

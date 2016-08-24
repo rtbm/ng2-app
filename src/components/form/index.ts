@@ -1,12 +1,12 @@
-import { XFormActionsComponent } from './form-actions';
-import { XFormCheckboxComponent } from './form-checkbox';
-import { XFormContentComponent } from './form-content';
-import { XFormErrorComponent } from './form-error';
-import { XFormGroupComponent } from './form-group';
-import { XFormHeaderComponent } from './form-header';
-import { XFormInputComponent } from './form-input';
-import { XFormMessageComponent } from './form-message';
-import { XFormTextareaComponent } from './form-textarea';
+import { XFormActionsComponent } from './actions';
+import { XFormCheckboxComponent } from './checkbox';
+import { XFormContentComponent } from './content';
+import { XFormErrorComponent } from './error';
+import { XFormGroupComponent } from './group';
+import { XFormHeaderComponent } from './header';
+import { XFormInputComponent } from './input';
+import { XFormMessageComponent } from './message';
+import { XFormTextareaComponent } from './textarea';
 import { XFormComponent } from './form.component';
 
 export const FORM_COMPONENTS = [

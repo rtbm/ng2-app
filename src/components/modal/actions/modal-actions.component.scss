@@ -1,0 +1,13 @@
+@import '../../../assets/colors';
+
+:host {
+  background: $background;
+  display: block;
+  padding: 1rem 2rem;
+
+  x-button {
+    button {
+      width: 10rem;
+    }
+  }
+}

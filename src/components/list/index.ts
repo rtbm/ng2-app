@@ -1,7 +1,7 @@
-import { XListHeaderComponent } from './list-header';
-import { XListItemComponent } from './list-item';
-import { XListItemActionsComponent } from './list-item-actions';
-import { XListItemContentComponent } from './list-item-content';
+import { XListHeaderComponent } from './header';
+import { XListItemComponent } from './item';
+import { XListItemActionsComponent } from './item-actions';
+import { XListItemContentComponent } from './item-content';
 import { XListComponent } from './list.component';
 
 export const LIST_COMPONENTS = [

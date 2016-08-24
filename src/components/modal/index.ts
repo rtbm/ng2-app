@@ -1,7 +1,7 @@
-import { XModalActionsComponent } from './modal-actions';
-import { XModalContentComponent } from './modal-content';
-import { XModalFormComponent } from './modal-form';
-import { XModalMessageComponent } from './modal-message';
+import { XModalActionsComponent } from './actions';
+import { XModalContentComponent } from './content';
+import { XModalFormComponent } from './form';
+import { XModalMessageComponent } from './message';
 
 export const MODAL_COMPONENTS = [
   XModalActionsComponent,

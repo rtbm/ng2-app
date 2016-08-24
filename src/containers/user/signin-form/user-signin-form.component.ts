@@ -17,6 +17,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'qt-user-signin-form',
   template: require('./user-signin-form.component.html'),
+  styles: [require('./user-signin-form.component.scss')],
   directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, NgSwitchDefault, XFormComponent,
     XLabelComponent, XButtonComponent, XFormInputComponent, XFormGroupComponent, XFormActionsComponent,
     XFormContentComponent, XFormErrorComponent],

@@ -17,7 +17,7 @@ module.exports = {
         private: false,
       }, {
         owner: req.user._id,
-      }]
+      }],
     })
     .sort('-createdAt')
     .populate({
@@ -194,9 +194,9 @@ module.exports = {
           path: 'owner',
           select: 'profile.first_name profile.last_name',
         }).exec((err, quote) => {
-        if (err) return next(err);
-        return res.json(quote);
-      });
+          if (err) return next(err);
+          return res.json(quote);
+        });
     });
   },
 };

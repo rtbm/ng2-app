@@ -1,0 +1,27 @@
+@import '../../../assets/colors';
+
+:host {
+  x-form-content {
+    display: block;
+    padding: 2rem;
+
+    x-form-group {
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  x-form-actions {
+    background: $background;
+    display: block;
+    margin: 0;
+    padding: 1rem 2rem;
+
+    x-button {
+      button {
+        width: 10rem;
+      }
+    }
+  }
+}

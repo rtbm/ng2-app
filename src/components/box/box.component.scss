@@ -2,10 +2,11 @@
 @import '../../assets/variables';
 
 :host {
-  border-radius: $radius;
-  display: block;
-  padding: 1rem 2rem;
-  margin: 0 0 1rem;
   background: $white;
   border: .1rem solid darken($border, 5%);
+  border-radius: $radius;
+  display: block;
+  margin: 0 0 1rem;
+  padding: 1rem 2rem;
+  position: relative;
 }

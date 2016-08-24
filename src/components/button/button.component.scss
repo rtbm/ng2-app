@@ -1,25 +1,27 @@
 @import '../../assets/colors';
-@import '../../assets/variables.scss';
+@import '../../assets/variables';
 
 :host {
   display: inline-block;
+
+  x-icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
 button {
-  outline: 0;
   background: transparent;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: $radius;
-  transition: .1s all linear;
-  padding: 0 2.5rem;
-  height: 3.8rem;
   border: 0 none;
+  border-radius: $radius;
+  cursor: pointer;
+  font-weight: 500;
+  outline: 0;
 }
 
-.small {
-  height: 2.5rem;
-  padding: 0 1rem;
+.normal {
+  height: 3.8rem;
+  padding: 0 2.5rem;
 }
 
 .big {
@@ -28,26 +30,59 @@ button {
   padding: 0 4rem;
 }
 
-.casual {
-  color: $dark;
-  background: $background;
-  border-bottom: .2rem solid darken($background, 5%);
+.normal,
+.big {
+  &.casual {
+    background: $background;
+    border-bottom: .2rem solid darken($background, 5%);
+    color: $dark;
+  }
+
+  &.neutral {
+    background: $blue;
+    border-bottom: .2rem solid darken($blue, 10%);
+    color: $white;
+  }
+
+  &.positive {
+    background: $green;
+    border-bottom: .2rem solid darken($green, 10%);
+    color: $white;
+  }
+
+  &.negative {
+    background: $red;
+    border-bottom: .2rem solid darken($red, 20%);
+    color: $white;
+  }
 }
 
-.neutral {
-  color: $white;
-  background: $blue;
-  border-bottom: .2rem solid darken($blue, 10%);
-}
+.small {
+  border: .1rem solid transparent;
+  height: 2.5rem;
+  padding: 0 .85rem;
 
-.positive {
-  color: $white;
-  background: $green;
-  border-bottom: .2rem solid darken($green, 10%);
-}
+  &.normal {
+    color: $text;
+  }
 
-.negative {
-  color: $white;
-  background: $red;
-  border-bottom: .2rem solid darken($red, 20%);
+  &.casual {
+    color: $dark;
+  }
+
+  &.neutral {
+    color: $blue;
+  }
+
+  &.positive {
+    color: $green;
+  }
+
+  &.negative {
+    color: $red;
+  }
+
+  &:hover {
+    background: $white;
+  }
 }

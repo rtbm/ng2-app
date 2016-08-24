@@ -1,4 +1,4 @@
-import { XDialogConfirmComponent } from './dialog-confirm';
+import { XDialogConfirmComponent } from './confirm';
 
 export const DIALOG_COMPONENTS = [
   XDialogConfirmComponent,

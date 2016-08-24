@@ -1,0 +1,9 @@
+@import '../../../assets/colors';
+
+:host {
+  background: $gray;
+  display: block;
+  margin: 0 -2rem -1rem;
+  padding: .5rem 1.5rem;
+  position: relative;
+}

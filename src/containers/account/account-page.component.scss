@@ -3,6 +3,12 @@
 :host {
   display: block;
   padding: 8.5rem 0 0 25rem;
+
+  qt-header {
+    x-wrapper {
+      max-width: 100%;
+    }
+  }
 }
 
 qt-header {
@@ -10,8 +16,5 @@ qt-header {
   position: fixed;
   top: 0;
   width: 100%;
-}
-
-:host qt-header x-wrapper {
-  max-width: 100%;
+  z-index: 10;
 }

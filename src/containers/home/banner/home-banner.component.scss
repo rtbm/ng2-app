@@ -4,7 +4,7 @@
   align-items: center;
   background: url('../../../assets/images/mountains-863474_1920.jpg') center no-repeat;
   background-size: cover;
-  color: white;
+  color: $white;
   display: flex;
   height: 50rem;
   width: 100%;
@@ -16,7 +16,8 @@ cite {
   text-align: left;
 }
 
-h1, h2 {
+h1,
+h2 {
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 3.2rem;
@@ -38,6 +39,7 @@ h1 {
 }
 
 h2 {
-  font-weight: 700;
   font-size: 2.5rem;
+  font-weight: 700;
 }
+

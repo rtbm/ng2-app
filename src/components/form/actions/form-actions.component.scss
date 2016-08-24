@@ -1,0 +1,9 @@
+@import '../../../assets/colors';
+
+:host {
+  border-top: .1rem solid $border;
+  display: block;
+  margin: 2rem 0 0;
+  padding: 2rem 0 1.5rem;
+  text-align: center;
+}

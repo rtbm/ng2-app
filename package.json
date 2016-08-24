@@ -3,15 +3,18 @@
   "version": "0.0.0",
   "license": "ISC",
   "scripts": {
-    "start": "nf start web",
     "build": "nf start build",
-    "test": "nf start test",
     "dev": "nf start dev",
+    "eslint": "eslint './server/**/*.js'",
+    "lint": "npm run tslint && npm run eslint && npm run sass-lint",
     "server": "nf start web",
-    "lint": "tslint src/**/*.ts",
-    "typings": "typings install",
+    "start": "nf start web",
     "postinstall": "npm run typings && npm run build",
-    "prestart": "npm install"
+    "prestart": "npm install",
+    "sass-lint": "sass-lint",
+    "test": "nf start test",
+    "tslint": "tslint './src/**/*.ts'",
+    "typings": "typings install"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -49,8 +52,10 @@
     "css-to-string-loader": "^0.1.1",
     "debug": "~2.2.0",
     "es6-shim": "^0.35.1",
+    "eslint": "^3.3.1",
     "file-loader": "^0.9.0",
     "ghooks": "^1.3.2",
+    "html-minifier": "^3.0.2",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "img-loader": "^1.3.1",
@@ -61,16 +66,21 @@
     "mocha": "^3.0.2",
     "ng2-redux": "^3.3.5",
     "node-sass": "^3.8.0",
+    "postcss-loader": "^0.10.1",
+    "precss": "^1.4.0",
     "raw-loader": "^0.5.1",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-observable": "^0.9.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.11",
+    "sass-lint": "^1.9.0",
     "sass-loader": "^4.0.0",
+    "sasslint-webpack-plugin": "^1.0.4",
     "ts-helpers": "^1.1.1",
     "ts-loader": "^0.8.2",
     "tslint": "^3.15.0",
+    "tslint-loader": "^2.1.5",
     "typed-immutable-record": "0.0.5",
     "typescript": "^1.8.10",
     "typings": "^1.3.2",
@@ -84,7 +94,7 @@
   "config": {
     "ghooks": {
       "post-merge": "npm install",
-      "pre-push": "npm run lint"
+      "pre-push": "npm run lint && npm run test"
     }
   },
   "engines": {

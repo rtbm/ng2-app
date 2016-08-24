@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
-if(app.get('env') === 'development') {
+if (app.get('env') === 'development') {
   app.use(require('morgan')('dev', { stream: logger.stream }));
   app.use(require('cors')());
 }
@@ -46,19 +46,19 @@ app.use((req, res, next) => {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res) => {
     logger.error('error', err);
     res.status(err.status || 500);
     res.json({
       message: err.message,
-      error: err
+      error: err,
     });
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(err.status || 500);
   res.send();
 });

@@ -1,8 +1,10 @@
 @import '../../../assets/colors';
 
 :host {
-  x-form-textarea textarea {
-    width: 35rem;
-    height: 10rem;
+  x-form-textarea {
+    textarea {
+      height: 10rem;
+      width: 35rem;
+    }
   }
 }

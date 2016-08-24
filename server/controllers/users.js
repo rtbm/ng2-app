@@ -15,7 +15,7 @@ module.exports = {
       query = {
         _id: {
           $in: req.user.following,
-        }
+        },
       };
     }
 
@@ -123,7 +123,7 @@ module.exports = {
           if (err) return next(err);
 
           return res.json({
-            _id: _user._id
+            _id: _user._id,
           });
         });
       });
@@ -162,7 +162,7 @@ module.exports = {
           if (err) return next(err);
 
           return res.json({
-            _id: _user._id
+            _id: _user._id,
           });
         });
       });
