@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'x-icon',
-  template: `
-    <span class="material-icons"><ng-content></ng-content></span>
-  `,
+  template: require('./icon.component.html'),
   styles: [require('./icon.component.scss')]
 })
 export class XIconComponent {
+  @Input() preset: string = '';
 }

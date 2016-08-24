@@ -17,36 +17,36 @@ button {
   border: 0 none;
 }
 
-.size-small {
+.small {
   height: 2.5rem;
   padding: 0 1rem;
 }
 
-.size-big {
+.big {
   font-size: 1.8rem;
   height: 5rem;
   padding: 0 4rem;
 }
 
-.preset-casual {
+.casual {
   color: $dark;
   background: $background;
   border-bottom: .2rem solid darken($background, 5%);
 }
 
-.preset-neutral {
+.neutral {
   color: $white;
   background: $blue;
   border-bottom: .2rem solid darken($blue, 10%);
 }
 
-.preset-positive {
+.positive {
   color: $white;
   background: $green;
   border-bottom: .2rem solid darken($green, 10%);
 }
 
-.preset-negative {
+.negative {
   color: $white;
   background: $red;
   border-bottom: .2rem solid darken($red, 20%);
