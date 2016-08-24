@@ -49,11 +49,11 @@ export class QtAccountProfileEditFormComponent {
       return false;
     }
 
-    this._id.updateValue(values.user.currentValue._id);
+    this._id.setValue(values.user.currentValue._id);
 
     Object.keys(values.user.currentValue.profile).map(key => {
       if (this[key] && this[key] instanceof FormControl) {
-        this[key].updateValue(values.user.currentValue.profile[key]);
+        this[key].setValue(values.user.currentValue.profile[key]);
       }
     });
   }

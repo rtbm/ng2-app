@@ -47,7 +47,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
     });
 
     this.routeParamsSubscription = this.activatedRoute.params.subscribe((params: any) => {
-      this.token.updateValue(params.token);
+      this.token.setValue(params.token);
     });
   }
 

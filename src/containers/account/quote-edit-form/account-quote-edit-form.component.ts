@@ -53,7 +53,7 @@ export class QtAccountQuoteEditFormComponent implements OnChanges {
 
     Object.keys(values.quoteModel.currentValue).map(key => {
       if (this[key] && this[key] instanceof FormControl) {
-        this[key].updateValue(values.quoteModel.currentValue[key]);
+        this[key].setValue(values.quoteModel.currentValue[key]);
       }
     });
   }
