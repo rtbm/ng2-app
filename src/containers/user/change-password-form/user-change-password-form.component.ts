@@ -1,4 +1,7 @@
 import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import {
   XFormComponent,
   XFormInputComponent,
@@ -10,9 +13,6 @@ import {
   XFormContentComponent,
   XFormErrorComponent,
 } from '../../../components';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'qt-user-change-password-form',
@@ -34,6 +34,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
 
   constructor(private builder: FormBuilder,
               private activatedRoute: ActivatedRoute) {
+
     this.email = new FormControl('', Validators.required);
     this.token = new FormControl('', Validators.required);
     this.password = new FormControl('', Validators.required);

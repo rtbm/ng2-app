@@ -22,8 +22,8 @@ const basePlugins = [
 const prodPlugins = [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
-    screwIE8: true,
     mangle: {
+      screwIE8: true,
       keep_fnames: true,
     },
     compress: {

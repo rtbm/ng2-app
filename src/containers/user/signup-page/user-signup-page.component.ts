@@ -1,4 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Title } from '@angular/platform-browser';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { UserActions } from '../../../actions';
+import { Observable } from 'rxjs';
+import { select } from 'ng2-redux';
 import { QtUserSignupFormComponent } from '../signup-form';
 import {
   XWrapperComponent,
@@ -8,11 +14,6 @@ import {
   XBoxComponent,
   XFormMessageComponent,
 } from '../../../components';
-import { AsyncPipe } from '@angular/common';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { UserActions } from '../../../actions';
-import { Observable } from 'rxjs';
-import { select } from 'ng2-redux';
 
 @Component({
   selector: 'qt-user-signup-page',
@@ -27,6 +28,9 @@ export class QtUserSignupPageComponent {
   @select(['user', 'signup', 'isError']) isSignupError$: Observable<boolean>;
   @select(['user', 'signup', 'errorCode']) signupErrorCode$: Observable<number>;
 
-  constructor(private userActions: UserActions) {
+  constructor(private userActions: UserActions,
+              private title: Title) {
+
+    title.setTitle('Sign up | Quotter');
   }
 }

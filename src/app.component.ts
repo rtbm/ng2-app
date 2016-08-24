@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import rootReducer, { IAppState, middlewares, enhancers } from './state';
 import { createEpicMiddleware, Epic } from 'redux-observable';
 import { NgRedux } from 'ng2-redux';
+import rootReducer, { IAppState, middlewares, enhancers } from './state';
 import { UserEpics, ProfileEpics, QuotesEpics, UsersEpics } from './epics';
 
 @Component({
@@ -20,6 +20,7 @@ export class QtAppComponent {
               private profileEpics: ProfileEpics,
               private quotesEpics: QuotesEpics,
               private usersEpics: UsersEpics) {
+
     const epics = [
       this.userEpics.signin,
       this.userEpics.signup,

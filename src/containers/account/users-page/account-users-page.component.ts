@@ -1,4 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, NgSwitch, NgSwitchCase } from '@angular/common';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { select } from 'ng2-redux';
+import { Observable, Subscription } from 'rxjs';
 import {
   XWrapperComponent,
   XButtonComponent,
@@ -11,10 +16,6 @@ import {
   XTabComponent,
 } from '../../../components';
 import { UsersActions } from '../../../actions/users.actions';
-import { select } from 'ng2-redux';
-import { AsyncPipe, NgSwitch, NgSwitchCase } from '@angular/common';
-import { Observable, Subscription } from 'rxjs';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'qt-account-users-page',
@@ -32,10 +33,11 @@ export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   private routeParamsSubscription: Subscription;
   private filter: string;
 
-  constructor(
-    private usersActions: UsersActions,
-    private activatedRoute: ActivatedRoute
-  ) {
+  constructor(private title: Title,
+              private usersActions: UsersActions,
+              private activatedRoute: ActivatedRoute) {
+
+    title.setTitle('Account - Users | Quotter');
   }
 
   ngOnInit() {

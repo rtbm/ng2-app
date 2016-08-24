@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
@@ -29,6 +29,7 @@ import { QtAppComponent } from './app.component';
     QtAppComponent,
   ],
   providers: [
+    Title,
     FormBuilder,
     NgRedux,
     ...SERVICES_PROVIDERS,
@@ -36,6 +37,5 @@ import { QtAppComponent } from './app.component';
     ...EPICS_PROVIDERS,
   ],
 })
-
 export class QtAppModule {
 }

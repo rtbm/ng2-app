@@ -1,4 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AsyncPipe } from '@angular/common';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { ProfileActions } from '../../../actions';
+import { QtAccountProfileEditFormComponent } from '../profile-edit-form';
 import {
   XWrapperComponent,
   XBoxComponent,
@@ -6,11 +12,6 @@ import {
   XBoxContentComponent,
   XFormMessageComponent,
 } from '../../../components';
-import { QtAccountProfileEditFormComponent } from '../profile-edit-form';
-import { ProfileActions } from '../../../actions';
-import { select } from 'ng2-redux';
-import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-profile-page',
@@ -26,7 +27,11 @@ export class QtAccountProfilePageComponent {
   @select(['profile', 'updateUser', 'isSuccess']) isUpdateProfileSuccess$: Observable<boolean>;
   @select(['profile', 'user', 'item']) userItem$: Observable<any>;
 
-  constructor(private profileActions: ProfileActions) {
+  constructor(private profileActions: ProfileActions,
+              private title: Title) {
+
+    title.setTitle('Account - Profile | Quotter');
+
     this.userId$
       .first()
       .subscribe((_id: string) => this.profileActions.fetchUser(_id));

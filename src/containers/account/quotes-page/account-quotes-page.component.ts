@@ -9,13 +9,13 @@ import {
   XBoxContentComponent,
   XFormMessageComponent,
 } from '../../../components';
+import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
 import { QuotesActions } from '../../../actions';
 import { QtAccountQuoteAddFormComponent } from '../quote-add-form';
 import { QtAccountQuoteEditFormComponent } from '../quote-edit-form';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { Quote } from '../../../models';
 
 @Component({
   selector: 'qt-account-quotes-page',
@@ -43,7 +43,11 @@ export class QtAccountQuotesPageComponent {
   @select(['quotes', 'removeQuote', 'item']) removeQuoteItem$: Observable<any>;
   @select(['quotes', 'removeQuote', 'item', 'name']) removeQuoteItemName$: Observable<any>;
 
-  constructor(private quotesActions: QuotesActions) {
+  constructor(private quotesActions: QuotesActions,
+              private title: Title) {
+
+    title.setTitle('Account - Quotes | Quotter');
+
     this.quotesActions.fetchQuotes();
   }
 

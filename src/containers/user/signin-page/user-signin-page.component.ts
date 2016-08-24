@@ -1,7 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
-import { QtUserSigninFormComponent } from '../signin-form';
 import { AsyncPipe } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { select } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { UserActions } from '../../../actions';
+import { QtUserSigninFormComponent } from '../signin-form';
 import {
   XWrapperComponent,
   XFormMessageComponent,
@@ -9,9 +13,6 @@ import {
   XBoxHeaderComponent,
   XBoxComponent,
 } from '../../../components';
-import { UserActions } from '../../../actions';
-import { select } from 'ng2-redux';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-user-signin-page',
@@ -28,7 +29,11 @@ export class QtUserSigninPageComponent implements OnDestroy {
   private isSigninError$: Observable<number>;
   private signinErrorCode$: Observable<number>;
 
-  constructor(private userActions: UserActions) {
+  constructor(private userActions: UserActions,
+              private title: Title) {
+
+    title.setTitle('Sign in | Quotter');
+
     this.isSigninError$ = this.user$.map(s => s.getIn(['signin', 'isError']));
     this.signinErrorCode$ = this.user$.map(s => s.getIn(['signin', 'errorCode']));
   }
