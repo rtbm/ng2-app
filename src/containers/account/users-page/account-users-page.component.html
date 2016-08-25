@@ -16,9 +16,11 @@
         <x-list-item-content>
           {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
         </x-list-item-content>
+
         <x-list-item-actions *ngIf="user._id !== (userId$ | async)">
           <x-button *ngIf="!user.followed" (onClick)="usersActions.follow(user)"
                     preset="positive" size="small">follow</x-button>
+
           <x-button *ngIf="user.followed" (onClick)="usersActions.unfollow(user)"
                     preset="negative" size="small">unfollow</x-button>
         </x-list-item-actions>
@@ -26,7 +28,21 @@
     </x-list>
   </x-box>
 
-  <x-box *ngIf="!(usersItems$ | async).toJS().length" class="tips">
-    Nobody is followed by You! <a [routerLink]="['/account/users']">Get in touch with other users!</a>
-  </x-box>
+  <div *ngIf="!(usersItems$ | async).toJS().length">
+    <div *ngIf="usersIsPending$ | async">
+      <x-box class="tips">
+        Loading... Stay tuned.
+      </x-box>
+    </div>
+
+    <div *ngIf="!(usersIsPending$ | async)" [ngSwitch]="filter">
+      <x-box *ngSwitchCase="'following'" class="tips">
+        Nobody is followed by You! <a [routerLink]="['/account/users']">Get in touch with any other users!</a>
+      </x-box>
+
+      <x-box *ngSwitchDefault class="tips">
+        No one on the list - You're first user! Back soon!
+      </x-box>
+    </div>
+  </div>
 </x-wrapper>

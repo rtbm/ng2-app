@@ -30,6 +30,7 @@ import { UsersActions } from '../../../actions/users.actions';
 export class QtAccountUsersPageComponent implements OnInit, OnDestroy {
   @select(['user', 'user', '_id']) userId$: Observable<string>;
   @select(['users', 'users', 'items']) usersItems$: Observable<Array<any>>;
+  @select(['users', 'users', 'isPending']) usersIsPending$: Observable<Array<any>>;
 
   private routeParamsSubscription: Subscription;
   private filter: string;

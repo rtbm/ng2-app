@@ -25,6 +25,7 @@ export class QtAccountProfilePageComponent {
   @select(['user', 'user', '_id']) userId$: Observable<string>;
   @select(['profile', 'updateUser', 'isError']) isUpdateProfileError$: Observable<boolean>;
   @select(['profile', 'updateUser', 'isSuccess']) isUpdateProfileSuccess$: Observable<boolean>;
+  @select(['profile', 'user', 'isPending']) userIsPending$: Observable<any>;
   @select(['profile', 'user', 'item']) userItem$: Observable<any>;
 
   constructor(private profileActions: ProfileActions,

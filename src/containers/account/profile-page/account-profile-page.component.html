@@ -1,7 +1,11 @@
 <x-wrapper>
   <h1>Profile</h1>
 
-  <x-box>
+  <x-box *ngIf="userIsPending$ | async" class="tips">
+    Loading... Stay tuned.
+  </x-box>
+
+  <x-box *ngIf="!(userIsPending$ | async)">
     <x-box-header>
       Update Profile
     </x-box-header>
@@ -9,6 +13,7 @@
     <x-box-content>
       <x-form-message *ngIf="isUpdateProfileError$ | async" preset="error">Profile update error!</x-form-message>
       <x-form-message *ngIf="isUpdateProfileSuccess$ | async" preset="success">Profile successfully updated.</x-form-message>
+
       <qt-account-profile-edit-form
         [user]="(userItem$ | async).toJS()"
         (onSubmit)="handleSubmit($event)"></qt-account-profile-edit-form>

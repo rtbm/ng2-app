@@ -11,7 +11,8 @@ export function usersReducer(state: IUsersRecord = INITIAL_STATE, action: IPaylo
         .setIn(['users', 'isPending'], true)
         .setIn(['users', 'isSuccess'], false)
         .setIn(['users', 'isError'], false)
-        .setIn(['users', 'errorCode'], 0);
+        .setIn(['users', 'errorCode'], 0)
+        .setIn(['users', 'items'], fromJS([]));
     }
 
     case UsersActions.USERS_FETCH_SUCCESS:

@@ -5,53 +5,65 @@
     <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
   </p>
 
-  <x-box *ngFor="let quote of (quotesItems$ | async).toJS()" class="quote">
-    <x-box-header>
-      {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
-      <x-icon *ngIf="quote.private" preset="small" class="right">lock</x-icon>
-      <div class="clearfix"></div>
-    </x-box-header>
+  <div *ngIf="!(quotesItems$ | async).toJS().length">
+    <x-box *ngIf="quotesIsPending$ | async" class="tips">
+      Loading... Stay tuned.
+    </x-box>
 
-    <x-box-content>
-      <h1>{{quote.name}}</h1>
-      <p>{{quote.content}}</p>
-      <p>{{quote.url}}</p>
-    </x-box-content>
+    <x-box *ngIf="!(quotesIsPending$ | async)" class="tips">
+      <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add the first Quote! :)</x-button>
+    </x-box>
+  </div>
 
-    <x-box-footer>
-      <x-tooltip tooltip="Recommend">
-        <x-button size="small" preset="normal"
-                  *ngIf="!quote.private && !quote.recommended.includes(userId$ | async)"
-                  (onClick)="quotesActions.recommendQuote(quote)">
-          <x-icon preset="small">star_border</x-icon> {{ quote.recommended.length }}
-        </x-button>
-      </x-tooltip>
+  <div *ngIf="(quotesItems$ | async).toJS().length">
+    <x-box *ngFor="let quote of (quotesItems$ | async).toJS()" class="quote">
+      <x-box-header>
+        {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
+        <x-icon *ngIf="quote.private" preset="small" class="right">lock</x-icon>
+        <div class="clearfix"></div>
+      </x-box-header>
 
-      <x-tooltip tooltip="Unrecommend">
-        <x-button size="small" preset="positive"
-                  *ngIf="!quote.private && quote.recommended.includes(userId$ | async)"
-                  (onClick)="quotesActions.unrecommendQuote(quote)">
-          <x-icon preset="small">star</x-icon> {{ quote.recommended.length }}
-        </x-button>
-      </x-tooltip>
+      <x-box-content>
+        <h1>{{quote.name}}</h1>
+        <p>{{quote.content}}</p>
+        <p>{{quote.url}}</p>
+      </x-box-content>
 
-      <x-tooltip tooltip="Edit">
-        <x-button size="small" preset="normal"
-                  *ngIf="quote.owner._id === (userId$ | async)"
-                  (onClick)="quotesActions.updateQuoteModal(quote)">
-          <x-icon preset="small">edit</x-icon>
-        </x-button>
-      </x-tooltip>
+      <x-box-footer>
+        <x-tooltip tooltip="Recommend">
+          <x-button size="small" preset="normal"
+                    *ngIf="!quote.private && !quote.recommended.includes(userId$ | async)"
+                    (onClick)="quotesActions.recommendQuote(quote)">
+            <x-icon preset="small">star_border</x-icon> {{ quote.recommended.length }}
+          </x-button>
+        </x-tooltip>
 
-      <x-tooltip tooltip="Delete">
-        <x-button size="small" preset="normal"
-                  *ngIf="quote.owner._id === (userId$ | async)"
-                  (onClick)="quotesActions.removeQuoteConfirm(quote)">
-          <x-icon preset="small">delete</x-icon>
-        </x-button>
-      </x-tooltip>
-    </x-box-footer>
-  </x-box>
+        <x-tooltip tooltip="Unrecommend">
+          <x-button size="small" preset="positive"
+                    *ngIf="!quote.private && quote.recommended.includes(userId$ | async)"
+                    (onClick)="quotesActions.unrecommendQuote(quote)">
+            <x-icon preset="small">star</x-icon> {{ quote.recommended.length }}
+          </x-button>
+        </x-tooltip>
+
+        <x-tooltip tooltip="Edit">
+          <x-button size="small" preset="normal"
+                    *ngIf="quote.owner._id === (userId$ | async)"
+                    (onClick)="quotesActions.updateQuoteModal(quote)">
+            <x-icon preset="small">edit</x-icon>
+          </x-button>
+        </x-tooltip>
+
+        <x-tooltip tooltip="Delete">
+          <x-button size="small" preset="normal"
+                    *ngIf="quote.owner._id === (userId$ | async)"
+                    (onClick)="quotesActions.removeQuoteConfirm(quote)">
+            <x-icon preset="small">delete</x-icon>
+          </x-button>
+        </x-tooltip>
+      </x-box-footer>
+    </x-box>
+  </div>
 </x-wrapper>
 
 <x-dialog-confirm *ngIf="isRemoveQuoteConfirmVisible$ | async"

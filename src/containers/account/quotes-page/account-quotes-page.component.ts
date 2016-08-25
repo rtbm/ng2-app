@@ -30,6 +30,7 @@ import { Observable } from 'rxjs';
 export class QtAccountQuotesPageComponent {
   @select(['user', 'user', '_id']) userId$: Observable<string>;
   @select(['quotes', 'quotes', 'items']) quotesItems$: Observable<any>;
+  @select(['quotes', 'quotes', 'isPending']) quotesIsPending$: Observable<any>;
 
   @select(['quotes', 'saveQuote', 'isModalVisible']) isSaveQuoteModalVisible$: Observable<boolean>;
   @select(['quotes', 'saveQuote', 'isSuccess']) isSaveQuoteSuccess$: Observable<boolean>;
