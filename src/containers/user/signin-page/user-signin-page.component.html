@@ -20,6 +20,8 @@
     </x-box-content>
   </x-box>
 
-  <div>Need an account? <a [routerLink]="['/user/signup']">Sign Up</a></div>
-  <div>Forgot password? <a [routerLink]="['/user/reset-password']">Reset password</a></div>
+  <x-box class="tips">
+    Need an account? <a [routerLink]="['/user/signup']">Sign Up</a> |
+    Forgot password? <a [routerLink]="['/user/reset-password']">Reset password</a>
+  </x-box>
 </x-wrapper>

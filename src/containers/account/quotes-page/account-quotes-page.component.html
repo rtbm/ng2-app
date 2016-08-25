@@ -19,29 +19,37 @@
     </x-box-content>
 
     <x-box-footer>
+      <x-tooltip tooltip="Recommend">
         <x-button size="small" preset="normal"
                   *ngIf="!quote.private && !quote.recommended.includes(userId$ | async)"
                   (onClick)="quotesActions.recommendQuote(quote)">
           <x-icon preset="small">star_border</x-icon> {{ quote.recommended.length }}
         </x-button>
+      </x-tooltip>
 
+      <x-tooltip tooltip="Unrecommend">
         <x-button size="small" preset="positive"
                   *ngIf="!quote.private && quote.recommended.includes(userId$ | async)"
                   (onClick)="quotesActions.unrecommendQuote(quote)">
           <x-icon preset="small">star</x-icon> {{ quote.recommended.length }}
         </x-button>
+      </x-tooltip>
 
+      <x-tooltip tooltip="Edit">
         <x-button size="small" preset="normal"
                   *ngIf="quote.owner._id === (userId$ | async)"
                   (onClick)="quotesActions.updateQuoteModal(quote)">
           <x-icon preset="small">edit</x-icon>
         </x-button>
+      </x-tooltip>
 
+      <x-tooltip tooltip="Delete">
         <x-button size="small" preset="normal"
                   *ngIf="quote.owner._id === (userId$ | async)"
                   (onClick)="quotesActions.removeQuoteConfirm(quote)">
           <x-icon preset="small">delete</x-icon>
         </x-button>
+      </x-tooltip>
     </x-box-footer>
   </x-box>
 </x-wrapper>

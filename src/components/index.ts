@@ -10,6 +10,7 @@ export * from './menu';
 export * from './modal';
 export * from './overlay';
 export * from './tabs';
+export * from './tooltip';
 export * from './wrapper';
 
 import { BOX_COMPONENTS } from './box';
@@ -24,6 +25,7 @@ import { MENU_COMPONENTS } from './menu';
 import { MODAL_COMPONENTS } from './modal';
 import { OVERLAY_COMPONENTS } from './overlay';
 import { TABS_COMPONENTS } from './tabs';
+import { TOOLTIP_COMPONENTS } from './tooltip';
 import { WRAPPER_COMPONENTS } from './wrapper';
 
 export const APP_COMPONENTS = [
@@ -39,5 +41,6 @@ export const APP_COMPONENTS = [
   ...MODAL_COMPONENTS,
   ...OVERLAY_COMPONENTS,
   ...TABS_COMPONENTS,
+  ...TOOLTIP_COMPONENTS,
   ...WRAPPER_COMPONENTS,
 ];
