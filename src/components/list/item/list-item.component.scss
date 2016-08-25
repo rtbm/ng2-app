@@ -6,4 +6,8 @@
   padding: 1.5rem 0;
   position: relative;
   width: 100%;
+
+  &:last-child {
+    border: 0 none;
+  }
 }

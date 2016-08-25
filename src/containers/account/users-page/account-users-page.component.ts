@@ -14,6 +14,7 @@ import {
   XListItemContentComponent,
   XTabsComponent,
   XTabComponent,
+  XBoxComponent,
 } from '../../../components';
 import { UsersActions } from '../../../actions/users.actions';
 
@@ -23,7 +24,7 @@ import { UsersActions } from '../../../actions/users.actions';
   styles: [require('./account-users-page.component.scss')],
   directives: [ROUTER_DIRECTIVES, NgSwitch, NgSwitchCase, XWrapperComponent, XButtonComponent, XModalFormComponent,
     XListComponent, XListItemComponent, XListItemContentComponent, XListItemActionsComponent, XTabsComponent,
-    XTabComponent],
+    XTabComponent, XBoxComponent],
   pipes: [AsyncPipe],
 })
 export class QtAccountUsersPageComponent implements OnInit, OnDestroy {

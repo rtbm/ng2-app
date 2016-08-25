@@ -10,17 +10,23 @@
     </x-tab>
   </x-tabs>
 
-  <x-list>
-    <x-list-item *ngFor="let user of (usersItems$ | async).toJS()">
-      <x-list-item-content>
-        {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
-      </x-list-item-content>
-      <x-list-item-actions *ngIf="user._id !== (userId$ | async)">
-        <x-button *ngIf="!user.followed" (onClick)="usersActions.follow(user)"
-                  preset="positive" size="small">follow</x-button>
-        <x-button *ngIf="user.followed" (onClick)="usersActions.unfollow(user)"
-                  preset="negative" size="small">unfollow</x-button>
-      </x-list-item-actions>
-    </x-list-item>
-  </x-list>
+  <x-box *ngIf="(usersItems$ | async).toJS().length">
+    <x-list>
+      <x-list-item *ngFor="let user of (usersItems$ | async).toJS()">
+        <x-list-item-content>
+          {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
+        </x-list-item-content>
+        <x-list-item-actions *ngIf="user._id !== (userId$ | async)">
+          <x-button *ngIf="!user.followed" (onClick)="usersActions.follow(user)"
+                    preset="positive" size="small">follow</x-button>
+          <x-button *ngIf="user.followed" (onClick)="usersActions.unfollow(user)"
+                    preset="negative" size="small">unfollow</x-button>
+        </x-list-item-actions>
+      </x-list-item>
+    </x-list>
+  </x-box>
+
+  <x-box *ngIf="!(usersItems$ | async).toJS().length" class="tips">
+    Nobody is followed by You! <a [routerLink]="['/account/users']">Get in touch with other users!</a>
+  </x-box>
 </x-wrapper>
