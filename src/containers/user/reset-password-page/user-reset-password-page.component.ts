@@ -22,6 +22,7 @@ import {
 export class QtUserResetPasswordPageComponent {
   @select(['user', 'resetPassword', 'isSuccess']) isResetPasswordSuccess$: Observable<boolean>;
   @select(['user', 'resetPassword', 'isError']) isResetPasswordError$: Observable<boolean>;
+  @select(['user', 'resetPassword', 'errorCode']) resetPasswordErrorCode$: Observable<boolean>;
 
   constructor(private userActions: UserActions,
               private title: Title) {

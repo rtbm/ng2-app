@@ -33,7 +33,7 @@ export class QtUserSignupFormComponent implements OnDestroy {
 
   constructor(private builder: FormBuilder) {
     this.email = new FormControl('', EmailValidator.validate);
-    this.password = new FormControl('', Validators.required);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     this.password_confirm = new FormControl('', Validators.required);
 
     this.form = this.builder.group({

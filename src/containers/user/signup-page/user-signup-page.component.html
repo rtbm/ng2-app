@@ -7,6 +7,10 @@
         <x-form-message preset="error" *ngSwitchCase="409">
           Account already exists.
         </x-form-message>
+
+        <x-form-message preset="error" *ngSwitchDefault>
+          Ups, error occured! Try again later.
+        </x-form-message>
       </div>
       <qt-user-signup-form (onSubmit)="userActions.signup($event)"></qt-user-signup-form>
     </x-box-content>

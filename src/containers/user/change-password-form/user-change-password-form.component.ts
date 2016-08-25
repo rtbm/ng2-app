@@ -37,7 +37,7 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
 
     this.email = new FormControl('', Validators.required);
     this.token = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     this.password_confirm = new FormControl('', Validators.required);
 
     this.form = this.builder.group({

@@ -11,6 +11,10 @@
         <x-form-message preset="error" *ngSwitchCase="404">
           Account not exist.
         </x-form-message>
+
+        <x-form-message preset="error" *ngSwitchDefault>
+          Ups, error occured! Try again later.
+        </x-form-message>
       </div>
       <qt-user-signin-form (onSubmit)="userActions.signin($event)"></qt-user-signin-form>
     </x-box-content>

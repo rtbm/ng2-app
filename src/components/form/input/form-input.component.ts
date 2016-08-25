@@ -8,7 +8,7 @@ import { FormControl, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
   styles: [require('./form-input.component.scss')],
 })
 export class XFormInputComponent {
+  @Input() control: FormControl;
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
-  @Input() control: FormControl;
 }

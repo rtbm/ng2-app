@@ -1,10 +1,10 @@
+import { makeTypedFactory } from 'typed-immutable-record';
+import { fromJS } from 'immutable';
+
 import {
   IQuotesRecord,
   IQuotes,
 } from './quotes.types';
-
-import { makeTypedFactory } from 'typed-immutable-record';
-import { fromJS } from 'immutable';
 
 export const QuotesFactory = makeTypedFactory<IQuotes, IQuotesRecord>({
   quotes: fromJS({

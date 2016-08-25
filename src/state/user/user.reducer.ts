@@ -72,6 +72,27 @@ export function userReducer(state: IUserRecord = INITIAL_STATE, action: IPayload
         .setIn(['resetPassword', 'errorCode'], action.payload.errorCode);
     }
 
+    case UserActions.USER_CHANGE_PASSWORD: {
+      return state
+        .setIn(['changePassword', 'isPending'], true)
+        .setIn(['changePassword', 'isSuccess'], false)
+        .setIn(['changePassword', 'isError'], false)
+        .setIn(['changePassword', 'errorCode'], 0);
+    }
+
+    case UserActions.USER_CHANGE_PASSWORD_SUCCESS: {
+      return state
+        .setIn(['changePassword', 'isPending'], false)
+        .setIn(['changePassword', 'isSuccess'], true);
+    }
+
+    case UserActions.USER_CHANGE_PASSWORD_ERROR: {
+      return state
+        .setIn(['changePassword', 'isPending'], false)
+        .setIn(['changePassword', 'isError'], true)
+        .setIn(['changePassword', 'errorCode'], action.payload.errorCode);
+    }
+
     case UserActions.USER_SIGNOUT: {
       return state
         .set('id_token', '')

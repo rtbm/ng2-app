@@ -1,10 +1,10 @@
+import { makeTypedFactory } from 'typed-immutable-record';
+import { fromJS } from 'immutable';
+
 import {
   IUsersRecord,
   IUsers,
 } from './users.types';
-
-import { makeTypedFactory } from 'typed-immutable-record';
-import { fromJS } from 'immutable';
 
 export const UsersFactory = makeTypedFactory<IUsers, IUsersRecord>({
   users: fromJS({

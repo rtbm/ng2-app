@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { JwtHelper } from 'angular2-jwt';
 
 function sessionStore() {
-  return next => (reducer, initialState) => {
+  return next => reducer => {
     const id_token = localStorage.getItem('id_token');
     const user = !!id_token ? new JwtHelper().decodeToken(id_token) : {};
 

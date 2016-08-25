@@ -16,6 +16,7 @@ import { QtUserChangePasswordFormComponent } from '../change-password-form';
 export class QtUserChangePasswordPageComponent {
   @select(['user', 'changePassword', 'isSuccess']) isChangePasswordSuccess$: Observable<boolean>;
   @select(['user', 'changePassword', 'isError']) isChangePasswordError$: Observable<boolean>;
+  @select(['user', 'changePassword', 'errorCode']) changePasswordErrorCode$: Observable<boolean>;
 
   constructor(private userActions: UserActions,
               private title: Title) {
