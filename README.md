@@ -21,7 +21,7 @@ Work in progress. Live demo: [https://ng2-quottr.herokuapp.com](https://ng2-quot
 * node, npm
 * redis
 * mongodb
-* smtp service
+* sendgrid account
 
 ## Running locally
 

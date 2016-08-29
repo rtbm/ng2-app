@@ -8,6 +8,18 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { QtAppModule } from './app.module';
 
+const WebFont = require('webfontloader');
+
+WebFont.load({
+  google: {
+    families: [
+      'Roboto:400,500',
+      'Playfair+Display:400,700',
+      'Material+Icons',
+    ],
+  },
+});
+
 if (__PRODUCTION__) {
   enableProdMode();
 } else {

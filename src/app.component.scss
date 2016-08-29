@@ -39,8 +39,15 @@ textarea {
   background: transparent;
   font-family: 'Roboto', sans-serif;
   font-size: 1.4rem;
+  font-weight: 400;
 }
 
 p {
   margin: 0 0 1em;
+}
+
+.wf-materialicons-n4-active {
+  x-icon {
+    opacity: 1;
+  }
 }
