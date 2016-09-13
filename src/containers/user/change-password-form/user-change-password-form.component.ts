@@ -1,25 +1,12 @@
 import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {
-  XFormComponent,
-  XFormInputComponent,
-  XFormGroupComponent,
-  XFormActionsComponent,
-  XFormMessageComponent,
-  XLabelComponent,
-  XButtonComponent,
-  XFormContentComponent,
-  XFormErrorComponent,
-} from '../../../components';
 
 @Component({
   selector: 'qt-user-change-password-form',
   template: require('./user-change-password-form.component.html'),
   styles: [require('./user-change-password-form.component.scss')],
-  directives: [ROUTER_DIRECTIVES, XFormComponent, XLabelComponent, XButtonComponent, XFormInputComponent,
-    XFormGroupComponent, XFormActionsComponent, XFormMessageComponent, XFormContentComponent, XFormErrorComponent],
 })
 export class QtUserChangePasswordFormComponent implements OnDestroy {
   @Output() private onSubmit = new EventEmitter();
@@ -35,7 +22,6 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   constructor(private builder: FormBuilder,
               private activatedRoute: ActivatedRoute) {
 
-    this.email = new FormControl('', Validators.required);
     this.token = new FormControl('', Validators.required);
     this.password = new FormControl('', [Validators.required, Validators.minLength(5)]);
     this.password_confirm = new FormControl('', Validators.required);

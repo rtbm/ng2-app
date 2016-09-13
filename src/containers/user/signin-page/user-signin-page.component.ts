@@ -1,26 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { UserActions } from '../../../actions';
-import { QtUserSigninFormComponent } from '../signin-form';
-import {
-  XWrapperComponent,
-  XFormMessageComponent,
-  XBoxContentComponent,
-  XBoxHeaderComponent,
-  XBoxComponent,
-} from '../../../components';
 
 @Component({
   selector: 'qt-user-signin-page',
   template: require('./user-signin-page.component.html'),
   styles: [require('./user-signin-page.component.scss')],
-  directives: [ROUTER_DIRECTIVES, QtUserSigninFormComponent, XWrapperComponent, XFormMessageComponent,
-    QtUserSigninFormComponent, XBoxComponent, XBoxHeaderComponent, XBoxContentComponent],
-  pipes: [AsyncPipe],
 })
 
 export class QtUserSigninPageComponent implements OnDestroy {

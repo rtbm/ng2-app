@@ -1,8 +1,9 @@
 @import '../../../assets/colors';
 
-:host {
+:host /deep/ {
   x-form-content {
     display: block;
+    min-width: 35rem;
     padding: 2rem;
 
     x-form-group {

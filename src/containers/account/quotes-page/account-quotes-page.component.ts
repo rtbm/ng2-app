@@ -1,31 +1,13 @@
 import { Component } from '@angular/core';
-import {
-  XWrapperComponent,
-  XButtonComponent,
-  XDialogConfirmComponent,
-  XModalFormComponent,
-  XBoxComponent,
-  XBoxHeaderComponent,
-  XBoxContentComponent,
-  XFormMessageComponent,
-  XBoxFooterComponent,
-} from '../../../components';
 import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
 import { QuotesActions } from '../../../actions';
-import { QtAccountQuoteAddFormComponent } from '../quote-add-form';
-import { QtAccountQuoteEditFormComponent } from '../quote-edit-form';
-import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-quotes-page',
   template: require('./account-quotes-page.component.html'),
   styles: [require('./account-quotes-page.component.scss')],
-  pipes: [AsyncPipe],
-  directives: [XWrapperComponent, XButtonComponent, XDialogConfirmComponent, QtAccountQuoteAddFormComponent,
-    XFormMessageComponent, QtAccountQuoteEditFormComponent, XModalFormComponent, XBoxComponent, XBoxHeaderComponent,
-    XBoxContentComponent, XBoxFooterComponent],
 })
 export class QtAccountQuotesPageComponent {
   @select(['user', 'user', '_id']) userId$: Observable<string>;

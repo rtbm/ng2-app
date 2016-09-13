@@ -16,7 +16,7 @@
     padding: 1.5rem 0;
     text-align: center;
 
-    a {
+    /deep/ a {
       color: $green;
       font-weight: 500;
     }

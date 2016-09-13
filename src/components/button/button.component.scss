@@ -4,7 +4,7 @@
 :host {
   display: inline-block;
 
-  x-icon {
+  /deep/ x-icon {
     display: inline-block;
     vertical-align: middle;
   }

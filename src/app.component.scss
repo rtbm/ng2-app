@@ -47,7 +47,7 @@ p {
 }
 
 .wf-materialicons-n4-active {
-  x-icon {
+  /deep/ x-icon {
     opacity: 1;
   }
 }

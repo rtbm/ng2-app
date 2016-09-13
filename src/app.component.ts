@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { createEpicMiddleware, Epic } from 'redux-observable';
 import { NgRedux } from 'ng2-redux';
 import rootReducer, { IAppState, middlewares, enhancers } from './state';
@@ -7,7 +7,6 @@ import { UserEpics, ProfileEpics, QuotesEpics, UsersEpics } from './epics';
 
 @Component({
   selector: 'qt-app',
-  directives: [ROUTER_DIRECTIVES],
   template: `<router-outlet></router-outlet>`,
   styles: [require('./app.component.scss')],
   encapsulation: ViewEncapsulation.None,
@@ -41,7 +40,7 @@ export class QtAppComponent {
     ];
 
     const epicsMiddlewares = epics.reduce(
-        (acc: Array<any>, epic: any) => acc.concat(createEpicMiddleware(<Epic> epic)), []
+        (acc: Array<any>, epic: any) => acc.concat(createEpicMiddleware(epic)), []
     );
 
     ngRedux.configureStore(rootReducer, {}, [...middlewares, ...epicsMiddlewares], enhancers);

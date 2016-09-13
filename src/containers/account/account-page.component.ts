@@ -1,15 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { QtAccountAsideMenuComponent } from './aside-menu';
+import { Router } from '@angular/router';
 import { select } from 'ng2-redux';
-import { QtHeaderComponent } from '../header';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'qt-account-page',
   template: require('./account-page.component.html'),
   styles: [require('./account-page.component.scss')],
-  directives: [ROUTER_DIRECTIVES, QtAccountAsideMenuComponent, QtHeaderComponent],
 })
 export class QtAccountPageComponent implements OnDestroy {
   @select(['user', 'id_token']) isAuthorized$: Observable<string>;

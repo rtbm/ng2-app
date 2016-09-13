@@ -1,22 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import {
-  XFormComponent,
-  XFormInputComponent,
-  XFormCheckboxComponent,
-  XFormGroupComponent,
-  XFormTextareaComponent,
-  XButtonComponent,
-  XLabelComponent,
-  XFormContentComponent,
-} from '../../../components';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'qt-account-quote-edit-form',
   template: require('./account-quote-edit-form.component.html'),
   styles: [require('./account-quote-edit-form.component.scss')],
-  directives: [XButtonComponent, XFormComponent, XFormGroupComponent, XFormInputComponent, XFormCheckboxComponent,
-    XFormTextareaComponent, XLabelComponent, XFormContentComponent],
 })
 export class QtAccountQuoteEditFormComponent implements OnChanges {
   @Output() private onSubmit = new EventEmitter();

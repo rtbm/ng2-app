@@ -40,7 +40,6 @@ const prodPlugins = [
   new webpack.optimize.UglifyJsPlugin({
     mangle: {
       screwIE8: true,
-      keep_fnames: true,
     },
     compress: {
       warnings: false,

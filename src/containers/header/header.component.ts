@@ -1,13 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES, Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
-import {
-  XLogoComponent,
-  XWrapperComponent,
-  XMenuItemComponent,
-  XMenuComponent,
-  XButtonComponent,
-} from '../../components';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserActions } from '../../actions';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
@@ -16,9 +8,6 @@ import { Observable } from 'rxjs';
   selector: 'qt-header',
   template: require('./header.component.html'),
   styles: [require('./header.component.scss')],
-  directives: [ROUTER_DIRECTIVES, XWrapperComponent, XLogoComponent, XMenuComponent,
-    XMenuItemComponent, XButtonComponent],
-  pipes: [AsyncPipe],
 })
 export class QtHeaderComponent {
   @select(['user', 'id_token']) idToken$: Observable<string>;

@@ -1,23 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {
-  XFormComponent,
-  XFormTextareaComponent,
-  XFormActionsComponent,
-  XFormInputComponent,
-  XFormCheckboxComponent,
-  XFormGroupComponent,
-  XFormMessageComponent,
-  XButtonComponent,
-  XFormContentComponent,
-} from '../../../components';
 
 @Component({
   selector: 'qt-account-quote-add-form',
   template: require('./account-quote-add-form.component.html'),
   styles: [require('./account-quote-add-form.component.scss')],
-  directives: [XFormComponent, XFormGroupComponent, XFormTextareaComponent, XFormActionsComponent, XButtonComponent,
-    XFormInputComponent, XFormCheckboxComponent, XFormMessageComponent, XFormContentComponent],
 })
 export class QtAccountQuoteAddFormComponent {
   @Output() private onSubmit = new EventEmitter();
