@@ -10,12 +10,14 @@
     "noImplicitAny": false,
     "removeComments": false,
     "inlineSourceMap": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": true,
+    "types": [
+      "es6-shim",
+      "node"
+    ]
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "typings/main",
-    "typings/main.d.ts"
+    "public"
   ]
 }
