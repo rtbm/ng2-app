@@ -1,51 +1,12 @@
-const webpack = require('webpack');
+'use strict';
 const path = require('path');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
-const SplitByPathPlugin = require('webpack-split-by-path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const sassLintPlugin = require('sasslint-webpack-plugin');
 
-const __DEV__ = process.env.NODE_ENV !== 'production';
+const loaders = require('./webpack.loaders');
+const plugins = require('./webpack.plugins');
+
 const __PRODUCTION__ = process.env.NODE_ENV === 'production';
-
-const basePlugins = [
-  new webpack.DefinePlugin({
-    __DEV__,
-    __PRODUCTION__,
-    __BASE_URL__: JSON.stringify(process.env.BASE_URL),
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  }),
-  new SplitByPathPlugin([
-    { name: 'vendor', path: [__dirname + '/node_modules/'] }
-  ]),
-  new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: 'body',
-    minify: __DEV__ ? undefined : {
-      html5: true,
-      collapseWhitespace: true,
-      removeTagWhitespace: true,
-    },
-  }),
-  new sassLintPlugin({
-    glob: './src/**/*.s?(a|c)ss',
-    failOnWarning: __PRODUCTION__,
-    failOnError: __PRODUCTION__,
-  }),
-];
-
-const prodPlugins = [
-  new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({
-    mangle: {
-      screwIE8: true,
-    },
-    compress: {
-      warnings: false,
-    },
-  }),
-];
 
 module.exports = {
   entry: {
@@ -64,8 +25,8 @@ module.exports = {
   },
 
   plugins: __PRODUCTION__
-    ? [...basePlugins, ...prodPlugins]
-    : basePlugins,
+    ? [...plugins.basePlugins, ...plugins.prodPlugins]
+    : plugins.basePlugins,
 
   devServer: {
     historyApiFallback: {
@@ -74,30 +35,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
-      test: /\.ts$/,
-      loader: 'ts',
-      exclude: /node_modules/,
-    }, {
-      test: /\.component.html$/,
-      loader: 'raw',
-      exclude: /node_modules/,
-    }, {
-      test: /\.component.scss$/,
-      loaders: [
-        'css-to-string',
-        'css',
-        'postcss',
-        'sass',
-      ],
-      exclude: /node_modules/,
-    }, {
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
-      ]
-    }],
+    loaders,
 
     postcss: [
       precss,

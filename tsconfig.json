@@ -13,7 +13,8 @@
     "noEmitHelpers": true,
     "types": [
       "es6-shim",
-      "node"
+      "node",
+      "jasmine"
     ]
   },
   "exclude": [
