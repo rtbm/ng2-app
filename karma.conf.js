@@ -1,4 +1,3 @@
-'use strict';
 const path = require('path');
 const plugins = require('./webpack.plugins');
 const loaders = require('./webpack.loaders');

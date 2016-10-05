@@ -1,4 +1,3 @@
-'use strict';
 const path = require('path');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');

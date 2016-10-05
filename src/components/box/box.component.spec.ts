@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { QtAppComponentsModule } from '../app.components.module';
 
 let fixture;
-let comp;
 let de;
 
 describe('Box Component', () => {

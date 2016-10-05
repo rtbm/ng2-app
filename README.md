@@ -16,6 +16,7 @@ Work in progress. Live demo: [https://ng2-quottr.herokuapp.com](https://ng2-quot
 * modal dialogs/forms
 * slice (text-trim), filter (string or in object properties) pipe
 * circleci, heroku ready
+* tests (mocha, karma)
 
 ### Host dependencies
 * node, npm
