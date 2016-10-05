@@ -8,8 +8,8 @@ import { ROUTING } from './routes';
 import { SERVICES_PROVIDERS } from './services';
 import { ACTIONS_PROVIDERS } from './actions';
 import { EPICS_PROVIDERS } from './epics';
-import { APP_COMPONENTS } from './components';
-import { APP_CONTAINERS } from './containers';
+import { QtAppComponentsModule } from './components';
+import { QtAppContainersModule } from './containers';
 import { QtAppComponent } from './app.component';
 
 @NgModule({
@@ -19,10 +19,10 @@ import { QtAppComponent } from './app.component';
     CommonModule,
     HttpModule,
     ROUTING,
+    QtAppComponentsModule,
+    QtAppContainersModule,
   ],
   declarations: [
-    ...APP_COMPONENTS,
-    ...APP_CONTAINERS,
     QtAppComponent,
   ],
   bootstrap: [
