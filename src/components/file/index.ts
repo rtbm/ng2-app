@@ -1,7 +1,7 @@
-import { XAvatarComponent } from './avatar.component';
+import { XFileComponent } from './file.component';
 
-export const AVATAR_COMPONENTS = [
-  XAvatarComponent,
+export const FILE_COMPONENTS = [
+  XFileComponent,
 ];
 
-export { XAvatarComponent };
+export { XFileComponent };

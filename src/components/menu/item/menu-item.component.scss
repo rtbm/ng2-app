@@ -1,4 +1,23 @@
+@import '../../../assets/colors';
+
 :host {
   display: inline-block;
-  margin: 0 1rem;
+  margin: 0 1.25rem;
+  vertical-align: middle;
+
+  /deep/ {
+    x-icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    a {
+      &.active-link,
+      &:hover {
+        x-icon {
+          color: $blue;
+        }
+      }
+    }
+  }
 }

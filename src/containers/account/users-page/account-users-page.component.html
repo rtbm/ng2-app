@@ -1,6 +1,8 @@
-<x-wrapper>
+<x-toolbar>
   <h1>Users</h1>
+</x-toolbar>
 
+<x-wrapper class="main">
   <x-tabs>
     <x-tab [active]="filter === ''">
       <a [routerLink]="['/account/users']">All</a>
@@ -9,6 +11,8 @@
       <a [routerLink]="['/account/users', {filter: 'following'}]">Following</a>
     </x-tab>
   </x-tabs>
+
+  <x-indicator *ngIf="usersIsPending$ | async">wait...</x-indicator>
 
   <x-box *ngIf="(usersItems$ | async).toJS().length">
     <x-list>
@@ -29,15 +33,9 @@
   </x-box>
 
   <div *ngIf="!(usersItems$ | async).toJS().length">
-    <div *ngIf="usersIsPending$ | async">
-      <x-box class="tips">
-        Loading... Stay tuned.
-      </x-box>
-    </div>
-
     <div *ngIf="!(usersIsPending$ | async)" [ngSwitch]="filter">
       <x-box *ngSwitchCase="'following'" class="tips">
-        Nobody is followed by You! <a [routerLink]="['/account/users']">Get in touch with any other users!</a>
+        Nobody is followed. <a [routerLink]="['/account/users']">Get in touch with any other users!</a>
       </x-box>
 
       <x-box *ngSwitchDefault class="tips">

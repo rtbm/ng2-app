@@ -1,4 +1,5 @@
-<button [type]="type"
+<button class="button"
+        [type]="type"
         [ngClass]="[preset, size]"
         (click)="onClick.emit($event)">
   <ng-content></ng-content>

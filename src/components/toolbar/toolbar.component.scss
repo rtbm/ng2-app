@@ -1,14 +1,22 @@
+@import '../../assets/colors';
+
 :host {
+  background: $blue url('../../assets/images/mountains-863474_1920.jpg') center no-repeat;
+  color: $white;
   display: block;
-  opacity: 0;
-}
+  padding: .5rem 0;
 
-span {
-  display: block;
-  font-size: 3rem;
-  text-align: center;
+  /deep/ {
+    h1 {
+      display: inline-block;
+      font-family: 'Roboto', sans-serif;
+      font-size: 2rem;
+      line-height: 1em;
+      margin: 0;
+    }
 
-  &.small {
-    font-size: 2rem;
+    .actions {
+      float: right;
+    }
   }
 }

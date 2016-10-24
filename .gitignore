@@ -36,3 +36,5 @@ typings
 
 .env
 
+tmp/*
+!tmp/.keep

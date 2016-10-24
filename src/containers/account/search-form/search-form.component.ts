@@ -1,11 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'x-search',
-  template: require('./search.component.html'),
-  styles: [require('./search.component.scss')],
+  selector: 'qt-search-form',
+  template: require('./search-form.component.html'),
+  styles: [require('./search-form.component.scss')],
 })
-export class XSearchComponent {
-  @Input() private form;
-  @Input() private search;
+export class QtSearchFormComponent {
+  private form: FormGroup;
+  private search: FormControl = new FormControl('');
+
+  constructor(builder: FormBuilder) {
+    this.form = builder.group({
+      _id: this.search,
+    });
+  }
 }

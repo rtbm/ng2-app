@@ -1,24 +1,26 @@
 @import '../../../assets/colors';
 
 @mixin active {
-  border-bottom: .3rem solid $green;
+  border-bottom: .3rem solid $blue;
 }
 
 :host {
   display: inline-block;
 
-  /deep/ a {
-    display: block;
-    padding: .5rem 2rem;
-
-    &.active {
-      @include active;
-    }
-  }
-
-  /deep/ .active {
+  /deep/ {
     a {
-      @include active;
+      display: block;
+      padding: .5rem 2rem;
+
+      &.active {
+        @include active;
+      }
+    }
+
+    .active {
+      a {
+        @include active;
+      }
     }
   }
 }

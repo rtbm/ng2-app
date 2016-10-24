@@ -1,9 +1,9 @@
-import { XIconComponent } from './icon.component';
+import { XToolbarComponent } from './toolbar.component';
 
-export const ICON_COMPONENTS = [
-  XIconComponent,
+export const TOOLBAR_COMPONENTS = [
+  XToolbarComponent,
 ];
 
 export {
-  XIconComponent,
+  XToolbarComponent,
 }

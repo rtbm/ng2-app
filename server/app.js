@@ -2,15 +2,22 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cloudinary = require('cloudinary');
 const logger = require('./utils/logger');
 const auth = require('./middlewares/auth');
 
 const distPath = path.join(__dirname, '../public');
 const app = express();
 
-const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 if (app.get('env') === 'development') {
   app.use(require('morgan')('dev', { stream: logger.stream }));
@@ -25,7 +32,7 @@ app.use(express.static(distPath, {
   index: 'index.html',
 }));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '512kb' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/auth', require('./routes/auth'));

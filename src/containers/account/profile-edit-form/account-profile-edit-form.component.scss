@@ -1,0 +1,32 @@
+.avatar {
+  display: inline-block;
+  margin-right: 3rem;
+  vertical-align: top;
+
+  x-box-content {
+    display: block;
+    min-height: 25rem;
+    width: 25rem;
+  }
+
+  /deep/ {
+    x-avatar {
+      img {
+        height: auto;
+        width: 100%;
+      }
+
+      x-icon {
+        span {
+          font-size: 15rem;
+          line-height: 25rem;
+        }
+      }
+    }
+  }
+}
+
+.profile-details {
+  display: inline-block;
+  vertical-align: top;
+}

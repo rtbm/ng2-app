@@ -1,5 +1,9 @@
 'use strict';
+const Q = require('q');
+const fs = require('fs');
+const cloudinary = require('cloudinary');
 const User = require('../models/user');
+const File = require('../helpers/file');
 
 module.exports = {
   findAll: (req, res, next) => {
@@ -79,14 +83,51 @@ module.exports = {
           return next(err);
         }
 
-        _user.profile.first_name = req.body.profile.first_name;
-        _user.profile.last_name = req.body.profile.last_name;
-        _user.profile.bio = req.body.profile.bio;
+        const deferred = Q.defer();
 
-        _user.save((err, user) => {
-          if (err) return next(err);
-          return res.json(user);
-        });
+        if (req.body.profile.avatar !== _user.profile.avatar) {
+          if (req.body.profile.avatar) {
+            File.saveBase64ToFile(req.body.profile.avatar, _user._id, ['png', 'gif', 'jpeg'])
+              .then(filedata => cloudinary.v2.uploader.upload(filedata.filepath, {
+                public_id: _user._id,
+                transformation: [{
+                  width: 400,
+                  height: 400,
+                  gravity: 'face',
+                  crop: 'crop',
+                }],
+              }, (err, result) => {
+                if (err) {
+                  return next(err);
+                }
+
+                _user.profile.avatar = result.secure_url;
+                fs.unlink(filedata.filepath);
+
+                deferred.resolve();
+              }))
+              .catch(err => next(err));
+          } else {
+            cloudinary.v2.uploader.destroy(_user._id);
+            _user.profile.avatar = '';
+            deferred.resolve();
+          }
+        } else {
+          deferred.resolve();
+        }
+
+        deferred.promise
+          .then(() => {
+            _user.profile.first_name = req.body.profile.first_name;
+            _user.profile.last_name = req.body.profile.last_name;
+            _user.profile.bio = req.body.profile.bio;
+
+            _user.save((err, user) => {
+              if (err) return next(err);
+              return res.json(user);
+            });
+          })
+          .catch(err => next(err));
       });
   },
 

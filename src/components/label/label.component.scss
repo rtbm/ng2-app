@@ -1,5 +1,10 @@
+@import '../../assets/colors';
+
 :host {
+  color: $text;
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   margin: 0 0 .5rem;
+  text-transform: uppercase;
 }

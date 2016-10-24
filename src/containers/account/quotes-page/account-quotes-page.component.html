@@ -1,15 +1,19 @@
-<x-wrapper>
+<x-toolbar>
   <h1>Quotes</h1>
 
-  <p>
-    <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add new! :)</x-button>
-  </p>
+  <div class="actions">
+    <x-button preset="light" size="small" (onClick)="quotesActions.saveQuoteModal()">
+      <x-icon size="small">note_add</x-icon> Add new Quote
+    </x-button>
+  </div>
+</x-toolbar>
+
+<qt-search-form></qt-search-form>
+
+<x-wrapper class="main">
+  <x-indicator *ngIf="quotesIsPending$ | async">wait...</x-indicator>
 
   <div *ngIf="!(quotesItems$ | async).toJS().length">
-    <x-box *ngIf="quotesIsPending$ | async" class="tips">
-      Loading... Stay tuned.
-    </x-box>
-
     <x-box *ngIf="!(quotesIsPending$ | async)" class="tips">
       <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add the first Quote! :)</x-button>
     </x-box>
@@ -19,7 +23,7 @@
     <x-box *ngFor="let quote of (quotesItems$ | async).toJS()" class="quote">
       <x-box-header>
         {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
-        <x-icon *ngIf="quote.private" preset="small" class="right">lock</x-icon>
+        <x-icon *ngIf="quote.private" size="small" class="right">lock</x-icon>
         <div class="clearfix"></div>
       </x-box-header>
 
@@ -34,7 +38,7 @@
           <x-button size="small" preset="normal"
                     *ngIf="!quote.private && !quote.recommended.includes(userId$ | async)"
                     (onClick)="quotesActions.recommendQuote(quote)">
-            <x-icon preset="small">star_border</x-icon> {{ quote.recommended.length }}
+            <x-icon size="small">star_border</x-icon> {{ quote.recommended.length }}
           </x-button>
         </x-tooltip>
 
@@ -42,7 +46,7 @@
           <x-button size="small" preset="positive"
                     *ngIf="!quote.private && quote.recommended.includes(userId$ | async)"
                     (onClick)="quotesActions.unrecommendQuote(quote)">
-            <x-icon preset="small">star</x-icon> {{ quote.recommended.length }}
+            <x-icon size="small">star</x-icon> {{ quote.recommended.length }}
           </x-button>
         </x-tooltip>
 
@@ -50,7 +54,7 @@
           <x-button size="small" preset="normal"
                     *ngIf="quote.owner._id === (userId$ | async)"
                     (onClick)="quotesActions.updateQuoteModal(quote)">
-            <x-icon preset="small">edit</x-icon>
+            <x-icon size="small">edit</x-icon>
           </x-button>
         </x-tooltip>
 
@@ -58,7 +62,7 @@
           <x-button size="small" preset="normal"
                     *ngIf="quote.owner._id === (userId$ | async)"
                     (onClick)="quotesActions.removeQuoteConfirm(quote)">
-            <x-icon preset="small">delete</x-icon>
+            <x-icon size="small">delete</x-icon>
           </x-button>
         </x-tooltip>
       </x-box-footer>

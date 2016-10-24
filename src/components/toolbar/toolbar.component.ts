@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'x-icon',
-  template: require('./icon.component.html'),
-  styles: [require('./icon.component.scss')],
+  selector: 'x-toolbar',
+  template: require('./toolbar.component.html'),
+  styles: [require('./toolbar.component.scss')],
 })
-export class XIconComponent {
-  @Input() size: string = '';
+export class XToolbarComponent {
 }

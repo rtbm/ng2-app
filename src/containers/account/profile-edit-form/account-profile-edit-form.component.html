@@ -1,19 +1,42 @@
 <x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
-    <x-form-group>
-      <x-form-input [control]="first_name" placeholder="First Name"></x-form-input>
-    </x-form-group>
+    <x-box class="avatar">
+      <x-box-content>
+        <x-avatar [src]="avatar.value"></x-avatar>
+      </x-box-content>
 
-    <x-form-group>
-      <x-form-input [control]="last_name" placeholder="First Name"></x-form-input>
-    </x-form-group>
+      <x-box-footer>
+        <x-tooltip tooltip="Select file">
+          <x-file name="avatar" (onChange)="changeAvatar($event)">
+            <x-icon size="small">attach_file</x-icon>
+          </x-file>
+        </x-tooltip>
 
-    <x-form-group>
-      <x-form-textarea [control]="bio" placeholder="Bio"></x-form-textarea>
-    </x-form-group>
+        <x-tooltip tooltip="Delete avatar">
+          <x-button (click)="changeAvatar('')" size="small">
+            <x-icon size="small">delete_forever</x-icon>
+          </x-button>
+        </x-tooltip>
+      </x-box-footer>
+    </x-box><div class="profile-details">
+      <x-form-group>
+        <x-label>First Name</x-label>
+        <x-form-input [control]="first_name" placeholder="First Name"></x-form-input>
+      </x-form-group>
+
+      <x-form-group>
+        <x-label>Last Name</x-label>
+        <x-form-input [control]="last_name" placeholder="Last Name"></x-form-input>
+      </x-form-group>
+
+      <x-form-group>
+        <x-label>Bio</x-label>
+        <x-form-textarea [control]="bio" placeholder="Bio"></x-form-textarea>
+      </x-form-group>
+    </div>
   </x-form-content>
 
   <x-form-actions>
-    <x-button preset="positive" size="big" type="submit">Update</x-button>
+    <x-button preset="positive" type="submit">Update profile</x-button>
   </x-form-actions>
 </x-form>

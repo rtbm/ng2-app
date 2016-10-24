@@ -7,8 +7,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class XButtonComponent {
-  @Input() preset: string = 'casual';
-  @Input() size: string = 'normal';
-  @Input() type: string = 'button';
+  @Input() private preset: string = 'casual';
+  @Input() private size: string = 'normal';
+  @Input() private type: string = 'button';
   @Output() private onClick = new EventEmitter();
 }

@@ -2,11 +2,13 @@
 
 :host {
   display: block;
-  padding: 8.5rem 0 0 25rem;
+  padding: 5.9rem 0 0;
 
-  qt-header {
-    /deep/ x-wrapper {
-      max-width: 100%;
+  /deep/ {
+    x-wrapper {
+      &.main {
+        margin-top: 2.5rem;
+      }
     }
   }
 }

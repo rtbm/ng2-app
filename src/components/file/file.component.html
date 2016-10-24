@@ -1,0 +1,7 @@
+<input type="file" [attr.id]="name" (change)="convertToBase64($event)" />
+
+<label [attr.for]="name">
+  <x-abstract-button size="small">
+    <ng-content></ng-content>
+  </x-abstract-button>
+</label>

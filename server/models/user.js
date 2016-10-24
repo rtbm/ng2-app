@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema({
       default: '',
       trim: true,
     },
+    avatar: {
+      type: String,
+      default: '',
+      trim: true,
+    },
   },
   following: [{
     type: mongoose.Schema.ObjectId,

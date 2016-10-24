@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styles: [require('./icon.component.scss')],
 })
 export class XIconComponent {
-  @Input() preset: string = '';
+  @Input() size: string = '';
 }

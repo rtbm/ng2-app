@@ -2,8 +2,29 @@
   <x-logo></x-logo>
 
   <x-menu>
-    <x-menu-item><a [routerLink]="['/']">Home</a></x-menu-item>
-    <x-menu-item><a [routerLink]="['/account/quotes']" *ngIf="idToken$ | async">Quotes</a></x-menu-item>
+    <x-menu-item>
+      <a [routerLink]="['/']">
+        <x-icon size="small">home</x-icon> Home
+      </a>
+    </x-menu-item>
+
+    <x-menu-item>
+      <a [routerLink]="['/account/quotes']" *ngIf="idToken$ | async" routerLinkActive="active-link">
+        <x-icon size="small">dashboard</x-icon> Quotes
+      </a>
+    </x-menu-item>
+
+    <x-menu-item>
+      <a [routerLink]="['/account/users']" *ngIf="idToken$ | async" routerLinkActive="active-link">
+        <x-icon size="small">contacts</x-icon> Users
+      </a>
+    </x-menu-item>
+
+    <x-menu-item>
+      <a [routerLink]="['/account/profile']" *ngIf="idToken$ | async" routerLinkActive="active-link">
+        <x-icon size="small">account_box</x-icon> Profile
+      </a>
+    </x-menu-item>
   </x-menu>
 
   <div class="account-box">

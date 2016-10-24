@@ -11,9 +11,10 @@ import { ProfileActions } from '../../../actions';
 })
 export class QtAccountProfilePageComponent {
   @select(['user', 'user', '_id']) userId$: Observable<string>;
-  @select(['profile', 'updateUser', 'isError']) isUpdateProfileError$: Observable<boolean>;
-  @select(['profile', 'updateUser', 'isSuccess']) isUpdateProfileSuccess$: Observable<boolean>;
-  @select(['profile', 'user', 'isPending']) userIsPending$: Observable<boolean>;
+  @select(['profile', 'updateUser', 'isError']) isUpdateUserError$: Observable<boolean>;
+  @select(['profile', 'updateUser', 'isSuccess']) isUpdateUserSuccess$: Observable<boolean>;
+  @select(['profile', 'updateUser', 'isPending']) isUpdateUserPending: Observable<boolean>;
+  @select(['profile', 'user', 'isPending']) isUserPending$: Observable<boolean>;
   @select(['profile', 'user', 'item']) userItem$: Observable<any>;
 
   constructor(private profileActions: ProfileActions,
