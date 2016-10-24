@@ -1,0 +1,10 @@
+@import '../../assets/colors';
+
+:host {
+  background: $white;
+  display: block;
+}
+
+input {
+  border: 0 none;
+}
