@@ -3,7 +3,7 @@
 
   <div class="actions">
     <x-button preset="light" size="small" (onClick)="quotesActions.saveQuoteModal()">
-      <x-icon size="small">note_add</x-icon> Add new Quote
+      <x-icon size="small">note_add</x-icon> Create new Quote
     </x-button>
   </div>
 </x-toolbar>
@@ -15,7 +15,7 @@
 
   <div *ngIf="!(quotesItems$ | async).toJS().length">
     <x-box *ngIf="!(quotesIsPending$ | async)" class="tips">
-      <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Add the first Quote! :)</x-button>
+      <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Create first Quote! :)</x-button>
     </x-box>
   </div>
 
