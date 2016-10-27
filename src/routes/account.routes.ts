@@ -2,6 +2,7 @@ import {
   QtAccountPageComponent,
   QtAccountQuotesPageComponent,
   QtAccountUsersPageComponent,
+  QtAccountProfileEditPageComponent,
   QtAccountProfilePageComponent,
 } from '../containers';
 
@@ -15,7 +16,10 @@ export const ACCOUNT_ROUTES = [{
     path: 'users',
     component: QtAccountUsersPageComponent,
   }, {
-    path: 'profile',
+    path: 'profile/edit',
+    component: QtAccountProfileEditPageComponent,
+  }, {
+    path: 'profile/:_id',
     component: QtAccountProfilePageComponent,
   }],
 }];

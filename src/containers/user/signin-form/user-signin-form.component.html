@@ -1,10 +1,10 @@
 <x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
     <x-form-group>
-      <x-label>E-mail</x-label>
-      <x-form-input [control]="email" type="email" autofocus="true"></x-form-input>
-      <x-form-error *ngIf="(isSubmitted || email.touched) && email.errors && email.errors.invalid">
-        Type in valid e-mail address.
+      <x-label>Username/E-mail</x-label>
+      <x-form-input [control]="login" type="text" autofocus="true"></x-form-input>
+      <x-form-error *ngIf="(isSubmitted || login.touched) && login.errors && login.errors.required">
+        Field is required.
       </x-form-error>
     </x-form-group>
 

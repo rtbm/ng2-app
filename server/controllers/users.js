@@ -2,6 +2,7 @@
 const Q = require('q');
 const fs = require('fs');
 const cloudinary = require('cloudinary');
+const mongoose = require('mongoose');
 const User = require('../models/user');
 const File = require('../helpers/file');
 
@@ -24,7 +25,7 @@ module.exports = {
     }
 
     User.find(query)
-      .select('email profile')
+      .select('username email profile')
       .exec((err, _users) => {
         if (err) return next(err);
 
@@ -45,8 +46,18 @@ module.exports = {
       return next(err);
     }
 
-    User.findById(req.params.userId)
-      .select('profile')
+    let query = {
+      username: req.params.userId,
+    };
+
+    if (mongoose.Types.ObjectId.isValid(req.params.userId)) {
+      query = {
+        _id: req.params.userId,
+      };
+    }
+
+    User.findOne(query)
+      .select('username email profile')
       .exec((err, user) => {
         if (err) return next(err);
 

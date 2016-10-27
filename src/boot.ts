@@ -13,7 +13,7 @@ const WebFont = require('webfontloader');
 WebFont.load({
   google: {
     families: [
-      'Roboto:400,500',
+      'Roboto:400,500,700',
       'Playfair+Display:400,700',
       'Material+Icons',
     ],

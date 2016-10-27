@@ -46,6 +46,14 @@ p {
   margin: 0 0 1em;
 }
 
+small {
+  font-size: 1.3rem;
+}
+
+strong {
+  font-weight: 700;
+}
+
 .wf-materialicons-n4-active {
   /deep/ x-icon {
     opacity: 1;

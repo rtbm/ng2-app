@@ -9,7 +9,7 @@ module.exports = {
       return next(err);
     }
 
-    Quote.find({
+    let query = {
       $or: [{
         owner: {
           $in: req.user.following,
@@ -18,15 +18,33 @@ module.exports = {
       }, {
         owner: req.user._id,
       }],
-    })
-    .sort('-createdAt')
-    .populate({
-      path: 'owner',
-      select: 'profile.first_name profile.last_name',
-    }).exec((err, quotes) => {
-      if (err) return next(err);
-      return res.json(quotes);
-    });
+    };
+
+    let projection;
+
+    if (req.query.q) {
+      query = Object.assign({}, query, {
+        $text: {
+          $search: req.query.q,
+        },
+      });
+
+      projection = {
+        score: {
+          $meta: 'textScore',
+        },
+      };
+    }
+
+    Quote.find(query, projection)
+      .sort('-createdAt')
+      .populate({
+        path: 'owner',
+        select: 'username profile.first_name profile.last_name',
+      }).exec((err, quotes) => {
+        if (err) return next(err);
+        return res.json(quotes);
+      });
   },
 
   save: (req, res, next) => {
@@ -49,7 +67,7 @@ module.exports = {
 
       Quote.populate(__quote, {
         path: 'owner',
-        select: 'profile.first_name profile.last_name',
+        select: 'username profile.first_name profile.last_name',
       }, (err, quote) => {
         if (err) return next(err);
         return res.json(quote);
@@ -164,7 +182,7 @@ module.exports = {
       Quote.findById(req.params.quoteId)
         .populate({
           path: 'owner',
-          select: 'profile.first_name profile.last_name',
+          select: 'username profile.first_name profile.last_name',
         }).exec((err, quote) => {
           if (err) return next(err);
           return res.json(quote);
@@ -192,7 +210,7 @@ module.exports = {
       Quote.findById(req.params.quoteId)
         .populate({
           path: 'owner',
-          select: 'profile.first_name profile.last_name',
+          select: 'username profile.first_name profile.last_name',
         }).exec((err, quote) => {
           if (err) return next(err);
           return res.json(quote);

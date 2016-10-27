@@ -18,7 +18,12 @@
     <x-list>
       <x-list-item *ngFor="let user of (usersItems$ | async).toJS()">
         <x-list-item-content>
-          {{user.profile.first_name}} {{user.profile.last_name}} {{user.email}}
+          <a [routerLink]="['/account/profile', user.username || user._id]">
+            <span>{{user.username || user.email}}</span>
+            <span *ngIf="user.profile.first_name || user.profile.last_name">
+              ({{user.profile.first_name}} {{user.profile.last_name}})
+            </span>
+          </a>
         </x-list-item-content>
 
         <x-list-item-actions *ngIf="user._id !== (userId$ | async)">

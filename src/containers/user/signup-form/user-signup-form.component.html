@@ -1,5 +1,15 @@
 <x-form [group]="form" (onSubmit)="handleSubmit()">
   <x-form-content>
+    <x-form-group>
+      <x-label>Username</x-label>
+      <x-form-input [control]="username" type="text"></x-form-input>
+      <x-form-error *ngIf="(isSubmitted || username.touched) && username.errors && username.errors.required">
+        Field is required.
+      </x-form-error>
+      <x-form-error *ngIf="(isSubmitted || username.touched) && username.errors && username.errors.minlength">
+        Username is too short (minimum 3 chars).
+      </x-form-error>
+    </x-form-group>
 
     <x-form-group>
       <x-label>E-mail</x-label>
@@ -7,6 +17,16 @@
       <x-form-error *ngIf="(isSubmitted || email.touched) && email.errors && email.errors.invalid">
         Type in valid e-mail address.
       </x-form-error>
+    </x-form-group>
+
+    <x-form-group>
+      <x-label>First Name (optional)</x-label>
+      <x-form-input [control]="first_name" type="text"></x-form-input>
+    </x-form-group>
+
+    <x-form-group>
+      <x-label>Last Name (optional)</x-label>
+      <x-form-input [control]="last_name" type="last_name"></x-form-input>
     </x-form-group>
 
     <x-form-group>

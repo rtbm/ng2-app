@@ -10,7 +10,7 @@ export class QuotesEpics {
 
   fetchQuotes = (action$: Observable<IPayloadAction>) => action$
     .filter(({ type }) => type === QuotesActions.QUOTES_FETCH)
-    .flatMap(() => this.quotesService.fetchAll()
+    .flatMap(({ payload }) => this.quotesService.fetchAll(payload)
       .map(result => {
         return {
           type: QuotesActions.QUOTES_FETCH_SUCCESS,

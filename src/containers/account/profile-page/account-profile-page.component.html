@@ -1,22 +1,49 @@
 <x-toolbar>
-  <h1>Profile</h1>
+  <h1>Show Profile</h1>
 </x-toolbar>
 
 <x-wrapper class="main">
-  <x-indicator *ngIf="(isUserPending$ | async) || (isUpdateUserPending | async)">wait...</x-indicator>
+  <x-indicator *ngIf="isUserPending$ | async">wait...</x-indicator>
 
-  <x-box *ngIf="!(isUserPending$ | async) && !(isUpdateUserPending | async)">
+  <x-box *ngIf="!(isUserPending$ | async)">
     <x-box-header>
-      Update Profile
+      Profile
+      <strong>
+        {{userItem.username}}
+        <span *ngIf="userItem.profile.first_name || userItem.profile.last_name">
+          ({{userItem.profile.first_name}} {{userItem.profile.last_name}})
+        </span>
+      </strong>
     </x-box-header>
 
     <x-box-content>
-      <x-form-message *ngIf="isUpdateUserError$ | async" preset="error">Profile update error!</x-form-message>
-      <x-form-message *ngIf="isUpdateUserSuccess$ | async" preset="success">Profile successfully updated.</x-form-message>
+      <x-form-content>
+        <x-box class="avatar">
+          <x-box-content>
+            <x-avatar [src]="userItem.profile.avatar"></x-avatar>
+          </x-box-content>
+        </x-box><div class="profile-details">
+        <x-form-group *ngIf="userItem.profile.first_name">
+          <x-label>First Name</x-label>
+          <span>{{userItem.profile.first_name}}</span>
+        </x-form-group>
 
-      <qt-account-profile-edit-form
-        [user]="(userItem$ | async).toJS()"
-        (onSubmit)="handleSubmit($event)"></qt-account-profile-edit-form>
+        <x-form-group *ngIf="userItem.profile.last_name">
+          <x-label>Last Name</x-label>
+          <span>{{userItem.profile.last_name}}</span>
+        </x-form-group>
+
+        <x-form-group *ngIf="userItem.profile.bio">
+          <x-label>Bio</x-label>
+          <span>{{userItem.profile.bio}}</span>
+        </x-form-group>
+
+        <x-form-group>
+          <x-label>E-mail</x-label>
+          <span>{{userItem.email}}</span>
+        </x-form-group>
+      </div>
+      </x-form-content>
     </x-box-content>
   </x-box>
 </x-wrapper>

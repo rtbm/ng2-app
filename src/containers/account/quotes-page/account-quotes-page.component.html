@@ -8,7 +8,7 @@
   </div>
 </x-toolbar>
 
-<qt-search-form></qt-search-form>
+<qt-search-form (onSubmit)="search($event)"></qt-search-form>
 
 <x-wrapper class="main">
   <x-indicator *ngIf="quotesIsPending$ | async">wait...</x-indicator>
@@ -22,7 +22,13 @@
   <div *ngIf="(quotesItems$ | async).toJS().length">
     <x-box *ngFor="let quote of (quotesItems$ | async).toJS()" class="quote">
       <x-box-header>
-        {{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}} @ {{quote.createdAt}}
+        <a [routerLink]="['/account/profile', quote.owner.username || quote.owner._id]">
+          <span>{{quote.owner.username}}</span>
+          <span *ngIf="quote.owner.profile.first_name || quote.owner.profile.lastname">
+            ({{quote.owner.profile.first_name}} {{quote.owner.profile.last_name}})
+          </span>
+        </a>
+        <small>{{quote.createdAt | date: 'medium'}}</small>
         <x-icon *ngIf="quote.private" size="small" class="right">lock</x-icon>
         <div class="clearfix"></div>
       </x-box-header>

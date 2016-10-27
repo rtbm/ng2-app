@@ -14,7 +14,11 @@ module.exports = {
     }
 
     User.findOne({
-      email: req.body.email,
+      $or: [{
+        email: req.body.email,
+      }, {
+        username: req.body.username,
+      }],
     }).exec((err, _user) => {
       if (err) return next(err);
 
@@ -24,10 +28,19 @@ module.exports = {
         return next(err);
       }
 
+      if (req.body.password.length < 5) {
+        err = new Error('Bad Request');
+        err.status = 400;
+        return next(err);
+      }
+
       const __user = new User();
 
+      __user.username = req.body.username;
       __user.email = req.body.email;
       __user.password = req.body.password;
+      __user.profile.first_name = req.body.first_name;
+      __user.profile.last_name = req.body.last_name;
 
       __user.save((err, user) => {
         if (err) return next(err);
@@ -44,8 +57,12 @@ module.exports = {
 
   signin: (req, res, next) => {
     User.findOne({
-      email: req.body.email,
-    }).select('email password').exec((err, user) => {
+      $or: [{
+        email: req.body.login,
+      }, {
+        username: req.body.login,
+      }],
+    }).select('email username password').exec((err, user) => {
       if (err) return next(err);
 
       if (!user) {
@@ -66,6 +83,7 @@ module.exports = {
         return res.json({
           id_token: jwt.sign({
             _id: user._id,
+            username: user.username,
             email: user.email,
           }, process.env.SECRET),
         });

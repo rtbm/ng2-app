@@ -35,6 +35,8 @@ export class QtAccountQuotesPageComponent {
     this.quotesActions.fetchQuotes();
   }
 
+  search = query => this.quotesActions.fetchQuotes(query);
+
   handleRemoveQuote = () => this.removeQuoteItem$
     .first()
     .subscribe((quote: any) => this.quotesActions.removeQuote(quote.toJS()));

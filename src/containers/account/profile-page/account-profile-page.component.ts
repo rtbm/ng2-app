@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs';
 import { ProfileActions } from '../../../actions';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'qt-account-profile-page',
@@ -10,21 +12,24 @@ import { ProfileActions } from '../../../actions';
   styles: [require('./account-profile-page.component.scss')],
 })
 export class QtAccountProfilePageComponent {
-  @select(['user', 'user', '_id']) userId$: Observable<string>;
-  @select(['profile', 'updateUser', 'isError']) isUpdateUserError$: Observable<boolean>;
-  @select(['profile', 'updateUser', 'isSuccess']) isUpdateUserSuccess$: Observable<boolean>;
-  @select(['profile', 'updateUser', 'isPending']) isUpdateUserPending: Observable<boolean>;
   @select(['profile', 'user', 'isPending']) isUserPending$: Observable<boolean>;
   @select(['profile', 'user', 'item']) userItem$: Observable<any>;
 
+  private userItem: any;
+  private routeParamsSubscription: Subscription;
+
   constructor(private profileActions: ProfileActions,
-              private title: Title) {
+              private title: Title,
+              private activatedRoute: ActivatedRoute) {
 
     title.setTitle('Account - Profile | Quotter');
 
-    this.userId$.first()
-      .subscribe((_id: string) => this.profileActions.fetchUser(_id));
+    this.activatedRoute.params.subscribe((params: any) => this.profileActions.fetchUser(params._id));
+
+    this.userItem$.subscribe(userItem$ => {
+      this.userItem = userItem$.toJS();
+    });
   }
 
-  handleSubmit = user => this.profileActions.updateUser(user);
+  ngOnDestroy = () => this.routeParamsSubscription.unsubscribe();
 }

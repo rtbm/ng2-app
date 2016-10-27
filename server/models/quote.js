@@ -5,7 +5,6 @@ const quoteSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    index: true,
     trim: true,
   },
   content: {
@@ -26,7 +25,6 @@ const quoteSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true,
-    index: true,
   },
   recommended: [{
     type: mongoose.Schema.ObjectId,
@@ -35,6 +33,11 @@ const quoteSchema = new mongoose.Schema({
 }, {
   autoIndex: true,
   timestamps: true,
+});
+
+quoteSchema.index({
+  name: 'text',
+  content: 'text',
 });
 
 module.exports = mongoose.model('Quote', quoteSchema);

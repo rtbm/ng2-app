@@ -42,82 +42,59 @@ export class QuotesActions {
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
-  fetchQuotes() {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTES_FETCH,
-    });
-  }
+  fetchQuotes = (payload?) => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTES_FETCH,
+    payload,
+  });
 
-  saveQuoteModal() {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_SAVE_MODAL,
-    });
-  }
+  saveQuoteModal = () => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_SAVE_MODAL,
+  });
 
-  saveQuoteModalCancel() {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_SAVE_MODAL_CANCEL,
-    });
-  }
+  saveQuoteModalCancel = () => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_SAVE_MODAL_CANCEL,
+  });
 
-  saveQuote(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_SAVE,
-      payload: quote,
-    });
-  }
+  saveQuote = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_SAVE,
+    payload: quote,
+  });
 
-  removeQuoteConfirm(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_REMOVE_CONFIRM,
-      payload: quote,
-    });
-  }
+  removeQuoteConfirm = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_REMOVE_CONFIRM,
+    payload: quote,
+  });
 
-  removeQuoteConfirmCancel() {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL,
-    });
-  }
+  removeQuoteConfirmCancel = () => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_REMOVE_CONFIRM_CANCEL,
+  });
 
-  removeQuote(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_REMOVE,
-      payload: quote,
-    });
-  }
+  removeQuote = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_REMOVE,
+    payload: quote,
+  });
 
-  updateQuoteModal(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_UPDATE_MODAL,
-      payload: quote,
-    });
-  }
+  updateQuoteModal = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_UPDATE_MODAL,
+    payload: quote,
+  });
 
-  updateQuoteCancel() {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_UPDATE_MODAL_CANCEL,
-    });
-  }
+  updateQuoteCancel = () => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_UPDATE_MODAL_CANCEL,
+  });
 
-  updateQuote(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_UPDATE,
-      payload: quote,
-    });
-  }
+  updateQuote = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_UPDATE,
+    payload: quote,
+  });
 
-  recommendQuote(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_RECOMMEND,
-      payload: quote,
-    });
-  }
+  recommendQuote = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_RECOMMEND,
+    payload: quote,
+  });
 
-  unrecommendQuote(quote) {
-    this.ngRedux.dispatch({
-      type: QuotesActions.QUOTE_UNRECOMMEND,
-      payload: quote,
-    });
-  }
+  unrecommendQuote = quote => this.ngRedux.dispatch({
+    type: QuotesActions.QUOTE_UNRECOMMEND,
+    payload: quote,
+  });
 }

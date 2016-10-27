@@ -12,7 +12,6 @@ export class QtUserChangePasswordFormComponent implements OnDestroy {
   @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
-  private email: FormControl;
   private token: FormControl;
   private password: FormControl;
   private password_confirm: FormControl;

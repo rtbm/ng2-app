@@ -11,16 +11,16 @@ export class QtUserSigninFormComponent {
   @Output() private onSubmit = new EventEmitter();
 
   private form: FormGroup;
-  private email: FormControl;
+  private login: FormControl;
   private password: FormControl;
   private isSubmitted: boolean;
 
   constructor(private builder: FormBuilder) {
-    this.email = new FormControl('', EmailValidator.validate);
+    this.login = new FormControl('', Validators.required);
     this.password = new FormControl('', Validators.required);
 
     this.form = this.builder.group({
-      email: this.email,
+      login: this.login,
       password: this.password,
     });
   }

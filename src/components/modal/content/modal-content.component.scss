@@ -1,7 +1,10 @@
 @import '../../../assets/colors';
+@import '../../../assets/variables';
 
 :host {
   background: $white;
+  border-radius: $radius;
   display: inline-block;
+  overflow: hidden;
   text-align: center;
 }

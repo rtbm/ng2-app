@@ -5,7 +5,7 @@
     <x-box-content>
       <div *ngIf="isSigninError$ | async" [ngSwitch]="signinErrorCode$ | async">
         <x-form-message preset="error" *ngSwitchCase="422">
-          Provided e-mail/password is incorrect.
+          Provided username/e-mail/password is incorrect.
         </x-form-message>
 
         <x-form-message preset="error" *ngSwitchCase="404">

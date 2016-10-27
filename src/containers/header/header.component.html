@@ -4,25 +4,29 @@
   <x-menu>
     <x-menu-item>
       <a [routerLink]="['/']">
-        <x-icon size="small">home</x-icon> Home
+        <x-icon size="small">home</x-icon>
+        <span>Home</span>
       </a>
     </x-menu-item>
 
     <x-menu-item>
       <a [routerLink]="['/account/quotes']" *ngIf="idToken$ | async" routerLinkActive="active-link">
-        <x-icon size="small">dashboard</x-icon> Quotes
+        <x-icon size="small">dashboard</x-icon>
+        <span>Quotes</span>
       </a>
     </x-menu-item>
 
     <x-menu-item>
       <a [routerLink]="['/account/users']" *ngIf="idToken$ | async" routerLinkActive="active-link">
-        <x-icon size="small">contacts</x-icon> Users
+        <x-icon size="small">contacts</x-icon>
+        <span>Users</span>
       </a>
     </x-menu-item>
 
     <x-menu-item>
-      <a [routerLink]="['/account/profile']" *ngIf="idToken$ | async" routerLinkActive="active-link">
-        <x-icon size="small">account_box</x-icon> Profile
+      <a [routerLink]="['/account/profile/edit']" *ngIf="idToken$ | async" routerLinkActive="active-link">
+        <x-icon size="small">account_box</x-icon>
+        <span>Profile</span>
       </a>
     </x-menu-item>
   </x-menu>
@@ -30,7 +34,7 @@
   <div class="account-box">
     <x-menu *ngIf="idToken$ | async">
       <x-menu-item>
-        <a [routerLink]="['/account/profile']">{{ userEmail$ | async }}</a>
+        <a [routerLink]="['/account/profile/edit']">{{ userEmail$ | async }}</a>
       </x-menu-item>
       <x-menu-item>
         <x-button (onClick)="handleLogoutClick()" preset="neutral">Logout</x-button>
@@ -42,4 +46,6 @@
       <x-button (onClick)="handleSignupClick()" preset="neutral">Sign up</x-button>
     </x-menu>
   </div>
+
+  <div class="clearfix"></div>
 </x-wrapper>

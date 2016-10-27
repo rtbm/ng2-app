@@ -5,9 +5,11 @@
   display: block;
   padding: 1rem 2rem;
 
-  x-button {
-    button {
-      width: 10rem;
+  /deep/ {
+    x-button {
+      button {
+        min-width: 10rem;
+      }
     }
   }
 }
