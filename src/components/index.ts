@@ -12,6 +12,7 @@ export * from './logo';
 export * from './menu';
 export * from './modal';
 export * from './overlay';
+export * from './pagination';
 export * from './tabs';
 export * from './toolbar';
 export * from './tooltip';

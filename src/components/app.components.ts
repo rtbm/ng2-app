@@ -12,6 +12,7 @@ import { LOGO_COMPONENTS } from './logo';
 import { MENU_COMPONENTS } from './menu';
 import { MODAL_COMPONENTS } from './modal';
 import { OVERLAY_COMPONENTS } from './overlay';
+import { PAGINATION_COMPONENTS } from './pagination';
 import { TABS_COMPONENTS } from './tabs';
 import { TOOLTIP_COMPONENTS } from './tooltip';
 import { WRAPPER_COMPONENTS } from './wrapper';
@@ -32,6 +33,7 @@ export const APP_COMPONENTS = [
   ...MENU_COMPONENTS,
   ...MODAL_COMPONENTS,
   ...OVERLAY_COMPONENTS,
+  ...PAGINATION_COMPONENTS,
   ...TABS_COMPONENTS,
   ...TOOLBAR_COMPONENTS,
   ...TOOLTIP_COMPONENTS,

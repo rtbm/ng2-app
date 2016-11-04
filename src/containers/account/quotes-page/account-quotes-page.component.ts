@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { select } from 'ng2-redux';
 import { QuotesActions } from '../../../actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'qt-account-quotes-page',
   template: require('./account-quotes-page.component.html'),
   styles: [require('./account-quotes-page.component.scss')],
 })
-export class QtAccountQuotesPageComponent {
+export class QtAccountQuotesPageComponent implements OnDestroy {
   @select(['user', 'user', '_id']) userId$: Observable<string>;
   @select(['quotes', 'quotes', 'items']) quotesItems$: Observable<any>;
   @select(['quotes', 'quotes', 'isPending']) quotesIsPending$: Observable<boolean>;
+  @select(['quotes', 'quotes', 'pagination']) quotesPagination$: Observable<any>;
 
   @select(['quotes', 'saveQuote', 'isModalVisible']) isSaveQuoteModalVisible$: Observable<boolean>;
   @select(['quotes', 'saveQuote', 'isSuccess']) isSaveQuoteSuccess$: Observable<boolean>;
@@ -27,17 +29,29 @@ export class QtAccountQuotesPageComponent {
   @select(['quotes', 'removeQuote', 'item']) removeQuoteItem$: Observable<any>;
   @select(['quotes', 'removeQuote', 'item', 'name']) removeQuoteItemName$: Observable<any>;
 
+  private routeParamsSubscription: Subscription;
+  private params: any;
+
   constructor(private quotesActions: QuotesActions,
-              private title: Title) {
+              private title: Title,
+              private router: Router,
+              private route: ActivatedRoute) {
 
     title.setTitle('Account - Quotes | Quotter');
 
-    this.quotesActions.fetchQuotes();
+    this.routeParamsSubscription = this.route.params
+      .subscribe((params: any) => this.fetchQuotes(params));
   }
 
-  search = query => this.quotesActions.fetchQuotes(query);
+  fetchQuotes = (params: { search, page }) => {
+    this.params = params;
+    this.quotesActions.fetchQuotes(params);
+  };
 
-  handleRemoveQuote = () => this.removeQuoteItem$
-    .first()
+  searchQuotes = search => this.router.navigate(['.', { search }], { relativeTo: this.route });
+
+  handleRemoveQuote = () => this.removeQuoteItem$.first()
     .subscribe((quote: any) => this.quotesActions.removeQuote(quote.toJS()));
+
+  ngOnDestroy = () => this.routeParamsSubscription.unsubscribe();
 }

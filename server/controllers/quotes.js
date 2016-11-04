@@ -20,31 +20,25 @@ module.exports = {
       }],
     };
 
-    let projection;
-
-    if (req.query.q) {
+    if (req.query.search) {
       query = Object.assign({}, query, {
         $text: {
-          $search: req.query.q,
+          $search: req.query.search,
         },
       });
-
-      projection = {
-        score: {
-          $meta: 'textScore',
-        },
-      };
     }
 
-    Quote.find(query, projection)
-      .sort('-createdAt')
-      .populate({
+    Quote.paginate(query, {
+      page: req.query.page || 1,
+      sort: '-createdAt',
+      populate: {
         path: 'owner',
         select: 'username profile.first_name profile.last_name',
-      }).exec((err, quotes) => {
-        if (err) return next(err);
-        return res.json(quotes);
-      });
+      },
+    }, (err, result) => {
+      if (err) return next(err);
+      return res.json(result);
+    });
   },
 
   save: (req, res, next) => {

@@ -8,11 +8,9 @@
   </div>
 </x-toolbar>
 
-<qt-search-form (onSubmit)="search($event)"></qt-search-form>
+<qt-search-form (onSubmit)="searchQuotes($event)"></qt-search-form>
 
 <x-wrapper class="main">
-  <x-indicator *ngIf="quotesIsPending$ | async">wait...</x-indicator>
-
   <div *ngIf="!(quotesItems$ | async).toJS().length">
     <x-box *ngIf="!(quotesIsPending$ | async)" class="tips">
       <x-button preset="positive" (onClick)="quotesActions.saveQuoteModal()">Create first Quote! :)</x-button>
@@ -74,6 +72,10 @@
       </x-box-footer>
     </x-box>
   </div>
+
+  <x-indicator *ngIf="quotesIsPending$ | async">wait...</x-indicator>
+
+  <x-pagination [pagination]="(quotesPagination$ | async).toJS()" [route]="route"></x-pagination>
 </x-wrapper>
 
 <x-dialog-confirm *ngIf="isRemoveQuoteConfirmVisible$ | async"

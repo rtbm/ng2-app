@@ -11,12 +11,10 @@ export class QuotesEpics {
   fetchQuotes = (action$: Observable<IPayloadAction>) => action$
     .filter(({ type }) => type === QuotesActions.QUOTES_FETCH)
     .flatMap(({ payload }) => this.quotesService.fetchAll(payload)
-      .map(result => {
-        return {
-          type: QuotesActions.QUOTES_FETCH_SUCCESS,
-          payload: result,
-        };
-      })
+      .map(result => ({
+        type: QuotesActions.QUOTES_FETCH_SUCCESS,
+        payload: result,
+      }))
       .catch(error => Observable.of({
         type: QuotesActions.QUOTES_FETCH_ERROR,
         payload: { errorCode: error.status },

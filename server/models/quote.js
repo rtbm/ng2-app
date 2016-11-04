@@ -1,5 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const quoteSchema = new mongoose.Schema({
   name: {
@@ -39,5 +40,7 @@ quoteSchema.index({
   name: 'text',
   content: 'text',
 });
+
+quoteSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Quote', quoteSchema);

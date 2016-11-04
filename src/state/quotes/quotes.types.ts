@@ -1,4 +1,5 @@
 import { TypedRecord } from 'typed-immutable-record';
+import { Pagination } from '../../models/pagination.model';
 
 export interface IQuotes {
   quotes: {
@@ -7,6 +8,7 @@ export interface IQuotes {
     isError: boolean;
     errorCode: number;
     items: any;
+    pagination: Pagination,
   };
 
   saveQuote: {

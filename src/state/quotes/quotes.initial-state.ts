@@ -13,6 +13,13 @@ export const QuotesFactory = makeTypedFactory<IQuotes, IQuotesRecord>({
     isError: false,
     errorCode: 0,
     items: [],
+    pagination: {
+      limit: 0,
+      offset: 0,
+      page: 0,
+      pages: 0,
+      total: 0,
+    },
   }),
 
   saveQuote: fromJS({

@@ -19,7 +19,12 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
       return state
         .setIn(['quotes', 'isPending'], false)
         .setIn(['quotes', 'isSuccess'], true)
-        .setIn(['quotes', 'items'], fromJS(action.payload));
+        .setIn(['quotes', 'items'], fromJS(action.payload.docs))
+        .setIn(['quotes', 'pagination', 'limit'], action.payload.limit)
+        .setIn(['quotes', 'pagination', 'offset'], action.payload.offset)
+        .setIn(['quotes', 'pagination', 'page'], action.payload.page)
+        .setIn(['quotes', 'pagination', 'pages'], action.payload.pages)
+        .setIn(['quotes', 'pagination', 'total'], action.payload.total);
     }
 
     case QuotesActions.QUOTES_FETCH_ERROR:
