@@ -20,7 +20,7 @@ Error.stackTraceLimit = Infinity;
 
 TestBed.initTestEnvironment(
   BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting()
+  platformBrowserDynamicTesting(),
 );
 
 TestBed.configureCompiler({
