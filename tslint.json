@@ -1,12 +1,13 @@
 {
   "extends": "tslint:latest",
   "rules": {
-    "no-unused-variable": false,
     "ordered-imports": false,
     "quotemark": false,
     "object-literal-sort-keys": false,
     "no-var-requires": false,
     "interface-name": false,
+    "arrow-parens": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "max-line-length": [
       true,
       120
@@ -18,6 +19,10 @@
       "public-before-private",
       "static-before-instance",
       "variables-before-functions"
-    ]
+    ],
+    "trailing-comma": [true, {
+      "multiline": "always",
+      "singleline": "never"
+    }]
   }
 }

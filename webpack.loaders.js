@@ -1,6 +1,6 @@
 module.exports = [{
   test: /\.ts$/,
-  loader: 'ts',
+  loader: 'awesome-typescript',
   exclude: /node_modules/,
 }, {
   test: /\.component.html$/,

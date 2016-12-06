@@ -18,8 +18,7 @@ export class ProfileEpics {
       .catch(error => Observable.of({
         type: ProfileActions.USER_FETCH_ERROR,
         payload: { errorCode: error.status },
-      }))
-    );
+      })));
 
   updateUser = (action$: Observable<IPayloadAction>) => action$
     .filter(({ type }) => type === ProfileActions.USER_UPDATE)

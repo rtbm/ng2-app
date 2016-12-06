@@ -50,7 +50,7 @@ export function usersReducer(state: IUsersRecord = INITIAL_STATE, action: IPaylo
         .setIn(['follow', 'isModalVisible'], false)
         .updateIn(['users', 'items'], list => list.update(
           list.findIndex(item => item.get('_id') === action.payload._id),
-          item => item.set('followed', true)
+          item => item.set('followed', true),
         ));
     }
 
@@ -81,7 +81,7 @@ export function usersReducer(state: IUsersRecord = INITIAL_STATE, action: IPaylo
         .setIn(['unfollow', 'isModalVisible'], false)
         .updateIn(['users', 'items'], list => list.update(
           list.findIndex(item => item.get('_id') === action.payload._id),
-          item => item.set('followed', false)
+          item => item.set('followed', false),
         ));
     }
 

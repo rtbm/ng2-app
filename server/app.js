@@ -70,5 +70,4 @@ app.use((err, req, res) => {
   res.send();
 });
 
-
 module.exports = app;

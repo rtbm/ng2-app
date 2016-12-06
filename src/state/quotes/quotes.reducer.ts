@@ -57,9 +57,7 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
         .setIn(['saveQuote', 'isModalVisible'], false)
         .setIn(['saveQuote', 'isPending'], false)
         .setIn(['saveQuote', 'isSuccess'], true)
-        .updateIn(['quotes', 'items'],
-          list => list.unshift(fromJS(action.payload))
-        );
+        .updateIn(['quotes', 'items'], list => list.unshift(fromJS(action.payload)));
     }
 
     case QuotesActions.QUOTE_SAVE_ERROR:
@@ -122,7 +120,7 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
         .setIn(['updateQuote', 'isSuccess'], true)
         .updateIn(['quotes', 'items'], list => list.update(
           list.findIndex(item => item.get('_id') === action.payload._id),
-          item => fromJS(action.payload)
+          item => fromJS(action.payload),
         ));
     }
 
@@ -164,8 +162,8 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
         .setIn(['removeQuote', 'isPending'], false)
         .setIn(['removeQuote', 'isSuccess'], true)
         .setIn(['removeQuote', 'item'], fromJS(action.payload))
-        .updateIn(['quotes', 'items'],
-          list => list.filter(item => item.get('_id') !== action.payload._id)
+        .updateIn(['quotes', 'items'], list => list.filter(
+          item => item.get('_id') !== action.payload._id),
         );
     }
 
@@ -194,7 +192,7 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
         .setIn(['recommendQuote', 'item'], fromJS(action.payload))
         .updateIn(['quotes', 'items'], list => list.update(
           list.findIndex(item => item.get('_id') === action.payload._id),
-          item => fromJS(action.payload)
+          item => fromJS(action.payload),
         ));
     }
 
@@ -223,7 +221,7 @@ export function quotesReducer(state: IQuotesRecord = INITIAL_STATE, action: IPay
         .setIn(['unrecommendQuote', 'item'], fromJS(action.payload))
         .updateIn(['quotes', 'items'], list => list.update(
           list.findIndex(item => item.get('_id') === action.payload._id),
-          item => fromJS(action.payload)
+          item => fromJS(action.payload),
         ));
     }
 

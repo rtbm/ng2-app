@@ -1,6 +1,4 @@
 const path = require('path');
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
 
 const loaders = require('./webpack.loaders');
 const plugins = require('./webpack.plugins');
@@ -35,11 +33,6 @@ module.exports = {
 
   module: {
     loaders,
-
-    postcss: [
-      precss,
-      autoprefixer,
-    ],
 
     preLoaders: [{
       test: /\.ts$/,
