@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { createEpicMiddleware, Epic } from 'redux-observable';
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import rootReducer, { IAppState, middlewares, enhancers } from './state';
 import { UserEpics, ProfileEpics, QuotesEpics, UsersEpics } from './epics';
 

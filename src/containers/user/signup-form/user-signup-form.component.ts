@@ -1,6 +1,6 @@
 import { Component, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { select } from 'ng2-redux';
+import { select } from '@angular-redux/store';
 import { EmailValidator } from '../../../validators/email.validator';
 
 @Component({

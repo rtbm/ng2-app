@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { select } from 'ng2-redux';
+import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs';
 
 @Component({

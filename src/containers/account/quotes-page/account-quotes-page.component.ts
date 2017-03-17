@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { select } from 'ng2-redux';
+import { select } from '@angular-redux/store';
 import { QuotesActions } from '../../../actions';
 import { Observable } from 'rxjs';
 

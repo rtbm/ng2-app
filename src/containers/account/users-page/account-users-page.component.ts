@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { select } from 'ng2-redux';
+import { select } from '@angular-redux/store';
 import { Observable, Subscription } from 'rxjs';
 import { UsersActions } from '../../../actions/users.actions';
 

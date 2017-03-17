@@ -1,6 +1,6 @@
 const path = require('path');
 const plugins = require('./webpack.plugins');
-const loaders = require('./webpack.loaders');
+const rules = require('./webpack.rules');
 
 module.exports = config => config.set({
   basePath: '',
@@ -20,11 +20,11 @@ module.exports = config => config.set({
       app: './src/app.spec-bundle.ts',
     },
     resolve: {
-      extensions: ['', '.webpack.js', '.web.js', '.js', '.ts'],
+      extensions: ['.js', '.ts'],
     },
     plugins: plugins.basePlugins,
     module: {
-      loaders,
+      rules,
     },
   },
   webpackMiddleware: {

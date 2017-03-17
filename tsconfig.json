@@ -9,7 +9,6 @@
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "removeComments": false,
-    "inlineSourceMap": true,
     "noEmitHelpers": true,
     "types": [
       "es6-shim",

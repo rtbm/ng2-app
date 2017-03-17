@@ -1,6 +1,6 @@
 const path = require('path');
 
-const loaders = require('./webpack.loaders');
+const rules = require('./webpack.rules');
 const plugins = require('./webpack.plugins');
 
 const __PRODUCTION__ = process.env.NODE_ENV === 'production';
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.ts'],
+    extensions: ['.js', '.ts'],
   },
 
   plugins: __PRODUCTION__
@@ -32,15 +32,6 @@ module.exports = {
   },
 
   module: {
-    loaders,
-
-    preLoaders: [{
-      test: /\.ts$/,
-      loader: 'tslint',
-    }],
-
-    tslint: {
-      emitErrors: process.env.NODE_ENV === 'production',
-    }
+    rules,
   },
 };

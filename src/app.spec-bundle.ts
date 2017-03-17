@@ -30,7 +30,7 @@ TestBed.configureCompiler({
   }],
 });
 
-const testContext = (<{ context?: Function }> require)
+const testContext = (require as any)
   .context('./', true, /\.spec\.ts/);
 
 testContext.keys().forEach(key => {

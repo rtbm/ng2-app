@@ -3,7 +3,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { NgRedux } from 'ng2-redux';
+import { NgReduxModule } from '@angular-redux/store';
 import { ROUTING } from './routes';
 import { SERVICES_PROVIDERS } from './services';
 import { ACTIONS_PROVIDERS } from './actions';
@@ -14,6 +14,7 @@ import { QtAppComponent } from './app.component';
 
 @NgModule({
   imports: [
+    NgReduxModule,
     BrowserModule,
     ReactiveFormsModule,
     CommonModule,
@@ -31,7 +32,6 @@ import { QtAppComponent } from './app.component';
   providers: [
     Title,
     FormBuilder,
-    NgRedux,
     ...SERVICES_PROVIDERS,
     ...ACTIONS_PROVIDERS,
     ...EPICS_PROVIDERS,
